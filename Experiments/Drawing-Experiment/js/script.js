@@ -1,6 +1,6 @@
 /**
-Title of Project
-Author Name
+Drawing Experiment
+Alex Cho
 
 This is a template. You must fill in the title,
 author, and this description to match your project!
@@ -16,11 +16,19 @@ function preload() {
 
 }
 
-/**
-Description of setup
-*/
+//Canvas Setup and Shapes
 function setup() {
-  background(127,222,10);
+  createCanvas(500, 500);
+
+  background(220,250,200);
+
+  point(250, 250);
+
+  ellipse(150, 55, 240, 55);
+
+  ellipse(150, 25, 240, 55);
+
+
 }
 
 
