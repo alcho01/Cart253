@@ -1,26 +1,35 @@
 /**
-Title of Project
-Author Name
+Dodging Covid-19
+Alex Cho
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+Familiarizing with Conditionals
 */
 
 "use strict";
 
 
-/**
-Description of preload
-*/
-function preload() {
-
-}
-
+let covid19 = {
+  x: 0,
+  y: 250,
+  size: 100,
+  vx: 0,
+  vy: 0,
+  speed: 5,
+  fill: {
+    r: 255,
+    g: 0,
+    b: 0
+  }
+};
 
 /**
 Description of setup
 */
 function setup() {
+  createCanvas(windowWidth, windowHeight);
+  covid19.y = random(0,height);
+  covid19.vx = covid19.speed;
+
 
 }
 
