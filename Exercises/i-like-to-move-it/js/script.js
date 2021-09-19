@@ -101,7 +101,7 @@ function lights() {
   var lights = {
   x: random(width),   //Reminder: Random has to be defined
   y: random(height),
-  size: random(3,10)
+  size: (mouseX,mouseY)
 }
  ellipse(mouseX,mouseY);
  ellipse(lights.x,lights.y,lights.size);
