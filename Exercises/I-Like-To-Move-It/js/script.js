@@ -22,6 +22,7 @@ let circle1 = {
   x: 0,
   y: 250,
   size: 200,
+  speed: 1,
   brightness: 120,
   alpha: 200
 };
@@ -30,6 +31,7 @@ let circle2 = {
   x: 500,
   y: 250,
   size: 150,
+  speed: -1,
   brightness: 5,
   alpha: 200
 };
@@ -38,6 +40,7 @@ let circle3 = {
   x: 250,
   y: 500,
   size: 100,
+  speed: -1,
   brightness: 240,
   alpha: 200
 };
@@ -46,6 +49,7 @@ let circle4 = {
   x: 250,
   y: 1,
   size: 50,
+  speed: 1,
   brightness: 40,
   alpha: 200
 };
