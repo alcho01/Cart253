@@ -59,10 +59,31 @@ function setup() {
 //Where Functions are being Called
 function draw() {
   bground();
-
+  circles();
 }
 
 //Background Color
-function bground(){
+function bground() {
+
   background(bg.r, bg.g, bg.b);
+}
+
+//Circle 1
+function circles() {
+
+  fill(mouseX,mouseY,circle1.brightness,circle1.alpha);
+  ellipse(circle1.x,circle1.y,circle1.size);
+
+//Circle 2
+  fill(mouseX,mouseY,circle2.brightness,circle2.alpha);
+  ellipse(circle2.x,circle2.y,circle2.size);
+
+//Circle 3
+  fill(mouseX,mouseY,circle3.brightness,circle3.alpha);
+  ellipse(circle3.x,circle3.y,circle3.size);
+
+//Circle 4
+  fill(mouseX,mouseY,circle4.brightness,circle4.alpha);
+  ellipse(circle4.x,circle4.y,circle4.size);
+
 }
