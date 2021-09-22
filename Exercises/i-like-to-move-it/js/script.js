@@ -56,8 +56,8 @@ function setup() {
 //Functions
 function draw() {
   circles();
-  lights();
-
+  dots();
+}
 //Background
 function circles() {
   background(bg.r,bg.g,bg.b);
@@ -97,16 +97,15 @@ function circles() {
 }
 
 //lights
-function lights() {
-  var lights = {
+function dots() {
+  var light = {
   x: random(width),   //Reminder: Random has to be defined
   y: random(height),
   size: (mouseX,mouseY)
     }
 
  ellipse(mouseX,mouseY);
- ellipse(lights.x,lights.y,lights.size);
- lights.x = constrain(lights.x,0,width/2);
+ ellipse(light.x,light.y,light.size);
+ light.x = constrain(light.x,0,width/2);
 
   }
-}
