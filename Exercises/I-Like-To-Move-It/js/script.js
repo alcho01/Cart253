@@ -10,22 +10,19 @@ Use map() and constrain()
 Respond to the mouse position using mouseX and mouseY
 ***********************/
 
-"use strict";
-
-
-/**
-Description of preload
-*/
-function preload() {
-
-}
+let bg = {
+  r: 43,
+  g: 87,
+  b: 120
+};
 
 
 /**
 Description of setup
 */
 function setup() {
-
+  createCanvas(500,500);
+  noStroke();
 }
 
 
@@ -33,5 +30,10 @@ function setup() {
 Description of draw()
 */
 function draw() {
+  bground();
 
+}
+
+function bground(){
+  background(bg.r, bg.g, bg.b);
 }
