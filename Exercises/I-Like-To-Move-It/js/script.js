@@ -33,7 +33,7 @@ let circle2 = {
   y: 500,
   size: 150,
   sizeRatio: 0.8,
-  speed: -1,
+  speed: -2,
   brightness: 5,
   alpha: 100
 };
@@ -53,7 +53,7 @@ let circle4 = {
   y: 1,
   size: 50,
   sizeRatio: 0.8,
-  speed: 1,
+  speed: 2,
   brightness: 40,
   alpha: 100
 };
@@ -75,11 +75,18 @@ let circle6 = {
   brightness:120,
   alpha:130
 };
+let rectangle = {
+  x:500,
+  y:500,
+  size:200,
+  angle: 0
+}
 
 //Creating The Canvas
 function setup() {
   createCanvas(1000,1000);
-  noStroke();
+
+
 }
 
 //Where Functions are being Called
@@ -87,6 +94,7 @@ function draw() {
   bground();
   circles();
   squares();
+  rectangles();
 }
 
 //Background Color
@@ -95,8 +103,8 @@ function bground() {
 //Background Color becomes brighter
   background(bg.r, bg.g, bg.b);
   bg.r = map(circle2.size,150,width,0,255);
-  bg.g = map(circle3.speed,100,height,0,255);
-  bg.b = map(circle1.size,200,width,100,255);
+  bg.g = map(circle4.speed,100,height,0,255);
+  bg.b = map(circle5.size,200,width,100,255);
 }
 
 //Circle 1
@@ -105,7 +113,7 @@ function circles() {
   circle1.x = constrain(circle1.x,0,width/2);
   circle1.size = circle1.size + circle1.growth;
   circle1.size = constrain(circle1.size,0,width);
-  noStroke();
+  stroke(0);
   fill(mouseX,mouseY,circle1.brightness,circle1.alpha);
   ellipse(circle1.x,circle1.y,circle1.size);
 
@@ -132,13 +140,25 @@ function circles() {
 
 //Circle 5
   circle5.h = (mouseY);
+  stroke(0);
   fill(mouseX,mouseY,circle5.brightness,circle5.alpha);
   ellipse(circle5.x,circle5.y,circle5.w,circle5.h);
 
 //Circle 6
   circle6.w = (mouseX);
+  stroke(0);
   fill(mouseX,mouseY,circle6.brightness,circle6.alpha);
   ellipse(circle6.x,circle6.y,circle6.w,circle6.h);
+}
+
+function rectangles() {
+  stroke(0);
+  rectMode(CENTER);
+  translate(rectangle.x, rectangle.y);
+  rotate(rectangle.angle);
+  rect(0,0, rectangle.size,rectangle.size);
+
+  rectangle.angle += 0.1;
 }
 
 //squares
