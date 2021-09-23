@@ -74,6 +74,9 @@ function draw() {
 function bground() {
 
   background(bg.r, bg.g, bg.b);
+  bg.r = map(circle2.size,150,width,0,255);
+  bg.g = map(circle3.speed,100,height,0,255);
+  bg.b = map(circle1.size,200,width,100,255);
 }
 
 //Circle 1
