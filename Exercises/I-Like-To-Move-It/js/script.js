@@ -68,11 +68,13 @@ function setup() {
 function draw() {
   bground();
   circles();
+  squares();
 }
 
 //Background Color
 function bground() {
 
+//Background Color becomes brighter
   background(bg.r, bg.g, bg.b);
   bg.r = map(circle2.size,150,width,0,255);
   bg.g = map(circle3.speed,100,height,0,255);
@@ -85,13 +87,14 @@ function circles() {
   circle1.x = constrain(circle1.x,0,width/2);
   circle1.size = circle1.size + circle1.growth;
   circle1.size = constrain(circle1.size,0,width);
+  noStroke();
   fill(mouseX,mouseY,circle1.brightness,circle1.alpha);
   ellipse(circle1.x,circle1.y,circle1.size);
 
 //Circle 2
   circle2.x = circle2.x + circle2.speed;
   circle2.x = constrain(circle2.x,width/2,width);
-    circle2.size = circle1.size * circle2.sizeRatio;
+  circle2.size = circle1.size * circle2.sizeRatio;
   fill(mouseX,mouseY,circle2.brightness,circle2.alpha);
   ellipse(circle2.x,circle2.y,circle2.size);
 
@@ -109,4 +112,17 @@ function circles() {
   fill(mouseX,mouseY,circle4.brightness,circle4.alpha);
   ellipse(circle4.x,circle4.y,circle4.size);
 
+}
+
+//squares
+function squares() {
+  var light = {
+  x: random(width),   //Reminder: Random has to be defined
+  y: random(height),
+  size: (mouseX,mouseY)
+    }
+
+ square(mouseX,mouseY);
+ square(light.x,light.y,light.size);
+ light.x = constrain(light.x,0,width/2);
 }
