@@ -3,11 +3,11 @@ I Like To Move It
 Alex Cho
 
 Include three shapes [Done]
-Include movement
-Include size changes
-Include color changes
-Use map() and constrain()
-Respond to the mouse position using mouseX and mouseY
+Include movement [Done]
+Include size changes [Done]
+Include color changes [Done]
+Use map() and constrain() [Done]
+Respond to the mouse position using mouseX and mouseY [Done]
 ***********************/
 
 //Defining Color For Background
@@ -20,47 +20,65 @@ let bg = {
 //Setting Up Circle Settings
 let circle1 = {
   x: 0,
-  y: 250,
+  y: 500,
   size: 200,
   growth: 0.2,
   speed: 1,
   brightness: 120,
-  alpha: 200
+  alpha: 100
 };
 
 let circle2 = {
-  x: 500,
-  y: 250,
+  x: 1000,
+  y: 500,
   size: 150,
   sizeRatio: 0.8,
   speed: -1,
   brightness: 5,
-  alpha: 200
+  alpha: 100
 };
 
 let circle3 = {
-  x: 250,
-  y: 500,
+  x: 500,
+  y: 1000,
   size: 100,
   sizeRatio: 0.8,
   speed: -1,
   brightness: 240,
-  alpha: 200
+  alpha: 100
 };
 
 let circle4 = {
-  x: 250,
+  x: 500,
   y: 1,
   size: 50,
   sizeRatio: 0.8,
   speed: 1,
   brightness: 40,
-  alpha: 200
+  alpha: 100
+};
+
+let circle5 = {
+  x:500,
+  y:500,
+  w:800,
+  h:50,
+  brightness:120,
+  alpha:130
+};
+
+let circle6 = {
+  x:500,
+  y:500,
+  w:50,
+  h:800,
+  brightness:120,
+  alpha:130
 };
 
 //Creating The Canvas
 function setup() {
-  createCanvas(500,500);
+  createCanvas(1000,1000);
   noStroke();
 }
 
@@ -112,16 +130,24 @@ function circles() {
   fill(mouseX,mouseY,circle4.brightness,circle4.alpha);
   ellipse(circle4.x,circle4.y,circle4.size);
 
+//Circle 5
+  circle5.h = (mouseY);
+  fill(mouseX,mouseY,circle5.brightness,circle5.alpha);
+  ellipse(circle5.x,circle5.y,circle5.w,circle5.h);
+
+//Circle 6
+  circle6.w = (mouseX);
+  fill(mouseX,mouseY,circle6.brightness,circle6.alpha);
+  ellipse(circle6.x,circle6.y,circle6.w,circle6.h);
 }
 
 //squares
 function squares() {
   var light = {
-  x: random(width),   //Reminder: Random has to be defined
+  x: random(width),
   y: random(height),
   size: (mouseX,mouseY)
     }
-
  square(mouseX,mouseY);
  square(light.x,light.y,light.size);
  light.x = constrain(light.x,0,width/2);
