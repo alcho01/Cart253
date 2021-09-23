@@ -43,7 +43,7 @@ let circle3 = {
   y: 1000,
   size: 100,
   sizeRatio: 0.8,
-  speed: -1,
+  speed: -3,
   brightness: 240,
   alpha: 100
 };
@@ -78,7 +78,8 @@ let circle6 = {
 let rectangle = {
   x:500,
   y:500,
-  size:200,
+  size:40,
+  sizeRatio:0.5,
   angle: 0
 }
 
@@ -152,6 +153,8 @@ function circles() {
 }
 
 function rectangles() {
+  rectangle.size = circle4.size * rectangle.sizeRatio;
+
   stroke(0);
   rectMode(CENTER);
   translate(rectangle.x, rectangle.y);
