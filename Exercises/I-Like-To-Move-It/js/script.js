@@ -72,16 +72,25 @@ let circle6 = {
   y:500,
   w:50,
   h:800,
+  angle:0,
   brightness:120,
   alpha:130
 };
+
 let rectangle = {
   x:500,
   y:500,
   size:40,
   sizeRatio:0.5,
   angle: 0
-}
+};
+
+let rectangle2 = {
+  x:200,
+  y:100,
+  size:300,
+  angle: 0
+};
 
 //Creating The Canvas
 function setup() {
@@ -150,8 +159,9 @@ function circles() {
   stroke(0);
   fill(mouseX,mouseY,circle6.brightness,circle6.alpha);
   ellipse(circle6.x,circle6.y,circle6.w,circle6.h);
-}
 
+}
+//Spinning Rectangles/Squares
 function rectangles() {
   rectangle.size = circle4.size * rectangle.sizeRatio;
 
@@ -162,9 +172,17 @@ function rectangles() {
   rect(0,0, rectangle.size,rectangle.size);
 
   rectangle.angle += 0.1;
+
+  stroke(0);
+  rectMode(CENTER);
+  translate(rectangle2.x, rectangle2.y);
+  rotate(rectangle2.angle);
+  rect(125,150, rectangle2.size,rectangle2.size);
+
+  rectangle2.angle += 0.15;
 }
 
-//squares
+//squares appearing on canvas
 function squares() {
   var light = {
   x: random(width),
