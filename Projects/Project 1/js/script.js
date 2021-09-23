@@ -44,13 +44,38 @@ let santalow = {
 let santabeard = {
   x:300,
   y: 405,
-  w: 83,
+  w: 82,
   h: 40,
   growth: 5,
   fill:{
     r: 255,
     g: 255,
     b: 255
+  }
+};
+let santahat = {
+  //HAT
+  x: 260,
+  y: 370,
+  x2: 300,
+  y2: 300,
+  x3: 340,
+  y3: 370,
+  growth: 5,
+  fill:{
+    r: 214,
+    g: 25,
+    b: 0,
+},
+//POM POM
+  xp: 300,
+  yp: 295,
+  size: 20,
+  growthp: 5,
+  fill2:{
+    r2:255,
+    g2:255,
+    b2:255
   }
 };
 
@@ -93,4 +118,9 @@ function santa() {
   ellipse(santabeard.x,santabeard.y,santabeard.w,santabeard.h);
 
 //Making Santa's Hat
+  fill(santahat.fill.r,santahat.fill.g,santahat.fill.b);
+  triangle(santahat.x,santahat.y,santahat.x2,santahat.y2,santahat.x3,santahat.y3);
+//Making Santa's Hat PomPom
+  fill(santahat.fill2.r2,santahat.fill2.g2,santahat.fill2.b2);
+  ellipse(santahat.xp,santahat.yp,santahat.size);
 }
