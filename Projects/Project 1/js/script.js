@@ -25,6 +25,39 @@ let bg = {
 
 //LANDSCAPE STUFF
 
+//Cloud1
+let cloud = {
+  x: 0,
+  y: 50,
+  w: 250,
+  h: 50,
+  speed: 1,
+  vx: 3,
+  vy: 0,
+  fill:{
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 200
+  }
+};
+
+//Cloud2
+
+let cloud2 = {
+  x: 0,
+  y: 10,
+  size: 50,
+  vx: 3,
+  vy: 3,
+  fill:{
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 200
+  }
+};
+
 //Sun
 let sun = {
   x:300,
@@ -149,6 +182,10 @@ let santahat2 = {
 function setup() {
   createCanvas(600,800);
   noStroke();
+
+//cloud1 positioning
+  cloud.y = random(0,300);
+
 }
 
 
@@ -157,7 +194,7 @@ function draw() {
   backgrd();
   sunny();
   lakes();
-  //clouds();
+  clouds();
   //trees();
   mountains();
   santa();
@@ -235,7 +272,6 @@ function lakes(){
   vertex(width, height); //Fills Page
   vertex(0,height); //Fills Page
   endShape(CLOSE); //Always have to Close shape to see it
-
   }
 
 //Making The sun
@@ -253,4 +289,27 @@ function sunny(){
 //Sun color and form
   fill(sun.fill.r,sun.fill.g,sun.fill.b,sun.fill.a);
   ellipse(sun.x,sun.y,sun.size);
+}
+
+//Making the clouds
+
+function clouds(){
+
+//Cloud1 Movement
+  cloud.x = cloud.x + cloud.vx;
+  cloud.y = cloud.y + cloud.vy;
+
+  if (cloud.x > width) {
+    cloud.x = 0;
+    cloud.y = random(0,300);
+  }
+
+//Change the speed of the cloud
+  if (mouseIsPressed){
+  cloud.x = cloud.x + cloud.vx + cloud.speed;
+  }
+
+//Cloud1
+  fill(cloud.fill.r,cloud.fill.g,cloud.fill.b,cloud.fill.a);
+  ellipse(cloud.x,cloud.y,cloud.w,cloud.h);
 }
