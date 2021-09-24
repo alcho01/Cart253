@@ -18,15 +18,22 @@ let bg = {
   b: 245
 };
 
+
+//LANDSCAPE STUFF
+
+//Lake
 let lake = {
   x: 0,
   y: 0,
   fill:{
     r: 0,
     g: 93,
-    b: 150
+    b: 150,
+    a:200
   }
 };
+
+//Mountains
 let mountain = {
   x: -50,
   y: 900,
@@ -73,6 +80,7 @@ let mountain4 = {
   y3: 300,
 };
 
+//USER
 let santaface = {
   x: 300,
   y: 400,
@@ -113,22 +121,17 @@ let santahat2 = {
 };
 
 
-/**
-Description of setup
-*/
+//Setting up what needs to be done beforehand
 function setup() {
   createCanvas(600,800);
   noStroke();
 }
 
 
-/**
-Description of draw()
-*/
+//Calling the Functions
 function draw() {
   backgrd();
   lakes();
-  //bushes();
   //sun();
   //trees();
   mountains();
@@ -164,8 +167,9 @@ function santa() {
 
 }
 
-//Making Left mountain
 function mountains(){
+
+  //Making Left mountain
   fill(mountain.fill.r,mountain.fill.g,mountain.fill.b);
   triangle(mountain.x,mountain.y,mountain.x2,mountain.y2,mountain.x3,mountain.y3);
 
@@ -187,18 +191,17 @@ function mountains(){
 
 //Making The Lake
 function lakes(){
-  fill(lake.fill.r,lake.fill.g,lake.fill.b);
+  fill(lake.fill.r,lake.fill.g,lake.fill.b,lake.fill.a);
   lake.fill.b = map(mouseY, 0,500,255,200); //From Dark To Light
 
 
   beginShape();
-  for (let x = 0; x < width; x += 20) { //intensity of the wave (higher number makes it smoother)
-    let y = map(noise(lake.x, lake.y), 0,3,400,200); //Height of the Waves + Vibration
+  for (let x = 0; x < width; x += 5) { //intensity of the wave (higher number makes it smoother)
+    let y = map(noise(lake.x, lake.y), 0,1,620,200); //Height of the Waves + Vibration
     vertex(x,y);
-    lake.x += 0.0095;
     }
 
-  lake.y += 0.0095;
+    lake.y += 0.0095;
   vertex(width, height); //Fills Page
   vertex(0,height); //Fills Page
   endShape(CLOSE); //Always have to Close shape to see it
