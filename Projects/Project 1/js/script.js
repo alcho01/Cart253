@@ -18,7 +18,15 @@ let bg = {
   b: 245
 };
 
-
+let lake = {
+  x: 0,
+  y: 0,
+  fill:{
+    r: 0,
+    g: 93,
+    b: 150
+  }
+};
 let mountain = {
   x: -50,
   y: 900,
@@ -119,6 +127,10 @@ Description of draw()
 */
 function draw() {
   backgrd();
+  lakes();
+  //bushes();
+  //sun();
+  //trees();
   mountains();
   santa();
 
@@ -170,3 +182,25 @@ function mountains(){
   triangle(mountain4.x,mountain4.y,mountain4.x2,mountain4.y2,mountain4.x3,mountain4.y3);
 
 }
+
+//The code for the lake was used from an older project I did in Dawson(I changed the variables and cleaned it up)
+
+//Making The Lake
+function lakes(){
+  fill(lake.fill.r,lake.fill.g,lake.fill.b);
+  lake.fill.b = map(mouseY, 0,500,255,200); //From Dark To Light
+
+
+  beginShape();
+  for (let x = 0; x < width; x += 20) { //intensity of the wave (higher number makes it smoother)
+    let y = map(noise(lake.x, lake.y), 0,3,400,200); //Height of the Waves + Vibration
+    vertex(x,y);
+    lake.x += 0.0095;
+    }
+
+  lake.y += 0.0095;
+  vertex(width, height); //Fills Page
+  vertex(0,height); //Fills Page
+  endShape(CLOSE); //Always have to Close shape to see it
+
+  }
