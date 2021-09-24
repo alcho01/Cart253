@@ -17,69 +17,43 @@ let bg = {
   g: 178,
   b: 245
 };
-let santaup = {
-  x: 300,
-  y: 400,
-  size: 80,
-  growth:5,
-  dragged: false,
-  fill:{
-    r: 237,
-    g: 205,
-    b: 178
-  }
-};
-let santalow = {
+
+let santaface = {
   x: 300,
   y: 400,
   w: 80,
   h: 80,
   start: 0,
   growth:5,
-  dragged: false,
   fill:{
-    r: 214,
-    g: 25,
-    b: 0
+    r: 237,
+    g: 205,
+    b: 178
   }
 };
-let santabeard = {
+
+let santahat = {
+  x: 300,
+  y: 400,
+  size: 80,
+  growth:5,
+  fill:{
+    r: 217,
+    g: 26,
+    b: 4
+  }
+};
+
+let santahat2 = {
   x:300,
   y: 405,
-  w: 82,
-  h: 40,
+  w: 80,
+  h: 20,
   growth: 5,
-  dragged: false,
   fill:{
     r: 255,
     g: 255,
     b: 255
-  }
-};
-let santahat = {
-  //HAT
-  x: 260,
-  y: 370,
-  x2: 300,
-  y2: 300,
-  x3: 340,
-  y3: 370,
-  growth: 5,
-  fill:{
-    r: 214,
-    g: 25,
-    b: 0,
-},
-//POM POM
-  xp: 300,
-  yp: 295,
-  size: 20,
-  growthp: 5,
-  draggedp: false,
-  fill2:{
-    r2:255,
-    g2:255,
-    b2:255
   }
 };
 
@@ -109,45 +83,25 @@ function backgrd() {
 //Making Santa
 function santa() {
 
-//Making Santa's Head/Body
-  fill(santaup.fill.r,santaup.fill.g,santaup.fill.b);
-  ellipse(mouseX,mouseY,santaup.size);
-
-//Making Santa's Coat
-  fill(santalow.fill.r,santalow.fill.g,santalow.fill.b);
-  arc(mouseX,mouseY,santalow.w,santalow.h,santalow.start,PI);
-
-//Making Santa's Beard
-  fill(santabeard.fill.r,santabeard.fill.g,santabeard.fill.b);
-  ellipse(mouseX,mouseY,santabeard.w,santabeard.h);
+//Boundaries
+  let xc = constrain(mouseX,0,width);
+  let xy = constrain(mouseY,0,height);
 
 //Making Santa's Hat
   fill(santahat.fill.r,santahat.fill.g,santahat.fill.b);
-  triangle(santahat.x,santahat.y,santahat.x2,santahat.y2,santahat.x3,santahat.y3);
-//Making Santa's Hat PomPom
-  fill(santahat.fill2.r2,santahat.fill2.g2,santahat.fill2.b2);
-  ellipse(santahat.xp,santahat.yp,santahat.size);
+  ellipse(xc,xy,santahat.size);
+
+
+//Making Santa's Face
+  fill(santaface.fill.r,santaface.fill.g,santaface.fill.b);
+  arc(xc,xy,santaface.w,santaface.h,santaface.start,PI);
+
+
+
+//Making Santa's Hat Edge
+  fill(santahat2.fill.r,santahat2.fill.g,santahat2.fill.b);
+  ellipse(xc,xy,santahat2.w,santahat2.h);
+
+
+
 }
-
-//Santa Movement(Upper)
-/*
-function mousePressed() {
-  let d = dist(mouseX,mouseY,santaup.x,santaup.y);
-  if(d < santaup.size/2){
-      santaup.dragged = true;
-  } else {
-      santaup.dragged = false;
-    }
-  }
-
-  function mouseReleased () {
-    santaup.dragged = false;
-  }
-
-  function mouseDragged() {
-    if(santaup.dragged){
-      santaup.x = mouseX;
-      santaup.y = mouseY;
-    }
-  }
-  */
