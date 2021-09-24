@@ -47,9 +47,11 @@ let cloud = {
 let cloud2 = {
   x: 0,
   y: 10,
-  size: 50,
-  vx: 3,
-  vy: 3,
+  w: 350,
+  h: 70,
+  speed: 1,
+  vx: 1,
+  vy: 0,
   fill:{
     r: 255,
     g: 255,
@@ -186,6 +188,9 @@ function setup() {
 //cloud1 positioning
   cloud.y = random(0,300);
 
+//cloud2 positioning
+  cloud2.y = random(0,330);
+
 }
 
 
@@ -304,12 +309,31 @@ function clouds(){
     cloud.y = random(0,300);
   }
 
-//Change the speed of the cloud
+//Cloud2 Movement
+
+cloud2.x = cloud2.x + cloud2.vx;
+cloud2.y = cloud2.y + cloud2.vy;
+
+if (cloud2.x > width) {
+  cloud2.x = 0;
+  cloud2.y = random(0,330);
+}
+
+//Change the speed of the clouds
   if (mouseIsPressed){
+
+//Speed of cloud1    
   cloud.x = cloud.x + cloud.vx + cloud.speed;
+
+//Speed of clou2
+  cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
   }
 
 //Cloud1
   fill(cloud.fill.r,cloud.fill.g,cloud.fill.b,cloud.fill.a);
   ellipse(cloud.x,cloud.y,cloud.w,cloud.h);
+
+//Cloud2
+  fill(cloud2.fill.r,cloud2.fill.g,cloud2.fill.b,cloud.fill.a);
+  ellipse(cloud2.x,cloud2.y,cloud2.w,cloud2.h);
 }
