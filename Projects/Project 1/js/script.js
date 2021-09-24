@@ -23,8 +23,6 @@ let bg = {
   }
 };
 
-// LANDSCAPE STUFF \\
-
 //Cloud1
 let cloud = {
   x: 0,
@@ -43,7 +41,6 @@ let cloud = {
 };
 
 //Cloud2
-
 let cloud2 = {
   x: 0,
   y: 10,
@@ -92,142 +89,6 @@ let lake = {
   }
 };
 
-//left tree
-let tree = {
-  x: 15,
-  y: 600,
-  x2: 200,
-  y2: 600,
-  x3: 100,
-  y3: 400,
-  fill:{
-    r: 15,
-    g: 92,
-    b: 1,
-  }
-};
-
-//middle tree
-let tree2 = {
-  x: 240,
-  y: 600,
-  x2: 380,
-  y2: 600,
-  x3: 290,
-  y3: 350,
-  fill:{
-    r: 15,
-    g: 92,
-    b: 1
-  }
-};
-
-//right tree
-let tree3 = {
-  x: 380,
-  y: 600,
-  x2: 600,
-  y2: 600,
-  x3: 500,
-  y3: 400,
-  fill:{
-    r: 15,
-    g: 92,
-    b: 1
-  }
-};
-
-
-//Mountains
-let mountain = {
-  x: -50,
-  y: 900,
-  x2: 300,
-  y2: 900,
-  x3: 0,
-  y3: 300,
-  fill:{
-    r: 156,
-    g: 156,
-    b: 156
-  }
-};
-
-let mountain2 = {
-  x: 650,
-  y: 900,
-  x2: 300,
-  y2: 900,
-  x3: 600,
-  y3: 300,
-};
-
-let mountain3 = {
-  x: -20,
-  y: 900,
-  x2: 400,
-  y2: 900,
-  x3: 200,
-  y3: 300,
-  fill:{
-    r: 107,
-    g: 107,
-    b: 107
-  }
-};
-
-let mountain4 = {
-  x: 200,
-  y: 900,
-  x2: 620,
-  y2: 900,
-  x3: 400,
-  y3: 300,
-};
-
-
-// USER STUFF \\
-
-let santaface = {
-  x: 300,
-  y: 400,
-  w: 80,
-  h: 80,
-  start: 0,
-  growth:5,
-  fill:{
-    r: 237,
-    g: 205,
-    b: 178
-  }
-};
-
-let santahat = {
-  x: 300,
-  y: 400,
-  size: 80,
-  growth:5,
-  fill:{
-    r: 217,
-    g: 26,
-    b: 4
-  }
-};
-
-let santahat2 = {
-  x:300,
-  y: 405,
-  w: 80,
-  h: 20,
-  growth: 5,
-  fill:{
-    r: 255,
-    g: 255,
-    b: 255
-  }
-};
-
-
 //Setting up what needs to be done beforehand
 function setup() {
   createCanvas(600,800);
@@ -237,9 +98,7 @@ function setup() {
   cloud.y = random(0,300);
 //cloud2 positioning
   cloud2.y = random(0,330);
-
 }
-
 
 //Calling the Functions
 function draw() {
@@ -251,18 +110,58 @@ function draw() {
   mountains();
   //bridge();
   santa();
-
 }
 
 //Making The Background
 function backgrd() {
+
   background(bg.r, bg.g, bg.b);
   //bg.b = map(mouseY, 0, 200, 255, 230); //Lighter To Darker Blue
 }
 
-
 //Making Santa
 function santa() {
+
+  // USER STUFF \\
+
+  let santaface = {
+    x: 300,
+    y: 400,
+    w: 80,
+    h: 80,
+    start: 0,
+    growth:5,
+    fill:{
+      r: 237,
+      g: 205,
+      b: 178
+    }
+  };
+
+  let santahat = {
+    x: 300,
+    y: 400,
+    size: 80,
+    growth:5,
+    fill:{
+      r: 217,
+      g: 26,
+      b: 4
+    }
+  };
+
+  let santahat2 = {
+    x:300,
+    y: 405,
+    w: 80,
+    h: 20,
+    growth: 5,
+    fill:{
+      r: 255,
+      g: 255,
+      b: 255
+    }
+  };
 
 //Boundaries
   let xc = constrain(mouseX,0,width);
@@ -285,6 +184,54 @@ function santa() {
 //Making The Mountains
 function mountains(){
 
+  //Mountains
+  let mountain = {
+    x: -50,
+    y: 900,
+    x2: 300,
+    y2: 900,
+    x3: 0,
+    y3: 300,
+    fill:{
+      r: 156,
+      g: 156,
+      b: 156
+    }
+  };
+
+  let mountain2 = {
+    x: 650,
+    y: 900,
+    x2: 300,
+    y2: 900,
+    x3: 600,
+    y3: 300,
+  };
+
+  let mountain3 = {
+    x: -20,
+    y: 900,
+    x2: 400,
+    y2: 900,
+    x3: 200,
+    y3: 300,
+    fill:{
+      r: 107,
+      g: 107,
+      b: 107
+    }
+  };
+
+  let mountain4 = {
+    x: 200,
+    y: 900,
+    x2: 620,
+    y2: 900,
+    x3: 400,
+    y3: 300,
+  };
+
+
   //Making Left mountain
   fill(mountain.fill.r,mountain.fill.g,mountain.fill.b);
   triangle(mountain.x,mountain.y,mountain.x2,mountain.y2,mountain.x3,mountain.y3);
@@ -303,10 +250,53 @@ function mountains(){
 
 }
 
-//The code for the lake was used from an older project I did in Dawson(I changed the variables and cleaned it up)
-
 //Making The Trees
 function trees(){
+
+  //left tree
+  let tree = {
+    x: 15,
+    y: 600,
+    x2: 200,
+    y2: 600,
+    x3: 100,
+    y3: 400,
+    fill:{
+      r: 15,
+      g: 92,
+      b: 1,
+    }
+  };
+
+  //middle tree
+  let tree2 = {
+    x: 240,
+    y: 600,
+    x2: 380,
+    y2: 600,
+    x3: 290,
+    y3: 350,
+    fill:{
+      r: 15,
+      g: 92,
+      b: 1
+    }
+  };
+
+  //right tree
+  let tree3 = {
+    x: 380,
+    y: 600,
+    x2: 600,
+    y2: 600,
+    x3: 500,
+    y3: 400,
+    fill:{
+      r: 15,
+      g: 92,
+      b: 1
+    }
+  };
 
 //Left Tree
   fill(tree.fill.r,tree.fill.g,tree.fill.b);
@@ -321,8 +311,11 @@ function trees(){
   triangle(tree3.x,tree3.y,tree3.x2,tree3.y2,tree3.x3,tree3.y3);
 }
 
+//The code for the lake was used from an older project I did in Dawson(I changed the variables and cleaned it up)
+
 //Making The Lake
 function lakes(){
+
   fill(lake.fill.r,lake.fill.g,lake.fill.b,lake.fill.a);
   //lake.fill.b = map(mouseY, 0,500,255,200); //From Dark To Light
 
