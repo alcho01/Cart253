@@ -13,13 +13,31 @@ Idea:
 
 //Choosing The Background Color
 let bg = {
-  r: 137,
-  g: 178,
-  b: 245
+  r: 89,
+  g: 127,
+  b: 189,
+  fill:{
+  r2: 122,
+  g2: 165,
+  b2: 235
+  }
 };
 
-
 //LANDSCAPE STUFF
+
+//Sun
+let sun = {
+  x:300,
+  y:800,
+  size:100,
+  vy:-2,
+  fill:{
+    r: 230,
+    g: 170,
+    b: 7,
+    a: 150
+  }
+};
 
 //Lake
 let lake = {
@@ -29,7 +47,13 @@ let lake = {
     r: 0,
     g: 93,
     b: 150,
-    a:200
+    a:200,
+  },
+  fill2:{
+    r2: 13,
+    g2: 118,
+    b2: 184,
+    a2: 200
   }
 };
 
@@ -131,8 +155,9 @@ function setup() {
 //Calling the Functions
 function draw() {
   backgrd();
+  sunny();
   lakes();
-  //sun();
+  //clouds();
   //trees();
   mountains();
   santa();
@@ -142,7 +167,7 @@ function draw() {
 //Making The Background
 function backgrd() {
   background(bg.r, bg.g, bg.b);
-  bg.b = map(mouseY, 0, 600, 255, 230); //Lighter To Darker Blue
+  //bg.b = map(mouseY, 0, 200, 255, 230); //Lighter To Darker Blue
 }
 
 
@@ -192,9 +217,14 @@ function mountains(){
 //Making The Lake
 function lakes(){
   fill(lake.fill.r,lake.fill.g,lake.fill.b,lake.fill.a);
-  lake.fill.b = map(mouseY, 0,500,255,200); //From Dark To Light
+  //lake.fill.b = map(mouseY, 0,500,255,200); //From Dark To Light
 
+//Sun Affecting Lake
+    if (sun.y < 330) {
+      fill(lake.fill2.r2,lake.fill2.g2,lake.fill2.b2);
+    }
 
+//Shape/Depth/Movement of Wave
   beginShape();
   for (let x = 0; x < width; x += 5) { //intensity of the wave (higher number makes it smoother)
     let y = map(noise(lake.x, lake.y), 0,1,620,200); //Height of the Waves + Vibration
@@ -207,3 +237,20 @@ function lakes(){
   endShape(CLOSE); //Always have to Close shape to see it
 
   }
+
+//Making The sun
+function sunny(){
+
+//Sun movement
+  sun.y = sun.y + sun.vy;
+  sun.y = constrain(sun.y,70,height);
+
+//Sun Affecting background
+  if (sun.y < 270) {
+    background(bg.fill.r2, bg.fill.g2, bg.fill.b2);
+  }
+
+//Sun color and form
+  fill(sun.fill.r,sun.fill.g,sun.fill.b,sun.fill.a);
+  ellipse(sun.x,sun.y,sun.size);
+}
