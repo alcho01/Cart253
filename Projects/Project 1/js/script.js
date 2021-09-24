@@ -23,7 +23,7 @@ let bg = {
   }
 };
 
-//LANDSCAPE STUFF
+// LANDSCAPE STUFF \\
 
 //Cloud1
 let cloud = {
@@ -92,6 +92,52 @@ let lake = {
   }
 };
 
+//left tree
+let tree = {
+  x: 15,
+  y: 600,
+  x2: 200,
+  y2: 600,
+  x3: 100,
+  y3: 400,
+  fill:{
+    r: 15,
+    g: 92,
+    b: 1,
+  }
+};
+
+//middle tree
+let tree2 = {
+  x: 240,
+  y: 600,
+  x2: 380,
+  y2: 600,
+  x3: 290,
+  y3: 350,
+  fill:{
+    r: 15,
+    g: 92,
+    b: 1
+  }
+};
+
+//right tree
+let tree3 = {
+  x: 380,
+  y: 600,
+  x2: 600,
+  y2: 600,
+  x3: 500,
+  y3: 400,
+  fill:{
+    r: 15,
+    g: 92,
+    b: 1
+  }
+};
+
+
 //Mountains
 let mountain = {
   x: -50,
@@ -139,7 +185,9 @@ let mountain4 = {
   y3: 300,
 };
 
-//USER
+
+// USER STUFF \\
+
 let santaface = {
   x: 300,
   y: 400,
@@ -187,7 +235,6 @@ function setup() {
 
 //cloud1 positioning
   cloud.y = random(0,300);
-
 //cloud2 positioning
   cloud2.y = random(0,330);
 
@@ -200,8 +247,9 @@ function draw() {
   sunny();
   lakes();
   clouds();
-  //trees();
+  trees();
   mountains();
+  //bridge();
   santa();
 
 }
@@ -234,6 +282,7 @@ function santa() {
 
 }
 
+//Making The Mountains
 function mountains(){
 
   //Making Left mountain
@@ -255,6 +304,22 @@ function mountains(){
 }
 
 //The code for the lake was used from an older project I did in Dawson(I changed the variables and cleaned it up)
+
+//Making The Trees
+function trees(){
+
+//Left Tree
+  fill(tree.fill.r,tree.fill.g,tree.fill.b);
+  triangle(tree.x,tree.y,tree.x2,tree.y2,tree.x3,tree.y3);
+
+//Middle Tree
+  fill(tree2.fill.r,tree2.fill.g,tree2.fill.b);
+  triangle(tree2.x,tree2.y,tree2.x2,tree2.y2,tree2.x3,tree2.y3);
+
+//Right Tree
+  fill(tree3.fill.r,tree3.fill.g,tree3.fill.b);
+  triangle(tree3.x,tree3.y,tree3.x2,tree3.y2,tree3.x3,tree3.y3);
+}
 
 //Making The Lake
 function lakes(){
@@ -297,7 +362,6 @@ function sunny(){
 }
 
 //Making the clouds
-
 function clouds(){
 
 //Cloud1 Movement
@@ -322,7 +386,7 @@ if (cloud2.x > width) {
 //Change the speed of the clouds
   if (mouseIsPressed){
 
-//Speed of cloud1    
+//Speed of cloud1
   cloud.x = cloud.x + cloud.vx + cloud.speed;
 
 //Speed of clou2
