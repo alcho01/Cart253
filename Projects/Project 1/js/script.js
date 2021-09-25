@@ -11,6 +11,8 @@ EndScreen
 Idea:
 */
 
+
+
 //Choosing The Background Color
 let bg = {
   r: 89,
@@ -124,12 +126,10 @@ function santa() {
 
   // USER STUFF \\
 
-  let santaface = {
+  let human = {
     x: 300,
     y: 400,
-    w: 80,
-    h: 80,
-    start: 0,
+    size: 100,
     growth:5,
     fill:{
       r: 237,
@@ -138,46 +138,14 @@ function santa() {
     }
   };
 
-  let santahat = {
-    x: 300,
-    y: 400,
-    size: 80,
-    growth:5,
-    fill:{
-      r: 217,
-      g: 26,
-      b: 4
-    }
-  };
-
-  let santahat2 = {
-    x:300,
-    y: 405,
-    w: 80,
-    h: 20,
-    growth: 5,
-    fill:{
-      r: 255,
-      g: 255,
-      b: 255
-    }
-  };
 
 //Boundaries
   let xc = constrain(mouseX,0,width);
   let xy = constrain(mouseY,0,height);
 
-//Making Santa's Hat
-  fill(santahat.fill.r,santahat.fill.g,santahat.fill.b);
-  ellipse(xc,xy,santahat.size);
-
 //Making Santa's Face
-  fill(santaface.fill.r,santaface.fill.g,santaface.fill.b);
-  arc(xc,xy,santaface.w,santaface.h,santaface.start,PI);
-
-//Making Santa's Hat Edge
-  fill(santahat2.fill.r,santahat2.fill.g,santahat2.fill.b);
-  ellipse(xc,xy,santahat2.w,santahat2.h);
+  fill(human.fill.r,human.fill.g,human.fill.b);
+  ellipse(xc,xy,human.size);
 
 }
 
@@ -393,4 +361,5 @@ if (cloud2.x > width) {
 //Cloud2
   fill(cloud2.fill.r,cloud2.fill.g,cloud2.fill.b,cloud.fill.a);
   ellipse(cloud2.x,cloud2.y,cloud2.w,cloud2.h);
+
 }
