@@ -44,6 +44,8 @@ let hiker = {
   }
 };
 
+let rock
+
 //Cloud1
 let cloud = {
   x: 0,
@@ -188,7 +190,7 @@ else if (keyIsDown(DOWN_ARROW)) {
   hiker.y = yc + hiker.vy2;
 }
 
-//Making Hiker
+//Defining the Hiker
 imageMode(CENTER);
 image(hiker.image,hiker.x,hiker.y,hiker.w,hiker.h);
 }
