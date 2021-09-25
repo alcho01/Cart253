@@ -29,10 +29,13 @@ let bg = {
 
 let hiker = {
   x: 300,
-  y: 400,
+  y: 320,
   w: 150,
   h: 150,
-  growth:5,
+  vx: -4,
+  vx2: 4,
+  vy: -2,
+  vy2: 2,
   image: undefined,
   fill:{
     r: 237,
@@ -168,13 +171,26 @@ function backgrd() {
 function user() {
 
 //Boundaries
-  let xc = constrain(mouseX,0,width);
-  let xy = constrain(mouseY,320,330);
+  let xc = constrain(hiker.x,0,width);
+  let yc = constrain(hiker.y,320,330);
 
-//Making Human
+//Hiker Movement
+if (keyIsDown(LEFT_ARROW)) {
+  hiker.x = xc + hiker.vx;
+}
+else if (keyIsDown(RIGHT_ARROW)) {
+  hiker.x = xc + hiker.vx2;
+}
+else if (keyIsDown(UP_ARROW)) {
+  hiker.y = yc + hiker.vy;
+}
+else if (keyIsDown(DOWN_ARROW)) {
+  hiker.y = yc + hiker.vy2;
+}
+
+//Making Hiker
 imageMode(CENTER);
-image(hiker.image,xc,xy,hiker.w,hiker.h);
-
+image(hiker.image,hiker.x,hiker.y,hiker.w,hiker.h);
 }
 
 //Making The Mountains
