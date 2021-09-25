@@ -357,7 +357,7 @@ function clouds(){
   cloud.x = cloud.x + cloud.vx;
   cloud.y = cloud.y + cloud.vy;
 
-  if (cloud.x > width) {
+  if (cloud.x > 800) {
     cloud.x = 0;
     cloud.y = random(0,300);
   }
@@ -367,7 +367,7 @@ function clouds(){
 cloud2.x = cloud2.x + cloud2.vx;
 cloud2.y = cloud2.y + cloud2.vy;
 
-if (cloud2.x > width) {
+if (cloud2.x > 800) {
   cloud2.x = 0;
   cloud2.y = random(0,330);
 }
