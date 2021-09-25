@@ -25,6 +25,22 @@ let bg = {
   }
 };
 
+// USER STUFF \\
+
+let hiker = {
+  x: 300,
+  y: 400,
+  w: 150,
+  h: 150,
+  growth:5,
+  image: undefined,
+  fill:{
+    r: 237,
+    g: 205,
+    b: 178
+  }
+};
+
 //Cloud1
 let cloud = {
   x: 0,
@@ -104,6 +120,7 @@ let bridge1 = {
 };
 
 function preload(){
+  hiker.image = loadImage('assets/images/hiker.png');
   mySound = loadSound('assets/sounds/waves.wav');
   mySound2 = loadSound('assets/sounds/birds.wav');
 }
@@ -147,32 +164,16 @@ function backgrd() {
   //bg.b = map(mouseY, 0, 200, 255, 230); //Lighter To Darker Blue
 }
 
-//Making Santa
+//Making hiker
 function user() {
-
-  // USER STUFF \\
-
-//PLACEHOLDER FOR THE MOMENT
-  let human = {
-    x: 300,
-    y: 400,
-    size: 50,
-    growth:5,
-    fill:{
-      r: 237,
-      g: 205,
-      b: 178
-    }
-  };
-
 
 //Boundaries
   let xc = constrain(mouseX,0,width);
-  let xy = constrain(mouseY,360,379);
+  let xy = constrain(mouseY,320,330);
 
 //Making Human
-  fill(human.fill.r,human.fill.g,human.fill.b);
-  ellipse(xc,xy,human.size);
+imageMode(CENTER);
+image(hiker.image,xc,xy,hiker.w,hiker.h);
 
 }
 
