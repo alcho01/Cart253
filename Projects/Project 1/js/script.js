@@ -126,10 +126,11 @@ function santa() {
 
   // USER STUFF \\
 
+//PLACEHOLDER FOR THE MOMENT
   let human = {
     x: 300,
     y: 400,
-    size: 100,
+    size: 50,
     growth:5,
     fill:{
       r: 237,
@@ -143,10 +144,9 @@ function santa() {
   let xc = constrain(mouseX,0,width);
   let xy = constrain(mouseY,0,height);
 
-//Making Santa's Face
+//Making Human
   fill(human.fill.r,human.fill.g,human.fill.b);
   ellipse(xc,xy,human.size);
-
 }
 
 //Making The Mountains
