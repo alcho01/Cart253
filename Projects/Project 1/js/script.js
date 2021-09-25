@@ -103,8 +103,21 @@ let bridge1 = {
   }
 };
 
+function preload(){
+  mySound = loadSound('assets/sounds/waves.wav');
+  mySound2 = loadSound('assets/sounds/birds.wav');
+}
 //Setting up what needs to be done beforehand
 function setup() {
+//Waves Sound FX
+  mySound.setVolume(0.03);
+  mySound.play();
+  mySound.loop();
+//Birds Sound FX
+  mySound2.setVolume(0.07);
+  mySound2.play();
+  mySound2.loop();
+
   createCanvas(600,800);
   noStroke();
 
