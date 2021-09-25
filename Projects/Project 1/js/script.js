@@ -129,6 +129,7 @@ function preload(){
   mySound = loadSound('assets/sounds/waves.wav');
   mySound2 = loadSound('assets/sounds/birds.wav');
 }
+
 //Setting up what needs to be done beforehand
 function setup() {
 //Waves Sound FX
@@ -153,6 +154,7 @@ function setup() {
 function draw() {
   backgrd();
   sunny();
+  //rocks();
   lakes();
   bridge();
   user();
