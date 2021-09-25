@@ -91,6 +91,18 @@ let lake = {
   }
 };
 
+let bridge1 = {
+  x: 0,
+  y: 380,
+  w: 800,
+  h: 30,
+  fill: {
+    r: 99,
+    g: 45,
+    b: 41
+  }
+};
+
 //Setting up what needs to be done beforehand
 function setup() {
   createCanvas(600,800);
@@ -107,11 +119,12 @@ function draw() {
   backgrd();
   sunny();
   lakes();
+  bridge();
+  user();
   clouds();
   trees();
   mountains();
-  //bridge();
-  santa();
+
 }
 
 //Making The Background
@@ -122,7 +135,7 @@ function backgrd() {
 }
 
 //Making Santa
-function santa() {
+function user() {
 
   // USER STUFF \\
 
@@ -142,11 +155,12 @@ function santa() {
 
 //Boundaries
   let xc = constrain(mouseX,0,width);
-  let xy = constrain(mouseY,0,height);
+  let xy = constrain(mouseY,360,379);
 
 //Making Human
   fill(human.fill.r,human.fill.g,human.fill.b);
   ellipse(xc,xy,human.size);
+
 }
 
 //Making The Mountains
@@ -361,5 +375,12 @@ if (cloud2.x > width) {
 //Cloud2
   fill(cloud2.fill.r,cloud2.fill.g,cloud2.fill.b,cloud.fill.a);
   ellipse(cloud2.x,cloud2.y,cloud2.w,cloud2.h);
+}
 
+//Making the bridge
+function bridge(){
+
+//The Bridge
+  fill(bridge1.fill.r,bridge1.fill.g,bridge1.fill.b);
+  rect(bridge1.x,bridge1.y,bridge1.w,bridge1.h);
 }
