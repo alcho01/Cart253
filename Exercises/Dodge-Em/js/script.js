@@ -122,4 +122,19 @@ if(d < burger.w / 2  + stickman.w / 2) {
 //Constrained between 100 and 500
   stickman.w = constrain(stickman.w, 100, 500)
   }
+
+//If the stickman is eating more than enough he will begin to hallucinate
+let hallucinate ={
+  strk: 255,
+  strkW: 5
+}
+if(stickman.w > 250) {
+  for (let i = 0; i <100; i++) {
+    let x = random(0,width);
+    let y = random(0,height);
+    stroke(hallucinate.strk);
+    strokeWeight(hallucinate.strkW);
+    point(x,y);
+    }
+  }
 }
