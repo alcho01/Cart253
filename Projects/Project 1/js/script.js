@@ -19,7 +19,20 @@ let bg = {
   fill:{
   r2: 122,
   g2: 165,
-  b2: 235
+  b2: 235,
+  }
+};
+
+let hitColor = {
+  x: 0,
+  y: 0,
+  size: 1000,
+  fill:{
+  r: 252,
+  g: 99,
+  b: 88,
+  bright:100,
+  a: 255
   }
 };
 
@@ -152,21 +165,33 @@ function setup() {
 function draw() {
   backgrd();
   sunny();
-  rocks();
   lakes();
   bridge();
+  rocks();
   user();
   clouds();
   trees();
   mountains();
+  hit();
 
 }
 
 //Making The Background
-function backgrd() {
+function backgrd(){
 
   background(bg.r, bg.g, bg.b);
   //bg.b = map(mouseY, 0, 200, 255, 230); //Lighter To Darker Blue
+}
+
+//When Hit
+function hit(){
+
+  let d = dist(hiker.x,hiker.y,rock.x,rock.y);
+  if (d < rock.w/2 + hiker.w/2) {
+
+    fill(hitColor.fill.r,hitColor.fill.g,hitColor.fill.b,hitColor.fill.bright,hitColor.fill.a);
+    rect(hitColor.x,hitColor.y,hitColor.size);
+  }
 }
 
 //Making The sun
@@ -240,7 +265,7 @@ function bridge(){
   }
 
 //Making hiker
-function user() {
+function user(){
 
 //Boundaries
   let xc = constrain(hiker.x,0,width);
