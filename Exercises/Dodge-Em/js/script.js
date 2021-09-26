@@ -19,8 +19,8 @@ let bg = {
 let burger = {
   x: 0,
   y: 250,
-  w: 50,
-  h: 50,
+  w: 80,
+  h: 80,
   vx: 0,
   vy: 0,
   speed: 10,
@@ -32,10 +32,12 @@ let stickman = {
   y: 0,
   w: 100,
   h: 100,
-  vx: -4,
-  vx2: 4,
-  vy: -4,
-  vy2: 4,
+  growth: 8,
+  shrink: -5,
+  vx: -6,
+  vx2: 6,
+  vy: -6,
+  vy2: 6,
   image: undefined
 }
 
@@ -107,5 +109,17 @@ else if (keyIsDown(UP_ARROW)) {
   }
 else if (keyIsDown(DOWN_ARROW)) {
   stickman.y = stickman.y + stickman.vy2;
+  }
+
+//Stickman Growth
+let d = dist(stickman.x,stickman.y,burger.x,burger.y);
+if(d < burger.w / 2  + stickman.w / 2) {
+//If stick figure interacts with a burger his width can increase up to 500
+  stickman.w = stickman.w + stickman.growth;
+} else {
+//If stick figure does not interact with a burger he goes back to a width of 100
+  stickman.w = stickman.w + stickman.shrink;
+//Constrained between 100 and 500
+  stickman.w = constrain(stickman.w, 100, 500)
   }
 }
