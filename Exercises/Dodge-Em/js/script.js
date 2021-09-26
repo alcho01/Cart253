@@ -3,7 +3,7 @@ Dodge-Em
 Alex Cho
 
 Change the way the user controls their circle [Done]
-Add at least one new if-statement
+Add at least one new if-statement [Done]
 Change the way the simulation looks
 Use at least one image [Done]
 */
@@ -11,9 +11,10 @@ Use at least one image [Done]
 "use strict";
 
 let bg = {
-  r: 0,
-  g: 68,
-  b: 120
+  x: 700,
+  y: 700,
+  w: 2300,
+  h: 2300
 };
 
 let burger = {
@@ -45,6 +46,7 @@ let stickman = {
 function preload() {
   man.image = loadImage('assets/images/man.png'); //Made in Illustrator
   hamburger.image = loadImage('assets/images/hamburger.png'); //Made in Illustrator
+  background.image = loadImage('assets/images/background.png');
 }
 
 function setup() {
@@ -69,7 +71,8 @@ man();
 
 //Defining Background
 function backgrnd() {
-  background(bg.r,bg.g,bg.b);
+  imageMode(CENTER);
+  image(background.image,bg.x,bg.y,bg.w,bg.h);
 }
 
 //Hamburger Settings
