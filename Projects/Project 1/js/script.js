@@ -23,21 +23,10 @@ let bg = {
   }
 };
 
-let hitColor = {
-  x: 0,
-  y: 0,
-  size: 1000,
-  fill:{
-  r: 252,
-  g: 99,
-  b: 88,
-  bright:100,
-  a: 255
-  }
-};
-
 //Hiker settings
 let hiker = {
+  lives: 3,
+  livelost: -1,
   x: 300,
   y: 320,
   w: 150,
@@ -51,7 +40,7 @@ let hiker = {
 
 //Rock Settings
 let rock = {
-  x: 300,
+  x: 0,
   y: 0,
   w: 80,
   h: 80,
@@ -118,6 +107,7 @@ let lake = {
   }
 };
 
+//Bridge
 let bridge1 = {
   x: 0,
   y: 380,
@@ -183,17 +173,6 @@ function backgrd(){
   //bg.b = map(mouseY, 0, 200, 255, 230); //Lighter To Darker Blue
 }
 
-//When Hit
-function hit(){
-
-  let d = dist(hiker.x,hiker.y,rock.x,rock.y);
-  if (d < rock.w/2 + hiker.w/2) {
-
-    fill(hitColor.fill.r,hitColor.fill.g,hitColor.fill.b,hitColor.fill.bright,hitColor.fill.a);
-    rect(hitColor.x,hitColor.y,hitColor.size);
-  }
-}
-
 //Making The sun
 function sunny(){
 
@@ -243,11 +222,11 @@ function rocks(){
 //Rock Movement
   rock.y = rock.y + rock.vy;
 
-  if (rock.y > 800) {
+//Spawns the rock back on top if it hits nothing and goes past y:700
+  if (rock.y > 700) {
     rock.x = random(0,680);
     rock.y = 0;
   }
-
 //Speed of Rock
   rock.y = rock.y + rock.vy;
 
@@ -266,6 +245,11 @@ function bridge(){
 
 //Making hiker
 function user(){
+
+//If Hiker runs out of lives the game ends
+  if (hiker.lives === 0) {
+    noLoop();
+  }
 
 //Boundaries
   let xc = constrain(hiker.x,0,width);
@@ -447,4 +431,38 @@ function mountains(){
 //Making Middle Right mountain
   triangle(mountain4.x,mountain4.y,mountain4.x2,mountain4.y2,mountain4.x3,mountain4.y3);
   pop();
+}
+
+//When Hit
+function hit(){
+
+  let hitColor = {
+    x: 0,
+    y: 0,
+    size: 1000,
+    fill:{
+    r: 252,
+    g: 99,
+    b: 88,
+    bright:100,
+    a: 255
+    }
+  };
+
+//What happens if Hiker gets hit
+  let d = dist(hiker.x,hiker.y,rock.x,rock.y);
+  if (d < rock.w/3 + hiker.w/3) {
+
+//If the rock hits the hiker, the hiker loses a life
+    hiker.lives = hiker.lives + hiker.livelost;
+
+//A quick red overlay appears when hit for less than a second
+    fill(hitColor.fill.r,hitColor.fill.g,hitColor.fill.b,hitColor.fill.bright,hitColor.fill.a);
+    rect(hitColor.x,hitColor.y,hitColor.size);
+
+//Respawns the rock at the top if it hits the hiker
+    rock.x = random(0,680);
+    rock.y = 0;
+
+  }
 }
