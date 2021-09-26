@@ -19,35 +19,46 @@ let bg = {
 let burger = {
   x: 0,
   y: 250,
-  w: 100,
-  h: 100,
+  w: 50,
+  h: 50,
   vx: 0,
   vy: 0,
-  speed: 5
+  speed: 10,
+  image: undefined
 };
+
+let stickman = {
+  x: 0,
+  y: 0,
+  w: 100,
+  h: 100,
+  image: undefined
+}
 
 //preloading my images
 function preload() {
-  //man.image = loadImage('assets/images/man.png'); //Made in Illustrator
+  man.image = loadImage('assets/images/man.png'); //Made in Illustrator
   hamburger.image = loadImage('assets/images/hamburger.png'); //Made in Illustrator
 }
 
 function setup() {
 //Setting Canvas Size
-createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth,windowHeight);
 
 //Burger positioning
-burger.y = random(0,height);
-burger.vx = burger.speed
+  burger.y = random(0,height);
+  burger.vx = burger.speed;
+
+//User Spawnpoint
+  stickman.x = width / 2;
+  stickman.y = height / 2;
 }
 
-
-/**
-Description of draw()
-*/
+//Calling the functions
 function draw() {
 backgrnd();
 hamburger();
+man();
 }
 
 //Defining Background
@@ -56,7 +67,7 @@ function backgrnd() {
 }
 
 //Hamburger Settings
-function hamburger(){
+function hamburger() {
 
 //Defining The Hamburger
   imageMode(CENTER);
@@ -71,4 +82,12 @@ function hamburger(){
     burger.x = 0;
     burger.y = random(0,height);
   }
+}
+
+//Stickman Settings
+function man() {
+
+//Defining the Stickman
+  imageMode(CENTER);
+  image(man.image,stickman.x,stickman.y,stickman.w,stickman.h);
 }
