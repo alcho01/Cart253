@@ -10,19 +10,21 @@ Use at least one image
 
 "use strict";
 
-
-/**
-Description of preload
-*/
-function preload() {
-
+let bg = {
+  r: 0,
+  g: 68,
+  b: 120
 }
 
+//preloading my images
+function preload() {
+  //man.image = loadImage('assets/images/man.png'); //Made in Illustrator
+  //hamburger.image = loadImage('assets/images/hamburger.png'); //Made in Illustrator
+}
 
-/**
-Description of setup
-*/
 function setup() {
+//Setting Canvas Size
+createCanvas(windowWidth,windowHeight);
 
 }
 
@@ -31,5 +33,10 @@ function setup() {
 Description of draw()
 */
 function draw() {
+backgrnd();
+}
 
+//Defining Background
+function backgrnd() {
+  background(bg.r,bg.g,bg.b);
 }
