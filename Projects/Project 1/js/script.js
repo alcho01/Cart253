@@ -11,8 +11,6 @@ EndScreen
 Idea:
 */
 
-
-
 //Choosing The Background Color
 let bg = {
   r: 89,
@@ -25,8 +23,7 @@ let bg = {
   }
 };
 
-// USER STUFF \\
-
+//Hiker settings
 let hiker = {
   x: 300,
   y: 320,
@@ -36,15 +33,19 @@ let hiker = {
   vx2: 4,
   vy: -2,
   vy2: 2,
-  image: undefined,
-  fill:{
-    r: 237,
-    g: 205,
-    b: 178
-  }
+  image: undefined
 };
 
-let rock
+//Rock Settings
+let rock = {
+  x: 300,
+  y: 0,
+  w: 80,
+  h: 80,
+  speed: 1,
+  vy: 3,
+  image: undefined
+}
 
 //Cloud1
 let cloud = {
@@ -54,7 +55,6 @@ let cloud = {
   h: 50,
   speed: 1,
   vx: 3,
-  vy: 0,
   fill:{
     r: 255,
     g: 255,
@@ -71,7 +71,6 @@ let cloud2 = {
   h: 70,
   speed: 1,
   vx: 1,
-  vy: 0,
 };
 
 //Sun
@@ -120,6 +119,7 @@ let bridge1 = {
 
 function preload(){
   hiker.image = loadImage('assets/images/hiker.png');
+  rock.image = loadImage('assets/images/rock.png');
   mySound = loadSound('assets/sounds/waves.wav');
   mySound2 = loadSound('assets/sounds/birds.wav');
 }
@@ -142,13 +142,17 @@ function setup() {
   cloud.y = random(0,300);
 //cloud2 positioning
   cloud2.y = random(0,330);
+
+//rock positioning
+  rock.x = random(0,750);
+
 }
 
 //Calling the Functions
 function draw() {
   backgrd();
   sunny();
-  //rocks();
+  rocks();
   lakes();
   bridge();
   user();
@@ -164,6 +168,76 @@ function backgrd() {
   background(bg.r, bg.g, bg.b);
   //bg.b = map(mouseY, 0, 200, 255, 230); //Lighter To Darker Blue
 }
+
+//Making The sun
+function sunny(){
+
+//Sun movement
+  sun.y = sun.y + sun.vy;
+  sun.y = constrain(sun.y,70,height);
+
+//Sun Affecting background
+  if (sun.y < 270) {
+    background(bg.fill.r2, bg.fill.g2, bg.fill.b2);
+  }
+
+//Sun color and form
+  fill(sun.fill.r,sun.fill.g,sun.fill.b,sun.fill.a);
+  ellipse(sun.x,sun.y,sun.size);
+}
+
+//The code for the lake was used from an older project I did in Dawson.
+
+//Making The Lake
+function lakes(){
+
+  fill(lake.fill.r,lake.fill.g,lake.fill.b,lake.fill.a);
+  //lake.fill.b = map(mouseY, 0,500,255,200); //From Dark To Light
+
+//Sun Affecting Lake
+    if (sun.y < 330) {
+      fill(lake.fill2.r2,lake.fill2.g2,lake.fill2.b2);
+    }
+
+//Shape/Depth/Movement of Wave
+  beginShape();
+  for (let x = 0; x < width; x += 5) { //intensity of the wave (higher number makes it smoother)
+    let y = map(noise(lake.x, lake.y), 0,1,620,200); //Height of the Waves + Vibration
+    vertex(x,y);
+    }
+
+    lake.y += 0.0095;
+  vertex(width, height); //Fills Page
+  vertex(0,height); //Fills Page
+  endShape(CLOSE); //Always have to Close shape to see it
+  }
+
+//Making The Rock
+function rocks(){
+
+//Rock Movement
+  rock.y = rock.y + rock.vy;
+
+  if (rock.y > 800) {
+    rock.x = random(0,680);
+    rock.y = 0;
+  }
+
+//Speed of Rock
+  rock.y = rock.y + rock.vy;
+
+//Defining The Rock
+  imageMode(CENTER);
+  image(rock.image,rock.x,rock.y,rock.w,rock.h);
+}
+
+//Making the bridge
+function bridge(){
+
+  //The Bridge
+    fill(bridge1.fill.r,bridge1.fill.g,bridge1.fill.b);
+    rect(bridge1.x,bridge1.y,bridge1.w,bridge1.h);
+  }
 
 //Making hiker
 function user() {
@@ -189,6 +263,96 @@ else if (keyIsDown(DOWN_ARROW)) {
 //Defining the Hiker
 imageMode(CENTER);
 image(hiker.image,hiker.x,hiker.y,hiker.w,hiker.h);
+}
+
+//Making the clouds
+function clouds(){
+
+//Cloud1 Movement
+  cloud.x = cloud.x + cloud.vx;
+
+  if (cloud.x > 800) {
+    cloud.x = 0;
+    cloud.y = random(0,300);
+  }
+
+//Cloud2 Movement
+cloud2.x = cloud2.x + cloud2.vx;
+
+if (cloud2.x > 800) {
+  cloud2.x = 0;
+  cloud2.y = random(0,330);
+}
+
+//Change the speed of the clouds
+  if (mouseIsPressed){
+
+//Speed of cloud1
+  cloud.x = cloud.x + cloud.vx + cloud.speed;
+
+//Speed of clou2
+  cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
+  }
+
+//Cloud1
+  push();
+  fill(cloud.fill.r,cloud.fill.g,cloud.fill.b,cloud.fill.a);
+  ellipse(cloud.x,cloud.y,cloud.w,cloud.h);
+
+//Cloud2
+  ellipse(cloud2.x,cloud2.y,cloud2.w,cloud2.h);
+  pop();
+}
+
+//Making The Trees
+function trees(){
+
+  //left tree
+  let tree = {
+    x: 15,
+    y: 600,
+    x2: 200,
+    y2: 600,
+    x3: 100,
+    y3: 400,
+    fill:{
+      r: 15,
+      g: 92,
+      b: 1,
+    }
+  };
+
+  //middle tree
+  let tree2 = {
+    x: 240,
+    y: 600,
+    x2: 380,
+    y2: 600,
+    x3: 290,
+    y3: 350,
+  };
+
+  //right tree
+  let tree3 = {
+    x: 380,
+    y: 600,
+    x2: 600,
+    y2: 600,
+    x3: 500,
+    y3: 400,
+  };
+
+//Left Tree
+  push();
+  fill(tree.fill.r,tree.fill.g,tree.fill.b);
+  triangle(tree.x,tree.y,tree.x2,tree.y2,tree.x3,tree.y3);
+
+//Middle Tree
+  triangle(tree2.x,tree2.y,tree2.x2,tree2.y2,tree2.x3,tree2.y3);
+
+//Right Tree
+  triangle(tree3.x,tree3.y,tree3.x2,tree3.y2,tree3.x3,tree3.y3);
+  pop();
 }
 
 //Making The Mountains
@@ -258,148 +422,4 @@ function mountains(){
 //Making Middle Right mountain
   triangle(mountain4.x,mountain4.y,mountain4.x2,mountain4.y2,mountain4.x3,mountain4.y3);
   pop();
-}
-
-//Making The Trees
-function trees(){
-
-  //left tree
-  let tree = {
-    x: 15,
-    y: 600,
-    x2: 200,
-    y2: 600,
-    x3: 100,
-    y3: 400,
-    fill:{
-      r: 15,
-      g: 92,
-      b: 1,
-    }
-  };
-
-  //middle tree
-  let tree2 = {
-    x: 240,
-    y: 600,
-    x2: 380,
-    y2: 600,
-    x3: 290,
-    y3: 350,
-  };
-
-  //right tree
-  let tree3 = {
-    x: 380,
-    y: 600,
-    x2: 600,
-    y2: 600,
-    x3: 500,
-    y3: 400,
-  };
-
-//Left Tree
-  push();
-  fill(tree.fill.r,tree.fill.g,tree.fill.b);
-  triangle(tree.x,tree.y,tree.x2,tree.y2,tree.x3,tree.y3);
-
-//Middle Tree
-  triangle(tree2.x,tree2.y,tree2.x2,tree2.y2,tree2.x3,tree2.y3);
-
-//Right Tree
-  triangle(tree3.x,tree3.y,tree3.x2,tree3.y2,tree3.x3,tree3.y3);
-  pop();
-}
-
-//The code for the lake was used from an older project I did in Dawson(I changed the variables and cleaned it up)
-
-//Making The Lake
-function lakes(){
-
-  fill(lake.fill.r,lake.fill.g,lake.fill.b,lake.fill.a);
-  //lake.fill.b = map(mouseY, 0,500,255,200); //From Dark To Light
-
-//Sun Affecting Lake
-    if (sun.y < 330) {
-      fill(lake.fill2.r2,lake.fill2.g2,lake.fill2.b2);
-    }
-
-//Shape/Depth/Movement of Wave
-  beginShape();
-  for (let x = 0; x < width; x += 5) { //intensity of the wave (higher number makes it smoother)
-    let y = map(noise(lake.x, lake.y), 0,1,620,200); //Height of the Waves + Vibration
-    vertex(x,y);
-    }
-
-    lake.y += 0.0095;
-  vertex(width, height); //Fills Page
-  vertex(0,height); //Fills Page
-  endShape(CLOSE); //Always have to Close shape to see it
-  }
-
-//Making The sun
-function sunny(){
-
-//Sun movement
-  sun.y = sun.y + sun.vy;
-  sun.y = constrain(sun.y,70,height);
-
-//Sun Affecting background
-  if (sun.y < 270) {
-    background(bg.fill.r2, bg.fill.g2, bg.fill.b2);
-  }
-
-//Sun color and form
-  fill(sun.fill.r,sun.fill.g,sun.fill.b,sun.fill.a);
-  ellipse(sun.x,sun.y,sun.size);
-}
-
-//Making the clouds
-function clouds(){
-
-//Cloud1 Movement
-  cloud.x = cloud.x + cloud.vx;
-  cloud.y = cloud.y + cloud.vy;
-
-  if (cloud.x > 800) {
-    cloud.x = 0;
-    cloud.y = random(0,300);
-  }
-
-//Cloud2 Movement
-
-cloud2.x = cloud2.x + cloud2.vx;
-cloud2.y = cloud2.y + cloud2.vy;
-
-if (cloud2.x > 800) {
-  cloud2.x = 0;
-  cloud2.y = random(0,330);
-}
-
-//Change the speed of the clouds
-  if (mouseIsPressed){
-
-//Speed of cloud1
-  cloud.x = cloud.x + cloud.vx + cloud.speed;
-
-//Speed of clou2
-  cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
-  }
-
-//Cloud1
-  push();
-  fill(cloud.fill.r,cloud.fill.g,cloud.fill.b,cloud.fill.a);
-  ellipse(cloud.x,cloud.y,cloud.w,cloud.h);
-
-//Cloud2
-  ellipse(cloud2.x,cloud2.y,cloud2.w,cloud2.h);
-  pop();
-}
-
-//Making the bridge
-function bridge(){
-
-//The Bridge
-  fill(bridge1.fill.r,bridge1.fill.g,bridge1.fill.b);
-  rect(bridge1.x,bridge1.y,bridge1.w,bridge1.h);
 }
