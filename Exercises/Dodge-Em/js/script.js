@@ -2,10 +2,10 @@
 Dodge-Em
 Alex Cho
 
-Change the way the user controls their circle
+Change the way the user controls their circle [Done]
 Add at least one new if-statement
 Change the way the simulation looks
-Use at least one image
+Use at least one image [Done]
 */
 
 "use strict";
@@ -32,6 +32,10 @@ let stickman = {
   y: 0,
   w: 100,
   h: 100,
+  vx: -4,
+  vx2: 4,
+  vy: -4,
+  vy2: 4,
   image: undefined
 }
 
@@ -90,4 +94,18 @@ function man() {
 //Defining the Stickman
   imageMode(CENTER);
   image(man.image,stickman.x,stickman.y,stickman.w,stickman.h);
+
+//Stickman Movement
+if (keyIsDown(LEFT_ARROW)) {
+  stickman.x = stickman.x + stickman.vx;
+  }
+else if (keyIsDown(RIGHT_ARROW)) {
+  stickman.x = stickman.x + stickman.vx2;
+  }
+else if (keyIsDown(UP_ARROW)) {
+  stickman.y = stickman.y + stickman.vy;
+  }
+else if (keyIsDown(DOWN_ARROW)) {
+  stickman.y = stickman.y + stickman.vy2;
+  }
 }
