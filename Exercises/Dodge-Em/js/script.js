@@ -114,13 +114,13 @@ else if (keyIsDown(DOWN_ARROW)) {
 //Stickman Growth
 let d = dist(stickman.x,stickman.y,burger.x,burger.y);
 if(d < burger.w / 2  + stickman.w / 2) {
-//If stick figure interacts with a burger his width can increase up to 500
+//If stick figure interacts with a burger his width can increase up to 350
   stickman.w = stickman.w + stickman.growth;
 } else {
 //If stick figure does not interact with a burger he goes back to a width of 100
   stickman.w = stickman.w + stickman.shrink;
-//Constrained between 100 and 500
-  stickman.w = constrain(stickman.w, 100, 500)
+//Constrained between 100 and 350
+  stickman.w = constrain(stickman.w, 100, 350)
   }
 
 //If the stickman is eating more than enough he will begin to hallucinate
@@ -136,5 +136,10 @@ if(stickman.w > 250) {
     strokeWeight(hallucinate.strkW);
     point(x,y);
     }
+  }
+
+//If the user eats past capability
+if(stickman.w > 350) {
+  noLoop(); //SimulationStops
   }
 }
