@@ -72,12 +72,6 @@ let cloud2 = {
   speed: 1,
   vx: 1,
   vy: 0,
-  fill:{
-    r: 255,
-    g: 255,
-    b: 255,
-    a: 200
-  }
 };
 
 //Sun
@@ -249,21 +243,21 @@ function mountains(){
 
 
   //Making Left mountain
+  push();
   fill(mountain.fill.r,mountain.fill.g,mountain.fill.b);
   triangle(mountain.x,mountain.y,mountain.x2,mountain.y2,mountain.x3,mountain.y3);
 
 //Making Right mountain
-  fill(mountain.fill.r,mountain.fill.g,mountain.fill.b);
   triangle(mountain2.x,mountain2.y,mountain2.x2,mountain2.y2,mountain2.x3,mountain2.y3);
-
+  pop();
 //Making Middle Left mountain
+  push();
   fill(mountain3.fill.r,mountain3.fill.g,mountain3.fill.b);
   triangle(mountain3.x,mountain3.y,mountain3.x2,mountain2.y2,mountain3.x3,mountain3.y3);
 
 //Making Middle Right mountain
-  fill(mountain3.fill.r,mountain3.fill.g,mountain3.fill.b);
   triangle(mountain4.x,mountain4.y,mountain4.x2,mountain4.y2,mountain4.x3,mountain4.y3);
-
+  pop();
 }
 
 //Making The Trees
@@ -292,11 +286,6 @@ function trees(){
     y2: 600,
     x3: 290,
     y3: 350,
-    fill:{
-      r: 15,
-      g: 92,
-      b: 1
-    }
   };
 
   //right tree
@@ -307,24 +296,19 @@ function trees(){
     y2: 600,
     x3: 500,
     y3: 400,
-    fill:{
-      r: 15,
-      g: 92,
-      b: 1
-    }
   };
 
 //Left Tree
+  push();
   fill(tree.fill.r,tree.fill.g,tree.fill.b);
   triangle(tree.x,tree.y,tree.x2,tree.y2,tree.x3,tree.y3);
 
 //Middle Tree
-  fill(tree2.fill.r,tree2.fill.g,tree2.fill.b);
   triangle(tree2.x,tree2.y,tree2.x2,tree2.y2,tree2.x3,tree2.y3);
 
 //Right Tree
-  fill(tree3.fill.r,tree3.fill.g,tree3.fill.b);
   triangle(tree3.x,tree3.y,tree3.x2,tree3.y2,tree3.x3,tree3.y3);
+  pop();
 }
 
 //The code for the lake was used from an older project I did in Dawson(I changed the variables and cleaned it up)
@@ -403,12 +387,13 @@ if (cloud2.x > 800) {
   }
 
 //Cloud1
+  push();
   fill(cloud.fill.r,cloud.fill.g,cloud.fill.b,cloud.fill.a);
   ellipse(cloud.x,cloud.y,cloud.w,cloud.h);
 
 //Cloud2
-  fill(cloud2.fill.r,cloud2.fill.g,cloud2.fill.b,cloud.fill.a);
   ellipse(cloud2.x,cloud2.y,cloud2.w,cloud2.h);
+  pop();
 }
 
 //Making the bridge
