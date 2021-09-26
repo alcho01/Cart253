@@ -130,7 +130,7 @@ function preload(){
 //Setting up what needs to be done beforehand
 function setup() {
 //Waves Sound FX
-  mySound.setVolume(0.03);
+  mySound.setVolume(0.03); //SOMETIMES FOR THE SOUND YOU NEED TO RELOAD THE PAGE
   mySound.play();
   mySound.loop();
 //Birds Sound FX
