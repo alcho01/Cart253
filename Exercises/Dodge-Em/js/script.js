@@ -34,7 +34,7 @@ let stickman = {
   w: 100,
   h: 100,
   growth: 8,
-  shrink: -5,
+  shrink: -2,
   vx: -6,
   vx2: 6,
   vy: -6,
