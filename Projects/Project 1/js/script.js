@@ -47,7 +47,7 @@ let rock = {
   speed: 1,
   vy: 3,
   image: undefined
-}
+};
 
 //Cloud1
 let cloud = {
