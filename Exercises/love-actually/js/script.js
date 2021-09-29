@@ -21,15 +21,23 @@ let bg = {
 
 };
 
+let title = {
+  x: 390,
+  y: 410,
+  w: 830,
+  h: 830,
+  image: undefined
+};
+
 let user = {
   x: undefined,
   y: undefined,
   w: 150,
   h: 150,
-  vx: -5,
-  vx2: 5,
-  vy: -5,
-  vy2: 5,
+  vx: -6,
+  vx2: 6,
+  vy: -6,
+  vy2: 6,
   image: undefined
 };
 
@@ -40,15 +48,18 @@ let botcar = {
   h: 150,
   vx: 0,
   vy: 0,
-  speed: 6,
-  speedmin: -6,
+  speed: 5,
+  speedmin: -5,
   image: undefined
 };
+
+let state = 'title'
 
 function preload() {
   background.image = loadImage('assets/images/background.png');
   user.image = loadImage('assets/images/usercar.png');
   botcar.image = loadImage('assets/images/aicar.png');
+  title.image = loadImage('assets/images/title.png');
 }
 
 function setup() {
@@ -75,13 +86,38 @@ function draw() {
   movement();
   checkOffscreen();
   checkOverlap();
+
+  if (state === 'title') {
+    titleScreen();
+  }
+//  else if (state === 'simulation'){
+
+//  }
+//  else if (state === 'safe') {
+
+//  }
+//  else if (state === 'crash') {
+
+//  }
+  //else if (state === '') {
+
+  //}
 }
+
 
 //DISPLAY BACKGROUND
 function bgset() {
   imageMode(CENTER);
   image(background.image,bg.x,bg.y,bg.w,bg.h);
 }
+
+//Title
+function titleScreen() {
+
+  imageMode(CENTER);
+  image(title.image,title.x,title.y,title.w,title.h);
+}
+
 
 //DISPLAY USER CAR
 function display() {
@@ -132,5 +168,11 @@ function checkOverlap() {
   let d = dist(user.x,user.y,botcar.x,botcar.y);
   if (d < user.width/2 + botcar.width/2) {
 
+  }
+}
+
+function mousePressed() {
+  if (state === 'title') {
+    state ='simulation';
   }
 }
