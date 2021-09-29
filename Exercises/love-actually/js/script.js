@@ -76,23 +76,17 @@ function setup() {
 
   botcar.vx = random(botcar.speedmin,-botcar.speed);
   botcar.vy = random(-botcar.speed,botcar.speed);
-
-
 }
 
 function draw() {
   bgset();
-  display();
-  movement();
-  checkOffscreen();
-  checkOverlap();
 
   if (state === 'title') {
     titleScreen();
   }
-//  else if (state === 'simulation'){
-
-//  }
+  else if (state === 'simulation'){
+    simulation();
+  }
 //  else if (state === 'safe') {
 
 //  }
@@ -118,6 +112,12 @@ function titleScreen() {
   image(title.image,title.x,title.y,title.w,title.h);
 }
 
+function simulation() {
+  movement();
+  checkOffscreen();
+  checkOverlap();
+  display();
+}
 
 //DISPLAY USER CAR
 function display() {
