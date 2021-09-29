@@ -30,7 +30,7 @@ let user = {
   vx2: 5,
   vy: -5,
   vy2: 5,
-  image: undefined
+  image: undefined,
 };
 
 
@@ -53,6 +53,7 @@ function setup() {
 function draw() {
   bgset();
   display();
+  movement();
 }
 
 //DISPLAY BACKGROUND
@@ -63,6 +64,27 @@ function bgset() {
 
 //DISPLAY USER CAR
 function display() {
-  imageMode(CENTER);
-  image(user.image,user.x,user.y,user.w,user.h);
+imageMode(CENTER);
+image(user.image,user.x,user.y,user.w,user.h);
+}
+
+//USER CAR MOVEMENT
+function movement() {
+
+//LIMIT
+let xc = constrain(user.x,0,width);
+let yc = constrain(user.y,280,800);
+
+if (keyIsDown(LEFT_ARROW)) {
+  user.x = xc + user.vx;
+  }
+else if (keyIsDown(RIGHT_ARROW)) {
+  user.x = xc + user.vx2;
+  }
+else if (keyIsDown(UP_ARROW)) {
+  user.y = yc + user.vy;
+  }
+else if (keyIsDown(DOWN_ARROW)) {
+  user.y = yc + user.vy2;
+  }
 }
