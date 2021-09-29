@@ -50,10 +50,11 @@ let user = {
   y: undefined,
   w: 150,
   h: 150,
-  vx: -6,
-  vx2: 6,
-  vy: -6,
-  vy2: 6,
+  vx: 0,
+  vy: 0,
+  vy2: 0,
+  speed:20,
+  speedmin: 1,
   image: undefined
 };
 
@@ -92,6 +93,12 @@ function setup() {
   botcar.x = 3 * width/3;
   botcar.y = height/2;
 
+//User Car Speed
+  user.vx = random(user.speedmin,user.speed);
+  user.vy = random(-user.speed,user.speed);
+  user.vy2 = random(-user.speed,user.speed);
+
+//Bot Car Speed
   botcar.vx = random(botcar.speedmin,-botcar.speed);
   botcar.vy = random(-botcar.speed,botcar.speed);
 }
@@ -147,9 +154,15 @@ function crashScreen() {
   image(crash.image,crash.x,crash.y,crash.w,crash.h);
 }
 
+//function copChase(){
+
+//}
+
+//function checkSpeed(){
+
+//}
 //DISPLAY USER CAR
 function display() {
-
 //User Car
   imageMode(CENTER);
   image(user.image,user.x,user.y,user.w,user.h);
@@ -160,14 +173,13 @@ function display() {
 }
 
 function movement() {
-
 //LIMIT
   let xc = constrain(user.x,0,870);
   let yc = constrain(user.y,280,800);
 
 //USER CAR MOVEMENT
   if (keyIsDown(RIGHT_ARROW)) {
-    user.x = xc + user.vx2;
+    user.x = xc + user.vx;
   }
   else if (keyIsDown(UP_ARROW)) {
     user.y = yc + user.vy;
@@ -176,15 +188,14 @@ function movement() {
     user.y = yc + user.vy2;
   }
 
-//Bot Car Movement
+//LIMIT Bot Car Y positioning
   let yc2 = constrain(botcar.y,280,720);
-
+//Bot Car Movement
   botcar.x = botcar.x + botcar.vx;
   botcar.y = yc2 + botcar.vy;
 }
 
 function checkOffscreen() {
-
 //If the user car goes off the right side... YOU MAKE IT HOME SAFE!
   if (user.x > 860) {
     state ='safe';
@@ -200,6 +211,7 @@ function checkOverlap() {
 }
 
 function mousePressed() {
+  //Press the mouse to start the simulation
   if (state === 'title') {
     state ='simulation';
   }
