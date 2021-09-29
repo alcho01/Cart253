@@ -4,7 +4,7 @@ Alex Cho
 
 GUIDELINES
 Allow the user to control one of the circles [DONE]
-Make the non-user circle move differently
+Make the non-user circle move differently [DONE]
 Add at least one extra function
 Add at least one extra ending
 
@@ -73,6 +73,8 @@ function draw() {
   bgset();
   display();
   movement();
+  checkOffscreen();
+  checkOverlap();
 }
 
 //DISPLAY BACKGROUND
@@ -85,36 +87,50 @@ function bgset() {
 function display() {
 
 //User Car
-imageMode(CENTER);
-image(user.image,user.x,user.y,user.w,user.h);
+  imageMode(CENTER);
+  image(user.image,user.x,user.y,user.w,user.h);
 
 //Bot Car
-imageMode(CENTER);
-image(botcar.image,botcar.x,botcar.y,botcar.w,botcar.h);
-
+  imageMode(CENTER);
+  image(botcar.image,botcar.x,botcar.y,botcar.w,botcar.h);
 }
 
 function movement() {
 
 //LIMIT
-let xc = constrain(user.x,0,width);
-let yc = constrain(user.y,280,800);
+  let xc = constrain(user.x,0,870);
+  let yc = constrain(user.y,280,800);
 
 //USER CAR MOVEMENT
-if (keyIsDown(RIGHT_ARROW)) {
-  user.x = xc + user.vx2;
+  if (keyIsDown(RIGHT_ARROW)) {
+    user.x = xc + user.vx2;
   }
-else if (keyIsDown(UP_ARROW)) {
-  user.y = yc + user.vy;
+  else if (keyIsDown(UP_ARROW)) {
+    user.y = yc + user.vy;
   }
-else if (keyIsDown(DOWN_ARROW)) {
-  user.y = yc + user.vy2;
+  else if (keyIsDown(DOWN_ARROW)) {
+    user.y = yc + user.vy2;
   }
 
 //Bot Car Movement
-let yc2 = constrain(botcar.y,280,height);
+  let yc2 = constrain(botcar.y,280,height);
 
-botcar.x = botcar.x + botcar.vx;
-botcar.y = yc2 + botcar.vy;
+  botcar.x = botcar.x + botcar.vx;
+  botcar.y = yc2 + botcar.vy;
+}
 
+function checkOffscreen() {
+
+//If the user car goes off the right side, and the bot car goes off the left... YOU MAKE IT HOME SAFE!
+  if (user.x > 860 || botcar.x < 0) {
+
+  }
+}
+
+function checkOverlap() {
+//If the user car and the bot car overlap... YOU'VE BEEN IN A CRASH!
+  let d = dist(user.x,user.y,botcar.x,botcar.y);
+  if (d < user.width/2 + botcar.width/2) {
+
+  }
 }
