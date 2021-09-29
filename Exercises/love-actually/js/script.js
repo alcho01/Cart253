@@ -29,6 +29,22 @@ let title = {
   image: undefined
 };
 
+let safe = {
+  x: 390,
+  y: 410,
+  w: 830,
+  h: 830,
+  image: undefined
+};
+
+let crash = {
+  x: 390,
+  y: 410,
+  w: 830,
+  h: 830,
+  image: undefined
+};
+
 let user = {
   x: undefined,
   y: undefined,
@@ -60,6 +76,8 @@ function preload() {
   user.image = loadImage('assets/images/usercar.png');
   botcar.image = loadImage('assets/images/aicar.png');
   title.image = loadImage('assets/images/title.png');
+  safe.image = loadImage('assets/images/safe.png');
+  crash.image = loadImage('assets/images/crash.png');
 }
 
 function setup() {
@@ -87,12 +105,12 @@ function draw() {
   else if (state === 'simulation'){
     simulation();
   }
-//  else if (state === 'safe') {
-
-//  }
-//  else if (state === 'crash') {
-
-//  }
+  else if (state === 'safe') {
+    safeScreen();
+  }
+  else if (state === 'crash') {
+    crashScreen();
+  }
   //else if (state === '') {
 
   //}
@@ -117,6 +135,16 @@ function simulation() {
   checkOffscreen();
   checkOverlap();
   display();
+}
+
+function safeScreen() {
+  imageMode(CENTER);
+  image(safe.image,safe.x,safe.y,safe.w,safe.h);
+}
+
+function crashScreen() {
+  imageMode(CENTER);
+  image(crash.image,crash.x,crash.y,crash.w,crash.h);
 }
 
 //DISPLAY USER CAR
@@ -149,7 +177,7 @@ function movement() {
   }
 
 //Bot Car Movement
-  let yc2 = constrain(botcar.y,280,height);
+  let yc2 = constrain(botcar.y,280,720);
 
   botcar.x = botcar.x + botcar.vx;
   botcar.y = yc2 + botcar.vy;
@@ -157,17 +185,17 @@ function movement() {
 
 function checkOffscreen() {
 
-//If the user car goes off the right side, and the bot car goes off the left... YOU MAKE IT HOME SAFE!
-  if (user.x > 860 || botcar.x < 0) {
-
+//If the user car goes off the right side... YOU MAKE IT HOME SAFE!
+  if (user.x > 860) {
+    state ='safe';
   }
 }
 
 function checkOverlap() {
 //If the user car and the bot car overlap... YOU'VE BEEN IN A CRASH!
   let d = dist(user.x,user.y,botcar.x,botcar.y);
-  if (d < user.width/2 + botcar.width/2) {
-
+  if (d < user.w/2 + botcar.w/2) {
+    state ='crash';
   }
 }
 
