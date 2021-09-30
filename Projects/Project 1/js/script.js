@@ -163,8 +163,8 @@ function draw() {
   trees();
   mountains();
   hit();
-
 }
+
 
 //Making The Background
 function backgrd(){
