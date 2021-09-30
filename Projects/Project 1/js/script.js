@@ -88,7 +88,6 @@ let sun = {
     a: 150
   }
 };
-
 //Lake
 let lake = {
   x: 0,
@@ -104,19 +103,6 @@ let lake = {
     g2: 118,
     b2: 184,
     a2: 200
-  }
-};
-
-//Bridge
-let bridge1 = {
-  x: 0,
-  y: 380,
-  w: 800,
-  h: 30,
-  fill: {
-    r: 99,
-    g: 45,
-    b: 41
   }
 };
 
@@ -153,28 +139,27 @@ function setup() {
 
 //Calling the Functions
 function draw() {
-  backgrd();
-  sunny();
-  lakes();
-  bridge();
-  rocks();
-  user();
-  clouds();
-  trees();
-  mountains();
+  displayBackground();
+  displaySun();
+  displayLake();
+  displayRock();
+  displayBridge();
+  displayHiker();
+  displayClouds();
+  displayTrees();
+  displayMountains();
   hit();
 }
 
 
 //Making The Background
-function backgrd(){
+function displayBackground(){
 
   background(bg.r, bg.g, bg.b);
-  //bg.b = map(mouseY, 0, 200, 255, 230); //Lighter To Darker Blue
 }
 
 //Making The sun
-function sunny(){
+function displaySun(){
 
 //Sun movement
   sun.y = sun.y + sun.vy;
@@ -193,10 +178,10 @@ function sunny(){
 //The code for the lake was used from an older project I did in Dawson.
 
 //Making The Lake
-function lakes(){
+function displayLake(){
 
+//Fill Lake
   fill(lake.fill.r,lake.fill.g,lake.fill.b,lake.fill.a);
-  //lake.fill.b = map(mouseY, 0,500,255,200); //From Dark To Light
 
 //Sun Affecting Lake
     if (sun.y < 330) {
@@ -217,7 +202,7 @@ function lakes(){
   }
 
 //Making The Rock
-function rocks(){
+function displayRock(){
 
 //Rock Movement
   rock.y = rock.y + rock.vy;
@@ -236,19 +221,33 @@ function rocks(){
 }
 
 //Making the bridge
-function bridge(){
+function displayBridge(){
+
+  let bridge = {
+    x: 0,
+    y: 380,
+    w: 800,
+    h: 30,
+    fill: {
+      r: 99,
+      g: 45,
+      b: 41
+    }
+  };
 
   //The Bridge
-    fill(bridge1.fill.r,bridge1.fill.g,bridge1.fill.b);
-    rect(bridge1.x,bridge1.y,bridge1.w,bridge1.h);
+    fill(bridge.fill.r,bridge.fill.g,bridge.fill.b);
+    rect(bridge.x,bridge.y,bridge.w,bridge.h);
   }
 
 //Making hiker
-function user(){
+function displayHiker(){
 
 //If Hiker runs out of lives the game ends
   if (hiker.lives === 0) {
-    noLoop();
+    noLoop(); //PLACEHOLDER
+    mySound.stop(); //SOUND STOPS
+    mySound2.stop(); //SOUND STOPS
   }
 
 //Boundaries
@@ -275,7 +274,7 @@ image(hiker.image,hiker.x,hiker.y,hiker.w,hiker.h);
 }
 
 //Making the clouds
-function clouds(){
+function displayClouds(){
 
 //Cloud1 Movement
   cloud.x = cloud.x + cloud.vx;
@@ -314,7 +313,7 @@ if (cloud2.x > 800) {
 }
 
 //Making The Trees
-function trees(){
+function displayTrees(){
 
   //left tree
   let tree = {
@@ -365,7 +364,7 @@ function trees(){
 }
 
 //Making The Mountains
-function mountains(){
+function displayMountains(){
 
   //Mountains
   let mountain = {
