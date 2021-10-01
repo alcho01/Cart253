@@ -38,6 +38,39 @@ let hiker = {
   image: undefined
 };
 
+let healthfull ={
+  x: 5,
+  y: 730,
+  w: 120,
+  h: 60,
+  image: undefined
+};
+
+let healthtwothirds ={
+  x: 5,
+  y: 730,
+  w: 120,
+  h: 60,
+  image: undefined
+};
+
+let healthonethird ={
+  x: 5,
+  y: 730,
+  w: 120,
+  h: 60,
+  image: undefined
+};
+
+let healthnone ={
+  x: 5,
+  y: 730,
+  w: 120,
+  h: 60,
+  image: undefined
+};
+
+
 //Rock Settings
 let rock = {
   x: 0,
@@ -55,7 +88,7 @@ let cloud = {
   y: 50,
   w: 250,
   h: 50,
-  speed: 1,
+  speed: 20,
   vx: 3,
   fill:{
     r: 255,
@@ -71,7 +104,7 @@ let cloud2 = {
   y: 10,
   w: 350,
   h: 70,
-  speed: 1,
+  speed: 15,
   vx: 1,
 };
 
@@ -107,8 +140,18 @@ let lake = {
 };
 
 function preload(){
+
+//Image assets
   hiker.image = loadImage('assets/images/hiker.png');
   rock.image = loadImage('assets/images/rock.png');
+
+//HealthBar
+  healthfull.image = loadImage('assets/images/healthfull.png');
+  healthtwothirds.image = loadImage('assets/images/healthtwothirds.png');
+  healthonethird.image = loadImage('assets/images/healthonethird.png');
+  healthnone.image = loadImage('assets/images/healthnon.png');
+  
+//Sounds
   mySound = loadSound('assets/sounds/waves.wav');
   mySound2 = loadSound('assets/sounds/birds.wav');
 }
@@ -134,7 +177,6 @@ function setup() {
 
 //rock positioning
   rock.x = random(0,750);
-
 }
 
 //Calling the Functions
@@ -148,6 +190,7 @@ function draw() {
   displayClouds();
   displayTrees();
   displayMountains();
+  healthBar();
   hit();
 }
 
@@ -243,34 +286,59 @@ function displayBridge(){
 //Making hiker
 function displayHiker(){
 
-//If Hiker runs out of lives the game ends
-  if (hiker.lives === 0) {
-    noLoop(); //PLACEHOLDER
-    mySound.stop(); //SOUND STOPS
-    mySound2.stop(); //SOUND STOPS
-  }
-
 //Boundaries
   let xc = constrain(hiker.x,0,width);
   let yc = constrain(hiker.y,320,330);
 
 //Hiker Movement
-if (keyIsDown(LEFT_ARROW)) {
-  hiker.x = xc + hiker.vx;
-}
-else if (keyIsDown(RIGHT_ARROW)) {
-  hiker.x = xc + hiker.vx2;
-}
-else if (keyIsDown(UP_ARROW)) {
-  hiker.y = yc + hiker.vy;
-}
-else if (keyIsDown(DOWN_ARROW)) {
-  hiker.y = yc + hiker.vy2;
-}
+  if (keyIsDown(LEFT_ARROW)) {
+    hiker.x = xc + hiker.vx;
+  }
+  else if (keyIsDown(RIGHT_ARROW)) {
+    hiker.x = xc + hiker.vx2;
+  }
+  else if (keyIsDown(UP_ARROW)) {
+    hiker.y = yc + hiker.vy;
+  }
+  else if (keyIsDown(DOWN_ARROW)) {
+    hiker.y = yc + hiker.vy2;
+  }
 
 //Defining the Hiker
 imageMode(CENTER);
 image(hiker.image,hiker.x,hiker.y,hiker.w,hiker.h);
+}
+
+function healthBar() {
+//If Hiker runs out of lives the game ends //HealthBar
+  if (hiker.lives === 3){
+    push();
+    imageMode(CORNER);
+    image(healthfull.image,healthfull.x,healthfull.y,healthfull.w,healthfull.h);
+    pop();
+  }
+  else if (hiker.lives === 2) {
+    push();
+    imageMode(CORNER);
+    image(healthtwothirds.image,healthtwothirds.x,healthtwothirds.y,healthtwothirds.w,healthtwothirds.h);
+    pop();
+  }
+  else if (hiker.lives === 1) {
+    push();
+    imageMode(CORNER);
+    image(healthonethird.image,healthonethird.x,healthonethird.y,healthonethird.w,healthonethird.h);
+    pop();
+  }
+  else if (hiker.lives === 0) {
+    push();
+    imageMode(CORNER);
+    image(healthnone.image,healthnone.x,healthnone.y,healthnone.w,healthnone.h);
+    pop();
+
+    noLoop(); //PLACEHOLDER
+    mySound.stop(); //SOUND STOPS
+    mySound2.stop(); //SOUND STOPS
+  }
 }
 
 //Making the clouds
@@ -292,16 +360,6 @@ if (cloud2.x > 800) {
   cloud2.y = random(0,330);
 }
 
-//Change the speed of the clouds
-  if (mouseIsPressed){
-
-//Speed of cloud1
-  cloud.x = cloud.x + cloud.vx + cloud.speed;
-
-//Speed of clou2
-  cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
-  }
-
 //Cloud1
   push();
   fill(cloud.fill.r,cloud.fill.g,cloud.fill.b,cloud.fill.a);
@@ -310,6 +368,16 @@ if (cloud2.x > 800) {
 //Cloud2
   ellipse(cloud2.x,cloud2.y,cloud2.w,cloud2.h);
   pop();
+
+//Change the speed of the clouds
+    if (mouseIsPressed){
+
+//Speed of cloud1
+    cloud.x = cloud.x + cloud.vx + cloud.speed;
+
+//Speed of cloud2
+    cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
+  }
 }
 
 //Making The Trees
