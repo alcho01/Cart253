@@ -2,9 +2,8 @@
 Title of Project
 Alex Cho
 
-At Least 2 Moving Elements
-Interactivity
-Aesthetic?
+At Least 2 Moving Elements[DONE]
+Interactivity[DONE]
 TitleScreen
 EndScreen
 
@@ -35,9 +34,10 @@ let hiker = {
   vx2: 4,
   vy: -2,
   vy2: 2,
-  image: undefined
+  image: undefined,
 };
 
+//Healthbar settings //Probably could condense this code
 let healthfull ={
   x: 5,
   y: 730,
@@ -69,7 +69,6 @@ let healthnone ={
   h: 60,
   image: undefined
 };
-
 
 //Rock Settings
 let rock = {
@@ -121,6 +120,7 @@ let sun = {
     a: 150
   }
 };
+
 //Lake
 let lake = {
   x: 0,
@@ -139,6 +139,24 @@ let lake = {
   }
 };
 
+let title = {
+  x: 300,
+  y: 400,
+  w: 600,
+  h: 800,
+  image: undefined
+};
+
+let end = {
+  x: 300,
+  y: 400,
+  w: 600,
+  h: 800,
+  image: undefined
+};
+
+let state = 'title'
+
 function preload(){
 
 //Image assets
@@ -150,7 +168,9 @@ function preload(){
   healthtwothirds.image = loadImage('assets/images/healthtwothirds.png');
   healthonethird.image = loadImage('assets/images/healthonethird.png');
   healthnone.image = loadImage('assets/images/healthnon.png');
-  
+  title.image = loadImage('assets/images/title.png');
+  end.image = loadImage('assets/images/end.png');
+
 //Sounds
   mySound = loadSound('assets/sounds/waves.wav');
   mySound2 = loadSound('assets/sounds/birds.wav');
@@ -158,15 +178,18 @@ function preload(){
 
 //Setting up what needs to be done beforehand
 function setup() {
+
 //Waves Sound FX
   mySound.setVolume(0.03); //SOMETIMES FOR THE SOUND YOU NEED TO RELOAD THE PAGE
   mySound.play();
   mySound.loop();
+
 //Birds Sound FX
   mySound2.setVolume(0.07);
   mySound2.play();
   mySound2.loop();
 
+//Canvas setup
   createCanvas(600,800);
   noStroke();
 
@@ -182,6 +205,29 @@ function setup() {
 //Calling the Functions
 function draw() {
   displayBackground();
+
+  if (state === 'title') {
+    titleScreen();
+  }
+  else if (state === 'simulation') {
+    simulation();
+  }
+  else if (state === 'end') {
+    endScreen();
+  }
+}
+
+function titleScreen() {
+  imageMode(CENTER);
+  image(title.image,title.x,title.y,title.w,title.h);
+}
+
+function endScreen() {
+  imageMode(CENTER);
+  image(end.image,end.x,end.y,end.w,end.h);
+}
+
+function simulation(){
   displaySun();
   displayLake();
   displayRock();
@@ -193,7 +239,6 @@ function draw() {
   healthBar();
   hit();
 }
-
 
 //Making The Background
 function displayBackground(){
@@ -217,8 +262,6 @@ function displaySun(){
   fill(sun.fill.r,sun.fill.g,sun.fill.b,sun.fill.a);
   ellipse(sun.x,sun.y,sun.size);
 }
-
-//The code for the lake was used from an older project I did in Dawson.
 
 //Making The Lake
 function displayLake(){
@@ -295,6 +338,7 @@ function displayHiker(){
     hiker.x = xc + hiker.vx;
   }
   else if (keyIsDown(RIGHT_ARROW)) {
+
     hiker.x = xc + hiker.vx2;
   }
   else if (keyIsDown(UP_ARROW)) {
@@ -305,10 +349,13 @@ function displayHiker(){
   }
 
 //Defining the Hiker
+push();
 imageMode(CENTER);
 image(hiker.image,hiker.x,hiker.y,hiker.w,hiker.h);
+pop();
 }
 
+//Making the healthbar
 function healthBar() {
 //If Hiker runs out of lives the game ends //HealthBar
   if (hiker.lives === 3){
@@ -335,7 +382,8 @@ function healthBar() {
     image(healthnone.image,healthnone.x,healthnone.y,healthnone.w,healthnone.h);
     pop();
 
-    noLoop(); //PLACEHOLDER
+    state = 'end';
+
     mySound.stop(); //SOUND STOPS
     mySound2.stop(); //SOUND STOPS
   }
@@ -531,5 +579,12 @@ function hit(){
     rock.x = random(0,680);
     rock.y = 0;
 
+  }
+}
+
+//CHANGING STATE
+function mousePressed() {
+  if (state === 'title') {
+    state ='simulation';
   }
 }
