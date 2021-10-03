@@ -13,8 +13,8 @@ Idea:
 //Choosing The Background Color
 let bg = {
   r: 10,
-  g: 84,
-  b: 204,
+  g: 50,
+  b: 115,
   fill:{
   r2: 122,
   g2: 165,
@@ -23,6 +23,12 @@ let bg = {
 };
 
 let bgcolor;
+
+let bgmain = {
+  r: 89,
+  g: 127,
+  b: 189
+};
 
 //Hiker settings
 let hiker = {
@@ -157,6 +163,14 @@ let nightbutton = {
   image: undefined
 };
 
+let cloudbutton = {
+  x: 560,
+  y: 610,
+  w: 70,
+  h: 70,
+  image: undefined
+};
+
 let playButton = {
   x: 290,
   y: 430,
@@ -198,6 +212,7 @@ function preload(){
   rock.image = loadImage('assets/images/rock.png');
   daybutton.image = loadImage('assets/images/daybutton.png');
   nightbutton.image = loadImage('assets/images/nightbutton.png');
+  cloudbutton.image = loadImage('assets/images/cloudbutton.png');
 
 //HealthBar
   healthfull.image = loadImage('assets/images/healthfull.png');
@@ -211,7 +226,7 @@ function preload(){
   end.image = loadImage('assets/images/end.png');
   returnhome.image = loadImage('assets/images/returnhome.png');
 
-//Sounds
+//Sounds //I INTEND FOR THE SOUND TO PLAY IN THE MENU SCREEN AND THE END SCREEN
   mySound = loadSound('assets/sounds/waves.wav');
   mySound2 = loadSound('assets/sounds/birds.wav');
 }
@@ -219,9 +234,9 @@ function preload(){
 //Setting up what needs to be done beforehand
 function setup() {
 
-userStartAudio()
+  userStartAudio()
 
-bgcolor = color(89,127,189);
+  bgcolor = color(bgmain.r,bgmain.g,bgmain.b);
 
 //Waves Sound FX
   mySound.setVolume(0.03);
@@ -276,6 +291,7 @@ function titleScreen() {
   image(playButton.image,playButton.x,playButton.y,playButton.w,playButton.h);
 
   livesReset();
+  bgcolor = color(bgmain.r,bgmain.g,bgmain.b);
   }
 
 function endScreen() {
@@ -300,6 +316,7 @@ function simulation(){
   healthBar();
   dayButton();
   nightButton();
+  cloudButton();
   hit();
 }
 
@@ -456,6 +473,14 @@ function nightButton() {
 
 }
 
+function cloudButton() {
+
+  push();
+  imageMode(CENTER);
+  image(cloudbutton.image,cloudbutton.x,cloudbutton.y,cloudbutton.w,cloudbutton.h);
+  pop();
+}
+
 //Making the clouds
 function displayClouds(){
 
@@ -485,15 +510,18 @@ if (cloud2.x > 800) {
   pop();
 
 //Change the speed of the clouds
-    //if (mouseIsPressed){
-
+    if (mouseIsPressed){
+      if  (mouseX > 530 && mouseX < 595) { //Cloud Button
+      if  (mouseY > 575 && mouseY < 645) {
 //Speed of cloud1
-  //  cloud.x = cloud.x + cloud.vx + cloud.speed;
+    cloud.x = cloud.x + cloud.vx + cloud.speed;
 
 //Speed of cloud2
-  //  cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
+    cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
+      }
+    }
   }
-//}
+}
 
 //Making The Trees
 function displayTrees(){
@@ -672,7 +700,7 @@ function mouseClicked() {
       }
     }
   if (mouseX > 530 && mouseX < 595) { //Night Button
-  if (mouseY > 640 && mouseY < 710) {
+  if (mouseY > 652 && mouseY < 710) {
     bgcolor = color(bg.r,bg.g,bg.b);
       }
     }
