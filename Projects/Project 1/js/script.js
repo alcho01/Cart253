@@ -239,6 +239,10 @@ function draw() {
   }
 }
 
+function livesReset() {
+hiker.lives = 3;
+}
+
 function titleScreen() {
 //Title Screen
   imageMode(CENTER);
@@ -247,7 +251,11 @@ function titleScreen() {
 //Play Button
   imageMode(CENTER);
   image(playButton.image,playButton.x,playButton.y,playButton.w,playButton.h);
+
+  livesReset();
+  
   }
+
 
 function endScreen() {
 //end screen
