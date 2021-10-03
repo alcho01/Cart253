@@ -4,23 +4,25 @@ Alex Cho
 
 At Least 2 Moving Elements[DONE]
 Interactivity[DONE]
-TitleScreen
-EndScreen
+TitleScreen [DONE]
+EndScreen [DONE]
 
 Idea:
 */
 
 //Choosing The Background Color
 let bg = {
-  r: 89,
-  g: 127,
-  b: 189,
+  r: 10,
+  g: 84,
+  b: 204,
   fill:{
   r2: 122,
   g2: 165,
   b2: 235,
   }
 };
+
+let bgcolor;
 
 //Hiker settings
 let hiker = {
@@ -139,6 +141,22 @@ let lake = {
   }
 };
 
+let daybutton = {
+  x: 560,
+  y: 760,
+  w: 70,
+  h: 70,
+  image: undefined
+};
+
+let nightbutton = {
+  x: 560,
+  y: 685,
+  w: 70,
+  h: 70,
+  image: undefined
+};
+
 let playButton = {
   x: 290,
   y: 430,
@@ -178,6 +196,8 @@ function preload(){
 //Image assets
   hiker.image = loadImage('assets/images/hiker.png');
   rock.image = loadImage('assets/images/rock.png');
+  daybutton.image = loadImage('assets/images/daybutton.png');
+  nightbutton.image = loadImage('assets/images/nightbutton.png');
 
 //HealthBar
   healthfull.image = loadImage('assets/images/healthfull.png');
@@ -201,8 +221,10 @@ function setup() {
 
 userStartAudio()
 
+bgcolor = color(89,127,189);
+
 //Waves Sound FX
-  mySound.setVolume(0.03); //SOMETIMES FOR THE SOUND YOU NEED TO RELOAD THE PAGE
+  mySound.setVolume(0.03);
   mySound.play();
   mySound.loop();
 
@@ -226,7 +248,7 @@ userStartAudio()
 
 //Calling the Functions
 function draw() {
-  displayBackground();
+  background(bgcolor);
 
   if (state === 'title') {
     titleScreen();
@@ -239,6 +261,7 @@ function draw() {
   }
 }
 
+//Reset The lives
 function livesReset() {
 hiker.lives = 3;
 }
@@ -253,9 +276,7 @@ function titleScreen() {
   image(playButton.image,playButton.x,playButton.y,playButton.w,playButton.h);
 
   livesReset();
-  
   }
-
 
 function endScreen() {
 //end screen
@@ -277,13 +298,9 @@ function simulation(){
   displayTrees();
   displayMountains();
   healthBar();
+  dayButton();
+  nightButton();
   hit();
-}
-
-//Making The Background
-function displayBackground(){
-
-  background(bg.r, bg.g, bg.b);
 }
 
 //Making The sun
@@ -293,15 +310,10 @@ function displaySun(){
   sun.y = sun.y + sun.vy;
   sun.y = constrain(sun.y,70,height);
 
-//Sun Affecting background
-  if (sun.y < 270) {
-    background(bg.fill.r2, bg.fill.g2, bg.fill.b2);
-  }
-
 //Sun color and form
   fill(sun.fill.r,sun.fill.g,sun.fill.b,sun.fill.a);
   ellipse(sun.x,sun.y,sun.size);
-}
+  }
 
 //Making The Lake
 function displayLake(){
@@ -423,10 +435,25 @@ function healthBar() {
     pop();
 
     state = 'end';
-
-    mySound.stop(); //SOUND STOPS
-    mySound2.stop(); //SOUND STOPS
   }
+}
+
+function dayButton() {
+
+  push();
+  imageMode(CENTER);
+  image(daybutton.image,daybutton.x,daybutton.y,daybutton.w,daybutton.h);
+  pop();
+
+}
+
+function nightButton() {
+
+  push();
+  imageMode(CENTER);
+  image(nightbutton.image,nightbutton.x,nightbutton.y,nightbutton.w,nightbutton.h);
+  pop();
+
 }
 
 //Making the clouds
@@ -458,15 +485,15 @@ if (cloud2.x > 800) {
   pop();
 
 //Change the speed of the clouds
-    if (mouseIsPressed){
+    //if (mouseIsPressed){
 
 //Speed of cloud1
-    cloud.x = cloud.x + cloud.vx + cloud.speed;
+  //  cloud.x = cloud.x + cloud.vx + cloud.speed;
 
 //Speed of cloud2
-    cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
+  //  cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
   }
-}
+//}
 
 //Making The Trees
 function displayTrees(){
@@ -635,6 +662,18 @@ function mouseClicked() {
     if (mouseX > 310 && mouseX < 510) { //Location of Home Button for X
     if (mouseY > 460 && mouseY < 560) { //Location of Home Button for Y
     state = 'title';
+      }
+    }
+  }
+  if (state === 'simulation') {
+  if (mouseX > 530 && mouseX < 595) { //Day Button
+  if (mouseY > 715 && mouseY < 795) {
+    bgcolor = color(bg.fill.r2,bg.fill.g2,bg.fill.b2);
+      }
+    }
+  if (mouseX > 530 && mouseX < 595) { //Night Button
+  if (mouseY > 640 && mouseY < 710) {
+    bgcolor = color(bg.r,bg.g,bg.b);
       }
     }
   }
