@@ -147,6 +147,14 @@ let playButton = {
   image: undefined
 };
 
+let returnhome = {
+  x: 410,
+  y: 560,
+  w: 200,
+  h: 200,
+  image: undefined
+};
+
 let title = {
   x: 300,
   y: 400,
@@ -179,8 +187,9 @@ function preload(){
 
 //State Screens
   title.image = loadImage('assets/images/title.png');
-  end.image = loadImage('assets/images/end.png');
   playButton.image = loadImage('assets/images/playbutton.png');
+  end.image = loadImage('assets/images/end.png');
+  returnhome.image = loadImage('assets/images/returnhome.png');
 
 //Sounds
   mySound = loadSound('assets/sounds/waves.wav');
@@ -189,6 +198,8 @@ function preload(){
 
 //Setting up what needs to be done beforehand
 function setup() {
+
+userStartAudio()
 
 //Waves Sound FX
   mySound.setVolume(0.03); //SOMETIMES FOR THE SOUND YOU NEED TO RELOAD THE PAGE
@@ -229,16 +240,23 @@ function draw() {
 }
 
 function titleScreen() {
+//Title Screen
   imageMode(CENTER);
   image(title.image,title.x,title.y,title.w,title.h);
 
+//Play Button
   imageMode(CENTER);
   image(playButton.image,playButton.x,playButton.y,playButton.w,playButton.h);
   }
 
 function endScreen() {
+//end screen
   imageMode(CENTER);
   image(end.image,end.x,end.y,end.w,end.h);
+
+//returnhomebutton
+  imageMode(CENTER);
+  image(returnhome.image,returnhome.x,returnhome.y,returnhome.w,returnhome.h);
 }
 
 function simulation(){
@@ -602,6 +620,13 @@ function mouseClicked() {
     if (mouseX > 250 && mouseX < 350) { //Location of Play Button for X
     if (mouseY > 360 && mouseY < 480) { //Location of Play Button for Y
     state ='simulation';
+      }
+    }
+  }
+  if (state === 'end') {
+    if (mouseX > 310 && mouseX < 510) { //Location of Home Button for X
+    if (mouseY > 460 && mouseY < 560) { //Location of Home Button for Y
+    state = 'title';
       }
     }
   }
