@@ -139,6 +139,14 @@ let lake = {
   }
 };
 
+let playButton = {
+  x: 290,
+  y: 430,
+  w: 100,
+  h: 100,
+  image: undefined
+};
+
 let title = {
   x: 300,
   y: 400,
@@ -168,8 +176,11 @@ function preload(){
   healthtwothirds.image = loadImage('assets/images/healthtwothirds.png');
   healthonethird.image = loadImage('assets/images/healthonethird.png');
   healthnone.image = loadImage('assets/images/healthnon.png');
+
+//State Screens
   title.image = loadImage('assets/images/title.png');
   end.image = loadImage('assets/images/end.png');
+  playButton.image = loadImage('assets/images/playbutton.png');
 
 //Sounds
   mySound = loadSound('assets/sounds/waves.wav');
@@ -220,7 +231,10 @@ function draw() {
 function titleScreen() {
   imageMode(CENTER);
   image(title.image,title.x,title.y,title.w,title.h);
-}
+
+  imageMode(CENTER);
+  image(playButton.image,playButton.x,playButton.y,playButton.w,playButton.h);
+  }
 
 function endScreen() {
   imageMode(CENTER);
@@ -583,8 +597,12 @@ function hit(){
 }
 
 //CHANGING STATE
-function mousePressed() {
+function mouseClicked() {
   if (state === 'title') {
+    if (mouseX > 250 && mouseX < 350) { //Location of Play Button for X
+    if (mouseY > 360 && mouseY < 480) { //Location of Play Button for Y
     state ='simulation';
+      }
+    }
   }
 }
