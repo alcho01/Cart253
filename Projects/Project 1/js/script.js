@@ -275,6 +275,30 @@ function draw() {
   }
 }
 
+//Reset The Sun Settings
+function sunReset() {
+
+//Sun Position
+  sun.x = 300;
+  sun.y = 800;
+  sun.vy = -2;
+
+//Sun Color
+  suncolor = color(sun.fill.r,sun.fill.g,sun.fill.b);
+
+//Sun Movement
+  sun.y = sun.y + sun.vy;
+  sun.y = constrain(sun.y,70,height);
+
+}
+
+//Reset The Hiker Position
+function hikerReset() {
+
+  hiker.x = 300;
+  hiker.y = 320;
+}
+
 //Reset The lives
 function livesReset() {
 hiker.lives = 3;
@@ -289,10 +313,11 @@ function titleScreen() {
   imageMode(CENTER);
   image(playButton.image,playButton.x,playButton.y,playButton.w,playButton.h);
 
+  hikerReset();
   livesReset();
-  bgcolor = color(bgmain.r,bgmain.g,bgmain.b);
-  lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b);
-  suncolor = color(sun.fill.r,sun.fill.g,sun.fill.b);
+  sunReset();
+  bgcolor = color(bgmain.r,bgmain.g,bgmain.b); //Reset Background Color
+  lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b); //Reset Lake Color
   }
 
 function endScreen() {
