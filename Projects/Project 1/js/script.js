@@ -125,9 +125,10 @@ let sun = {
     r: 230,
     g: 170,
     b: 7,
-    a: 150
   }
 };
+
+let suncolor;
 
 //Lake
 let lake = {
@@ -234,6 +235,7 @@ function setup() {
 
   bgcolor = color(bgmain.r,bgmain.g,bgmain.b);
   lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b);
+  suncolor = color(sun.fill.r,sun.fill.g,sun.fill.b);
 
 //Waves Sound FX
   mySound.setVolume(0.03);
@@ -290,6 +292,7 @@ function titleScreen() {
   livesReset();
   bgcolor = color(bgmain.r,bgmain.g,bgmain.b);
   lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b);
+  suncolor = color(sun.fill.r,sun.fill.g,sun.fill.b);
   }
 
 function endScreen() {
@@ -326,7 +329,7 @@ function displaySun(){
   sun.y = constrain(sun.y,70,height);
 
 //Sun color and form
-  fill(sun.fill.r,sun.fill.g,sun.fill.b,sun.fill.a);
+  fill(suncolor);
   ellipse(sun.x,sun.y,sun.size);
   }
 
@@ -684,6 +687,17 @@ function mouseClicked() {
     }
   };
 
+  let fillSun = {
+    r: 232,
+    g: 240,
+    b: 14,
+    fill: {
+    r2: 251,
+    g2: 252,
+    b2: 207
+    }
+  };
+
 
   if (state === 'title') {
     if (mouseX > 250 && mouseX < 350) { //Location of Play Button for X
@@ -703,13 +717,15 @@ function mouseClicked() {
   if (mouseX > 530 && mouseX < 595) { //Day Button
   if (mouseY > 715 && mouseY < 795) {
     bgcolor = color(bg.fill.r2,bg.fill.g2,bg.fill.b2);
-    lakecolor = color(fillLake.r,fillLake.g,fillLake.b);
+    lakecolor = color(fillLake.r,fillLake.g,fillLake.b); //Lake Color
+    suncolor = color(fillSun.r,fillSun.g,fillSun.b); //Sun Color
       }
     }
   if (mouseX > 530 && mouseX < 595) { //Night Button
   if (mouseY > 652 && mouseY < 710) {
     bgcolor = color(bg.r,bg.g,bg.b);
-    lakecolor = color(fillLake.fill.r2,fillLake.fill.g2,fillLake.fill.b2);
+    lakecolor = color(fillLake.fill.r2,fillLake.fill.g2,fillLake.fill.b2); //Lake Color
+    suncolor = color(fillSun.fill.r2,fillSun.fill.g2,fillSun.fill.b2); //Moon Color
       }
     }
   }
