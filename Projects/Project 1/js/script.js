@@ -134,18 +134,14 @@ let lake = {
   x: 0,
   y: 0,
   fill:{
-    r: 0,
-    g: 93,
-    b: 150,
+    r: 77,
+    g: 152,
+    b: 168,
     a:200,
-  },
-  fill2:{
-    r2: 13,
-    g2: 118,
-    b2: 184,
-    a2: 200
   }
 };
+
+let lakecolor;
 
 let daybutton = {
   x: 560,
@@ -237,6 +233,7 @@ function setup() {
   userStartAudio()
 
   bgcolor = color(bgmain.r,bgmain.g,bgmain.b);
+  lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b);
 
 //Waves Sound FX
   mySound.setVolume(0.03);
@@ -292,6 +289,7 @@ function titleScreen() {
 
   livesReset();
   bgcolor = color(bgmain.r,bgmain.g,bgmain.b);
+  lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b);
   }
 
 function endScreen() {
@@ -336,12 +334,7 @@ function displaySun(){
 function displayLake(){
 
 //Fill Lake
-  fill(lake.fill.r,lake.fill.g,lake.fill.b,lake.fill.a);
-
-//Sun Affecting Lake
-    if (sun.y < 330) {
-      fill(lake.fill2.r2,lake.fill2.g2,lake.fill2.b2);
-    }
+  fill(lakecolor);
 
 //Shape/Depth/Movement of Wave
   beginShape();
@@ -679,6 +672,19 @@ function hit(){
 
 //CHANGING STATE
 function mouseClicked() {
+
+  let fillLake = {
+    r: 49,
+    g: 211,
+    b: 247,
+    fill: {
+    r2: 0,
+    g2: 104,
+    b2: 133
+    }
+  };
+
+
   if (state === 'title') {
     if (mouseX > 250 && mouseX < 350) { //Location of Play Button for X
     if (mouseY > 360 && mouseY < 480) { //Location of Play Button for Y
@@ -697,11 +703,13 @@ function mouseClicked() {
   if (mouseX > 530 && mouseX < 595) { //Day Button
   if (mouseY > 715 && mouseY < 795) {
     bgcolor = color(bg.fill.r2,bg.fill.g2,bg.fill.b2);
+    lakecolor = color(fillLake.r,fillLake.g,fillLake.b);
       }
     }
   if (mouseX > 530 && mouseX < 595) { //Night Button
   if (mouseY > 652 && mouseY < 710) {
     bgcolor = color(bg.r,bg.g,bg.b);
+    lakecolor = color(fillLake.fill.r2,fillLake.fill.g2,fillLake.fill.b2);
       }
     }
   }
