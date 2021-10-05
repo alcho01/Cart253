@@ -142,8 +142,11 @@ let lake = {
   }
 };
 
+let noiseY = 0.0;
+
 let lakecolor;
 
+//Buttons
 let daybutton = {
   x: 560,
   y: 760,
@@ -358,7 +361,7 @@ function displaySun(){
   ellipse(sun.x,sun.y,sun.size);
   }
 
-//Making The Lake
+//Making The Lake //Reference https://p5js.org/examples/math-noise-wave.html
 function displayLake(){
 
 //Fill Lake
@@ -366,14 +369,17 @@ function displayLake(){
 
 //Shape/Depth/Movement of Wave
   beginShape();
-  for (let x = 0; x < width; x += 5) { //intensity of the wave (higher number makes it smoother)
-    let y = map(noise(lake.x, lake.y), 0,1,620,200); //Height of the Waves + Vibration
+
+  let noiseX = 0;
+  for (let x = 0; x < width; x += 23) { //intensity of the wave (higher number makes it smoother)
+    let y = map(noise(noiseX, noiseY), 0,1,400,300); //Height of the Waves
     vertex(x,y);
+    noiseX += 0.05;
     }
 
-    lake.y += 0.0095;
-  vertex(width, height); //Fills Page
-  vertex(0,height); //Fills Page
+    noiseY += 0.0095;
+  vertex(width, height); //Create Beginning Shape
+  vertex(0,height);   //Create End Shape
   endShape(CLOSE); //Always have to Close shape to see it
   }
 
