@@ -143,6 +143,7 @@ let lake = {
 };
 
 let noiseY = 0.0;
+let noiseX = 0;
 
 let lakecolor;
 
@@ -545,6 +546,9 @@ if (cloud2.x > 800) {
 
 //Speed of cloud2
     cloud2.x = cloud2.x + cloud2.vx + cloud2.speed;
+
+    noiseX = noiseX += 0.3; //Makes the lake fast
+    noiseY = noiseY += 0.05; //Makes the lake fast
       }
     }
   }
@@ -757,6 +761,7 @@ function mouseClicked() {
     bgcolor = color(bg.r,bg.g,bg.b);
     lakecolor = color(fillLake.fill.r2,fillLake.fill.g2,fillLake.fill.b2); //Lake Color
     suncolor = color(fillSun.fill.r2,fillSun.fill.g2,fillSun.fill.b2); //Moon Color
+
       }
     }
   }
