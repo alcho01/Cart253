@@ -78,6 +78,14 @@ let healthnone ={
   image: undefined
 };
 
+let landscape = {
+  x: 300,
+  y: 300,
+  w: 700,
+  h: 400,
+  image: undefined,
+};
+
 //Rock Settings
 let rock = {
   x: 0,
@@ -209,6 +217,7 @@ let state = 'title'
 function preload(){
 
 //Image assets
+  landscape.image = loadImage('assets/images/landscape.png');
   hiker.image = loadImage('assets/images/hiker.png');
   rock.image = loadImage('assets/images/rock.png');
   daybutton.image = loadImage('assets/images/daybutton.png');
@@ -336,6 +345,7 @@ function endScreen() {
 
 function simulation(){
   displaySun();
+  displayLandscape();
   displayLake();
   displayRock();
   displayBridge();
@@ -361,6 +371,12 @@ function displaySun(){
   fill(suncolor);
   ellipse(sun.x,sun.y,sun.size);
   }
+
+//Displaying the Landscape
+function displayLandscape(){
+  imageMode(CENTER);
+  image(landscape.image,landscape.x,landscape.y,landscape.w,landscape.h);
+}
 
 //Making The Lake //Reference https://p5js.org/examples/math-noise-wave.html
 function displayLake(){
@@ -761,7 +777,6 @@ function mouseClicked() {
     bgcolor = color(bg.r,bg.g,bg.b);
     lakecolor = color(fillLake.fill.r2,fillLake.fill.g2,fillLake.fill.b2); //Lake Color
     suncolor = color(fillSun.fill.r2,fillSun.fill.g2,fillSun.fill.b2); //Moon Color
-
       }
     }
   }
