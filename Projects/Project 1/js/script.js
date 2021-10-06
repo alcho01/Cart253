@@ -126,9 +126,8 @@ let cloud2 = {
 //Sun
 let sun = {
   x:300,
-  y:800,
+  y:undefined,
   size:100,
-  vy:-2,
   fill:{
     r: 230,
     g: 170,
@@ -137,6 +136,8 @@ let sun = {
 };
 
 let suncolor;
+
+let position = 25;
 
 //Lake
 let lake = {
@@ -271,6 +272,9 @@ function setup() {
 
 //rock positioning
   rock.x = random(0,750);
+
+  position = (500);
+
 }
 
 //Calling the Functions
@@ -293,16 +297,10 @@ function sunReset() {
 
 //Sun Position
   sun.x = 300;
-  sun.y = 800;
-  sun.vy = -2;
+  position = (500);
 
 //Sun Color
   suncolor = color(sun.fill.r,sun.fill.g,sun.fill.b);
-
-//Sun Movement
-  sun.y = sun.y + sun.vy;
-  sun.y = constrain(sun.y,70,height);
-
 }
 
 //Reset The Hiker Position
@@ -364,12 +362,11 @@ function simulation(){
 function displaySun(){
 
 //Sun movement
-  sun.y = sun.y + sun.vy;
-  sun.y = constrain(sun.y,70,height);
+  position = constrain(position,70,height);
 
 //Sun color and form
   fill(suncolor);
-  ellipse(sun.x,sun.y,sun.size);
+  ellipse(sun.x,position,sun.size);
   }
 
 //Displaying the Landscape
@@ -780,4 +777,10 @@ function mouseClicked() {
       }
     }
   }
+}
+
+//Move the Sun/Moon Up/Down with the mouse wheel
+function mouseWheel() { //https://p5js.org/reference/#/p5/mouseWheel
+  print(event.delta);
+  position += event.delta;
 }
