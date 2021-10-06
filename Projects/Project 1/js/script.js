@@ -10,7 +10,7 @@ EndScreen [DONE]
 Idea:
 */
 
-//Choosing The Background Color
+//Background Colors
 let bg = {
   r: 10,
   g: 50,
@@ -21,9 +21,7 @@ let bg = {
   b2: 235,
   }
 };
-
 let bgcolor;
-
 let bgmain = {
   r: 89,
   g: 127,
@@ -53,7 +51,6 @@ let healthfull ={
   h: 60,
   image: undefined
 };
-
 let healthtwothirds ={
   x: 5,
   y: 730,
@@ -61,7 +58,6 @@ let healthtwothirds ={
   h: 60,
   image: undefined
 };
-
 let healthonethird ={
   x: 5,
   y: 730,
@@ -69,7 +65,6 @@ let healthonethird ={
   h: 60,
   image: undefined
 };
-
 let healthnone ={
   x: 5,
   y: 730,
@@ -78,6 +73,7 @@ let healthnone ={
   image: undefined
 };
 
+//Landscape settings
 let landscape = {
   x: 300,
   y: 300,
@@ -97,7 +93,7 @@ let rock = {
   image: undefined
 };
 
-//Cloud1
+//Clouds
 let cloud = {
   x: 0,
   y: 50,
@@ -112,8 +108,6 @@ let cloud = {
     a: 200
   }
 };
-
-//Cloud2
 let cloud2 = {
   x: 0,
   y: 10,
@@ -134,9 +128,7 @@ let sun = {
     b: 7,
   }
 };
-
 let suncolor;
-
 let position = 25;
 
 //Lake
@@ -150,10 +142,8 @@ let lake = {
     a:200,
   }
 };
-
 let noiseY = 0.0;
 let noiseX = 0;
-
 let lakecolor;
 
 //Buttons
@@ -164,7 +154,6 @@ let daybutton = {
   h: 70,
   image: undefined
 };
-
 let nightbutton = {
   x: 560,
   y: 685,
@@ -172,7 +161,6 @@ let nightbutton = {
   h: 70,
   image: undefined
 };
-
 let cloudbutton = {
   x: 560,
   y: 610,
@@ -180,7 +168,6 @@ let cloudbutton = {
   h: 70,
   image: undefined
 };
-
 let playButton = {
   x: 290,
   y: 430,
@@ -188,7 +175,6 @@ let playButton = {
   h: 100,
   image: undefined
 };
-
 let returnhome = {
   x: 410,
   y: 560,
@@ -197,6 +183,7 @@ let returnhome = {
   image: undefined
 };
 
+//Screens
 let title = {
   x: 300,
   y: 400,
@@ -204,7 +191,6 @@ let title = {
   h: 800,
   image: undefined
 };
-
 let end = {
   x: 300,
   y: 400,
@@ -212,15 +198,16 @@ let end = {
   h: 800,
   image: undefined
 };
-
 let state = 'title'
 
 function preload(){
 
-//Image assets
+//Main assets
   landscape.image = loadImage('assets/images/landscape.png');
   hiker.image = loadImage('assets/images/hiker.png');
   rock.image = loadImage('assets/images/rock.png');
+
+//Button assets
   daybutton.image = loadImage('assets/images/daybutton.png');
   nightbutton.image = loadImage('assets/images/nightbutton.png');
   cloudbutton.image = loadImage('assets/images/cloudbutton.png');
@@ -364,13 +351,14 @@ function displaySun(){
 //Sun movement
   position = constrain(position,70,height);
 
-//Sun color and form
+//Sun display
   fill(suncolor);
   ellipse(sun.x,position,sun.size);
   }
 
 //Displaying the Landscape
 function displayLandscape(){
+
   imageMode(CENTER);
   image(landscape.image,landscape.x,landscape.y,landscape.w,landscape.h);
 }
@@ -408,10 +396,11 @@ function displayRock(){
     rock.x = random(0,680);
     rock.y = 0;
   }
+
 //Speed of Rock
   rock.y = rock.y + rock.vy;
 
-//Defining The Rock
+//Displaying The Rock
   imageMode(CENTER);
   image(rock.image,rock.x,rock.y,rock.w,rock.h);
 }
@@ -431,7 +420,7 @@ function displayBridge(){
     }
   };
 
-  //The Bridge
+//Displaying the bridge
     fill(bridge.fill.r,bridge.fill.g,bridge.fill.b);
     rect(bridge.x,bridge.y,bridge.w,bridge.h);
   }
@@ -458,7 +447,7 @@ function displayHiker(){
     hiker.y = yc + hiker.vy2;
   }
 
-//Defining the Hiker
+//Displaying the Hiker
 push();
 imageMode(CENTER);
 image(hiker.image,hiker.x,hiker.y,hiker.w,hiker.h);
@@ -467,7 +456,7 @@ pop();
 
 //Making the healthbar
 function healthBar() {
-//If Hiker runs out of lives the game ends //HealthBar
+//Each life lost changes the healthbar's image
   if (hiker.lives === 3){
     push();
     imageMode(CORNER);
@@ -491,13 +480,13 @@ function healthBar() {
     imageMode(CORNER);
     image(healthnone.image,healthnone.x,healthnone.y,healthnone.w,healthnone.h);
     pop();
-
+//If Hiker runs out of lives the game ends //HealthBar
     state = 'end';
   }
 }
 
 function dayButton() {
-
+//Displaying the dayButton
   push();
   imageMode(CENTER);
   image(daybutton.image,daybutton.x,daybutton.y,daybutton.w,daybutton.h);
@@ -506,7 +495,7 @@ function dayButton() {
 }
 
 function nightButton() {
-
+//Displaying the nightButton
   push();
   imageMode(CENTER);
   image(nightbutton.image,nightbutton.x,nightbutton.y,nightbutton.w,nightbutton.h);
@@ -515,7 +504,7 @@ function nightButton() {
 }
 
 function cloudButton() {
-
+//Displaying the cloudButton
   push();
   imageMode(CENTER);
   image(cloudbutton.image,cloudbutton.x,cloudbutton.y,cloudbutton.w,cloudbutton.h);
