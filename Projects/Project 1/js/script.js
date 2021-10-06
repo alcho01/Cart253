@@ -79,7 +79,19 @@ let landscape = {
   y: 300,
   w: 700,
   h: 400,
-  image: undefined,
+  image: undefined
+};
+
+let tree = {
+  x: 110,
+  x2: 300,
+  x3: 490,
+  y: 440,
+  y2: 480,
+  w: 200,
+  h: 230,
+  h2: 250,
+  image: undefined
 };
 
 //Rock Settings
@@ -204,6 +216,7 @@ function preload(){
 
 //Main assets
   landscape.image = loadImage('assets/images/landscape.png');
+  tree.image = loadImage('assets/images/tree.png');
   hiker.image = loadImage('assets/images/hiker.png');
   rock.image = loadImage('assets/images/rock.png');
 
@@ -261,7 +274,6 @@ function setup() {
   rock.x = random(0,750);
 
   position = (500);
-
 }
 
 //Calling the Functions
@@ -336,7 +348,7 @@ function simulation(){
   displayBridge();
   displayHiker();
   displayClouds();
-  displayTrees();
+  displayTree();
   displayMountains();
   healthBar();
   dayButton();
@@ -556,55 +568,25 @@ if (cloud2.x > 800) {
   }
 }
 
-//Making The Trees
-function displayTrees(){
-
-  //left tree
-  let tree = {
-    x: 15,
-    y: 600,
-    x2: 200,
-    y2: 600,
-    x3: 100,
-    y3: 400,
-    fill:{
-      r: 15,
-      g: 92,
-      b: 1,
-    }
-  };
-
-  //middle tree
-  let tree2 = {
-    x: 240,
-    y: 600,
-    x2: 380,
-    y2: 600,
-    x3: 290,
-    y3: 350,
-  };
-
-  //right tree
-  let tree3 = {
-    x: 380,
-    y: 600,
-    x2: 600,
-    y2: 600,
-    x3: 500,
-    y3: 400,
-  };
-
+function displayTree() {
 //Left Tree
   push();
-  fill(tree.fill.r,tree.fill.g,tree.fill.b);
-  triangle(tree.x,tree.y,tree.x2,tree.y2,tree.x3,tree.y3);
+  imageMode(CENTER);
+  image(tree.image,tree.x,tree.y,tree.w,tree.h);
+  pop();
 
 //Middle Tree
-  triangle(tree2.x,tree2.y,tree2.x2,tree2.y2,tree2.x3,tree2.y3);
+  push();
+  imageMode(CENTER);
+  image(tree.image,tree.x2,tree.y2,tree.w,tree.h2);
+  pop();
 
 //Right Tree
-  triangle(tree3.x,tree3.y,tree3.x2,tree3.y2,tree3.x3,tree3.y3);
+  push();
+  imageMode(CENTER);
+  image(tree.image,tree.x3,tree.y,tree.w,tree.h);
   pop();
+
 }
 
 //Making The Mountains
