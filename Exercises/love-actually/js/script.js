@@ -8,7 +8,7 @@ Make the non-user circle move differently [DONE]
 Add at least one extra function [DONE]
 Add at least one extra ending [DONE]
 
-DUE OCTOBER 7th 
+DUE OCTOBER 7th
 */
 
 "use strict";
@@ -79,7 +79,7 @@ let botcar = {
 };
 
 let cop = {
-  x: -300,
+  x: -500,
   y: undefined,
   w: 150,
   h: 150,
@@ -144,10 +144,12 @@ function draw() {
   else if (state === 'safe') {
     safeScreen();
   }
-  else if (state === 'crash') {
+
+
+  if (state === 'crash') {
     crashScreen();
   }
-  else if (state === 'caught') {
+  if (state === 'caught') {
     caughtScreen();
   }
 }
@@ -260,7 +262,7 @@ function checkOverlap() {
 function checkCopoverlap() {
 //If the user and cop overlap... YOU'VE BEEN CAUGHT!
 let d = dist(user.x,user.y,cop.x,cop.y);
-if (d < user.w/5 + cop.w/5) {
+if (d < user.w/6 + cop.w/6) {
   state ='caught';
   }
 }
