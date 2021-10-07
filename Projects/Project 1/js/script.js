@@ -1,5 +1,5 @@
 /**
-Title of Project
+HIKE
 Alex Cho
 
 At Least 2 Moving Elements[DONE]
@@ -114,6 +114,17 @@ let tree = {
   h2: 200,
   h3: 340,
   image: undefined
+};
+
+let bridge = {
+  x: 300,
+  y: 425,
+  y2: 480,
+  w: 800,
+  h: 200,
+  h2: 50,
+  image: undefined,
+  image2: undefined
 };
 
 //Rock Settings
@@ -240,6 +251,8 @@ function preload(){
   landscape.image = loadImage('assets/images/landscape.png');
   mountain.image = loadImage('assets/images/mountain.png');
   mountain.image2 = loadImage('assets/images/mountainrange.png');
+  bridge.image = loadImage('assets/images/bridge1.png');
+  bridge.image2 = loadImage('assets/images/bridge2.png');
   tree.image = loadImage('assets/images/tree.png');
   hiker.image = loadImage('assets/images/hiker.png');
   rock.image = loadImage('assets/images/rock.png');
@@ -330,7 +343,7 @@ function sunReset() {
 function hikerReset() {
 
   hiker.x = 300;
-  hiker.y = 320;
+  hiker.y = 380;
 }
 
 //Reset The lives
@@ -367,10 +380,11 @@ function endScreen() {
 function simulation(){
   displaySun();
   displayLandscape();
-  displayRock();
   displayLake();
   displayBridge();
+  displayRock();
   displayHiker();
+  displayBridgerail();
   displayClouds();
   displayTree();
   displayMountains();
@@ -444,21 +458,15 @@ function displayRock(){
 //Making the bridge
 function displayBridge(){
 
-  let bridge = {
-    x: 0,
-    y: 380,
-    w: 800,
-    h: 30,
-    fill: {
-      r: 99,
-      g: 45,
-      b: 41
-    }
-  };
-
 //Displaying the bridge
-    fill(bridge.fill.r,bridge.fill.g,bridge.fill.b);
-    rect(bridge.x,bridge.y,bridge.w,bridge.h);
+  imageMode(CENTER);
+  image(bridge.image,bridge.x,bridge.y,bridge.w,bridge.h);
+}
+
+//Displaying bridgerail
+function displayBridgerail(){
+  imageMode(CENTER);
+  image(bridge.image2,bridge.x,bridge.y2,bridge.w,bridge.h2);
   }
 
 //Making hiker
@@ -466,7 +474,7 @@ function displayHiker(){
 
 //Boundaries
   let xc = constrain(hiker.x,0,width);
-  let yc = constrain(hiker.y,320,330);
+  let yc = constrain(hiker.y,330,430);
 
 //Hiker Movement
   if (keyIsDown(LEFT_ARROW)) {
