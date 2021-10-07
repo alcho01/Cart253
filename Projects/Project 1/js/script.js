@@ -82,15 +82,37 @@ let landscape = {
   image: undefined
 };
 
+let mountain = {
+  x: -100,
+  x2: 650,
+  x3: 300,
+  y: 600,
+  y2: 700,
+  w: 500,
+  w2: 800,
+  h: 800,
+  h2: 720,
+  h3: 630,
+  image: undefined,
+  image2: undefined
+};
+
 let tree = {
-  x: 110,
-  x2: 300,
-  x3: 490,
+  x: 70,
+  x2: 150,
+  x3: 210,
+  x4: 300,
+  x5: 380,
+  x6: 440,
+  x7: 580,
   y: 440,
-  y2: 480,
+  y2: 550,
   w: 200,
+  w2: 240,
+  w3: 290,
   h: 230,
-  h2: 250,
+  h2: 200,
+  h3: 340,
   image: undefined
 };
 
@@ -216,6 +238,8 @@ function preload(){
 
 //Main assets
   landscape.image = loadImage('assets/images/landscape.png');
+  mountain.image = loadImage('assets/images/mountain.png');
+  mountain.image2 = loadImage('assets/images/mountainrange.png');
   tree.image = loadImage('assets/images/tree.png');
   hiker.image = loadImage('assets/images/hiker.png');
   rock.image = loadImage('assets/images/rock.png');
@@ -343,8 +367,8 @@ function endScreen() {
 function simulation(){
   displaySun();
   displayLandscape();
-  displayLake();
   displayRock();
+  displayLake();
   displayBridge();
   displayHiker();
   displayClouds();
@@ -569,94 +593,72 @@ if (cloud2.x > 800) {
 }
 
 function displayTree() {
-//Left Tree
+//Tree1
   push();
   imageMode(CENTER);
   image(tree.image,tree.x,tree.y,tree.w,tree.h);
   pop();
 
-//Middle Tree
+//Tree2
   push();
   imageMode(CENTER);
   image(tree.image,tree.x2,tree.y2,tree.w,tree.h2);
   pop();
 
-//Right Tree
+//Tree3
   push();
   imageMode(CENTER);
-  image(tree.image,tree.x3,tree.y,tree.w,tree.h);
+  image(tree.image,tree.x3,tree.y2,tree.w,tree.h3);
   pop();
+
+//Tree4
+    push();
+    imageMode(CENTER);
+    image(tree.image,tree.x4,tree.y2,tree.w2,tree.h);
+    pop();
+
+//Tree5
+    push();
+    imageMode(CENTER);
+    image(tree.image,tree.x5,tree.y2,tree.w2,tree.h);
+    pop();
+
+//Tree6
+    push();
+    imageMode(CENTER);
+    image(tree.image,tree.x6,tree.y2,tree.w2,tree.h3);
+    pop();
+
+//Tree7
+    push();
+    imageMode(CENTER);
+    image(tree.image,tree.x7,tree.y,tree.w3,tree.h3);
+    pop();
 
 }
 
 //Making The Mountains
 function displayMountains(){
 
-  //Mountains
-  let mountain = {
-    x: -50,
-    y: 900,
-    x2: 300,
-    y2: 900,
-    x3: 0,
-    y3: 300,
-    fill:{
-      r: 156,
-      g: 156,
-      b: 156
-    }
-  };
-
-  let mountain2 = {
-    x: 650,
-    y: 900,
-    x2: 300,
-    y2: 900,
-    x3: 600,
-    y3: 300,
-  };
-
-  let mountain3 = {
-    x: -20,
-    y: 900,
-    x2: 400,
-    y2: 900,
-    x3: 200,
-    y3: 300,
-    fill:{
-      r: 107,
-      g: 107,
-      b: 107
-    }
-  };
-
-  let mountain4 = {
-    x: 200,
-    y: 900,
-    x2: 620,
-    y2: 900,
-    x3: 400,
-    y3: 300,
-  };
-
-
-  //Making Left mountain
+//LeftMountain
   push();
-  fill(mountain.fill.r,mountain.fill.g,mountain.fill.b);
-  triangle(mountain.x,mountain.y,mountain.x2,mountain.y2,mountain.x3,mountain.y3);
-
-//Making Right mountain
-  triangle(mountain2.x,mountain2.y,mountain2.x2,mountain2.y2,mountain2.x3,mountain2.y3);
+  imageMode(CENTER);
+  image(mountain.image,mountain.x,mountain.y,mountain.w,mountain.h);
   pop();
-//Making Middle Left mountain
-  push();
-  fill(mountain3.fill.r,mountain3.fill.g,mountain3.fill.b);
-  triangle(mountain3.x,mountain3.y,mountain3.x2,mountain2.y2,mountain3.x3,mountain3.y3);
 
-//Making Middle Right mountain
-  triangle(mountain4.x,mountain4.y,mountain4.x2,mountain4.y2,mountain4.x3,mountain4.y3);
+//RightMountain
+  push();
+  imageMode(CENTER);
+  image(mountain.image,mountain.x2,mountain.y,mountain.w,mountain.h2);
+  pop();
+
+//MiddleMountain
+  push();
+  imageMode(CENTER);
+  image(mountain.image2,mountain.x3,mountain.y2,mountain.w2,mountain.h3);
   pop();
 }
+
 
 //When Hit
 function hit(){
@@ -688,7 +690,6 @@ function hit(){
 //Respawns the rock at the top if it hits the hiker
     rock.x = random(0,680);
     rock.y = 0;
-
   }
 }
 
