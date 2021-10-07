@@ -8,7 +8,7 @@ Make the non-user circle move differently [DONE]
 Add at least one extra function [DONE]
 Add at least one extra ending [DONE]
 
-DUE OCTOBER 7th 2021
+DUE OCTOBER 7th 
 */
 
 "use strict";
