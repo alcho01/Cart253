@@ -12,20 +12,24 @@ Add two endings[]
 
 "use strict";
 
+let bg;
+
 
 
 function preload() {
+  bg = loadImage('assets/images/background.png');
 
 }
 
 
 
 function setup() {
-
+  createCanvas(800,600);
 }
 
 
 
 function draw() {
+  background(bg);
 
 }
