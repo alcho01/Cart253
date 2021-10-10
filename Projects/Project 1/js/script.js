@@ -296,15 +296,21 @@ function preload(){
   end.image = loadImage('assets/images/end.png');
   returnhome.image = loadImage('assets/images/returnhome.png');
 
-//Sounds 
+//Sounds
+
+//In-Simulation Sounds
  mySound = loadSound('assets/sounds/waves.wav');
  mySound2 = loadSound('assets/sounds/birds.wav');
+
+//Title/Ending Sound
+ mySound3 = loadSound('assets/sounds/PondofDreams.mp3');
 }
 
 //Setting up what needs to be done beforehand
 function setup() {
 
-  userStartAudio()
+  userStartAudio();
+  theme();
 
   bgcolor = color(bgmain.r,bgmain.g,bgmain.b);
   lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b);
@@ -331,6 +337,13 @@ function setup() {
   rock.x = random(0,750);
 
   position = (500);
+}
+
+function theme(){
+//Theme Song
+  mySound3.setVolume(0.07); //REFERENCE - MADE IT MYSELF IN FL STUDIO
+  mySound3.play();
+  mySound3.loop();
 }
 
 //Calling the Functions
@@ -381,6 +394,8 @@ function titleScreen() {
 
   mySound.stop();
   mySound2.stop();
+
+
 //Play Button
   imageMode(CENTER);
   image(playButton.image,playButton.x,playButton.y,playButton.w,playButton.h);
@@ -564,6 +579,7 @@ function healthBar() {
     state = 'end';
     mySound.stop();
     mySound2.stop();
+    //mySound3.play();
   }
 }
 
@@ -771,6 +787,7 @@ function mouseClicked() {
     state ='simulation';
     mySound.play();
     mySound2.play();
+    mySound3.stop();
       }
     }
   }
@@ -792,6 +809,7 @@ function mouseClicked() {
     if (mouseX > 310 && mouseX < 510) { //Location of Home Button for X
     if (mouseY > 460 && mouseY < 560) { //Location of Home Button for Y
     state = 'title';
+    theme(); //Plays theme at Title
       }
     }
   }
