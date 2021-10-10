@@ -43,7 +43,7 @@ let hiker = {
   image: undefined,
 };
 
-//Healthbar settings //Probably could condense this code
+//Healthbar settings //Probably should have used an Array
 let healthfull ={
   x: 5,
   y: 730,
@@ -178,8 +178,8 @@ let position = 25;
 
 //Lake
 let lake = {
-  x: 0,
-  y: 0,
+  x: undefined,
+  y: undefined,
   fill:{
     r: 77,
     g: 152,
@@ -228,6 +228,15 @@ let returnhome = {
   image: undefined
 };
 
+let controlButton = {
+  x: 290,
+  y: 540,
+  w: 100,
+  h: 100,
+  image: undefined
+
+}
+
 //Screens
 let title = {
   x: 300,
@@ -236,6 +245,7 @@ let title = {
   h: 800,
   image: undefined
 };
+
 let end = {
   x: 300,
   y: 400,
@@ -243,6 +253,15 @@ let end = {
   h: 800,
   image: undefined
 };
+
+let help = {
+  x: 300,
+  y: 400,
+  w: 600,
+  h: 800,
+  image: undefined
+};
+
 let state = 'title'
 
 function preload(){
@@ -271,6 +290,8 @@ function preload(){
 //State Screens
   title.image = loadImage('assets/images/title.png');
   playButton.image = loadImage('assets/images/playbutton.png');
+  controlButton.image = loadImage('assets/images/controlsbutton.png');
+  help.image = loadImage('assets/images/controls.png');
   end.image = loadImage('assets/images/end.png');
   returnhome.image = loadImage('assets/images/returnhome.png');
 
@@ -288,12 +309,12 @@ function setup() {
   lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b);
   suncolor = color(sun.fill.r,sun.fill.g,sun.fill.b);
 
-//Waves Sound FX
+//Waves Sound FX //I INTEND FOR THE SOUND TO PLAY IN THE MENU SCREEN AND THE END SCREEN
   mySound.setVolume(0.03);
   mySound.play();
   mySound.loop();
 
-//Birds Sound FX
+//Birds Sound FX //I INTEND FOR THE SOUND TO PLAY IN THE MENU SCREEN AND THE END SCREEN
   mySound2.setVolume(0.07);
   mySound2.play();
   mySound2.loop();
@@ -325,6 +346,9 @@ function draw() {
   }
   else if (state === 'end') {
     endScreen();
+  }
+  else if (state === 'help') {
+    helpScreen();
   }
 }
 
@@ -360,6 +384,10 @@ function titleScreen() {
   imageMode(CENTER);
   image(playButton.image,playButton.x,playButton.y,playButton.w,playButton.h);
 
+//Control Button;
+  imageMode(CENTER);
+  image(controlButton.image,controlButton.x,controlButton.y,controlButton.w,controlButton.h);
+
   hikerReset();
   livesReset();
   sunReset();
@@ -375,6 +403,13 @@ function endScreen() {
 //returnhomebutton
   imageMode(CENTER);
   image(returnhome.image,returnhome.x,returnhome.y,returnhome.w,returnhome.h);
+}
+
+function helpScreen() {
+//Help screen
+  imageMode(CENTER);
+  image(help.image,help.x,help.y,help.w,help.h);
+
 }
 
 function simulation(){
@@ -731,6 +766,20 @@ function mouseClicked() {
     if (mouseX > 250 && mouseX < 350) { //Location of Play Button for X
     if (mouseY > 360 && mouseY < 480) { //Location of Play Button for Y
     state ='simulation';
+      }
+    }
+  }
+  if (state === 'title') {
+    if (mouseX > 250 && mouseX < 350) { //Location of Help Button for X
+    if (mouseY > 490 && mouseY < 590) { //Location of Help Button for Y
+    state ='help';
+      }
+    }
+  }
+  if (state === 'help') {
+    if (mouseX > 390 && mouseX < 590) { //Location of HomeHelp Button for X
+    if (mouseY > 500 && mouseY < 720) { //Location of HomeHelp Button for Y
+    state ='title';
       }
     }
   }
