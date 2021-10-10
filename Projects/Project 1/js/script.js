@@ -260,6 +260,7 @@ let help = {
   w: 600,
   h: 800,
   image: undefined
+
 };
 
 let state = 'title'
@@ -295,9 +296,9 @@ function preload(){
   end.image = loadImage('assets/images/end.png');
   returnhome.image = loadImage('assets/images/returnhome.png');
 
-//Sounds //I INTEND FOR THE SOUND TO PLAY IN THE MENU SCREEN AND THE END SCREEN
-  mySound = loadSound('assets/sounds/waves.wav');
-  mySound2 = loadSound('assets/sounds/birds.wav');
+//Sounds 
+ mySound = loadSound('assets/sounds/waves.wav');
+ mySound2 = loadSound('assets/sounds/birds.wav');
 }
 
 //Setting up what needs to be done beforehand
@@ -309,14 +310,12 @@ function setup() {
   lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b);
   suncolor = color(sun.fill.r,sun.fill.g,sun.fill.b);
 
-//Waves Sound FX //I INTEND FOR THE SOUND TO PLAY IN THE MENU SCREEN AND THE END SCREEN
-  mySound.setVolume(0.03);
-  mySound.play();
+//Waves Sound FX
+  mySound.setVolume(0.03); //REFERENCE - https://mixkit.co/free-sound-effects/waves/
   mySound.loop();
 
-//Birds Sound FX //I INTEND FOR THE SOUND TO PLAY IN THE MENU SCREEN AND THE END SCREEN
-  mySound2.setVolume(0.07);
-  mySound2.play();
+//Birds Sound FX
+  mySound2.setVolume(0.07); //REFERENCE - https://mixkit.co/free-sound-effects/discover/birds/
   mySound2.loop();
 
 //Canvas setup
@@ -380,6 +379,8 @@ function titleScreen() {
   imageMode(CENTER);
   image(title.image,title.x,title.y,title.w,title.h);
 
+  mySound.stop();
+  mySound2.stop();
 //Play Button
   imageMode(CENTER);
   image(playButton.image,playButton.x,playButton.y,playButton.w,playButton.h);
@@ -561,6 +562,8 @@ function healthBar() {
     pop();
 //If Hiker runs out of lives the game ends //HealthBar
     state = 'end';
+    mySound.stop();
+    mySound2.stop();
   }
 }
 
@@ -766,6 +769,8 @@ function mouseClicked() {
     if (mouseX > 250 && mouseX < 350) { //Location of Play Button for X
     if (mouseY > 360 && mouseY < 480) { //Location of Play Button for Y
     state ='simulation';
+    mySound.play();
+    mySound2.play();
       }
     }
   }
