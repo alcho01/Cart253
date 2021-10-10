@@ -227,15 +227,13 @@ let returnhome = {
   h: 200,
   image: undefined
 };
-
 let controlButton = {
   x: 290,
   y: 540,
   w: 100,
   h: 100,
   image: undefined
-
-}
+};
 
 //Screens
 let title = {
@@ -245,7 +243,6 @@ let title = {
   h: 800,
   image: undefined
 };
-
 let end = {
   x: 300,
   y: 400,
@@ -253,14 +250,12 @@ let end = {
   h: 800,
   image: undefined
 };
-
 let help = {
   x: 300,
   y: 400,
   w: 600,
   h: 800,
   image: undefined
-
 };
 
 let state = 'title'
@@ -304,25 +299,34 @@ function preload(){
 
 //Title/Ending Sound
  mySound3 = loadSound('assets/sounds/PondofDreams.mp3');
+ mySound4 = loadSound('assets/sounds/PondofDreams2.mp3');
 }
 
 //Setting up what needs to be done beforehand
 function setup() {
 
   userStartAudio();
-  theme();
+  theme(); //Plays theme song
 
+//Determines Starting Colors of given objects
   bgcolor = color(bgmain.r,bgmain.g,bgmain.b);
   lakecolor = color(lake.fill.r,lake.fill.g,lake.fill.b);
   suncolor = color(sun.fill.r,sun.fill.g,sun.fill.b);
 
 //Waves Sound FX
-  mySound.setVolume(0.03); //REFERENCE - https://mixkit.co/free-sound-effects/waves/
-  mySound.loop();
+//REFERENCE - https://mixkit.co/free-sound-effects/waves/
+  mySound.setVolume(0.03); //Sets the Volume level for the waves
+  mySound.loop(); //Loops if Waves.wav ends
 
 //Birds Sound FX
-  mySound2.setVolume(0.07); //REFERENCE - https://mixkit.co/free-sound-effects/discover/birds/
-  mySound2.loop();
+//REFERENCE - https://mixkit.co/free-sound-effects/discover/birds/
+  mySound2.setVolume(0.07); //Sets the Volume level for the birds
+  mySound2.loop(); //Loops Birds.wav ends
+
+//End Song
+//REFERENCE - MADE IT MYSELF IN FL STUDIO
+  mySound4.setVolume(0.07); //Sets the Volume level for the end song
+  mySound4.loop(); //Loops if PondofDreams2.mp3 ends
 
 //Canvas setup
   createCanvas(600,800);
@@ -341,15 +345,19 @@ function setup() {
 
 function theme(){
 //Theme Song
-  mySound3.setVolume(0.07); //REFERENCE - MADE IT MYSELF IN FL STUDIO
-  mySound3.play();
-  mySound3.loop();
+//REFERENCE - MADE IT MYSELF IN FL STUDIO
+  mySound3.setVolume(0.07); //Sets the Volume level for the theme song
+  mySound3.play(); //Plays the sound
+  mySound3.loop(); //Loops if PondofDreams.mp3 ends
 }
 
 //Calling the Functions
 function draw() {
+
+//Set Background color
   background(bgcolor);
 
+//Setup for different states
   if (state === 'title') {
     titleScreen();
   }
@@ -392,8 +400,10 @@ function titleScreen() {
   imageMode(CENTER);
   image(title.image,title.x,title.y,title.w,title.h);
 
+//Stops All sounds except theme
   mySound.stop();
   mySound2.stop();
+  mySound4.stop();
 
 
 //Play Button
@@ -577,9 +587,12 @@ function healthBar() {
     pop();
 //If Hiker runs out of lives the game ends //HealthBar
     state = 'end';
+
+//Stops All Sounds Except EndSong
     mySound.stop();
     mySound2.stop();
-    //mySound3.play();
+    mySound3.stop();
+    mySound4.play();
   }
 }
 
@@ -721,7 +734,6 @@ function displayMountains(){
   pop();
 }
 
-
 //When Hit
 function hit(){
 
@@ -780,11 +792,13 @@ function mouseClicked() {
     }
   };
 
-
+//What happens if mouse is clicked
   if (state === 'title') {
     if (mouseX > 250 && mouseX < 350) { //Location of Play Button for X
     if (mouseY > 360 && mouseY < 480) { //Location of Play Button for Y
     state ='simulation';
+
+  //Stops All Sounds Except the simulation sounds
     mySound.play();
     mySound2.play();
     mySound3.stop();
