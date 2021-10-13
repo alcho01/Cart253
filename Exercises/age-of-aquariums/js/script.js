@@ -14,6 +14,7 @@ Add two endings[]
 
 let user = {
   lives: 3,
+  livelost: -1,
   x: undefined,
   y: undefined,
   w: 100,
@@ -39,6 +40,17 @@ let consortiumSize = 5;
 //NAME FOR IMAGE
 let crabImg;
 
+let hp = {
+  x: 80,
+  y: 550,
+  w: 150,
+  h: 100,
+  image: undefined,
+  image2: undefined,
+  image3: undefined
+  };
+
+
 //Background
 let bg = {
   x: 400,
@@ -51,6 +63,11 @@ let bg = {
 function preload() {
   bg.image = loadImage('assets/images/background.png');
   user.image = loadImage('assets/images/user.png');
+
+//Healthbar Images
+  hp.image = loadImage('assets/images/health-full.png');
+  hp.image2 = loadImage('assets/images/health-twothird.png');
+  hp.image3 = loadImage('assets/images/health-third.png');
 
 //IN ARRAYS
   fishImg = loadImage('assets/images/fish1.png');
@@ -68,10 +85,12 @@ function setup() {
   for (let i = 0; i < schoolSize; i++) {
     school[i] = createFish(random(0,width), random(0,height),30, random(0,5)); //CREATE FISH SETTINGS
   }
+
   for (let i = 0; i < consortiumSize; i++) {
   consortium[i] = createCrab(random(0,width), random(0,height), random(0,7)); //CREATE CRAB SETTINGS
   }
 }
+
 
 function createFish(x,y,w,speed) {
   let fish = {
@@ -101,6 +120,7 @@ function createCrab(x,y,speed) {
 
 function draw() {
   bgSet();
+
 //Fish
   for (let i = 0; i < school.length; i++) {
     moveFish(school[i]);
@@ -112,10 +132,12 @@ function draw() {
   for (let i = 0; i < consortium.length; i++) {
     moveCrab(consortium[i]);
     displayCrab(consortium[i]);
+    crabbed(consortium[i]);
   }
 
 //User Settings
   userReqs();
+  hpBar();
 
 }
 
@@ -134,7 +156,7 @@ function userReqs() {
 function displayUser() {
 //DISPLAY THE USER
   push();
-  imageMode(CENTER,CENTER);
+  imageMode(CENTER);
   image(user.image,user.x,user.y,user.w,user.h);
   pop();
 }
@@ -184,7 +206,7 @@ function displayFish(fish) {
 }
 
 function eatFish(fish) {
-  //IF FISH INTERACTS WITH USER IT GETS EATEN
+//IF FISH INTERACTS WITH USER IT GETS EATEN
   for (let i = 0; i < school.length; i++) {
     let fish = school[i];
     let d = dist(user.x,user.y,fish.x,fish.y);
@@ -194,7 +216,6 @@ function eatFish(fish) {
       }
     }
   }
-
 
 function moveCrab(crab) {
 //FISH MOVEMENT
@@ -212,9 +233,44 @@ function moveCrab(crab) {
 }
 
 function displayCrab(crab) {
-//DISPLAY THE FISH
+//DISPLAY THE Crab
   push();
   imageMode(CENTER);
   image(crabImg,crab.x,crab.y,crab.w,crab.h);
   pop();
+}
+
+function crabbed(crab) {
+//IF CRAB INTERACTS WITH USER, USER LOSES A LIVE AND THE CRAB SPAWNS AT A RANDOM LOCATION
+  for (let i = 0; i < consortium.length; i++) {
+  let crab = consortium[i];
+  let d = dist(user.x,user.y,crab.x,crab.y);
+  if (d < user.w / 2 + crab.w / 2){
+    user.lives = user.lives + user.livelost;
+    crab.x = random(0,width);
+    crab.y = random(0,height);
+    break;
+    }
+  }
+}
+
+function hpBar() {
+  if (user.lives === 3){
+    push();
+    imageMode(CENTER);
+    image(hp.image,hp.x,hp.y,hp.w,hp.h);
+    pop();
+  }
+  else if (user.lives === 2) {
+    push();
+    imageMode(CENTER);
+    image(hp.image2,hp.x,hp.y,hp.w,hp.h);
+    pop();
+  }
+  else if (user.lives === 1) {
+    push();
+    imageMode(CENTER);
+    image(hp.image3,hp.x,hp.y,hp.w,hp.h);
+    pop();
+  }
 }
