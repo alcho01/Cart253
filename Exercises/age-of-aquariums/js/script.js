@@ -14,12 +14,17 @@ Add two endings[]
 
 //ARRAY FOR FISH
 let school = [];
-
 //AMOUNT OF FISH
 let schoolSize = 15;
-
 //NAME FOR IMAGE
-let fishy;
+let fishImg;
+
+//ARRAY FOR CRABS
+let consortium = [];
+//AMOUNT OF CRABS
+let consortiumSize = 5;
+//NAME FOR IMAGE
+let crabImg;
 
 //Background
 let bg = {
@@ -46,7 +51,10 @@ let user = {
 function preload() {
   bg.image = loadImage('assets/images/background.png');
   user.image = loadImage('assets/images/user.png');
-  fishy = loadImage('assets/images/fish1.png');
+
+//IN ARRAYS
+  fishImg = loadImage('assets/images/fish1.png');
+  crabImg = loadImage('assets/images/crab.png');
 
 }
 
@@ -59,6 +67,9 @@ function setup() {
 
   for (let i = 0; i < schoolSize; i++) {
     school[i] = createFish(random(0,width), random(0,height), random(0,5)); //CREATE FISH SETTINGS
+  }
+  for (let i = 0; i < consortiumSize; i++) {
+  consortium[i] = createCrab(random(0,width), random(0,height), random(0,7)); //CREATE CRAB SETTINGS
   }
 }
 
@@ -75,15 +86,39 @@ function createFish(x,y,speed) {
   return fish;
 }
 
+function createCrab(x,y,speed) {
+  let crab = {
+    x: x,
+    y: y,
+    w: 50,
+    h: 50,
+    vx: 0,
+    vy: 0,
+    speed: speed
+  };
+  return crab;
+}
+
+
+
 function draw() {
   bgSet();
 
+//Fish
   for (let i = 0; i < school.length; i++) {
     moveFish(school[i]);
     displayFish(school[i]);
   }
 
+//Crabs
+  for (let i = 0; i < consortium.length; i++) {
+    moveCrab(consortium[i]);
+    displayCrab(consortium[i]);
+  }
+
+//User Settings
   userReqs();
+
 }
 
 function bgSet(){
@@ -146,6 +181,29 @@ function displayFish(fish) {
 //DISPLAY THE FISH
   push();
   imageMode(CENTER);
-  image(fishy,fish.x,fish.y,fish.w,fish.h);
+  image(fishImg,fish.x,fish.y,fish.w,fish.h);
+  pop();
+}
+
+function moveCrab(crab) {
+//FISH MOVEMENT
+  let change = random(0.7);
+  if (change < 0.05) {
+    crab.vx = random(-crab.speed, crab.speed);
+    crab.vy = random(-crab.speed, crab.speed);
+  }
+
+  crab.x = crab.x + crab.vx;
+  crab.y = crab.y + crab.vy;
+
+  crab.x = constrain(crab.x,0,width);
+  crab.y = constrain(crab.y,0,height);
+}
+
+function displayCrab(crab) {
+//DISPLAY THE FISH
+  push();
+  imageMode(CENTER);
+  image(crabImg,crab.x,crab.y,crab.w,crab.h);
   pop();
 }
