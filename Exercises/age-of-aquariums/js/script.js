@@ -26,6 +26,13 @@ let user = {
   image: undefined
 };
 
+let ink = {
+  size: 520,
+  r: 28,
+  g: 34,
+  b: 43,
+};
+
 //ARRAY FOR FISH
 let school = [];
 //AMOUNT OF FISH
@@ -50,7 +57,6 @@ let hp = {
   image3: undefined
   };
 
-
 //Background
 let bg = {
   x: 400,
@@ -58,7 +64,7 @@ let bg = {
   w: 800,
   h: 600,
   image: undefined,
-}
+};
 
 function preload() {
   bg.image = loadImage('assets/images/background.png');
@@ -246,9 +252,17 @@ function crabbed(crab) {
   let crab = consortium[i];
   let d = dist(user.x,user.y,crab.x,crab.y);
   if (d < user.w / 2 + crab.w / 2){
+//LIVES LOST
     user.lives = user.lives + user.livelost;
+
+//RESPAWN CRAB
     crab.x = random(0,width);
     crab.y = random(0,height);
+
+//INK SPLAT FOR A SECOND SHOWING YOU GOT HIT
+    fill(ink.r,ink.g,ink.b);
+    ellipse(user.x,user.y,ink.size);
+
     break;
     }
   }
