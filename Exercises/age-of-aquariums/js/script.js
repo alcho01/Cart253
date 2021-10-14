@@ -33,6 +33,16 @@ let ink = {
   b: 43,
 };
 
+let hp = {
+  x: 80,
+  y: 550,
+  w: 150,
+  h: 100,
+  image: undefined,
+  image2: undefined,
+  image3: undefined
+  };
+
 //ARRAY FOR FISH
 let school = [];
 //AMOUNT OF FISH
@@ -47,16 +57,6 @@ let consortiumSize = 5;
 //NAME FOR IMAGE
 let crabImg;
 
-let hp = {
-  x: 80,
-  y: 550,
-  w: 150,
-  h: 100,
-  image: undefined,
-  image2: undefined,
-  image3: undefined
-  };
-
 //Background
 let bg = {
   x: 400,
@@ -65,10 +65,24 @@ let bg = {
   h: 600,
   image: undefined,
 };
+//STATES
+let title = {
+  x: 400,
+  y: 300,
+  w: 800,
+  h: 600,
+  image: undefined
+}
+
+let state = 'title'
+
 
 function preload() {
   bg.image = loadImage('assets/images/background.png');
   user.image = loadImage('assets/images/user.png');
+
+//SCREEN Images
+  title.image = loadImage('assets/images/Titlescreen.png');
 
 //Healthbar Images
   hp.image = loadImage('assets/images/health-full.png');
@@ -125,6 +139,21 @@ function createCrab(x,y,speed) {
 }
 
 function draw() {
+  if (state === 'title') {
+    titleScreen();
+  }
+  else if (state ==='simulation') {
+    simulation();
+  }
+}
+
+function titleScreen() {
+  imageMode(CENTER);
+  image(title.image,title.x,title.y,title.w,title.h);
+}
+
+function simulation() {
+//Background
   bgSet();
 
 //Fish
@@ -144,7 +173,6 @@ function draw() {
 //User Settings
   userReqs();
   hpBar();
-
 }
 
 function bgSet(){
@@ -268,6 +296,7 @@ function crabbed(crab) {
   }
 }
 
+//HEALTH BAR DISPLAY
 function hpBar() {
   if (user.lives === 3){
     push();
@@ -286,5 +315,15 @@ function hpBar() {
     imageMode(CENTER);
     image(hp.image3,hp.x,hp.y,hp.w,hp.h);
     pop();
+  }
+}
+
+function mouseClicked() {
+  if (state === 'title') {
+    if (mouseX > 290 && mouseX < 490) {
+    if (mouseY > 260 && mouseY < 380) {
+    state = 'simulation';
+      }
+    }
   }
 }
