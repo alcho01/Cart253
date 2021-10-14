@@ -7,7 +7,6 @@ Interactivity[DONE]
 TitleScreen [DONE]
 EndScreen [DONE]
 
-Idea:
 */
 
 //Background Colors
@@ -443,9 +442,9 @@ function simulation(){
   displayLandscape();
   displayLake();
   displayBridge();
-  displayRock();
   displayHiker();
   displayBridgerail();
+  displayRock();
   displayClouds();
   displayTree();
   displayMountains();
