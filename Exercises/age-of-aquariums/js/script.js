@@ -3,11 +3,11 @@ Age of aquariums
 Alex Cho
 
 Brief
-User Controlled Shape[]
-User has to interact with "fish"[]
-Add more parameters(color,speed,size)[]
+User Controlled Shape[DONE]
+User has to interact with "fish"[DONE]
+Add more parameters(color,speed,size)[ADDED SPEED]
 Add a new property to the "fish" to change the behaviour[]
-Add two endings[]
+Add two endings[DONE]
 */
 
 "use strict";
@@ -19,6 +19,7 @@ let user = {
   y: undefined,
   w: 100,
   h: 100,
+  growth: 2.5,
   vx: - 5,
   vx2: 5,
   vy: - 5,
@@ -46,7 +47,7 @@ let hp = {
 //ARRAY FOR FISH
 let school = [];
 //AMOUNT OF FISH
-let schoolSize = 15;
+let schoolSize = 16;
 //NAME FOR IMAGE
 let fishImg;
 
@@ -87,6 +88,13 @@ let badending = {
   h: 600,
   image: undefined
 };
+let goodending = {
+  x: 400,
+  y: 300,
+  w: 800,
+  h: 600,
+  image: undefined
+};
 
 let state = 'title'
 
@@ -99,6 +107,7 @@ function preload() {
   title.image = loadImage('assets/images/Titlescreen.png');
   help.image = loadImage('assets/images/Howtoplay.png');
   badending.image = loadImage('assets/images/badending.png');
+  goodending.image = loadImage('assets/images/GoodEnding.png');
 
 //Healthbar Images
   hp.image = loadImage('assets/images/health-full.png');
@@ -126,7 +135,6 @@ function setup() {
   consortium[i] = createCrab(random(0,width), random(0,height), random(0,7)); //CREATE CRAB SETTINGS
   }
 }
-
 
 function createFish(x,y,w,speed) {
   let fish = {
@@ -167,12 +175,18 @@ function draw() {
   else if (state ==='endBad') {
     endBadscreen();
   }
+  else if (state ==='endGood') {
+    endGoodscreen();
+  }
 }
 
 function titleScreen() {
   imageMode(CENTER);
   image(title.image,title.x,title.y,title.w,title.h);
 
+//RESET USER SIZE
+  user.w = 100;
+  user.h = 100;
 //RESET NUMBER OF LIVES
   user.lives = 3;
 //RESET USER POSITION
@@ -210,11 +224,17 @@ function simulation() {
 //User Settings
   userReqs();
   hpBar();
+  growthUser();
 }
 
 function endBadscreen() {
   imageMode(CENTER);
   image(badending.image,badending.x,badending.y,badending.w,badending.h);
+}
+
+function endGoodscreen() {
+  imageMode(CENTER);
+  image(goodending.image,goodending.x,goodending.y,goodending.w,goodending.h);
 }
 
 function bgSet(){
@@ -258,6 +278,13 @@ function movementUser() {
   }
 }
 
+function growthUser() {
+//IF USER EATS ALL FISH THEY WIN
+  if (user.w > 139 || user.h > 139) {
+    state = 'endGood'
+  }
+}
+
 function moveFish(fish) {
 //FISH MOVEMENT
   let change = random(0.7);
@@ -287,11 +314,14 @@ function eatFish(fish) {
     let fish = school[i];
     let d = dist(user.x,user.y,fish.x,fish.y);
     if (d < user.w / 2 + fish.w / 2) {
+      user.w = user.w + user.growth;
+      user.h = user.h + user.growth;
       school.splice(i,1);
       break;
       }
     }
   }
+
 
 function moveCrab(crab) {
 //FISH MOVEMENT
@@ -390,6 +420,14 @@ function mouseClicked() {
   }
 //BAD ENDING TO TITLE
     if (state === 'endBad') {
+      if (mouseX > 110 && mouseX < 690) {
+      if (mouseY > 275 && mouseY < 390) {
+      state = 'title';
+      }
+    }
+  }
+//GOOD ENDING TO TITLE
+    if (state === 'endGood') {
       if (mouseX > 110 && mouseX < 690) {
       if (mouseY > 275 && mouseY < 390) {
       state = 'title';
