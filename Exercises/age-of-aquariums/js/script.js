@@ -72,9 +72,23 @@ let title = {
   w: 800,
   h: 600,
   image: undefined
-}
+};
+let help = {
+  x: 400,
+  y: 300,
+  w: 800,
+  h: 600,
+  image: undefined
+};
+let badending = {
+  x: 400,
+  y: 300,
+  w: 800,
+  h: 600,
+  image: undefined
+};
 
-let state = 'title'
+let state = 'endBad'
 
 
 function preload() {
@@ -83,6 +97,8 @@ function preload() {
 
 //SCREEN Images
   title.image = loadImage('assets/images/Titlescreen.png');
+  help.image = loadImage('assets/images/Howtoplay.png');
+  badending.image = loadImage('assets/images/badending.png');
 
 //Healthbar Images
   hp.image = loadImage('assets/images/health-full.png');
@@ -142,14 +158,25 @@ function draw() {
   if (state === 'title') {
     titleScreen();
   }
+  else if (state === 'help') {
+    helpScreen();
+  }
   else if (state ==='simulation') {
     simulation();
+  }
+  else if (state ==='endBad') {
+    endBadscreen();
   }
 }
 
 function titleScreen() {
   imageMode(CENTER);
   image(title.image,title.x,title.y,title.w,title.h);
+}
+
+function helpScreen() {
+  imageMode(CENTER);
+  image(help.image,help.x,help.y,help.w,help.h);
 }
 
 function simulation() {
@@ -173,6 +200,11 @@ function simulation() {
 //User Settings
   userReqs();
   hpBar();
+}
+
+function endBadscreen() {
+  imageMode(CENTER);
+  image(badending.image,badending.x,badending.y,badending.w,badending.h);
 }
 
 function bgSet(){
@@ -316,13 +348,41 @@ function hpBar() {
     image(hp.image3,hp.x,hp.y,hp.w,hp.h);
     pop();
   }
+  else if (user.lives ===0) {
+    state = 'endBad';
+  }
 }
 
 function mouseClicked() {
+//TITLE TO SIMULATION
   if (state === 'title') {
     if (mouseX > 290 && mouseX < 490) {
     if (mouseY > 260 && mouseY < 380) {
     state = 'simulation';
+      }
+    }
+  }
+//TITLE TO HELP
+  if (state === 'title') {
+    if (mouseX > 290 && mouseX < 490) {
+    if (mouseY > 390 && mouseY < 510) {
+    state = 'help';
+      }
+    }
+  }
+//HELP TO TITLE
+  if (state === 'help') {
+    if (mouseX > 420 && mouseX < 750) {
+    if (mouseY > 430 && mouseY < 580) {
+    state = 'title';
+      }
+    }
+  }
+//BAD ENDING TO TITLE
+    if (state === 'endBad') {
+      if (mouseX > 110 && mouseX < 690) {
+      if (mouseY > 275 && mouseY < 390) {
+      state = 'title';
       }
     }
   }
