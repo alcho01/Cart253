@@ -88,7 +88,7 @@ let badending = {
   image: undefined
 };
 
-let state = 'endBad'
+let state = 'title'
 
 
 function preload() {
@@ -172,6 +172,16 @@ function draw() {
 function titleScreen() {
   imageMode(CENTER);
   image(title.image,title.x,title.y,title.w,title.h);
+
+//RESET NUMBER OF LIVES
+  user.lives = 3;
+//RESET USER POSITION
+  user.x = width/2;
+  user.y = height/2;
+//RESET NUMBER OF FISH
+  for (let i = 0; i < schoolSize; i++) {
+    school[i] = createFish(random(0,width), random(0,height),30, random(0,5));
+  }
 }
 
 function helpScreen() {
