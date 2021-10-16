@@ -42,7 +42,7 @@ let hiker = {
   image: undefined,
 };
 
-//Healthbar settings //Probably should have used an Array
+//Healthbar settings 
 let healthfull ={
   x: 5,
   y: 730,
