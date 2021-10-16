@@ -7,6 +7,10 @@ Interactivity[DONE]
 TitleScreen [DONE]
 EndScreen [DONE]
 
+REFERENCES FOR SOUND FX
+- https://mixkit.co/free-sound-effects/waves/
+- https://mixkit.co/free-sound-effects/discover/birds/
+
 */
 
 //Background Colors
@@ -42,7 +46,7 @@ let hiker = {
   image: undefined,
 };
 
-//Healthbar settings 
+//Healthbar settings
 let healthfull ={
   x: 5,
   y: 730,
