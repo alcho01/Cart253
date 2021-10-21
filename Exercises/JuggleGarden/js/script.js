@@ -9,12 +9,6 @@ Add at least two endings[]
 
 "use strict";
 
-let bgColor = {
-  r: 16,
-  g: 92,
-  b: 115,
-};
-
 let canvasSize = {
   x: 1250,
   y: 700,
@@ -28,7 +22,14 @@ let landscape = {
   image: undefined
 };
 
+let gravityForce = 0.0025;
+
 let lilypad;
+
+let lake;
+
+let frogs = [];
+let numFrogs = 5;
 
 function preload() {
 
@@ -40,17 +41,38 @@ function setup() {
   createCanvas(canvasSize.x,canvasSize.y);
 
   lilypad = new Lilypad(250,30);
+  lake = new Lake(1250,700, 2800, 290);
+
+  for (let i = 0; i < numFrogs; i++) {
+    let x = random(0,width);
+    let y = random(-400,-100);
+    let frog = new Frog(x,y);
+    frogs.push(frog);
+  }
 }
 
 function draw() {
-  background(bgColor.r,bgColor.g,bgColor.b);
+  background(0);
 
 //Landscape being Displayed
   imageMode(CENTER);
   image(landscape.image,landscape.x,landscape.y,landscape.w,landscape.h);
 
+  //Lake being Displayed
+    lake.display();
+
+  //Frog Settings
+    for (let i = 0; i < frogs.length; i++) {
+      let frog = frogs[i];
+      frog.gravity(gravityForce);
+      frog.move();
+      frog.bounce();
+      frog.display();
+    }
+
 //Lilypad being Displayed
   lilypad.move();
   lilypad.display();
+
 
 }

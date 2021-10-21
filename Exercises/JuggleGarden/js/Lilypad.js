@@ -4,13 +4,13 @@ class Lilypad {
     this.width = w;
     this.height = h;
     this.x = 0;
-    this.y = height - this.height/2;
+    this.y = 570;
   }
 
 //Move with mouse Added Constraints
   move() {
     this.x = constrain(mouseX,0,1200);
-    this.y = constrain(mouseY,570,700);
+    //this.y = constrain(mouseY,570,700);
   }
 
   display(){
