@@ -2,11 +2,14 @@
 Age of aquariums
 Alex Cho
 
+Images designed by me
+
+I created a simple aquarium game. Collect all the fish and avoid the crabs. 
+
 Brief
 User Controlled Shape[DONE]
 User has to interact with "fish"[DONE]
 Add more parameters(color,speed,size)[ADDED SPEED]
-Add a new property to the "fish" to change the behaviour[]
 Add two endings[DONE]
 */
 
@@ -50,6 +53,27 @@ let school = [];
 let schoolSize = 16;
 //NAME FOR IMAGE
 let fishImg;
+//DISPLAY Starting NUMBER
+let fishCount = 16;
+//FISH COUNT SETTINGS
+let fishCountSets = {
+  x: 735,
+  y: 52,
+  countRemove: -1,
+  r: 102,
+  g: 196,
+  b: 255
+};
+//DISPLAY SCOREBOARD BACKGROUND
+let fishScoreboard = {
+  x: 690,
+  y: 40,
+  w: 200,
+  h: 60,
+  image: undefined
+};
+//FONT FOR SCORE
+let scoreFont;
 
 //ARRAY FOR CRABS
 let consortium = [];
@@ -103,6 +127,10 @@ function preload() {
   bg.image = loadImage('assets/images/background.png');
   user.image = loadImage('assets/images/user.png');
 
+//SCOREBOARD STUFF
+  fishScoreboard.image = loadImage('assets/images/fishRemain.png');
+  scoreFont = loadFont('assets/MAROLA.TTF');
+
 //SCREEN Images
   title.image = loadImage('assets/images/Titlescreen.png');
   help.image = loadImage('assets/images/Howtoplay.png');
@@ -128,7 +156,7 @@ function setup() {
   user.y = height/2;
 
   for (let i = 0; i < schoolSize; i++) {
-    school[i] = createFish(random(0,width), random(0,height),30, random(0,5)); //CREATE FISH SETTINGS
+    school[i] = createFish(random(0,width), random(0,height), 30, random(0,5)); //CREATE FISH SETTINGS
   }
 
   for (let i = 0; i < consortiumSize; i++) {
@@ -192,6 +220,8 @@ function titleScreen() {
 //RESET USER POSITION
   user.x = width/2;
   user.y = height/2;
+//RESET FISH COUNTER
+  fishCount = 16;
 //RESET NUMBER OF FISH
   for (let i = 0; i < schoolSize; i++) {
     school[i] = createFish(random(0,width), random(0,height),30, random(0,5));
@@ -225,6 +255,9 @@ function simulation() {
   userReqs();
   hpBar();
   growthUser();
+
+  displayScore();
+  fishCounter();
 }
 
 function endBadscreen() {
@@ -316,11 +349,31 @@ function eatFish(fish) {
     if (d < user.w / 2 + fish.w / 2) {
       user.w = user.w + user.growth;
       user.h = user.h + user.growth;
+      fishCount = fishCount + fishCountSets.countRemove;
       school.splice(i,1);
       break;
       }
     }
   }
+
+function displayScore() {
+//DISPLAYS THE "FISH REMAINING SIGN"
+  imageMode(CENTER);
+  image(fishScoreboard.image,fishScoreboard.x,fishScoreboard.y,fishScoreboard.w,fishScoreboard.h);
+}
+
+function fishCounter() {
+//TEXT DISPLAYING THE NUMBER OF FISH LEFT
+  push();
+  fill(fishCountSets.r,fishCountSets.g,fishCountSets.b);
+  textFont(scoreFont);
+  stroke(255);
+  strokeWeight(2);
+
+  textSize(35);
+  text(fishCount,fishCountSets.x,fishCountSets.y);
+  pop();
+}
 
 
 function moveCrab(crab) {
