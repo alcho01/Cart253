@@ -26,11 +26,23 @@ class Frog {
 
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
+
+    if (this.y - this.size/2 > height) {
+      this.active = false;
+    }
   }
 
 //The bounce movement
-  bounce() {
-    if (this.y + this.size/2 >= height) {
+  bounce(lilypad) {
+    if (this.x > lilypad.x - lilypad.width/2 &&
+        this.x < lilypad.x + lilypad.width/2 &&
+        this.y + this.size/2 > lilypad.y - lilypad.height/2&&
+        this.y + this.size/2 < lilypad.y + lilypad.height/2) {
+
+      //Bounce
+      let dx = this.x - lilypad.x;
+      this.vx = this.vx + map(dx,-lilypad.width/2,lilypad.width/2,-2,2);
+
       this.vy = -this.vy;
       this.ay = 0;
     }

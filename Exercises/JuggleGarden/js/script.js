@@ -58,17 +58,20 @@ function draw() {
   imageMode(CENTER);
   image(landscape.image,landscape.x,landscape.y,landscape.w,landscape.h);
 
-  //Lake being Displayed
-    lake.display();
 
   //Frog Settings
     for (let i = 0; i < frogs.length; i++) {
       let frog = frogs[i];
+      if (frog.active) {
       frog.gravity(gravityForce);
       frog.move();
-      frog.bounce();
+      frog.bounce(lilypad);
       frog.display();
     }
+  }
+
+  //Lake being Displayed
+    lake.display();
 
 //Lilypad being Displayed
   lilypad.move();
