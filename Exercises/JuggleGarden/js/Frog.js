@@ -1,5 +1,7 @@
 class Frog {
 
+//CODE FOR SPLASH() INSPIRED BY https://editor.p5js.org/monicawen/sketches/HkU-BCJqm  line 68
+
   constructor(x,y){
     this.x = x;
     this.y = y;
@@ -7,9 +9,13 @@ class Frog {
     this.vy = 0;
     this.ax = 0;
     this.ay =  0;
+    this.r = 0; //radius
     this.maxSpeed = 10;
     this.size = 50;
+    this.length = 15;
     this.active = true;
+    this.opacity = 200;
+    this.alpha =255;
   }
 
   gravity(force) {
@@ -27,7 +33,7 @@ class Frog {
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
 
-    if (this.y - this.size/2 > height) {
+    if (this.y - this.size/2 > 660) {
       this.active = false;
     }
   }
@@ -46,15 +52,32 @@ class Frog {
       this.vy = -this.vy;
       this.ay = 0;
     }
+
   }
 
 //Displaying the frog
   display() {
     push();
-    fill(29,219,95); //Light/Neon Green
     noStroke();
+    fill(29,219,95,this.alpha); //Light/Neon Green
     ellipse(this.x,this.y,this.size);
+    if (this.y > 560) {
+      this.alpha = this.alpha -50;
     pop();
+  }
+}
+  splash() {
+    push();
+    strokeWeight(2);
+    stroke(230, this.opacity);
+    noFill();
+    if (this.y > 560) {
+      ellipse(this.x, 570, this.r * 4, this.r /4);
+      this.r++;
+      this.opacity = this.opacity -10;
+    pop();
+    }
+
   }
 
 
