@@ -12,7 +12,6 @@ class Frog {
     this.r = 0; //radius
     this.maxSpeed = 10;
     this.size = 50;
-    this.length = 15;
     this.active = true;
     this.opacity = 200;
     this.alpha =255;
@@ -57,22 +56,58 @@ class Frog {
 
 //Displaying the frog
   display() {
+
+//Body
     push();
     noStroke();
     fill(29,219,95,this.alpha); //Light/Neon Green
     ellipse(this.x,this.y,this.size);
+    pop();
+
+//Feet
+    push();
+    noStroke();
+    fill(29,219,95,this.alpha);
+    ellipse(this.x - this.size/2, this.y + 20, this.size + 30,20);
+    ellipse(this.x + this.size/2, this.y + 20, this.size + 30,20);
+    pop();
+
+//Eyes
+    push();
+    noStroke();
+    fill(29,219,95,this.alpha);
+    ellipse(this.x - this.size / 2.5, this.y - 18, this.size / 1.5);
+    ellipse(this.x + this.size / 2.5, this.y - 18, this.size / 1.5);
+    pop();
+
+//Eyes2
+    push();
+    noStroke();
+    fill(255,255,255,this.alpha);
+    ellipse(this.x - this.size / 2, this.y, this.size / 1.2);
+    ellipse(this.x + this.size / 2, this.y, this.size / 1.2);
+    pop();
+
+//Eyes3
+    push();
+    noStroke();
+    fill(0,0,0);
+    ellipse(this.x - this.size/6, this.y, this.size/6);
+    ellipse(this.x + this.size/6, this.y, this.size/6);
+    pop();
+
     if (this.y > 560) {
       this.alpha = this.alpha -50;
-    pop();
   }
 }
+
   splash() {
     push();
     strokeWeight(2);
     stroke(230, this.opacity);
     noFill();
     if (this.y > 560) {
-      ellipse(this.x, 570, this.r * 4, this.r /4);
+      ellipse(this.x, 570, this.r * 10, this.r /10);
       this.r++;
       this.opacity = this.opacity -10;
     pop();
