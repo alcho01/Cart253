@@ -13,10 +13,10 @@ class Log {
   move() {
     this.xc = constrain(this.x,0,width);
 
-    if(keyIsDown(LEFT_ARROW)) {
+    if(keyIsDown(65)) {
       this.x = this.xc + this.vx;
     }
-    else if (keyIsDown(RIGHT_ARROW)) {
+    else if (keyIsDown(68)) {
       this.x = this.xc + this.vx2;
     }
   }

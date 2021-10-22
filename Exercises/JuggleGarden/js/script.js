@@ -41,6 +41,9 @@ let log;
 
 let lake;
 
+let coins = [];
+let numCoins = 3;
+
 let frogs = [];
 let numFrogs = 5;
 
@@ -48,15 +51,13 @@ function preload() {
 
   landscape.image = loadImage('assets/images/landscape.png');
   stateScreens.image = loadImage('assets/images/Title.png');
-  stateScreens2.image = loadImage('assets/images/help.png');
-  stateScreens3.image = loadImage('assets/images/badending.png');
-  stateScreens4.image = loadImage('assets/images/goodending.png');
+  stateScreens.image2 = loadImage('assets/images/help.png');
+  stateScreens.image3 = loadImage('assets/images/badending.png');
+  stateScreens.image4 = loadImage('assets/images/goodending.png');
 }
 
 function setup() {
   createCanvas(canvasSize.x,canvasSize.y);
-
-
 
   lilypad = new Lilypad(250,30);
   log = new Log(200,40,canvasSize.x/2,);
@@ -67,6 +68,13 @@ function setup() {
     let y = random(-400,-100);
     let frog = new Frog(x,y);
     frogs.push(frog);
+  }
+
+  for (let i = 0; i < numCoins; i++) {
+    let x = random(0,width);
+    let y = random(-500,-100);
+    let coin = new Coin(x,y);
+    coins.push(coin);
   }
 }
 
@@ -82,16 +90,27 @@ function draw() {
 
 //Frog Settings
   for (let i = 0; i < frogs.length; i++) {
-  let frog = frogs[i];
-  if (frog.active) {
-  frog.gravity(gravityForce);
-  frog.move();
-  frog.bounce(lilypad);
-  frog.bounce2(log);
-  frog.display();
-  frog.splash();
-          }
-        }
+    let frog = frogs[i];
+    if (frog.active) {
+      frog.gravity(gravityForce);
+      frog.move();
+      frog.bounce(lilypad);
+      frog.bounce2(log);
+      frog.display();
+      frog.splash();
+  }
+}
+
+  for (let i = 0; i < coins.length; i++) {
+    let coin = coins[i];
+    if (coin.active) {
+      coin.gravity(gravityForce);
+      coin.move();
+      coin.bounce(log);
+      coin.hit(lilypad);
+      coin.display();
+    }
+  }
 
 //Lilypad being Displayed
   lilypad.move();

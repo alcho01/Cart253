@@ -5,6 +5,8 @@ class Lilypad {
     this.height = h;
     this.x = 0;
     this.y = 570;
+    this.growth = 5;
+    this.decrease = -90;
   }
 
 //Move with mouse Added Constraints
