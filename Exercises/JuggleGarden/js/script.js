@@ -26,6 +26,8 @@ let gravityForce = 0.0025;
 
 let lilypad;
 
+let log;
+
 let lake;
 
 let frogs = [];
@@ -40,7 +42,10 @@ function preload() {
 function setup() {
   createCanvas(canvasSize.x,canvasSize.y);
 
+
+
   lilypad = new Lilypad(250,30);
+  log = new Log(200,40,canvasSize.x/2,);
   lake = new Lake(1250,700, 2800, 290);
 
   for (let i = 0; i < numFrogs; i++) {
@@ -76,6 +81,10 @@ function draw() {
 //Lilypad being Displayed
   lilypad.move();
   lilypad.display();
+
+//Log being displayed
+  log.move();
+  log.display();
 
 
 }
