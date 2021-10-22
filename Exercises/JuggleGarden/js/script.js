@@ -2,7 +2,7 @@
 Juggle Garden
 Alex Cho
 
-Add a(nother) form of user-control[]
+Add a(nother) form of user-control[LOG]
 Add a new class and objects[]
 Add at least two endings[]
 */
@@ -13,6 +13,17 @@ let canvasSize = {
   x: 1250,
   y: 700,
 };
+
+let stateScreens = {
+  x: 625,
+  y: 350,
+  w: 1250,
+  h: 700,
+  image: undefined,
+  image2: undefined,
+  image3: undefined,
+  image4: undefined,
+}
 
 let landscape = {
   x: 625,
@@ -36,7 +47,10 @@ let numFrogs = 5;
 function preload() {
 
   landscape.image = loadImage('assets/images/landscape.png');
-
+  stateScreens.image = loadImage('assets/images/Title.png');
+  stateScreens2.image = loadImage('assets/images/help.png');
+  stateScreens3.image = loadImage('assets/images/badending.png');
+  stateScreens4.image = loadImage('assets/images/goodending.png');
 }
 
 function setup() {
