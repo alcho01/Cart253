@@ -51,7 +51,6 @@ class Frog {
       this.vy = -this.vy;
       this.ay = 0;
     }
-
   }
 
 //Displaying the frog
