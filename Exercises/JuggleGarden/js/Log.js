@@ -4,7 +4,7 @@ class Log {
     this.width = w;
     this.height = h;
     this.x = x;
-    this.y = 620;
+    this.y = 610;
     this.vx = -5
     this.vx2 = 5
   }

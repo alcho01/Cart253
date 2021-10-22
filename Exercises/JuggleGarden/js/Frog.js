@@ -37,7 +37,7 @@ class Frog {
     }
   }
 
-//The bounce movement
+//The bounce movement from the lilypad
   bounce(lilypad) {
     if (this.x > lilypad.x - lilypad.width/2 &&
         this.x < lilypad.x + lilypad.width/2 &&
@@ -46,12 +46,28 @@ class Frog {
 
       //Bounce
       let dx = this.x - lilypad.x;
-      this.vx = this.vx + map(dx,-lilypad.width/2,lilypad.width/2,-2,2);
+      this.vx = this.vx + map(dx,-lilypad.width/2,lilypad.width/2,-8,8); //MORE BOUNCE
 
       this.vy = -this.vy;
       this.ay = 0;
     }
   }
+
+  bounce2(log) {
+    if (this.x > log.x - log.width/2 &&
+        this.x < log.x + log.width/2 &&
+        this.y + this.size/2 > log.y - log.height/2&&
+        this.y + this.size/2 < log.y + log.height/2) {
+
+      //Bounce
+      let dx = this.x - log.x;
+      this.vx = this.vx + map(dx,-log.width/2,log.width/2,-1.5,1.5); //LESS BOUNCE
+
+      this.vy = -this.vy;
+      this.ay = 0;
+    }
+  }
+
 
 //Displaying the frog
   display() {
@@ -95,7 +111,7 @@ class Frog {
     ellipse(this.x + this.size/6, this.y, this.size/6);
     pop();
 
-    if (this.y > 560) {
+    if (this.y > 620) {
       this.alpha = this.alpha -50;
   }
 }

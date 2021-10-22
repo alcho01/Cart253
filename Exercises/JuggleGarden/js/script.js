@@ -73,6 +73,7 @@ function draw() {
   frog.gravity(gravityForce);
   frog.move();
   frog.bounce(lilypad);
+  frog.bounce2(log);
   frog.display();
   frog.splash();
           }
