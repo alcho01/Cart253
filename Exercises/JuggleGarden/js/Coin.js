@@ -11,8 +11,6 @@ class Coin {
     this.size = 30;
     this.active = true;
     this.alpha =255;
-    this.amount = 0;
-    this.addCoin = 1;
   }
 
   gravity(force) {
@@ -41,13 +39,13 @@ class Coin {
 
     let d = dist(lilypad.x,lilypad.y,this.x,this.y);
     if (d < this.size/4 + lilypad.width/4) {
-      this.amount = this.amount + this.addCoin;
+      lilypad.amount = lilypad.amount + lilypad.add; //Add coin to the amount of coins
       this.x = random(0,width);
       this.y = random(-500,-100);
   }
 }
 
-//On bounce coins will bounce off of the log 
+//On bounce coins will bounce off of the log
   bounce(log) {
     if (this.x > log.x - log.width/2 &&
         this.x < log.x + log.width/2 &&

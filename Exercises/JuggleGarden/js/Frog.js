@@ -22,7 +22,7 @@ class Frog {
   }
 
 //Movement/Velocity of the frog
-  move() {
+  move(lilypad) {
     this.vx = this.vx + this.ax;
     this.vy = this.vy + this.ay;
 
@@ -33,6 +33,7 @@ class Frog {
     this.y = this.y + this.vy;
 
     if (this.y - this.size/2 > 660) {
+      lilypad.lives = lilypad.lives -1;
       this.active = false;
     }
   }

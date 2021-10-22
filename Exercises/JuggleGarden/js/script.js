@@ -3,7 +3,7 @@ Juggle Garden
 Alex Cho
 
 Add a(nother) form of user-control[LOG]
-Add a new class and objects[]
+Add a new class and objects[Coins]
 Add at least two endings[]
 */
 
@@ -47,6 +47,8 @@ let numCoins = 3;
 let frogs = [];
 let numFrogs = 5;
 
+let state = 'title'
+
 function preload() {
 
   landscape.image = loadImage('assets/images/landscape.png');
@@ -79,28 +81,51 @@ function setup() {
 }
 
 function draw() {
+  if (state === 'title') {
+    titleScreen();
+  }
+  else if (state === 'simulation') {
+    simulation();
+  }
+
+
+}
+
+function titleScreen() {
+  imageMode(CENTER);
+  image(stateScreens.image,stateScreens.x,stateScreens.y,stateScreens.w,stateScreens.h);
+}
+
+function simulation() {
   background(0);
 
 //Landscape being Displayed
   imageMode(CENTER);
   image(landscape.image,landscape.x,landscape.y,landscape.w,landscape.h);
 
-//Lake being Displayed
   lake.display();
+  frogSettings();
+  coinSettings();
+  userSettings();
+}
 
 //Frog Settings
+function frogSettings() {
   for (let i = 0; i < frogs.length; i++) {
     let frog = frogs[i];
     if (frog.active) {
       frog.gravity(gravityForce);
-      frog.move();
+      frog.move(lilypad);
       frog.bounce(lilypad);
       frog.bounce2(log);
       frog.display();
       frog.splash();
+    }
   }
 }
 
+//Coin Settings
+function coinSettings() {
   for (let i = 0; i < coins.length; i++) {
     let coin = coins[i];
     if (coin.active) {
@@ -111,14 +136,28 @@ function draw() {
       coin.display();
     }
   }
+}
 
+//User Settings
+function userSettings() {
 //Lilypad being Displayed
   lilypad.move();
   lilypad.display();
+  lilypad.scoreDisplay();
 
 //Log being displayed
   log.move();
   log.display();
+}
 
-
+//mouse clicked entities
+function mouseClicked() {
+//TITLE TO SIMULATION
+  if (state === 'title') {
+    if (mouseX > 140 && mouseX < 450) {
+    if (mouseY > 460 && mouseY < 650) {
+    state = 'simulation';
+      }
+    }
+  }
 }
