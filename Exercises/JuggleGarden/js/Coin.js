@@ -39,9 +39,12 @@ class Coin {
 
     let d = dist(lilypad.x,lilypad.y,this.x,this.y);
     if (d < this.size/4 + lilypad.width/4) {
-      lilypad.amount = lilypad.amount + lilypad.add; //Add coin to the amount of coins
+      score.amount = score.amount + score.add; //Add coin to the amount of coins
       this.x = random(0,width);
       this.y = random(-500,-100);
+    }
+    else if (score.amount === 30) {
+    state = 'goodend'
   }
 }
 

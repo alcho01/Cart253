@@ -22,7 +22,7 @@ class Frog {
   }
 
 //Movement/Velocity of the frog
-  move(lilypad) {
+  move() {
     this.vx = this.vx + this.ax;
     this.vy = this.vy + this.ay;
 
@@ -32,11 +32,14 @@ class Frog {
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
 
-    if (this.y - this.size/2 > 660) {
-      lilypad.lives = lilypad.lives -1;
+  for (let i = 0; i < frogs.length; i++) {
+    if (this.y - this.size/2 > 680) {
+      frogs.splice(i,1);
       this.active = false;
+      break;
     }
   }
+}
 
 //The bounce movement from the lilypad
   bounce(lilypad) {
@@ -68,7 +71,6 @@ class Frog {
       this.ay = 0;
     }
   }
-
 
 //Displaying the frog
   display() {
@@ -116,7 +118,6 @@ class Frog {
       this.alpha = this.alpha -50;
   }
 }
-
   splash() {
     push();
     strokeWeight(2);
@@ -128,8 +129,5 @@ class Frog {
       this.opacity = this.opacity -10;
     pop();
     }
-
   }
-
-
 }

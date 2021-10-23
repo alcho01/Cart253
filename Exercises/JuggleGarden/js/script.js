@@ -35,10 +35,13 @@ let landscape = {
 
 let gravityForce = 0.0025;
 
+let score = {
+  amount: 0,
+  add: 1,
+};
+
 let lilypad;
-
 let log;
-
 let lake;
 
 let coins = [];
@@ -47,7 +50,7 @@ let numCoins = 3;
 let frogs = [];
 let numFrogs = 5;
 
-let state = 'title'
+let state = 'goodend'
 
 function preload() {
 
@@ -87,13 +90,23 @@ function draw() {
   else if (state === 'simulation') {
     simulation();
   }
-
-
+  else if (state === 'badend') {
+    endBad();
+  }
+  else if (state === 'goodend') {
+    endGood();
+  }
 }
 
 function titleScreen() {
   imageMode(CENTER);
   image(stateScreens.image,stateScreens.x,stateScreens.y,stateScreens.w,stateScreens.h);
+
+//Reset coin amount
+  score.amount = 0;
+//Reset log position
+  log.x = canvasSize.x/2;
+  log.y = 610;
 }
 
 function simulation() {
@@ -109,13 +122,23 @@ function simulation() {
   userSettings();
 }
 
+function endBad() {
+  imageMode(CENTER);
+  image(stateScreens.image3,stateScreens.x,stateScreens.y,stateScreens.w,stateScreens.h);
+}
+
+function endGood() {
+  imageMode(CENTER);
+  image(stateScreens.image4,stateScreens.x,stateScreens.y,stateScreens.w,stateScreens.h);
+}
+
 //Frog Settings
 function frogSettings() {
   for (let i = 0; i < frogs.length; i++) {
     let frog = frogs[i];
     if (frog.active) {
       frog.gravity(gravityForce);
-      frog.move(lilypad);
+      frog.move();
       frog.bounce(lilypad);
       frog.bounce2(log);
       frog.display();
@@ -123,7 +146,6 @@ function frogSettings() {
     }
   }
 }
-
 //Coin Settings
 function coinSettings() {
   for (let i = 0; i < coins.length; i++) {
@@ -137,7 +159,6 @@ function coinSettings() {
     }
   }
 }
-
 //User Settings
 function userSettings() {
 //Lilypad being Displayed
@@ -157,6 +178,13 @@ function mouseClicked() {
     if (mouseX > 140 && mouseX < 450) {
     if (mouseY > 460 && mouseY < 650) {
     state = 'simulation';
+      }
+    }
+  }
+  if (state === 'goodend') {
+    if (mouseX > 950 && mouseX < 1220) {
+    if (mouseY > 460 && mouseY < 680) {
+    state = 'title';
       }
     }
   }
