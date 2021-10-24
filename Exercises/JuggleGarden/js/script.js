@@ -5,6 +5,9 @@ Alex Cho
 Add a(nother) form of user-control[LOG]
 Add a new class and objects[Coins]
 Add at least two endings[Good/Bad]
+
+I put the controls button and the titlescreen button on the controls page to close. You need to click before the T on CONTROLS to activate.
+sorry! 
 */
 
 "use strict";
@@ -87,6 +90,9 @@ function draw() {
   if (state === 'title') {
     titleScreen();
   }
+  else if (state === 'help') {
+    helpScreen();
+  }
   else if (state === 'simulation') {
     simulation();
   }
@@ -122,6 +128,11 @@ for (let i = 0; i < numCoins; i++) {
   let y = random(-500,-100);
   coins[i] = new Coin(x,y);
   }
+}
+
+function helpScreen() {
+  imageMode(CENTER);
+  image(stateScreens.image2,stateScreens.x,stateScreens.y,stateScreens.w,stateScreens.h);
 }
 
 function simulation() {
@@ -190,21 +201,35 @@ function userSettings() {
 function mouseClicked() {
 //TITLE TO SIMULATION
   if (state === 'title') {
-    if (mouseX > 140 && mouseX < 450) {
+    if (mouseX > 140 && mouseX < 450) { //Play button
     if (mouseY > 460 && mouseY < 650) {
     state = 'simulation';
       }
     }
   }
+  if (state === 'title') {
+    if (mouseX > 820 && mouseX < 1000) { //Help button
+    if (mouseY > 430 && mouseY < 680) {
+    state = 'help';
+      }
+    }
+  }
+  if (state === 'help') {
+    if (mouseX > 950 && mouseX < 1220) { //return home from helpscreen
+    if (mouseY > 460 && mouseY < 700) {
+    state = 'title';
+      }
+    }
+  }
   if (state === 'goodend') {
-    if (mouseX > 950 && mouseX < 1220) {
+    if (mouseX > 950 && mouseX < 1220) { //return home from goodend
     if (mouseY > 460 && mouseY < 680) {
     state = 'title';
       }
     }
   }
   if (state === 'badend') {
-    if (mouseX > 950 && mouseX < 1220) {
+    if (mouseX > 950 && mouseX < 1220) { //return home from badend
     if (mouseY > 460 && mouseY < 680) {
     state = 'title';
       }
