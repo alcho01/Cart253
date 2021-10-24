@@ -4,7 +4,7 @@ Alex Cho
 
 Images designed by me
 
-I created a simple aquarium game. Collect all the fish and avoid the crabs. 
+I created a simple aquarium game. Collect all the fish and avoid the crabs.
 
 Brief
 User Controlled Shape[DONE]
@@ -441,7 +441,7 @@ function hpBar() {
     image(hp.image3,hp.x,hp.y,hp.w,hp.h);
     pop();
   }
-  else if (user.lives ===0) {
+  else if (user.lives < 1) {
     state = 'endBad';
   }
 }
