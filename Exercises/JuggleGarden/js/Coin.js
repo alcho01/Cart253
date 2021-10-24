@@ -43,7 +43,7 @@ class Coin {
       this.x = random(0,width);
       this.y = random(-500,-100);
     }
-    else if (score.amount === 30) {
+    else if (score.amount === 15) {
     state = 'goodend'
   }
 }

@@ -23,6 +23,7 @@ class Frog {
 
 //Movement/Velocity of the frog
   move() {
+
     this.vx = this.vx + this.ax;
     this.vy = this.vy + this.ay;
 
@@ -32,12 +33,17 @@ class Frog {
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
 
-  for (let i = 0; i < frogs.length; i++) {
-    if (this.y - this.size/2 > 680) {
-      frogs.splice(i,1);
-      this.active = false;
-      break;
-    }
+//Bounce of walls if it is greater than width and less than 0
+  if (this.x > width || this.x < 0) {
+      this.vx *= -1;
+
+//Constrain the frogs
+  this.x = constrain(this.x,0,width);
+  }
+
+  if (this.y - this.size/2 > 680) {
+    this.active = false;
+    state = 'badend'
   }
 }
 

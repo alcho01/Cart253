@@ -5,8 +5,8 @@ class Log {
     this.height = h;
     this.x = x;
     this.y = 610;
-    this.vx = -5
-    this.vx2 = 5
+    this.vx = -7
+    this.vx2 = 7
   }
 
 //MOVE THE LOG WITH ARROW KEYS

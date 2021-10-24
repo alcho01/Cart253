@@ -4,7 +4,7 @@ Alex Cho
 
 Add a(nother) form of user-control[LOG]
 Add a new class and objects[Coins]
-Add at least two endings[]
+Add at least two endings[Good/Bad]
 */
 
 "use strict";
@@ -48,9 +48,9 @@ let coins = [];
 let numCoins = 3;
 
 let frogs = [];
-let numFrogs = 5;
+let numFrogs = 3;
 
-let state = 'goodend'
+let state = 'title'
 
 function preload() {
 
@@ -65,7 +65,7 @@ function setup() {
   createCanvas(canvasSize.x,canvasSize.y);
 
   lilypad = new Lilypad(250,30);
-  log = new Log(200,40,canvasSize.x/2,);
+  log = new Log(300,40,canvasSize.x/2,);
   lake = new Lake(1250,700, 2800, 290);
 
   for (let i = 0; i < numFrogs; i++) {
@@ -104,9 +104,24 @@ function titleScreen() {
 
 //Reset coin amount
   score.amount = 0;
+
 //Reset log position
   log.x = canvasSize.x/2;
   log.y = 610;
+
+//Reset Frogs position
+for (let i = 0; i < numFrogs; i++) {
+  let x = random(0,width);
+  let y = random(-400,-100);
+  frogs[i] = new Frog(x,y);
+  }
+
+//Reset Coin position
+for (let i = 0; i < numCoins; i++) {
+  let x = random(0,width);
+  let y = random(-500,-100);
+  coins[i] = new Coin(x,y);
+  }
 }
 
 function simulation() {
@@ -182,6 +197,13 @@ function mouseClicked() {
     }
   }
   if (state === 'goodend') {
+    if (mouseX > 950 && mouseX < 1220) {
+    if (mouseY > 460 && mouseY < 680) {
+    state = 'title';
+      }
+    }
+  }
+  if (state === 'badend') {
     if (mouseX > 950 && mouseX < 1220) {
     if (mouseY > 460 && mouseY < 680) {
     state = 'title';
