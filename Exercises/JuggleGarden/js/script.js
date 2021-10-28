@@ -7,7 +7,7 @@ Add a new class and objects[Coins]
 Add at least two endings[Good/Bad]
 
 I put the controls button and the titlescreen button on the controls page to close. You need to click before the T on CONTROLS to activate.
-sorry! 
+sorry!
 */
 
 "use strict";
@@ -95,9 +95,11 @@ function draw() {
   }
   else if (state === 'simulation') {
     simulation();
+    noCursor();
   }
   else if (state === 'badend') {
     endBad();
+    cursor();
   }
   else if (state === 'goodend') {
     endGood();
