@@ -1,3 +1,4 @@
+//Super class for all rooms and cityscapes
 class Apartment {
 
   constructor(w,h,x,y,) {

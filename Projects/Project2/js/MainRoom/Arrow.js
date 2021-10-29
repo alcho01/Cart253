@@ -1,3 +1,4 @@
+//Super class for navigational arrows
 class Arrow {
 
   constructor(w,h,y) {

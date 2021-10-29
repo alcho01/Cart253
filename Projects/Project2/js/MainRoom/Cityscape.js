@@ -1,3 +1,4 @@
+//The main cityscape that occurs when the game starts. Basically the background.
 class Cityscape extends Apartment {
 
   constructor(w,h,x,y,cityscapeImage) {

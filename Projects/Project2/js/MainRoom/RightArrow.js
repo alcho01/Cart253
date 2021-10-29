@@ -1,3 +1,4 @@
+//The right navigational arrow
 class RightArrow extends Arrow {
 
   constructor(w,h,x,y,arrowrightImage,arrowRhoverImage) {

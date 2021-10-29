@@ -1,3 +1,4 @@
+//The left navigational arrow
 class LeftArrow extends Arrow {
 
   constructor(w,h,x,y,arrowleftImage,arrowLhoverImage){
