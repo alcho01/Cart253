@@ -12,4 +12,3 @@ A and D to move log
 I put the controls button, and the titlescreen button on the controls page to close. You need to click before the T on CONTROLS to activate.
 sorry!
 
-Also, I don't know why the frames drop so much. I would assume is because the frogs are being drawn
