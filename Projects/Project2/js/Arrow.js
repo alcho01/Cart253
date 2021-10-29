@@ -1,6 +1,7 @@
 class Arrow {
 
   constructor(w,h,y) {
+    //dimensions
     this.width = w;
     this.height = h;
     //position
@@ -8,6 +9,6 @@ class Arrow {
   }
 
   display() {
-    //In the subclasses
+    //In the subclasses(RightArrow, LeftArrow)
   }
 }

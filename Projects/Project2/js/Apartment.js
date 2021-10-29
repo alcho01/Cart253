@@ -1,6 +1,7 @@
 class Apartment {
 
   constructor(w,h,x,y,) {
+    //Dimensions
     this.width = w;
     this.height = h;
     //Position
@@ -9,7 +10,7 @@ class Apartment {
   }
 
   display() {
-    //In the subclasses
+    //In the subclasses (Mainroom,Cityscape)
   }
 
 }
