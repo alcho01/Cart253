@@ -3,9 +3,28 @@ Title of Project
 Alex Cho
 
 
+
+
+
+
+References for Images/Fonts/Sounds/Coding Ideas
+
+=============Images=============
+
+=============Fonts==============
+Digital Clock Font : https://www.dafont.com/alarm-clock.font
+=============Sounds=============
+
+============CodeIdeas===========
+Digital Clock Idea : https://editor.p5js.org/D_Snyder/sketches/Xtx2Zu9D5
+
 */
 
 "use strict";
+
+/*=============================
+BASICS
+===============================*/
 
 //Set up the canvas position
 let canvasDimensons = {
@@ -13,17 +32,39 @@ let canvasDimensons = {
   y: 720,
 };
 
+/*=============================
+Classes to be called
+===============================*/
+
 //Cityscape to be called for a class
 let cityscape = undefined;
 //Mainroom to be called for a class
 let mainroom = undefined;
 //Bed to be called for a class
 let bed = undefined;
+//Alarmclock to be called for a class
+let alarmclock = undefined;
+//Alarmtime to be called for a class
+let alarmtime = undefined;
 //Arrows to be called for a class
 let arrowright = undefined;
 let arrowleft = undefined;
 
-//Image of cityscapes
+/*=============================
+Fonts
+===============================*/
+
+let alarmtimeFont;
+
+/*=============================
+Sounds
+===============================*/
+
+/*=============================
+Images
+===============================*/
+
+//Images of cityscapes
 let cityscapeImage = undefined;
 
 //Image of rooms
@@ -33,6 +74,8 @@ let mainroomImage = undefined;
 //Images of the bed
 let bedImage = undefined;
 let bedhoverImage = undefined;
+//Image of the alarm clock
+let alarmclockImage = undefined;
 
 //Image of arrows
 let arrowrightImage = undefined;
@@ -40,8 +83,27 @@ let arrowRhoverImage = undefined;
 let arrowleftImage = undefined;
 let arrowLhoverImage = undefined;
 
+/*=============================
+IMAGES/SOUNDS/FONTS TO PRELOAD
+===============================*/
 
 function preload() {
+
+/*=============================
+Fonts
+===============================*/
+
+//Loading a font for the alarm clock time
+  alarmtimeFont = loadFont('assets/fonts/alarmclock.ttf');
+
+/*=============================
+Sounds
+===============================*/
+
+/*=============================
+Images
+===============================*/
+
 //Loading images of cityscapes
   cityscapeImage = loadImage('assets/images/Background/bgmain.png');
 
@@ -52,6 +114,9 @@ function preload() {
 //Loading the bed images
   bedImage = loadImage('assets/images/Objects/bed.png');
   bedhoverImage = loadImage('assets/images/Objects/bedhover.png');
+//Loading the alarm clock image
+  alarmclockImage = loadImage('assets/images/Objects/alarmclock.png');
+
 //Loading images of arrows
   arrowrightImage = loadImage('assets/images/Arrows/arrowright.png');
   arrowRhoverImage = loadImage('assets/images/Arrows/arrowrighthover.png');
@@ -69,7 +134,11 @@ function setup() {
   mainroom = new Mainroom(1280,720,640,360,mainroomImage);
 
 //Interactive objects class parameters(w,h,x,y,image,imageforhover)
-  bed = new Bed(700,400,585,554.8,bedImage,bedhoverImage);
+  bed = new Bed(600,400,585,554.8,bedImage,bedhoverImage);
+
+  alarmclock = new AlarmClock(100,36,650,400,alarmclockImage);
+//Parameters(x,y,font)
+  alarmtime = new AlarmTime(650,405,alarmtimeFont);
 
 //Arrows class parameters(w,h,x,y,image,imageforhover)
   arrowleft = new LeftArrow(100,100,60,660,arrowleftImage,arrowLhoverImage);
@@ -89,7 +158,10 @@ function mainRoom() {
   mainroom.display();
 //Display the bed
   bed.display();
-//Display the Arrows
+//Display the alarm clock and the alarm time
+  alarmclock.display();
+  alarmtime.display();
+//Display the Arrows to switch between screens
   arrowleft.display();
   arrowright.display();
 }
