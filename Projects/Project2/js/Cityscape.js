@@ -1,11 +1,7 @@
-class Cityscape {
+class Cityscape extends Apartment {
 
-  constructor(x,y,cityscapeImage) {
-    this.width = 1280;
-    this.height = 720;
-    //Position
-    this.x = x;
-    this.y = y;
+  constructor(w,h,x,y,cityscapeImage) {
+    super(w,h,x,y);
     //Image
     this.cityscapeImage = cityscapeImage;
   }
