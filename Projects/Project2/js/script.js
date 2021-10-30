@@ -23,13 +23,31 @@ Digital Clock Idea : https://editor.p5js.org/D_Snyder/sketches/Xtx2Zu9D5
 "use strict";
 
 /*=============================
-BASICS
+BASICS/MISC
 ===============================*/
 
-//Set up the canvas position
+//Determine the canvas position
 let canvasDimensons = {
   x: 1280,
   y: 720,
+};
+
+//Create variables for bedlamp lighting - Will be created in the script.js file
+let bedlamplight = undefined;
+let bedlamplightfill;
+//CREATING colour values for when the bed lamp light is off
+let bedlampOff = {
+  r: 255,
+  g: 255,
+  b: 255,
+  a: 0,
+}
+//CREATING colour values for when the bed lamp light is on
+let bedlampOn = {
+  r: 255,
+  g: 255,
+  b: 255,
+  a: 50,
 };
 
 /*=============================
@@ -64,7 +82,8 @@ let alarmtimeFont;
 /*=============================
 Sounds
 ===============================*/
-
+//Sound of bedlamp chain
+let bedlampSFX = undefined;
 /*=============================
 Images
 ===============================*/
@@ -108,7 +127,7 @@ Fonts
 /*=============================
 Sounds
 ===============================*/
-
+  bedlampSFX = loadSound('assets/sounds/bedlampsfx.wav');
 /*=============================
 Images
 ===============================*/
@@ -141,8 +160,24 @@ Images
   arrowLhoverImage = loadImage('assets/images/Arrows/arrowlefthover.png');
 }
 
+/*=====================================
+SETTING UP! CANVAS|CLASSES|ARRAYS|BEDLAMPLIGHTS
+======================================*/
 function setup() {
+//Creating the canvas
   createCanvas(canvasDimensons.x,canvasDimensons.y);
+
+//Determing a set fill for the bed lamp light before toggling it
+  bedlamplightfill = color(bedlampOff.r,bedlampOff.g,bedlampOff.b,bedlampOff.a);
+
+//Bed lamp light parameters
+  bedlamplight = {
+    x: 0,
+    y: 0,
+    w: 1280,
+    h: 720,
+    on: false, //Light Starts off
+  };
 
 //Cityscapes class parameters(w,h,x,y,image)
   cityscape = new Cityscape(1280,720,640,360,cityscapeImage);
@@ -185,7 +220,43 @@ function mainRoom() {
 //Display the alarm clock and the alarm time
   alarmclock.display();
   alarmtime.display();
+//Display the bed lamp lighting // Check if it is on or off
+  displaybedlamplight();
+  checkbedlamplight();
 //Display the Arrows to switch between screens
   arrowleft.display();
   arrowright.display();
+}
+
+//Creating the bed light lamp display function in script.js
+function displaybedlamplight() {
+  push();
+  noStroke();
+  fill(bedlamplightfill);
+  rect(bedlamplight.x,bedlamplight.y,bedlamplight.w,bedlamplight.h);
+  pop();
+}
+
+//Check if the light is on or off
+function checkbedlamplight() {
+  if (bedlamplight.on) {
+    bedlamplightfill = color(bedlampOn.r,bedlampOn.g,bedlampOn.b,bedlampOn.a);
+  }
+  else {
+    bedlamplightfill = color(bedlampOff.r,bedlampOff.g,bedlampOff.b,bedlampOff.a);
+  }
+}
+
+//Mouse Interaction
+function mouseClicked() {
+  userStartAudio();
+//If the bed lamp is clicked once it will turn on, if it is clicked twice it will turn off
+  if (mouseX > 500 && mouseX < 545) {
+  if (mouseY > 320 && mouseY < 405) {
+//Toggles between the light being on and off
+    bedlamplight.on = !bedlamplight.on
+//Play the SFX for the bed lamp if it being turned on or off
+    bedlampSFX.play();
+    }
+  }
 }
