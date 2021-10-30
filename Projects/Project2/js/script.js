@@ -65,6 +65,8 @@ let bed = undefined;
 let bedlamp = undefined;
 //laptop to be called for a class
 let laptop = undefined;
+//laptop background to be called for a class
+let laptopbg = undefined;
 //Alarmclock to be called for a class
 let alarmclock = undefined;
 //Alarmtime to be called for a class
@@ -103,6 +105,8 @@ let bedlamphoverImage = undefined;
 //Images of the laptop
 let laptopImage = undefined;
 let laptophoverImage = undefined;
+//Image of the laptop background
+let laptopbgImage = undefined;
 //Image of the alarm clock
 let alarmclockImage = undefined;
 //Image of arrows
@@ -149,6 +153,7 @@ Images
 //Loading the laptop images
   laptopImage = loadImage('assets/images/Objects/laptop.png');
   laptophoverImage = loadImage('assets/images/Objects/laptophover.png');
+  laptopbgImage = loadImage('assets/images/Objects/laptopbg.gif');
 
 //Loading the alarm clock image
   alarmclockImage = loadImage('assets/images/Objects/alarmclock.png');
@@ -190,6 +195,7 @@ function setup() {
   bedlamp = new BedLamp(70,100,520,370,bedlampImage,bedlamphoverImage);
 
   laptop = new Laptop(80,90,180,465,laptopImage,laptophoverImage);
+  laptopbg = new LaptopBackground(56,37,180,454,laptopbgImage);
 
   alarmclock = new AlarmClock(100,36,650,400,alarmclockImage);
 //Parameters(x,y,font)
@@ -217,6 +223,8 @@ function mainRoom() {
   bedlamp.display();
 //Display the laptop
   laptop.display();
+//Display the laptop background
+  laptopbg.display();
 //Display the alarm clock and the alarm time
   alarmclock.display();
   alarmtime.display();
