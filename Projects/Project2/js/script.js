@@ -5,7 +5,14 @@ Alex Cho
 
 
 
-
+/========LEGEND========\
+w = width               y = Y-Position
+h = height              image = specified image
+x = X-position          imageforhover = secondary image used for hover
+font = specified font   r = red value
+g = green value         b = blue value
+a = alpha value
+=======================/
 
 References for Images/Fonts/Sounds/Coding Ideas
 
@@ -72,6 +79,8 @@ let bedlamp = undefined;
 let laptop = undefined;
 //laptop background to be called for a class
 let laptopbg = undefined;
+//laptop login info to be called for a class
+let laptoploginfo = undefined;
 //Alarmclock to be called for a class
 let alarmclock = undefined;
 //Alarmtime to be called for a class
@@ -89,8 +98,11 @@ let alarmtimeFont;
 /*=============================
 Sounds
 ===============================*/
+//Sound of rain
+let rainSFX = undefined;
 //Sound of bedlamp chain
 let bedlampSFX = undefined;
+
 /*=============================
 Images
 ===============================*/
@@ -112,6 +124,8 @@ let laptopImage = undefined;
 let laptophoverImage = undefined;
 //Image of the laptop background
 let laptopbgImage = undefined;
+//Image of laptop login info
+let laptoploginfoImage = undefined;
 //Image of the alarm clock
 let alarmclockImage = undefined;
 //Image of arrows
@@ -140,6 +154,8 @@ Fonts
 Sounds
 ===============================*/
   bedlampSFX = loadSound('assets/sounds/bedlampsfx.wav');
+  rainSFX = loadSound('assets/sounds/Rain.wav');
+
 /*=============================
 Images
 ===============================*/
@@ -163,6 +179,9 @@ Images
   laptophoverImage = loadImage('assets/images/Objects/laptophover.png');
   laptopbgImage = loadImage('assets/images/Objects/laptopbg.gif');
 
+//Loading the laptop login info
+  laptoploginfoImage = loadImage('assets/images/Objects/laptoplogin.png');
+
 //Loading the alarm clock image
   alarmclockImage = loadImage('assets/images/Objects/alarmclock.png');
 
@@ -179,6 +198,12 @@ SETTING UP! CANVAS|CLASSES|ARRAYS|BEDLAMPLIGHTS
 function setup() {
 //Creating the canvas
   createCanvas(canvasDimensons.x,canvasDimensons.y);
+
+//Setting up sounds (Volume,Loops)
+//Set the volume down a bit
+  rainSFX.setVolume(0.5);
+//Loop the rain SFX
+  rainSFX.loop();
 
 //Determing a set fill for the bed lamp light before toggling it
   bedlamplightfill = color(bedlampOff.r,bedlampOff.g,bedlampOff.b,bedlampOff.a);
@@ -211,6 +236,7 @@ function setup() {
 
   laptop = new Laptop(80,90,180,465,laptopImage,laptophoverImage);
   laptopbg = new LaptopBackground(56,37,180,454,laptopbgImage);
+  laptoploginfo = new LaptopLogin(1280,720,640,360,laptoploginfoImage);
 
   alarmclock = new AlarmClock(100,36,650,400,alarmclockImage);
 //Parameters(x,y,font)
@@ -225,6 +251,9 @@ function draw() {
 //Organize what states the simulation consists of
   if (state == 'MainRoom') {
     mainRoom();
+  }
+  else if (state == 'LaptopLogIn') {
+    laptoplogin();
   }
 }
 
@@ -277,18 +306,46 @@ function checkbedlamplight() {
   }
 }
 
+//Everything relevant to the laptop screen
+function laptoplogin() {
+  //Display the laptop login info
+  laptoploginfo.display();
+}
+
 //Mouse Interaction
 function mouseClicked() {
   userStartAudio();
 //If the state is 'MainRoom' do the following orders
   if (state == 'MainRoom') {
+//Play the SFX for the raindrops
+      rainSFX.play();
 //If the bed lamp is clicked once it will turn on, if it is clicked twice it will turn off
-  if (mouseX > 500 && mouseX < 545) {
-  if (mouseY > 320 && mouseY < 405) {
+    if (mouseX > 500 && mouseX < 545) {
+    if (mouseY > 320 && mouseY < 405) {
 //Toggles between the light being on and off
-    bedlamplight.on = !bedlamplight.on
+      bedlamplight.on = !bedlamplight.on
 //Play the SFX for the bed lamp if it being turned on or off
-    bedlampSFX.play();
+      bedlampSFX.play();
+      }
+    }
+//If the laptop is clicked, open up the login info
+    if (mouseX > 140 && mouseX < 215) {
+    if (mouseY > 400 && mouseY < 500) {
+//Change states when the laptop is clicked
+      state = 'LaptopLogIn'
+//Stop the rain SFX during this state
+      rainSFX.stop();
+      }
+    }
+  }
+//If the Sleep button is pressed, return to the MainRoom
+  if (state == 'LaptopLogIn') {
+    if (mouseX > 600 && mouseX < 680) {
+    if (mouseY > 550 && mouseY < 640) {
+//This is the current state
+      state = 'MainRoom'
+//Resume the rain sound upon pressing the button
+      rainSFX.play();
       }
     }
   }
