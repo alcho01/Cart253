@@ -17,7 +17,7 @@ Digital Clock Font : https://www.dafont.com/alarm-clock.font
 
 ============CodeIdeas===========
 Digital Clock Idea : https://editor.p5js.org/D_Snyder/sketches/Xtx2Zu9D5
-
+Rain Idea: Took inspiration from the Juggle Garden exercise. We went over gravity and those type of physics.
 */
 
 "use strict";
@@ -31,6 +31,11 @@ let canvasDimensons = {
   x: 1280,
   y: 720,
 };
+
+//Array for raindrops
+let raindrop = [];
+//Amount of raindrops
+let numrainDrops = 200;
 
 //Create variables for bedlamp lighting - Will be created in the script.js file
 let bedlamplight = undefined;
@@ -115,6 +120,9 @@ let arrowRhoverImage = undefined;
 let arrowleftImage = undefined;
 let arrowLhoverImage = undefined;
 
+//What state is it in
+let state = 'MainRoom'
+
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
 ===============================*/
@@ -184,6 +192,13 @@ function setup() {
     on: false, //Light Starts off
   };
 
+//RainDrop to be called from class
+//Create a for loop if i is less than 200 add a new rain drop
+//Parameters (w,h,x,y)
+  for (let i = 0; i < numrainDrops; i++) {
+    raindrop[i] = new RainDrop(random(1,4), random(5,8), random(0, width), random(0, -height));
+  }
+
 //Cityscapes class parameters(w,h,x,y,image)
   cityscape = new Cityscape(1280,720,640,360,cityscapeImage);
 
@@ -207,14 +222,21 @@ function setup() {
 }
 
 function draw() {
-  mainRoom();
-
+//Organize what states the simulation consists of
+  if (state == 'MainRoom') {
+    mainRoom();
+  }
 }
 
-//Everything relevant to the main room - All needs to be in the same function because it is going to be converted to a state.
+//Everything relevant to the main room - All needs to be in the same function because it is going to be converted to a state
 function mainRoom() {
 //Display the cityscape
   cityscape.display();
+//Display the raindrops //Need a for loop for arrays. Call the class functions in the for loop to display the raindrops
+  for (let i = 0; i < raindrop.length; i++) {
+    raindrop[i].display();
+    raindrop[i].update();
+  }
 //Display the room
   mainroom.display();
 //Display the bed
@@ -258,6 +280,8 @@ function checkbedlamplight() {
 //Mouse Interaction
 function mouseClicked() {
   userStartAudio();
+//If the state is 'MainRoom' do the following orders
+  if (state == 'MainRoom') {
 //If the bed lamp is clicked once it will turn on, if it is clicked twice it will turn off
   if (mouseX > 500 && mouseX < 545) {
   if (mouseY > 320 && mouseY < 405) {
@@ -265,6 +289,7 @@ function mouseClicked() {
     bedlamplight.on = !bedlamplight.on
 //Play the SFX for the bed lamp if it being turned on or off
     bedlampSFX.play();
+      }
     }
   }
 }
