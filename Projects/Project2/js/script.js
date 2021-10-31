@@ -47,6 +47,9 @@ let raindrop = [];
 //Amount of raindrops
 let numrainDrops = 200;
 
+//Store the songs here to be used for a shufflemode
+let songs = [];
+
 //Create variables for bedlamp lighting - Will be created in the script.js file
 let bedlamplight = undefined;
 let bedlamplightfill;
@@ -185,6 +188,15 @@ Fonts
 /*=============================
 Sounds
 ===============================*/
+  songs[0] = loadSound('assets/sounds/CherryTree.mp3');
+  songs[1] = loadSound('assets/sounds/OnMyMind.mp3');
+  songs[2] = loadSound('assets/sounds/Reflections.mp3');
+  songs[3] = loadSound('assets/sounds/Overcast.mp3');
+  songs[4] = loadSound('assets/sounds/Mist.mp3');
+  songs[5] = loadSound('assets/sounds/MidnightJourney.mp3');
+
+
+
   bedlampSFX = loadSound('assets/sounds/bedlampsfx.wav');
   rainSFX = loadSound('assets/sounds/Rain.wav');
 
@@ -243,6 +255,8 @@ function setup() {
   rainSFX.setVolume(0.5);
 //Loop the rain SFX
   rainSFX.loop();
+
+  songs = random(songs);
 
 //Determing a set fill for the bed lamp light before toggling it
   bedlamplightfill = color(bedlampOff.r,bedlampOff.g,bedlampOff.b,bedlampOff.a);
@@ -485,16 +499,33 @@ function mouseClicked() {
     }
 //If the lofify app is pressed apply the following sequence...
     if (mouseX > 5 && mouseX < 115) {
-    if (mouseY > 50 && mouseY < 235) {
+    if (mouseY > 120 && mouseY < 235) {
       state = 'LofifyScreen'
       }
     }
   }
 //Functionality with mouse clicked on the lofify screen
   if (state == 'LofifyScreen') {
+    if (mouseX > 350 && mouseX < 460){
+    if (mouseY > 140 && mouseY < 220){
+      songs.stop();
+      }
+    }
     if (mouseX > 45 && mouseX < 275) {
     if (mouseY > 630 && mouseY < 705) {
       state = 'LaptopMenuScreen'
+      }
+    }
+  }
+}
+
+//Functionality for double clicked.
+function doubleClicked() {
+  if (state == 'LofifyScreen') {
+    if (mouseX > 350 && mouseX < 460){
+    if (mouseY > 140 && mouseY < 220){
+//If double clicked play shuffle mode
+      songs.play();
       }
     }
   }
