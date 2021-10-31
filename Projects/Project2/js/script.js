@@ -109,6 +109,10 @@ let alarmtime = undefined;
 let arrowright = undefined;
 let arrowleft = undefined;
 
+//=========Lofify App==========//
+//Lofify screen to be called for a class
+let lofify = undefined;
+
 /*=============================
 Fonts
 ===============================*/
@@ -158,8 +162,12 @@ let arrowRhoverImage = undefined;
 let arrowleftImage = undefined;
 let arrowLhoverImage = undefined;
 
+//=========Lofify App==========//
+//Image of lofify in app
+let lofifyImage = undefined;
+
 //What state is it in
-let state = 'MainRoom'
+let state = 'LaptopMenuScreen'
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -205,11 +213,13 @@ Images
 
 //Loading the laptop menu image
   laptopmenuImage = loadImage('assets/images/Objects/menuscreen.png');
-
 //Loading the laptop login info
   laptoploginfoImage = loadImage('assets/images/Objects/laptoplogin.png');
 //loading the passwordlog info
   passwordlogImage = loadImage('assets/images/Objects/passwordstate.png');
+
+//Loading the lofify screen
+  lofifyImage = loadImage('assets/images/Objects/lofify.png');
 
 //Loading the alarm clock image
   alarmclockImage = loadImage('assets/images/Objects/alarmclock.png');
@@ -278,6 +288,9 @@ function setup() {
   username = new Username(330,1240);
   password = new Password(450,1240);
 
+//Lofify screen
+  lofify = new Lofify(1280,720,640,360,lofifyImage);
+
 //The alarm clock parameters
   alarmclock = new AlarmClock(100,36,650,400,alarmclockImage);
 //The time on the alarm clock
@@ -306,6 +319,9 @@ function draw() {
   }
   else if (state == 'LaptopMenuScreen') {
     laptopMenu();
+  }
+  else if (state == 'LofifyScreen') {
+    lofifyMenu();
   }
 }
 
@@ -366,8 +382,13 @@ function laptoplogin() {
 }
 
 //Everything relevant to the laptop menu screen
-function laptopMenu(){
+function laptopMenu() {
   laptopmenu.display();
+}
+
+//Everything relevant to the lofify menu screen
+function lofifyMenu() {
+  lofify.display();
 }
 
 /*=====P5 Functions====*\
@@ -443,6 +464,37 @@ function mouseClicked() {
       passcurrentInput = '';
 //Resume the rain sound upon pressing the button
       rainSFX.play();
+      }
+    }
+  }
+//If the Log out button is pressed on the laptop menu screen do the following sequence...
+  if (state == 'LaptopMenuScreen') {
+//Stop the rain SFX during this state
+      rainSFX.stop();
+    if (mouseX > 5 && mouseX < 115) {
+    if (mouseY > 10 && mouseY < 118) {
+//This is the current state it will be
+      state = 'MainRoom'
+//Reset the usercurrentInput
+      usercurrentInput = '';
+//Reset the passcurrentInput
+      passcurrentInput = '';
+//Resume the rain sound upon pressing the button
+      rainSFX.play();
+      }
+    }
+//If the lofify app is pressed apply the following sequence...
+    if (mouseX > 5 && mouseX < 115) {
+    if (mouseY > 50 && mouseY < 235) {
+      state = 'LofifyScreen'
+      }
+    }
+  }
+//Functionality with mouse clicked on the lofify screen
+  if (state == 'LofifyScreen') {
+    if (mouseX > 45 && mouseX < 275) {
+    if (mouseY > 630 && mouseY < 705) {
+      state = 'LaptopMenuScreen'
       }
     }
   }
