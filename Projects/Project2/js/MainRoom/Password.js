@@ -20,10 +20,28 @@ class Password {
   //Display the text that is written by the user
   display() {
     push();
+    if (password.inputIsCorrect()) {
+      fill(this.r,this.g,this.b);
+      state = 'LaptopMenuScreen'
+    }
+    else
+    {
     fill(this.white);
+  }
     textAlign(CENTER);
     textSize(this.size);
     text(passcurrentInput,this.indent,this.x,this.y);
     pop();
+  }
+
+  //If the password is correct return it true if not false
+  inputIsCorrect() {
+    if (passcurrentInput === passwordcode) {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 }

@@ -88,6 +88,8 @@ let bedlamp = undefined;
 let laptop = undefined;
 //laptop background to be called for a class
 let laptopbg = undefined;
+//laptopmenu to be called for a class
+let laptopmenu = undefined;
 //laptop login info to be called for a class
 let laptoploginfo = undefined;
 //Passwordloginfo to be called for a class
@@ -139,6 +141,8 @@ let laptopImage = undefined;
 let laptophoverImage = undefined;
 //Image of the laptop background
 let laptopbgImage = undefined;
+//Image of laptop menu
+let laptopmenuImage = undefined;
 //Image of laptop login info
 let laptoploginfoImage = undefined;
 //Image of passwordlog
@@ -195,6 +199,9 @@ Images
   laptopImage = loadImage('assets/images/Objects/laptop.png');
   laptophoverImage = loadImage('assets/images/Objects/laptophover.png');
   laptopbgImage = loadImage('assets/images/Objects/laptopbg.gif');
+
+//Loading the laptop menu image
+  laptopmenuImage = loadImage('assets/images/Objects/menuscreen.png');
 
 //Loading the laptop login info
   laptoploginfoImage = loadImage('assets/images/Objects/laptoplogin.png');
@@ -258,6 +265,8 @@ function setup() {
   laptop = new Laptop(80,90,180,465,laptopImage,laptophoverImage);
 //Laptop screen saver parameters
   laptopbg = new LaptopBackground(56,37,180,454,laptopbgImage);
+//laptop menu parameteres
+  laptopmenu = new LaptopMenu(1280,720,640,360,laptopmenuImage);
 //Laptop login info screen parameters
   laptoploginfo = new LaptopLogin(1280,720,640,360,laptoploginfoImage);
 //Once the username is correct this screen will overlay to type the password
@@ -291,6 +300,9 @@ function draw() {
   else if (state == 'PasswordState') {
     passwordlog.display();
     password.display();
+  }
+  else if (state == 'LaptopMenuScreen') {
+    laptopMenu();
   }
 }
 
@@ -351,8 +363,8 @@ function laptoplogin() {
 }
 
 //Everything relevant to the laptop menu screen
-function laptopmenu(){
-
+function laptopMenu(){
+  laptopmenu.display();
 }
 
 /*=====P5 Functions====*\
