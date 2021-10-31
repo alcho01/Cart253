@@ -62,6 +62,15 @@ let bedlampOn = {
   a: 50,
 };
 
+//Setting the username/password
+let usernamecode = 'sleep';
+let passwordcode = '7259';
+
+//What has been typed for the username
+let usercurrentInput = '';
+//What has been typed for the password
+let passcurrentInput = '';
+
 /*=============================
 Classes to be called
 ===============================*/
@@ -81,6 +90,12 @@ let laptop = undefined;
 let laptopbg = undefined;
 //laptop login info to be called for a class
 let laptoploginfo = undefined;
+//Passwordloginfo to be called for a class
+let passwordlog = undefined;
+//username to be called for a class
+let username = undefined;
+//password to be called for a class
+let password = undefined;
 //Alarmclock to be called for a class
 let alarmclock = undefined;
 //Alarmtime to be called for a class
@@ -126,6 +141,8 @@ let laptophoverImage = undefined;
 let laptopbgImage = undefined;
 //Image of laptop login info
 let laptoploginfoImage = undefined;
+//Image of passwordlog
+let passwordlogImage = undefined;
 //Image of the alarm clock
 let alarmclockImage = undefined;
 //Image of arrows
@@ -181,6 +198,8 @@ Images
 
 //Loading the laptop login info
   laptoploginfoImage = loadImage('assets/images/Objects/laptoplogin.png');
+//loading the passwordlog info
+  passwordlogImage = loadImage('assets/images/Objects/passwordstate.png');
 
 //Loading the alarm clock image
   alarmclockImage = loadImage('assets/images/Objects/alarmclock.png');
@@ -231,14 +250,25 @@ function setup() {
   mainroom = new Mainroom(1280,720,640,360,mainroomImage);
 
 //Interactive objects class parameters(w,h,x,y,image,imageforhover)
+//Bed parameters
   bed = new Bed(600,400,585,554.8,bedImage,bedhoverImage);
+//Bed lamp parameters
   bedlamp = new BedLamp(70,100,520,370,bedlampImage,bedlamphoverImage);
-
+//Laptop parameters
   laptop = new Laptop(80,90,180,465,laptopImage,laptophoverImage);
+//Laptop screen saver parameters
   laptopbg = new LaptopBackground(56,37,180,454,laptopbgImage);
+//Laptop login info screen parameters
   laptoploginfo = new LaptopLogin(1280,720,640,360,laptoploginfoImage);
+//Once the username is correct this screen will overlay to type the password
+  passwordlog = new PasswordLog(1280,720,640,360,passwordlogImage);
+//Login Info username and password
+  username = new Username(330,1240);
+  password = new Password(450,1240);
 
+//The alarm clock parameters
   alarmclock = new AlarmClock(100,36,650,400,alarmclockImage);
+//The time on the alarm clock
 //Parameters(x,y,font)
   alarmtime = new AlarmTime(650,405,alarmtimeFont);
 
@@ -248,12 +278,19 @@ function setup() {
 }
 
 function draw() {
-//Organize what states the simulation consists of
+//Organize what states the simulation consists of...
+//The room the user begins on
   if (state == 'MainRoom') {
     mainRoom();
   }
+//If the laptop is pressed go to the log on screen
   else if (state == 'LaptopLogIn') {
     laptoplogin();
+  }
+//If the username is correct overlay this screen to type the password
+  else if (state == 'PasswordState') {
+    passwordlog.display();
+    password.display();
   }
 }
 
@@ -306,10 +343,36 @@ function checkbedlamplight() {
   }
 }
 
-//Everything relevant to the laptop screen
+//Everything relevant to the laptop login info screen
 function laptoplogin() {
   //Display the laptop login info
   laptoploginfo.display();
+  username.display();
+}
+
+//Everything relevant to the laptop menu screen
+function laptopmenu(){
+
+}
+
+/*=====P5 Functions====*\
+keyTyped,keyPressed,mouseClicked
+\*=====================*/
+
+//When a key is typed it will display on the LaptopLogIn screen. This needs to be done in the script.js file for it to work.
+function keyTyped() {
+  usercurrentInput += key;
+  if (state == 'PasswordState'){
+  passcurrentInput += key;
+  }
+}
+
+//When the backspace key is pressed it will delete the characters. *Trying to fix it so it deletes one character at a time keep getting NaN
+function keyPressed() {
+  if (keyCode ==  8) {
+    usercurrentInput = '';
+    passcurrentInput = '';
+  }
 }
 
 //Mouse Interaction
@@ -342,8 +405,27 @@ function mouseClicked() {
   if (state == 'LaptopLogIn') {
     if (mouseX > 600 && mouseX < 680) {
     if (mouseY > 550 && mouseY < 640) {
-//This is the current state
+//This is the current state it will be
       state = 'MainRoom'
+//Reset the usercurrentInput
+      usercurrentInput = '';
+//Reset the currentInput
+      passcurrentInput = '';
+//Resume the rain sound upon pressing the button
+      rainSFX.play();
+      }
+    }
+  }
+//If the Sleep button is pressed, return to the MainRoom
+  if (state == 'PasswordState') {
+    if (mouseX > 600 && mouseX < 680) {
+    if (mouseY > 550 && mouseY < 640) {
+//This is the current state it will be
+      state = 'MainRoom'
+//Reset the usercurrentInput
+      usercurrentInput = '';
+//Reset the passcurrentInput
+      passcurrentInput = '';
 //Resume the rain sound upon pressing the button
       rainSFX.play();
       }
