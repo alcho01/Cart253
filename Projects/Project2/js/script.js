@@ -23,8 +23,11 @@ Digital Clock Font : https://www.dafont.com/alarm-clock.font
 =============Sounds=============
 
 ============CodeIdeas===========
+These are examples that helped me come up with my own ideas and that I took inspiration from.
+
 Digital Clock Idea : https://editor.p5js.org/D_Snyder/sketches/Xtx2Zu9D5
 Rain Idea: Took inspiration from the Juggle Garden exercise. We went over gravity and those type of physics.
+Username and password idea inspired by Pippin's code : https://editor.p5js.org/pippinbarr/sketches/k4ETSg3oc
 */
 
 "use strict";
