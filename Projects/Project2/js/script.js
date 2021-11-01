@@ -118,6 +118,7 @@ Fonts
 ===============================*/
 
 let alarmtimeFont;
+let lofiFont;
 
 /*=============================
 Sounds
@@ -187,6 +188,8 @@ Fonts
 
 //Loading a font for the alarm clock time
   alarmtimeFont = loadFont('assets/fonts/alarmclock.ttf');
+//Loading a font for lofify currently playing
+  lofiFont = loadFont('assets/fonts/lofi.ttf');
 
 /*=============================
 Sounds
@@ -199,6 +202,7 @@ Sounds
   song5 = loadSound('assets/sounds/Mist.mp3');
   song6 = loadSound('assets/sounds/MidnightJourney.mp3');
 
+//Object sounds
   bedlampSFX = loadSound('assets/sounds/bedlampsfx.wav');
   rainSFX = loadSound('assets/sounds/Rain.wav');
 
@@ -402,6 +406,7 @@ function laptopMenu() {
 //Everything relevant to the lofify menu screen
 function lofifyMenu() {
   lofify.display();
+  cherrytreesong.display();
 }
 
 /*=====P5 Functions====*\
@@ -549,9 +554,12 @@ function mouseClicked() {
     }
   }
 }
+
+
 //Functionality for double clicked.
 function doubleClicked() {
   if (state == 'LofifyScreen') {
+//Song 1
     if (mouseX > 350 && mouseX < 1270){
     if (mouseY > 270 && mouseY < 340){
 //If double clicked play song1
@@ -565,6 +573,9 @@ function doubleClicked() {
       song6.stop();
       }
     }
+
+
+//Song 2
     if (mouseX > 350 && mouseX < 1270){
     if (mouseY > 345 && mouseY < 412){
 //If double clicked play song2
@@ -578,6 +589,8 @@ function doubleClicked() {
       song6.stop();
       }
     }
+
+//Song 3
     if (mouseX > 350 && mouseX < 1270){
     if (mouseY > 421 && mouseY < 486){
 //If double clicked play song3
@@ -591,6 +604,8 @@ function doubleClicked() {
       song6.stop();
       }
     }
+
+//Song 4
     if (mouseX > 350 && mouseX < 1270){
     if (mouseY > 497 && mouseY < 562){
 //If double clicked play song4
@@ -604,6 +619,8 @@ function doubleClicked() {
       song6.stop();
       }
     }
+
+//Song 5
     if (mouseX > 350 && mouseX < 1270){
     if (mouseY > 573 && mouseY < 638){
 //If double clicked play song5
@@ -617,6 +634,8 @@ function doubleClicked() {
       song6.stop();
       }
     }
+
+//Song 6
     if (mouseX > 350 && mouseX < 1270){
     if (mouseY > 646 && mouseY < 712){
 //If double clicked play song6
