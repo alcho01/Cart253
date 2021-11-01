@@ -47,9 +47,6 @@ let raindrop = [];
 //Amount of raindrops
 let numrainDrops = 200;
 
-//Store the songs here to be used for a shufflemode
-let songs = [];
-
 //Create variables for bedlamp lighting - Will be created in the script.js file
 let bedlamplight = undefined;
 let bedlamplightfill;
@@ -129,7 +126,13 @@ Sounds
 let rainSFX = undefined;
 //Sound of bedlamp chain
 let bedlampSFX = undefined;
-
+//Song list
+let song1 = undefined;
+let song2 = undefined;
+let song3 = undefined;
+let song4 = undefined;
+let song5 = undefined;
+let song6 = undefined;
 /*=============================
 Images
 ===============================*/
@@ -188,14 +191,13 @@ Fonts
 /*=============================
 Sounds
 ===============================*/
-  songs[0] = loadSound('assets/sounds/CherryTree.mp3');
-  songs[1] = loadSound('assets/sounds/OnMyMind.mp3');
-  songs[2] = loadSound('assets/sounds/Reflections.mp3');
-  songs[3] = loadSound('assets/sounds/Overcast.mp3');
-  songs[4] = loadSound('assets/sounds/Mist.mp3');
-  songs[5] = loadSound('assets/sounds/MidnightJourney.mp3');
-
-
+//Playlist songs found under lofify application
+  song1 = loadSound('assets/sounds/CherryTree.mp3');
+  song2 = loadSound('assets/sounds/OnMyMind.mp3');
+  song3 = loadSound('assets/sounds/Reflections.mp3');
+  song4 = loadSound('assets/sounds/Overcast.mp3');
+  song5 = loadSound('assets/sounds/Mist.mp3');
+  song6 = loadSound('assets/sounds/MidnightJourney.mp3');
 
   bedlampSFX = loadSound('assets/sounds/bedlampsfx.wav');
   rainSFX = loadSound('assets/sounds/Rain.wav');
@@ -255,9 +257,6 @@ function setup() {
   rainSFX.setVolume(0.5);
 //Loop the rain SFX
   rainSFX.loop();
-
-  songs = random(songs);
-
 //Determing a set fill for the bed lamp light before toggling it
   bedlamplightfill = color(bedlampOff.r,bedlampOff.g,bedlampOff.b,bedlampOff.a);
 
@@ -506,11 +505,43 @@ function mouseClicked() {
   }
 //Functionality with mouse clicked on the lofify screen
   if (state == 'LofifyScreen') {
-    if (mouseX > 350 && mouseX < 460){
-    if (mouseY > 140 && mouseY < 220){
-      songs.stop();
+//Button to stop for song1
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 270 && mouseY < 340){
+      song1.stop();
       }
     }
+//Button to stop for song2
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 345 && mouseY < 412){
+      song2.stop();
+      }
+    }
+//Button to stop for song3
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 421 && mouseY < 486){
+      song3.stop();
+      }
+    }
+//Button to stop for song4
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 497 && mouseY < 562){
+      song4.stop();
+      }
+    }
+//Button to stop for song5
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 573 && mouseY < 638){
+      song5.stop();
+      }
+    }
+//Button to stop for song6
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 646 && mouseY < 712){
+      song6.stop();
+      }
+    }
+//If the close window button is clicked return to the laptop menu screen
     if (mouseX > 45 && mouseX < 275) {
     if (mouseY > 630 && mouseY < 705) {
       state = 'LaptopMenuScreen'
@@ -518,14 +549,85 @@ function mouseClicked() {
     }
   }
 }
-
 //Functionality for double clicked.
 function doubleClicked() {
   if (state == 'LofifyScreen') {
-    if (mouseX > 350 && mouseX < 460){
-    if (mouseY > 140 && mouseY < 220){
-//If double clicked play shuffle mode
-      songs.play();
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 270 && mouseY < 340){
+//If double clicked play song1
+      song1.play();
+      song1.loop();
+//If double clicked stop all other songs except song 1
+      song2.stop();
+      song3.stop();
+      song4.stop();
+      song5.stop();
+      song6.stop();
+      }
+    }
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 345 && mouseY < 412){
+//If double clicked play song2
+      song2.play();
+      song2.loop();
+//If double clicked stop all other songs except song 2
+      song1.stop();
+      song3.stop();
+      song4.stop();
+      song5.stop();
+      song6.stop();
+      }
+    }
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 421 && mouseY < 486){
+//If double clicked play song3
+      song3.play();
+      song3.loop();
+//If double clicked stop all other songs except song 3
+      song1.stop();
+      song2.stop();
+      song4.stop();
+      song5.stop();
+      song6.stop();
+      }
+    }
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 497 && mouseY < 562){
+//If double clicked play song4
+      song4.play();
+      song4.loop();
+//If double clicked stop all other songs except song 4
+      song1.stop();
+      song2.stop();
+      song3.stop();
+      song5.stop();
+      song6.stop();
+      }
+    }
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 573 && mouseY < 638){
+//If double clicked play song5
+      song5.play();
+      song5.loop();
+//If double clicked stop all other songs except song 5
+      song1.stop();
+      song2.stop();
+      song3.stop();
+      song4.stop();
+      song6.stop();
+      }
+    }
+    if (mouseX > 350 && mouseX < 1270){
+    if (mouseY > 646 && mouseY < 712){
+//If double clicked play song6
+      song6.play();
+      song6.loop();
+//If double clicked stop all other songs except song 6
+      song1.stop();
+      song2.stop();
+      song3.stop();
+      song4.stop();
+      song5.stop();
       }
     }
   }
