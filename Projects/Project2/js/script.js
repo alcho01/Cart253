@@ -51,8 +51,7 @@ let numrainDrops = 200;
 let songVolume = 0.6;
 let sfxVolume = 0.5;
 
-//Create variables for bedlamp lighting - Will be created in the script.js file
-let bedlamplight = undefined;
+//Create variables for the colour of the lamp lighting
 let bedlamplightfill;
 //CREATING colour values for when the bed lamp light is off
 let bedlampOff = {
@@ -91,6 +90,8 @@ let mainroom = undefined;
 let bed = undefined;
 //bedlamp to be called for a class
 let bedlamp = undefined;
+//bedlamp lighting to be called for a class
+let bedlamplight = undefined;
 //laptop to be called for a class
 let laptop = undefined;
 //laptop background to be called for a class
@@ -178,7 +179,7 @@ let arrowLhoverImage = undefined;
 let lofifyImage = undefined;
 
 //What state is it in
-let state = 'LaptopMenuScreen'
+let state = 'MainRoom'
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -275,15 +276,6 @@ function setup() {
 //Determing a set fill for the bed lamp light before toggling it
   bedlamplightfill = color(bedlampOff.r,bedlampOff.g,bedlampOff.b,bedlampOff.a);
 
-//Bed lamp light parameters
-  bedlamplight = {
-    x: 0,
-    y: 0,
-    w: 1280,
-    h: 720,
-    on: false, //Light Starts off
-  };
-
 //RainDrop to be called from class
 //Create a for loop if i is less than 200 add a new rain drop
 //Parameters (w,h,x,y)
@@ -302,6 +294,8 @@ function setup() {
   bed = new Bed(600,400,585,554.8,bedImage,bedhoverImage);
 //Bed lamp parameters
   bedlamp = new BedLamp(70,100,520,370,bedlampImage,bedlamphoverImage);
+//Bed lamp light parameters
+  bedlamplight = new BedLampLight(1280,720,0,0);
 //Laptop parameters
   laptop = new Laptop(80,90,180,465,laptopImage,laptophoverImage);
 //Laptop screen saver parameters
@@ -345,9 +339,11 @@ function draw() {
     passwordlog.display();
     password.display();
   }
+  //go to the laptop menu screen
   else if (state == 'LaptopMenuScreen') {
     laptopMenu();
   }
+  //from the laptop menu screen go to the app lofify
   else if (state == 'LofifyScreen') {
     lofifyMenu();
   }
@@ -376,30 +372,11 @@ function mainRoom() {
   alarmclock.display();
   alarmtime.display();
 //Display the bed lamp lighting // Check if it is on or off
-  displaybedlamplight();
-  checkbedlamplight();
+  bedlamplight.display();
+  bedlamplight.checkbedlamplight();
 //Display the Arrows to switch between screens
   arrowleft.display();
   arrowright.display();
-}
-
-//Creating the bed light lamp display function in script.js
-function displaybedlamplight() {
-  push();
-  noStroke();
-  fill(bedlamplightfill);
-  rect(bedlamplight.x,bedlamplight.y,bedlamplight.w,bedlamplight.h);
-  pop();
-}
-
-//Check if the light is on or off
-function checkbedlamplight() {
-  if (bedlamplight.on) {
-    bedlamplightfill = color(bedlampOn.r,bedlampOn.g,bedlampOn.b,bedlampOn.a);
-  }
-  else {
-    bedlamplightfill = color(bedlampOff.r,bedlampOff.g,bedlampOff.b,bedlampOff.a);
-  }
 }
 
 //Everything relevant to the laptop login info screen
