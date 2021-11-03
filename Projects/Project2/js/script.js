@@ -1,5 +1,5 @@
 /**
-Title of Project
+Title of Project 3:00AM CYCLE
 Alex Cho
 
 
@@ -20,6 +20,7 @@ References for Images/Fonts/Sounds/Coding Ideas
 
 =============Fonts==============
 Digital Clock Font : https://www.dafont.com/alarm-clock.font
+Lofi font : https://www.dafont.com/digit-lofi.font
 =============Sounds=============
 
 ============CodeIdeas===========
@@ -46,6 +47,9 @@ let canvasDimensons = {
 let raindrop = [];
 //Amount of raindrops
 let numrainDrops = 200;
+//sound volume
+let songVolume = 0.6;
+let sfxVolume = 0.5;
 
 //Create variables for bedlamp lighting - Will be created in the script.js file
 let bedlamplight = undefined;
@@ -258,9 +262,16 @@ function setup() {
 
 //Setting up sounds (Volume,Loops)
 //Set the volume down a bit
-  rainSFX.setVolume(0.5);
+  rainSFX.setVolume(sfxVolume);
 //Loop the rain SFX
   rainSFX.loop();
+//Sets the song volume lower
+    song1.setVolume(songVolume);
+    song2.setVolume(songVolume);
+    song3.setVolume(songVolume);
+    song4.setVolume(songVolume);
+    song5.setVolume(songVolume);
+    song6.setVolume(songVolume);
 //Determing a set fill for the bed lamp light before toggling it
   bedlamplightfill = color(bedlampOff.r,bedlampOff.g,bedlampOff.b,bedlampOff.a);
 
@@ -406,7 +417,6 @@ function laptopMenu() {
 //Everything relevant to the lofify menu screen
 function lofifyMenu() {
   lofify.display();
-  cherrytreesong.display();
 }
 
 /*=====P5 Functions====*\
@@ -417,6 +427,7 @@ keyTyped,keyPressed,mouseClicked
 function keyTyped() {
   usercurrentInput += key;
   if (state == 'PasswordState'){
+//If it is under the password state allow this
   passcurrentInput += key;
   }
 }
@@ -434,220 +445,29 @@ function mouseClicked() {
   userStartAudio();
 //If the state is 'MainRoom' do the following orders
   if (state == 'MainRoom') {
-//Play the SFX for the raindrops
-      rainSFX.play();
-//If the bed lamp is clicked once it will turn on, if it is clicked twice it will turn off
-    if (mouseX > 500 && mouseX < 545) {
-    if (mouseY > 320 && mouseY < 405) {
-//Toggles between the light being on and off
-      bedlamplight.on = !bedlamplight.on
-//Play the SFX for the bed lamp if it being turned on or off
-      bedlampSFX.play();
-      }
-    }
-//If the laptop is clicked, open up the login info
-    if (mouseX > 140 && mouseX < 215) {
-    if (mouseY > 400 && mouseY < 500) {
-//Change states when the laptop is clicked
-      state = 'LaptopLogIn'
-//Stop the rain SFX during this state
-      rainSFX.stop();
-      }
-    }
+    mainroom.mouseClicked();
   }
-//If the Sleep button is pressed, return to the MainRoom
+//username state
   if (state == 'LaptopLogIn') {
-    if (mouseX > 600 && mouseX < 680) {
-    if (mouseY > 550 && mouseY < 640) {
-//This is the current state it will be
-      state = 'MainRoom'
-//Reset the usercurrentInput
-      usercurrentInput = '';
-//Reset the currentInput
-      passcurrentInput = '';
-//Resume the rain sound upon pressing the button
-      rainSFX.play();
-      }
-    }
+    laptoploginfo.mouseClicked();
   }
-//If the Sleep button is pressed, return to the MainRoom
+//password state
   if (state == 'PasswordState') {
-    if (mouseX > 600 && mouseX < 680) {
-    if (mouseY > 550 && mouseY < 640) {
-//This is the current state it will be
-      state = 'MainRoom'
-//Reset the usercurrentInput
-      usercurrentInput = '';
-//Reset the passcurrentInput
-      passcurrentInput = '';
-//Resume the rain sound upon pressing the button
-      rainSFX.play();
-      }
-    }
+    passwordlog.mouseClicked();
   }
 //If the Log out button is pressed on the laptop menu screen do the following sequence...
   if (state == 'LaptopMenuScreen') {
-//Stop the rain SFX during this state
-      rainSFX.stop();
-    if (mouseX > 5 && mouseX < 115) {
-    if (mouseY > 10 && mouseY < 118) {
-//This is the current state it will be
-      state = 'MainRoom'
-//Reset the usercurrentInput
-      usercurrentInput = '';
-//Reset the passcurrentInput
-      passcurrentInput = '';
-//Resume the rain sound upon pressing the button
-      rainSFX.play();
-      }
-    }
-//If the lofify app is pressed apply the following sequence...
-    if (mouseX > 5 && mouseX < 115) {
-    if (mouseY > 120 && mouseY < 235) {
-      state = 'LofifyScreen'
-      }
-    }
+    laptopmenu.mouseClicked();
   }
 //Functionality with mouse clicked on the lofify screen
   if (state == 'LofifyScreen') {
-//Button to stop for song1
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 270 && mouseY < 340){
-      song1.stop();
-      }
-    }
-//Button to stop for song2
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 345 && mouseY < 412){
-      song2.stop();
-      }
-    }
-//Button to stop for song3
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 421 && mouseY < 486){
-      song3.stop();
-      }
-    }
-//Button to stop for song4
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 497 && mouseY < 562){
-      song4.stop();
-      }
-    }
-//Button to stop for song5
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 573 && mouseY < 638){
-      song5.stop();
-      }
-    }
-//Button to stop for song6
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 646 && mouseY < 712){
-      song6.stop();
-      }
-    }
-//If the close window button is clicked return to the laptop menu screen
-    if (mouseX > 45 && mouseX < 275) {
-    if (mouseY > 630 && mouseY < 705) {
-      state = 'LaptopMenuScreen'
-      }
-    }
+    lofify.mouseClicked();
   }
 }
-
 
 //Functionality for double clicked.
 function doubleClicked() {
   if (state == 'LofifyScreen') {
-//Song 1
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 270 && mouseY < 340){
-//If double clicked play song1
-      song1.play();
-      song1.loop();
-//If double clicked stop all other songs except song 1
-      song2.stop();
-      song3.stop();
-      song4.stop();
-      song5.stop();
-      song6.stop();
-      }
-    }
-
-
-//Song 2
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 345 && mouseY < 412){
-//If double clicked play song2
-      song2.play();
-      song2.loop();
-//If double clicked stop all other songs except song 2
-      song1.stop();
-      song3.stop();
-      song4.stop();
-      song5.stop();
-      song6.stop();
-      }
-    }
-
-//Song 3
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 421 && mouseY < 486){
-//If double clicked play song3
-      song3.play();
-      song3.loop();
-//If double clicked stop all other songs except song 3
-      song1.stop();
-      song2.stop();
-      song4.stop();
-      song5.stop();
-      song6.stop();
-      }
-    }
-
-//Song 4
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 497 && mouseY < 562){
-//If double clicked play song4
-      song4.play();
-      song4.loop();
-//If double clicked stop all other songs except song 4
-      song1.stop();
-      song2.stop();
-      song3.stop();
-      song5.stop();
-      song6.stop();
-      }
-    }
-
-//Song 5
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 573 && mouseY < 638){
-//If double clicked play song5
-      song5.play();
-      song5.loop();
-//If double clicked stop all other songs except song 5
-      song1.stop();
-      song2.stop();
-      song3.stop();
-      song4.stop();
-      song6.stop();
-      }
-    }
-
-//Song 6
-    if (mouseX > 350 && mouseX < 1270){
-    if (mouseY > 646 && mouseY < 712){
-//If double clicked play song6
-      song6.play();
-      song6.loop();
-//If double clicked stop all other songs except song 6
-      song1.stop();
-      song2.stop();
-      song3.stop();
-      song4.stop();
-      song5.stop();
-      }
-    }
+    lofify.doubleClicked();
   }
 }

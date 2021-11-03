@@ -16,4 +16,21 @@ class LaptopLogin extends Apartment {
     image(this.laptoploginfoImage,this.x,this.y,this.width,this.height);
     pop();
   }
+
+//Mouse function
+  mouseClicked() {
+ //If the Sleep button is pressed, return to the MainRoom
+    if (mouseX > 600 && mouseX < 680) {
+    if (mouseY > 550 && mouseY < 640) {
+ //This is the current state it will be
+      state = 'MainRoom'
+ //Reset the usercurrentInput
+      usercurrentInput = '';
+ //Reset the currentInput
+      passcurrentInput = '';
+ //Resume the rain sound upon pressing the button
+      rainSFX.play();
+      }
+    }
+  }
 }
