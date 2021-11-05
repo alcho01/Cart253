@@ -25,8 +25,7 @@ class Username {
       state = 'PasswordState'
       //Call the password state here
     }
-    else
-    {
+    else {
     fill(this.white);
   }
     textAlign(CENTER);
