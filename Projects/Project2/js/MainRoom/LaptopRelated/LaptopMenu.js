@@ -38,5 +38,11 @@ class LaptopMenu extends Apartment{
         state = 'LofifyScreen'
         }
       }
+ //If the atom app is pressed apply the following sequence...
+      if (mouseX > 5 && mouseX < 115) {
+      if (mouseY > 248 && mouseY < 348) {
+        state = 'AtomScreen'
+      }
     }
   }
+}
