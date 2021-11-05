@@ -4,7 +4,7 @@ it will notify the user of that. (The object will change to black and white)
 The other element I wanted to test, was the actual interactivity of the object when the mouse is clicked.
 For this example, when the lamp is clicked an overlay will display a lighter shade. (NEEDS TO BE GREYED OUT TO DISPLAY LIGHT)
 When it is clicked again it will switch to a darker shade
-For the prototype I didn't create classes(Exception raindrop), or really tidy up the code. I will do both of these things in the final assignment.
+For the prototype I didn't create classes(Exception raindrop), or completely tidy up the code. I will do both of these things in the final assignment.
 
 Other small things,
 - Included raindrops. I wanted to see how it would look like.
