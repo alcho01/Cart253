@@ -6,6 +6,11 @@ class Atom extends Apartment{
     super(w,h,x,y);
     //Image
     this.atomImage = atomImage;
+    //Mouse Clicked Positions (X2 = further x point - Y2 = further y point)
+    this.exitbuttonX = 5;
+    this.exitbuttonX2 = 80;
+    this.exitbuttonY = 10
+    this.exitbuttonY2 = 80;
   }
 
   //Display the atom page
@@ -19,8 +24,8 @@ class Atom extends Apartment{
   //mouseclicked functions
   mouseClicked() {
   //If the x button is pressed return to laptop menu
-    if (mouseX > 5 && mouseX < 80) {
-    if (mouseY > 10 && mouseY < 80) {
+    if (mouseX > this.exitbuttonX && mouseX < this.exitbuttonX2) {
+    if (mouseY > this.exitbuttonY && mouseY < this.exitbuttonY2) {
       state = 'LaptopMenuScreen'
       }
     }

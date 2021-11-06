@@ -6,6 +6,11 @@ class Room2Layout extends Apartment {
     super(w,h,x,y);
   //Image
   this.room2layoutImage = room2layoutImage;
+  //Mouse Clicked Positions (X2 = further x point - Y2 = further y point)
+  this.arrowX = 1170;
+  this.arrowX2 = 1275;
+  this.arrowY = 605;
+  this.arrowY2 = 710;
   }
 
   //Display the room 2 layout
@@ -16,10 +21,11 @@ class Room2Layout extends Apartment {
     pop();
   }
 
+  //Mouse Function
   mouseClicked() {
   //If the arrow is clicked go to the main room
-    if (mouseX > 1170 && mouseX < 1275) {
-    if (mouseY > 605 && mouseY < 710) {
+    if (mouseX > this.arrowX && mouseX < this.arrowX2) {
+    if (mouseY > this.arrowY && mouseY < this.arrowY2) {
       state = 'MainRoom'
       }
     }
