@@ -21,6 +21,7 @@ class AtomText {
     push();
     //If correct fill it this colour
     if (atomText.inputIsCorrect()) {
+      task1complete = true;
       fill(this.r,this.g,this.b);
       sudoku.display();
     }

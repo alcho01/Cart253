@@ -13,6 +13,7 @@ class BedLamp {
     this.bedlamphoverImage = bedlamphoverImage;
   }
 
+  //Display the lamp
   display() {
     push();
     imageMode(CENTER);

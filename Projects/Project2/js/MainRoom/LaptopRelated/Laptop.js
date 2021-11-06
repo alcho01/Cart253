@@ -13,6 +13,7 @@ class Laptop {
     this.laptophoverImage = laptophoverImage;
   }
 
+  //Display the laptop
   display() {
     push();
     imageMode(CENTER);
