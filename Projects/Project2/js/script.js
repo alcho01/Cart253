@@ -2,9 +2,6 @@
 Title of Project 3:00AM CYCLE
 Alex Cho
 
-
-
-
 /========LEGEND========\
 w = width               y = Y-Position
 h = height              image = specified image
@@ -17,7 +14,8 @@ a = alpha value
 References for Images/Fonts/Sounds/Coding Ideas
 
 =============Images=============
-
+Cursor Look http://www.rw-designer.com/cursor-view/166785.png
+Cursor Interact http://www.rw-designer.com/cursor-view/146672.png
 =============Fonts==============
 Digital Clock Font : https://www.dafont.com/alarm-clock.font
 Lofi font : https://www.dafont.com/digit-lofi.font
@@ -68,6 +66,9 @@ let bedlampOn = {
   a: 50,
 };
 
+//Set the first task to uncomplete
+let task1complete = false;
+
 //Setting the username/password
 let usernamecode = 'sleep';
 let passwordcode = '7259';
@@ -76,6 +77,11 @@ let passwordcode = '7259';
 let usercurrentInput = '';
 //What has been typed for the password
 let passcurrentInput = '';
+
+//What needs to be typed in the atom app
+let atomCode = 'image(object.image,object.x,object.y,object.w,object.h);';
+//What has been typed for the code
+let atomcurrentInput = '';
 
 /*=============================
 Classes to be called
@@ -92,15 +98,17 @@ let bed = undefined;
 let bedlamp = undefined;
 //bedlamp lighting to be called for a class
 let bedlamplight = undefined;
+//Hidden Message to be called for a class
+let hiddenmessage = undefined;
 //laptop to be called for a class
 let laptop = undefined;
 //laptop background to be called for a class
 let laptopbg = undefined;
 //laptopmenu to be called for a class
 let laptopmenu = undefined;
-//laptop login info to be called for a class
+//laptop login info to be called for a class (This is the screen when no input is entered)
 let laptoploginfo = undefined;
-//Passwordloginfo to be called for a class
+//Passwordloginfo to be called for a class (This class is called when the username is properly encrypted )
 let passwordlog = undefined;
 //username to be called for a class
 let username = undefined;
@@ -110,13 +118,20 @@ let password = undefined;
 let alarmclock = undefined;
 //Alarmtime to be called for a class
 let alarmtime = undefined;
+//Alert/Pop up that you can't do that
+let alertsleep = undefined;
 //Arrows to be called for a class
 let arrowright = undefined;
 let arrowleft = undefined;
 
-//=========Lofify App==========//
+//=========Laptop Apps==========//
 //Lofify screen to be called for a class
 let lofify = undefined;
+
+//Atom entities to be called for a class
+let atom = undefined;
+let atomText = undefined;
+let sudoku = undefined;
 
 /*=============================
 Fonts
@@ -155,6 +170,8 @@ let bedhoverImage = undefined;
 //Images of the bedlamp
 let bedlampImage = undefined;
 let bedlamphoverImage = undefined;
+//Image of the hidden message
+let hiddenmessageImage = undefined;
 //Images of the laptop
 let laptopImage = undefined;
 let laptophoverImage = undefined;
@@ -168,15 +185,21 @@ let laptoploginfoImage = undefined;
 let passwordlogImage = undefined;
 //Image of the alarm clock
 let alarmclockImage = undefined;
+//Image of no sleep alert
+let alertsleepImage = undefined;
 //Image of arrows
 let arrowrightImage = undefined;
 let arrowRhoverImage = undefined;
 let arrowleftImage = undefined;
 let arrowLhoverImage = undefined;
 
-//=========Lofify App==========//
+//=========Laptop Apps==========//
 //Image of lofify in app
 let lofifyImage = undefined;
+//Image of atom app when opened
+let atomImage = undefined;
+let sudokuImage = undefined;
+
 
 //What state is it in
 let state = 'MainRoom'
@@ -199,6 +222,7 @@ Fonts
 /*=============================
 Sounds
 ===============================*/
+
 //Playlist songs found under lofify application
   song1 = loadSound('assets/sounds/CherryTree.mp3');
   song2 = loadSound('assets/sounds/OnMyMind.mp3');
@@ -229,6 +253,9 @@ Images
   bedlampImage =  loadImage('assets/images/Objects/lamp.png');
   bedlamphoverImage = loadImage('assets/images/Objects/lamphover.png');
 
+//Loading Hidden Message
+  hiddenmessageImage = loadImage('assets/images/Objects/hiddenmessage.png');
+
 //Loading the laptop images
   laptopImage = loadImage('assets/images/Objects/laptop.png');
   laptophoverImage = loadImage('assets/images/Objects/laptophover.png');
@@ -243,9 +270,16 @@ Images
 
 //Loading the lofify screen
   lofifyImage = loadImage('assets/images/Objects/lofify.png');
+//Loading the atom screen
+  atomImage = loadImage('assets/images/Objects/atom.png');
+//Loading the sudoku image
+  sudokuImage = loadImage('assets/images/Objects/sudoku.png');
 
 //Loading the alarm clock image
   alarmclockImage = loadImage('assets/images/Objects/alarmclock.png');
+
+//Loading the alert sleep image
+  alertsleepImage = loadImage('assets/images/Objects/nosleep.png');
 
 //Loading images of arrows
   arrowrightImage = loadImage('assets/images/Arrows/arrowright.png');
@@ -280,7 +314,7 @@ function setup() {
 //Create a for loop if i is less than 200 add a new rain drop
 //Parameters (w,h,x,y)
   for (let i = 0; i < numrainDrops; i++) {
-    raindrop[i] = new RainDrop(random(1,4), random(5,8), random(0, width), random(0, -height));
+    raindrop[i] = new RainDrop(random(1,4), random(5,8), random(0, width), random(50, 800));
   }
 
 //Cityscapes class parameters(w,h,x,y,image)
@@ -296,6 +330,8 @@ function setup() {
   bedlamp = new BedLamp(70,100,520,370,bedlampImage,bedlamphoverImage);
 //Bed lamp light parameters
   bedlamplight = new BedLampLight(1280,720,0,0);
+//Hidden message parameters
+  hiddenmessage = new HiddenMessage(100,100,600,50,hiddenmessageImage);
 //Laptop parameters
   laptop = new Laptop(80,90,180,465,laptopImage,laptophoverImage);
 //Laptop screen saver parameters
@@ -313,11 +349,21 @@ function setup() {
 //Lofify screen
   lofify = new Lofify(1280,720,640,360,lofifyImage);
 
+//atom screen
+  atom = new Atom(1280,720,640,360,atomImage);
+//atom text (x,y)
+  atomText = new AtomText(250,533);
+//Sudoku (w,h,x,y,image)
+  sudoku = new Sudoku(350,350,950,350,sudokuImage);
+
 //The alarm clock parameters
   alarmclock = new AlarmClock(100,36,650,400,alarmclockImage);
 //The time on the alarm clock
 //Parameters(x,y,font)
   alarmtime = new AlarmTime(650,405,alarmtimeFont);
+
+//alertsleep parameters (w,h,x,y,image)
+  alertsleep = new AlertSleep(400,100,210,60,alertsleepImage);
 
 //Arrows class parameters(w,h,x,y,image,imageforhover)
   arrowleft = new LeftArrow(100,100,60,660,arrowleftImage,arrowLhoverImage);
@@ -339,13 +385,17 @@ function draw() {
     passwordlog.display();
     password.display();
   }
-  //go to the laptop menu screen
+//go to the laptop menu screen
   else if (state == 'LaptopMenuScreen') {
     laptopMenu();
   }
-  //from the laptop menu screen go to the app lofify
+//from the laptop menu screen go to the app lofify
   else if (state == 'LofifyScreen') {
     lofifyMenu();
+  }
+//If atom app is pressed go to the atom screen
+  else if (state == 'AtomScreen') {
+    atomMenu();
   }
 }
 
@@ -353,6 +403,7 @@ function draw() {
 function mainRoom() {
 //Display the cityscape
   cityscape.display();
+
 //Display the raindrops //Need a for loop for arrays. Call the class functions in the for loop to display the raindrops
   for (let i = 0; i < raindrop.length; i++) {
     raindrop[i].display();
@@ -360,6 +411,8 @@ function mainRoom() {
   }
 //Display the room
   mainroom.display();
+//Display the alert that the user can't fall asleep
+  alertsleep.display();
 //Display the bed
   bed.display();
 //Display the bed lamp
@@ -374,6 +427,8 @@ function mainRoom() {
 //Display the bed lamp lighting // Check if it is on or off
   bedlamplight.display();
   bedlamplight.checkbedlamplight();
+//Display the hidden message
+  hiddenmessage.display();
 //Display the Arrows to switch between screens
   arrowleft.display();
   arrowright.display();
@@ -396,6 +451,12 @@ function lofifyMenu() {
   lofify.display();
 }
 
+//Everything relevant to the atom menu screen
+function atomMenu() {
+  atom.display();
+  atomText.display();
+}
+
 /*=====P5 Functions====*\
 keyTyped,keyPressed,mouseClicked
 \*=====================*/
@@ -403,9 +464,12 @@ keyTyped,keyPressed,mouseClicked
 //When a key is typed it will display on the LaptopLogIn screen. This needs to be done in the script.js file for it to work.
 function keyTyped() {
   usercurrentInput += key;
-  if (state == 'PasswordState'){
+  if (state == 'PasswordState') {
 //If it is under the password state allow this
-  passcurrentInput += key;
+    passcurrentInput += key;
+  }
+  else if (state == 'AtomScreen') {
+    atomcurrentInput += key;
   }
 }
 
@@ -414,6 +478,7 @@ function keyPressed() {
   if (keyCode ==  8) {
     usercurrentInput = '';
     passcurrentInput = '';
+    atomcurrentInput = '';
   }
 }
 
@@ -439,6 +504,10 @@ function mouseClicked() {
 //Functionality with mouse clicked on the lofify screen
   if (state == 'LofifyScreen') {
     lofify.mouseClicked();
+  }
+//Functionality with mouse clicked on the atom screen
+  if (state == 'AtomScreen') {
+    atom.mouseClicked();
   }
 }
 
