@@ -20,7 +20,9 @@ Cursor Interact http://www.rw-designer.com/cursor-view/146672.png
 Digital Clock Font : https://www.dafont.com/alarm-clock.font
 Lofi font : https://www.dafont.com/digit-lofi.font
 =============Sounds=============
-
+Type soundFX https://freesound.org/people/Breviceps/sounds/447909/
+Lamp soundFX https://freesound.org/people/PhillipArthur/sounds/541761/
+Rain soundFX https://freesound.org/people/InspectorJ/sounds/346642/
 ============CodeIdeas===========
 These are examples that helped me come up with my own ideas and that I took inspiration from.
 
@@ -40,6 +42,10 @@ let canvasDimensons = {
   x: 1280,
   y: 720,
 };
+
+//Array for clouds
+let cloud = [];
+let numclouds = 5;
 
 //Array for raindrops
 let raindrop = [];
@@ -133,6 +139,12 @@ let atom = undefined;
 let atomText = undefined;
 let sudoku = undefined;
 
+//=========ROOM 2==========//
+//The same cityscape but positioned differently
+let cityscape2 = undefined;
+//Room2layout to be called for a class
+let room2layout = undefined;
+
 /*=============================
 Fonts
 ===============================*/
@@ -145,6 +157,8 @@ Sounds
 ===============================*/
 //Sound of rain
 let rainSFX = undefined;
+//Sound of typing
+let typeSFX = undefined;
 //Sound of bedlamp chain
 let bedlampSFX = undefined;
 //Song list
@@ -200,6 +214,11 @@ let lofifyImage = undefined;
 let atomImage = undefined;
 let sudokuImage = undefined;
 
+//=========ROOM 2==========//
+//Image of cityscape2
+let cityscape2Image = undefined;
+//Image of room2layout
+let room2layoutImage = undefined;
 
 //What state is it in
 let state = 'MainRoom'
@@ -234,6 +253,7 @@ Sounds
 //Object sounds
   bedlampSFX = loadSound('assets/sounds/bedlampsfx.wav');
   rainSFX = loadSound('assets/sounds/Rain.wav');
+  typeSFX = loadSound('assets/sounds/type.wav');
 
 /*=============================
 Images
@@ -241,9 +261,11 @@ Images
 
 //Loading images of cityscapes
   cityscapeImage = loadImage('assets/images/Background/bgmain.png');
+  cityscape2Image = loadImage('assets/images/Background/bg2.png');
 
 //Loading images of rooms
   mainroomImage = loadImage('assets/images/Rooms/MainRoom.png');
+  room2layoutImage = loadImage('assets/images/Rooms/Room2.png');
 
 //Loading images of main room interactive objects
 //Loading the bed images
@@ -310,6 +332,11 @@ function setup() {
 //Determing a set fill for the bed lamp light before toggling it
   bedlamplightfill = color(bedlampOff.r,bedlampOff.g,bedlampOff.b,bedlampOff.a);
 
+/*=============================
+          UNIVERSAL
+===============================*/
+
+
 //RainDrop to be called from class
 //Create a for loop if i is less than 200 add a new rain drop
 //Parameters (w,h,x,y)
@@ -317,46 +344,59 @@ function setup() {
     raindrop[i] = new RainDrop(random(1,4), random(5,8), random(0, width), random(50, 800));
   }
 
-//Cityscapes class parameters(w,h,x,y,image)
+//Citylight to be called for a class (w,h,x,y)
+  for (let i = 0; i < numclouds; i++) {
+    cloud[i] = new Cloud(180, 50, random(windowWidth), random(0,514));
+  }
+
+//Arrows class parameters (w,h,x,y,image,imageforhover)
+  arrowleft = new LeftArrow(100,100,60,660,arrowleftImage,arrowLhoverImage);
+  arrowright = new RightArrow(100,100,1220,660,arrowrightImage,arrowRhoverImage);
+
+/*=============================
+          MAIN ROOM
+===============================*/
+
+//Cityscapes class parameters (w,h,x,y,image)
   cityscape = new Cityscape(1280,720,640,360,cityscapeImage);
 
-//Rooms class parameters(w,h,x,y,image)
+//Rooms class parameters (w,h,x,y,image)
   mainroom = new Mainroom(1280,720,640,360,mainroomImage);
 
-//Interactive objects class parameters(w,h,x,y,image,imageforhover)
-//Bed parameters
+//Bed parameters (w,h,x,y,image,imageforhover)
   bed = new Bed(600,400,585,554.8,bedImage,bedhoverImage);
-//Bed lamp parameters
+//Bed lamp parameters (w,h,x,y,image,imageforhover)
   bedlamp = new BedLamp(70,100,520,370,bedlampImage,bedlamphoverImage);
-//Bed lamp light parameters
+//Bed lamp light parameters (w,h,x,y)
   bedlamplight = new BedLampLight(1280,720,0,0);
-//Hidden message parameters
+//Hidden message parameters (w,h,x,y,image)
   hiddenmessage = new HiddenMessage(100,100,600,50,hiddenmessageImage);
-//Laptop parameters
+
+//Laptop parameters(w,h,x,y,image,imageforhover)
   laptop = new Laptop(80,90,180,465,laptopImage,laptophoverImage);
-//Laptop screen saver parameters
+//Laptop screen saver parameters (w,h,x,y,image)
   laptopbg = new LaptopBackground(56,37,180,454,laptopbgImage);
-//laptop menu parameteres
+//laptop menu parameteres (w,h,x,y,image)
   laptopmenu = new LaptopMenu(1280,720,640,360,laptopmenuImage);
-//Laptop login info screen parameters
+//Laptop login info screen parameters (w,h,x,y,image)
   laptoploginfo = new LaptopLogin(1280,720,640,360,laptoploginfoImage);
-//Once the username is correct this screen will overlay to type the password
+//Once the username is correct this screen will overlay to type the password (w,h,x,y,image)
   passwordlog = new PasswordLog(1280,720,640,360,passwordlogImage);
-//Login Info username and password
+//Login Info username and password (x,y)
   username = new Username(330,1240);
   password = new Password(450,1240);
 
-//Lofify screen
+//Lofify screen (w,h,x,y,image)
   lofify = new Lofify(1280,720,640,360,lofifyImage);
 
-//atom screen
+//atom screen (w,h,x,y,image)
   atom = new Atom(1280,720,640,360,atomImage);
 //atom text (x,y)
   atomText = new AtomText(250,533);
 //Sudoku (w,h,x,y,image)
   sudoku = new Sudoku(350,350,950,350,sudokuImage);
 
-//The alarm clock parameters
+//The alarm clock parameters (w,h,x,y,image)
   alarmclock = new AlarmClock(100,36,650,400,alarmclockImage);
 //The time on the alarm clock
 //Parameters(x,y,font)
@@ -365,9 +405,15 @@ function setup() {
 //alertsleep parameters (w,h,x,y,image)
   alertsleep = new AlertSleep(400,100,210,60,alertsleepImage);
 
-//Arrows class parameters(w,h,x,y,image,imageforhover)
-  arrowleft = new LeftArrow(100,100,60,660,arrowleftImage,arrowLhoverImage);
-  arrowright = new RightArrow(100,100,1220,660,arrowrightImage,arrowRhoverImage);
+/*=============================
+            ROOM 2
+===============================*/
+
+//cityscape2 parameters (w,h,x,y,image)
+  cityscape2 = new Cityscape2(1280,720,640,360,cityscape2Image);
+//room2layout parameters (w,h,x,y,image)
+  room2layout = new Room2Layout(1280,720,640,360,room2layoutImage);
+
 }
 
 function draw() {
@@ -397,6 +443,10 @@ function draw() {
   else if (state == 'AtomScreen') {
     atomMenu();
   }
+//If the left arrow is pressed go to room 2
+  else if (state == 'Room2') {
+    room2();
+  }
 }
 
 //Everything relevant to the main room - All needs to be in the same function because it is going to be converted to a state
@@ -407,8 +457,15 @@ function mainRoom() {
 //Display the raindrops //Need a for loop for arrays. Call the class functions in the for loop to display the raindrops
   for (let i = 0; i < raindrop.length; i++) {
     raindrop[i].display();
-    raindrop[i].update();
+    raindrop[i].move();
   }
+
+//Display the clouds
+  for (let i = 0; i < cloud.length; i++) {
+    cloud[i].display();
+    cloud[i].update();
+  }
+
 //Display the room
   mainroom.display();
 //Display the alert that the user can't fall asleep
@@ -433,6 +490,32 @@ function mainRoom() {
   arrowleft.display();
   arrowright.display();
 }
+
+//Everything relevant to room 2
+function room2() {
+//Display the landscape for this room
+  cityscape2.display();
+
+//Display the raindrops //Need a for loop for arrays. Call the class functions in the for loop to display the raindrops
+  for (let i = 0; i < raindrop.length; i++) {
+    raindrop[i].display();
+    raindrop[i].move();
+  }
+
+//Display the clouds
+  for (let i = 0; i < cloud.length; i++) {
+    cloud[i].display();
+    cloud[i].update();
+  }
+
+//Display the room layout
+    room2layout.display();
+
+//Display the Arrows to switch between screens
+    arrowright.display();
+  }
+
+
 
 //Everything relevant to the laptop login info screen
 function laptoplogin() {
@@ -463,12 +546,20 @@ keyTyped,keyPressed,mouseClicked
 
 //When a key is typed it will display on the LaptopLogIn screen. This needs to be done in the script.js file for it to work.
 function keyTyped() {
-  usercurrentInput += key;
-  if (state == 'PasswordState') {
+  if (state == 'LaptopLogIn') {
+//Play typing sound
+    typeSFX.play();
+    usercurrentInput += key;
+  }
+  else if (state == 'PasswordState') {
 //If it is under the password state allow this
+//Play typing sound
+    typeSFX.play();
     passcurrentInput += key;
   }
   else if (state == 'AtomScreen') {
+//Play typing sound
+    typeSFX.play();
     atomcurrentInput += key;
   }
 }
@@ -488,6 +579,10 @@ function mouseClicked() {
 //If the state is 'MainRoom' do the following orders
   if (state == 'MainRoom') {
     mainroom.mouseClicked();
+  }
+//Room 2 mouse functionality
+  if (state == 'Room2') {
+    room2layout.mouseClicked();
   }
 //username state
   if (state == 'LaptopLogIn') {

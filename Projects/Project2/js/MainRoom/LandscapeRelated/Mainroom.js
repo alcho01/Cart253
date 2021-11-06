@@ -38,5 +38,12 @@ class Mainroom extends Apartment  {
         rainSFX.stop();
         }
       }
+  //If the left arrow is pressed switch to Room2
+      if (mouseX > 14 && mouseX < 114) {
+      if (mouseY > 611 && mouseY < 715) {
+  //Change states when the left arrow is clicked
+        state = 'Room2'
+      }
     }
   }
+}

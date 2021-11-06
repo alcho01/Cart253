@@ -1,3 +1,4 @@
+//Class for rain
 class RainDrop {
 
   constructor(w,h,x,y) {
@@ -21,7 +22,7 @@ class RainDrop {
   }
 
   //Update the position of the raindrop
-  update() {
+  move() {
     //Set A speed, a gravity and include it into the Y equation
     this.speed = random(5,8); //Play around with these values until I like how it looks
     this.gravity = 1.25; //Play around with these values until I like how it looks
