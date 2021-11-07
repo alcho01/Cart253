@@ -27,7 +27,7 @@ Rain soundFX https://freesound.org/people/InspectorJ/sounds/346642/
 These are examples that helped me come up with my own ideas and that I took inspiration from.
 
 Digital Clock Idea : https://editor.p5js.org/D_Snyder/sketches/Xtx2Zu9D5
-Rain Idea: Took inspiration from the Juggle Garden exercise. We went over gravity and those type of physics.
+Rain Idea: Took inspiration from the Juggle Garden exercise.
 Username and password idea inspired by Pippin's code : https://editor.p5js.org/pippinbarr/sketches/k4ETSg3oc
 */
 
@@ -148,6 +148,8 @@ let sudoku = undefined;
 let cityscape2 = undefined;
 //Room2layout to be called for a class
 let room2layout = undefined;
+//coffee to be calle for a class
+let coffee = undefined;
 
 /*=============================
 Fonts
@@ -223,6 +225,8 @@ let sudokuImage = undefined;
 let cityscape2Image = undefined;
 //Image of room2layout
 let room2layoutImage = undefined;
+//Image of coffee
+let coffeeImage = undefined;
 
 //What state is it in
 let state = 'MainRoom'
@@ -306,6 +310,9 @@ Images
 
 //Loading the alert sleep image
   alertsleepImage = loadImage('assets/images/Objects/nosleep.png');
+
+//Loading the coffee image
+  coffeeImage = loadImage('assets/images/Objects/coffee.gif');
 
 //Loading images of arrows
   arrowrightImage = loadImage('assets/images/Arrows/arrowright.png');
@@ -419,6 +426,8 @@ function setup() {
   cityscape2 = new Cityscape2(1280,720,640,360,cityscape2Image);
 //room2layout parameters (w,h,x,y,image)
   room2layout = new Room2Layout(1280,720,640,360,room2layoutImage);
+//coffee image parameters (w,h,x,y,image)
+  coffee = new Coffee(60,60,573,570,coffeeImage);
 
 }
 
@@ -518,6 +527,9 @@ function room2() {
 
 //Display the room layout
     room2layout.display();
+
+//Display the coffee
+    coffee.display();
 
 //Display the Arrows to switch between screens
     arrowright.display();
