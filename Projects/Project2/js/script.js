@@ -150,6 +150,8 @@ let cityscape2 = undefined;
 let room2layout = undefined;
 //coffee to be calle for a class
 let coffee = undefined;
+//Aquarium to be called for a class
+let aquarium = undefined;
 
 /*=============================
 Fonts
@@ -227,6 +229,9 @@ let cityscape2Image = undefined;
 let room2layoutImage = undefined;
 //Image of coffee
 let coffeeImage = undefined;
+//Images of aquarium
+let aquariumImage = undefined;
+let aquariumHoverImage = undefined;
 
 //What state is it in
 let state = 'MainRoom'
@@ -310,6 +315,10 @@ Images
 
 //Loading the alert sleep image
   alertsleepImage = loadImage('assets/images/Objects/nosleep.png');
+
+//Loading the aquarium images
+  aquariumImage = loadImage('assets/images/Objects/aquarium.png');
+  aquariumHoverImage = loadImage('assets/images/Objects/aquariumhover.png');
 
 //Loading the coffee image
   coffeeImage = loadImage('assets/images/Objects/coffee.gif');
@@ -426,8 +435,13 @@ function setup() {
   cityscape2 = new Cityscape2(1280,720,640,360,cityscape2Image);
 //room2layout parameters (w,h,x,y,image)
   room2layout = new Room2Layout(1280,720,640,360,room2layoutImage);
+
 //coffee image parameters (w,h,x,y,image)
   coffee = new Coffee(60,60,573,570,coffeeImage);
+
+//Aquarium parameters (w,h,x,y,image,hoverimage)
+  aquarium = new Aquarium(180,130,773,460,aquariumImage,aquariumHoverImage);
+
 
 }
 
@@ -527,12 +541,16 @@ function room2() {
 
 //Display the room layout
     room2layout.display();
-
+//Display the aquarium
+    aquarium.display();
 //Display the coffee
     coffee.display();
 
+
 //Display the Arrows to switch between screens
     arrowright.display();
+//Display the mouse cursor
+    mousecursor.display();
   }
 
 

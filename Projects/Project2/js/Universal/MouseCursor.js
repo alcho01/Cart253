@@ -14,6 +14,8 @@ class MouseCursor {
 
       let dlaptop = dist(mouseX,mouseY,laptop.x,laptop.y);
 
+      let daquarium = dist(mouseX,mouseY,aquarium.x,aquarium.y);
+
       //Cursor Settings
       //Dbed is distance of the bed lamp
       if (dbed < bed.height/4) {
@@ -25,6 +27,10 @@ class MouseCursor {
       }
       //dlaptop is distance of the laptop
       else if (dlaptop < laptop.width/2) {
+        cursor('http://www.rw-designer.com/cursor-view/146672.png');
+      }
+      //daquarium is distance of the aquarium
+      else if (daquarium < aquarium.width/2) {
         cursor('http://www.rw-designer.com/cursor-view/146672.png');
       }
       else {
