@@ -93,6 +93,13 @@ let atomcurrentInput = '';
 Classes to be called
 ===============================*/
 
+//========UNIVERSAL============//
+//mouse cursor to be called for a class
+let mousecursor = undefined;
+//Arrows to be called for a class
+let arrowright = undefined;
+let arrowleft = undefined;
+
 //=========MAIN ROOM==========//
 //Cityscape to be called for a class
 let cityscape = undefined;
@@ -126,9 +133,6 @@ let alarmclock = undefined;
 let alarmtime = undefined;
 //Alert/Pop up that you can't do that
 let alertsleep = undefined;
-//Arrows to be called for a class
-let arrowright = undefined;
-let arrowleft = undefined;
 
 //=========Laptop Apps==========//
 //Lofify screen to be called for a class
@@ -336,6 +340,8 @@ function setup() {
           UNIVERSAL
 ===============================*/
 
+//Mouse cursor
+  mousecursor = new MouseCursor();
 
 //RainDrop to be called from class
 //Create a for loop if i is less than 200 add a new rain drop
@@ -489,6 +495,8 @@ function mainRoom() {
 //Display the Arrows to switch between screens
   arrowleft.display();
   arrowright.display();
+//Display the mouse cursor
+  mousecursor.display();
 }
 
 //Everything relevant to room 2
@@ -586,6 +594,8 @@ function mouseClicked() {
   }
 //username state
   if (state == 'LaptopLogIn') {
+//Return the cursor to the default
+    cursor();
     laptoploginfo.mouseClicked();
   }
 //password state
