@@ -105,6 +105,8 @@ let mousecursor = undefined;
 //Arrows to be called for a class
 let arrowright = undefined;
 let arrowleft = undefined;
+//Prerequisite warning to be called for a class
+let prerequisite = undefined;
 
 //=========MAIN ROOM==========//
 //Cityscape to be called for a class
@@ -190,6 +192,16 @@ let song6 = undefined;
 Images
 ===============================*/
 
+//=========UNIVERSAL==========//
+//Image of arrows
+let arrowrightImage = undefined;
+let arrowRhoverImage = undefined;
+let arrowleftImage = undefined;
+let arrowLhoverImage = undefined;
+//Image of prerequisite warning
+let prerequisiteImage = undefined;
+
+
 //=========MAIN ROOM==========//
 //Images of cityscapes
 let cityscapeImage = undefined;
@@ -219,11 +231,6 @@ let passwordlogImage = undefined;
 let alarmclockImage = undefined;
 //Image of no sleep alert
 let alertsleepImage = undefined;
-//Image of arrows
-let arrowrightImage = undefined;
-let arrowRhoverImage = undefined;
-let arrowleftImage = undefined;
-let arrowLhoverImage = undefined;
 
 //=========Laptop Apps==========//
 //Image of lofify in app
@@ -328,6 +335,8 @@ Images
 
   //Loading the alert sleep image
   alertsleepImage = loadImage("assets/images/Objects/nosleep.png");
+  //Loading the prerequisite warning image
+  prerequisiteImage = loadImage("assets/images/Objects/prerequisitewarning.png");
 
   //Loading the aquarium images
   aquariumLayoutImage = loadImage("assets/images/Objects/aquariumbg.png");
@@ -378,6 +387,9 @@ function setup() {
 
   //Mouse cursor
   mousecursor = new MouseCursor();
+
+  //Prerequisite warning to be called for a class (w,h,x,y,image)
+  prerequisite = new Prerequisite(300, 60, 160, 40, prerequisiteImage);
 
   //RainDrop to be called from class
   //Create a for loop if i is less than 200 add a new rain drop
@@ -524,8 +536,6 @@ function draw() {
   }
   //If the aquarium is pressed go to the aquarium screen
   else if (state == 'Aquarium') {
-    //For now put this here, after put it under
-    cursor();
     aquariumToggle();
   }
 }
@@ -593,6 +603,8 @@ function room2() {
 
   //Display the room layout
   room2Layout.display();
+  //Display the prerequisite warning
+  prerequisite.display();
   //Display the aquarium
   aquarium.display();
   //Display the coffee
@@ -701,6 +713,8 @@ function mouseClicked() {
   }
   //Aquarium mouse functionality
   if (state == "Aquarium") {
+    //Return the cursor to the default
+    cursor();
     aquariumLayout.mouseClicked();
   }
 }
