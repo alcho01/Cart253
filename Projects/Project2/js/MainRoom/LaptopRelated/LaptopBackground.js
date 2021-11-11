@@ -1,7 +1,6 @@
 //display this laptop background on the laptop in the main room
 class LaptopBackground {
-
-  constructor(w,h,x,y,laptopbgImage) {
+  constructor(w, h, x, y, laptopbgImage) {
     //dimensions
     this.width = w;
     this.height = h;
@@ -16,8 +15,7 @@ class LaptopBackground {
   display() {
     push();
     imageMode(CENTER);
-    image(this.laptopbgImage,this.x,this.y,this.width,this.height);
+    image(this.laptopbgImage, this.x, this.y, this.width, this.height);
     pop();
   }
-
 }

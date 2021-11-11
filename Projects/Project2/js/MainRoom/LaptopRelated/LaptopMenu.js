@@ -1,9 +1,8 @@
 //The class for the laptop menu screen which is accessed after the username and password are correct
-class LaptopMenu extends Apartment{
-
-  constructor(w,h,x,y,laptopmenuImage) {
+class LaptopMenu extends Apartment {
+  constructor(w, h, x, y, laptopmenuImage) {
     //Takes parameters from SuperClass "Apartment"
-    super(w,h,x,y);
+    super(w, h, x, y);
     //image
     this.laptopmenuImage = laptopmenuImage;
     //Mouse Clicked Positions (X2 = further x point - Y2 = further y point)
@@ -28,37 +27,37 @@ class LaptopMenu extends Apartment{
   display() {
     push();
     imageMode(CENTER);
-    image(this.laptopmenuImage,this.x,this.y,this.width,this.height);
+    image(this.laptopmenuImage, this.x, this.y, this.width, this.height);
     pop();
   }
 
   //Mouse function
   mouseClicked() {
-  //Stop the rain SFX during this state
-  //Log out button
+    //Stop the rain SFX during this state
+    //Log out button
     rainSFX.stop();
-      if (mouseX > this.logoutX && mouseX < this.logoutX2) {
+    if (mouseX > this.logoutX && mouseX < this.logoutX2) {
       if (mouseY > this.logoutY && mouseY < this.logoutY2) {
-  //This is the current state it will be
-        state = 'MainRoom'
-  //Reset the usercurrentInput
-        usercurrentInput = '';
-  //Reset the passcurrentInput
-        passcurrentInput = '';
-  //Resume the rain sound upon pressing the button
+        //This is the current state it will be
+        state = "MainRoom";
+        //Reset the usercurrentInput
+        userCurrentInput = "";
+        //Reset the passcurrentInput
+        passCurrentInput = "";
+        //Resume the rain sound upon pressing the button
         rainSFX.play();
       }
     }
-  //If the lofify app is pressed apply the following sequence...
-      if (mouseX > this.lofifyX && mouseX < this.lofifyX2) {
+    //If the lofify app is pressed apply the following sequence...
+    if (mouseX > this.lofifyX && mouseX < this.lofifyX2) {
       if (mouseY > this.lofifyY && mouseY < this.lofifyY2) {
-        state = 'LofifyScreen'
-        }
+        state = "LofifyScreen";
       }
- //If the atom app is pressed apply the following sequence...
-      if (mouseX > this.atomX && mouseX < this.atomX2) {
+    }
+    //If the atom app is pressed apply the following sequence...
+    if (mouseX > this.atomX && mouseX < this.atomX2) {
       if (mouseY > this.atomY && mouseY < this.atomY2) {
-        state = 'AtomScreen'
+        state = "AtomScreen";
       }
     }
   }

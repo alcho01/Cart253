@@ -1,12 +1,11 @@
 //The room the game starts on
-class Mainroom extends Apartment  {
-
-  constructor(w,h,x,y,mainroomImage) {
-  //Takes parameters from SuperClass "Apartment"
-    super(w,h,x,y);
-  //Image
+class Mainroom extends Apartment {
+  constructor(w, h, x, y, mainroomImage) {
+    //Takes parameters from SuperClass "Apartment"
+    super(w, h, x, y);
+    //Image
     this.mainroomImage = mainroomImage;
-  //Mouse Clicked Positions (X2 = further x point - Y2 = further y point)
+    //Mouse Clicked Positions (X2 = further x point - Y2 = further y point)
     //Bed lamp
     this.bedlampX = 500;
     this.bedlampX2 = 545;
@@ -28,37 +27,37 @@ class Mainroom extends Apartment  {
   display() {
     push();
     imageMode(CENTER);
-    image(this.mainroomImage,this.x,this.y,this.width,this.height);
+    image(this.mainroomImage, this.x, this.y, this.width, this.height);
     pop();
   }
 
   //Mouse function
   mouseClicked() {
-  //Play the SFX for the raindrops
+    //Play the SFX for the raindrops
     rainSFX.play();
-  //If the bed lamp is clicked once it will turn on, if it is clicked twice it will turn off
-      if (mouseX > this.bedlampX && mouseX < this.bedlampX2) {
+    //If the bed lamp is clicked once it will turn on, if it is clicked twice it will turn off
+    if (mouseX > this.bedlampX && mouseX < this.bedlampX2) {
       if (mouseY > this.bedlampY && mouseY < this.bedlampY2) {
-  //Toggles between the light being on and off
-        bedlamplight.on = !bedlamplight.on
-  //Play the SFX for the bed lamp if it being turned on or off
+        //Toggles between the light being on and off
+        bedlamplight.on = !bedlamplight.on;
+        //Play the SFX for the bed lamp if it being turned on or off
         bedlampSFX.play();
-        }
       }
-  //If the laptop is clicked, open up the login info
-      if (mouseX > this.laptopX && mouseX < this.laptopX2) {
+    }
+    //If the laptop is clicked, open up the login info
+    if (mouseX > this.laptopX && mouseX < this.laptopX2) {
       if (mouseY > this.laptopY && mouseY < this.laptopY2) {
-  //Change states when the laptop is clicked
-        state = 'LaptopLogIn'
-  //Stop the rain SFX during this state
+        //Change states when the laptop is clicked
+        state = "LaptopLogIn";
+        //Stop the rain SFX during this state
         rainSFX.stop();
-        }
       }
-  //If the left arrow is pressed switch to Room2
-      if (mouseX > this.leftArrowX && mouseX < this.leftArrowX2) {
+    }
+    //If the left arrow is pressed switch to Room2
+    if (mouseX > this.leftArrowX && mouseX < this.leftArrowX2) {
       if (mouseY > this.leftArrowY && mouseY < this.leftArrowY2) {
-  //Change states when the left arrow is clicked
-        state = 'Room2'
+        //Change states when the left arrow is clicked
+        state = "Room2";
       }
     }
   }

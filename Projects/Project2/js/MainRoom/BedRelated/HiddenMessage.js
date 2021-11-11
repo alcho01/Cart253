@@ -1,7 +1,6 @@
 //Class for the hiddden message. Hidden unless the light is on in the main room.
 class HiddenMessage {
-
-  constructor(w,h,x,y,hiddenmessageImage) {
+  constructor(w, h, x, y, hiddenmessageImage) {
     //dimensions
     this.width = w;
     this.height = h;
@@ -16,7 +15,7 @@ class HiddenMessage {
   display() {
     push();
     imageMode(CENTER);
-    image(this.hiddenmessageImage,this.x,this.y,this.width,this.height);
+    image(this.hiddenmessageImage, this.x, this.y, this.width, this.height);
     pop();
   }
 }

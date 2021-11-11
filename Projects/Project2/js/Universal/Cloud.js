@@ -1,7 +1,6 @@
 //Class for the cloud
 class Cloud {
-
-  constructor(w,h,x,y) {
+  constructor(w, h, x, y) {
     //dimensions
     this.width = w;
     this.height = h;
@@ -9,7 +8,7 @@ class Cloud {
     this.x = x;
     this.y = y;
     //Velocity
-    this.vx = random(2,6);
+    this.vx = random(2, 6);
     //colour
     this.r = 255;
     this.g = 255;
@@ -21,8 +20,8 @@ class Cloud {
   display() {
     push();
     noStroke();
-    fill(this.r,this.g,this.b,this.a);
-    ellipse(this.x,this.y,this.width,this.height);
+    fill(this.r, this.g, this.b, this.a);
+    ellipse(this.x, this.y, this.width, this.height);
     pop();
   }
 
@@ -31,7 +30,7 @@ class Cloud {
     this.x = this.vx + this.x;
     if (this.x >= windowWidth) {
       this.x = -20;
-      this.y = random(0,514);
+      this.y = random(0, 514);
     }
   }
 }

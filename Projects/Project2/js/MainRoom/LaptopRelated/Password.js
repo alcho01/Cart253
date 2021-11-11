@@ -30,13 +30,13 @@ class Password {
   }
     textAlign(CENTER);
     textSize(this.size);
-    text(passcurrentInput,this.indent,this.x,this.y);
+    text(passCurrentInput,this.indent,this.x,this.y);
     pop();
   }
 
   //If the password is correct return it true if not false
   inputIsCorrect() {
-    if (passcurrentInput === passwordcode) {
+    if (passCurrentInput === passwordCode) {
       return true;
     }
     else

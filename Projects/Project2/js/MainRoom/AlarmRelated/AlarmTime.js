@@ -1,7 +1,6 @@
 //The time being displayed on the alarm clock
 class AlarmTime {
-
-  constructor(x,y,alarmtimeFont) {
+  constructor(x, y, alarmtimeFont) {
     //position
     this.x = x;
     this.y = y;
@@ -17,12 +16,12 @@ class AlarmTime {
     this.timeInteger = 10;
   }
 
-//Display the alarm time
-/*This is meant for aesthetic purposes only. If the time is 3:59:59AM, before it hit's 4:00:00AM it will reset back to 3:00:00AM.
-I did this because I want the setting of the game to be played at that time. */
+  //Display the alarm time
+  /*This is meant for aesthetic purposes only. If the time is 3:59:59AM, before it hit's 4:00:00AM it will reset back to 3:00:00AM.
+  I did this because I want the setting of the game to be played at that time. */
   display() {
     push();
-    fill(this.r,this.g,this.b);
+    fill(this.r, this.g, this.b);
     textFont(this.alarmtimeFont);
     textAlign(CENTER);
     textSize(this.size);
@@ -35,12 +34,11 @@ I did this because I want the setting of the game to be played at that time. */
     //Add a 0 before the minute or second, if it is less than 10. This gives off a more realistic alarm clock look.
     if (min < this.timeInteger) {
       min = "0" + min;
-    }
-    else if (sec < this.timeInteger) {
+    } else if (sec < this.timeInteger) {
       sec = "0" + sec;
     }
     //Create the text with the hour,min,sec variables. After apply the : between each and AM for a digital look.
-    text(hour + ":" + min + ":" + sec + " AM", this.x,this.y);
+    text(hour + ":" + min + ":" + sec + " AM", this.x, this.y);
     pop();
   }
 }

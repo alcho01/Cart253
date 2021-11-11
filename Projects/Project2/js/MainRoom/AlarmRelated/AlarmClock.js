@@ -1,7 +1,6 @@
 //The alarm clock is displayed in the main room
 class AlarmClock {
-
-  constructor(w,h,x,y,alarmclockImage) {
+  constructor(w, h, x, y, alarmclockImage) {
     //dimensions
     this.width = w;
     this.height = h;
@@ -16,9 +15,7 @@ class AlarmClock {
   display() {
     push();
     imageMode(CENTER);
-    image(this.alarmclockImage,this.x,this.y,this.width,this.height);
-    pop();    
+    image(this.alarmclockImage, this.x, this.y, this.width, this.height);
+    pop();
   }
-
-
 }
