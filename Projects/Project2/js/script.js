@@ -29,6 +29,7 @@ These are examples that helped me come up with my own ideas and that I took insp
 Digital Clock Idea : https://editor.p5js.org/D_Snyder/sketches/Xtx2Zu9D5
 Rain Idea: Took inspiration from the Juggle Garden exercise.
 Username and password idea inspired by Pippin's code : https://editor.p5js.org/pippinbarr/sketches/k4ETSg3oc
+Line 47 On the Koi Fish is inspired by this: https://editor.p5js.org/creativecoding/sketches/bYIGQdDks(Line 58)
 */
 
 "use strict";
@@ -167,6 +168,8 @@ let coffee = undefined;
 let aquariumLayout = undefined;
 //Aquarium to be called for a class
 let aquarium = undefined;
+//Koi to be called for a class
+let koiFish = undefined;
 
 /*=============================
 Fonts
@@ -256,6 +259,9 @@ let aquariumHelpImage = undefined;
 //Images of aquarium
 let aquariumImage = undefined;
 let aquariumHoverImage = undefined;
+//Images of koi fish
+let koiFishLeftImage = undefined;
+let koiFishRightImage = undefined;
 
 //What state is it in
 let state = "Aquarium";
@@ -346,6 +352,8 @@ Images
   aquariumHelpImage = loadImage("assets/images/Objects/aquariumhelp.png");
   aquariumImage = loadImage("assets/images/Objects/aquarium.png");
   aquariumHoverImage = loadImage("assets/images/Objects/aquariumhover.png");
+  koiFishLeftImage = loadImage("assets/images/Objects/fishleft.png");
+  koiFishRightImage = loadImage("assets/images/Objects/fishright.png");
 
   //Loading the coffee image
   coffeeImage = loadImage("assets/images/Objects/coffee.gif");
@@ -496,14 +504,9 @@ function setup() {
   //Aquarium Layout parameters (w,h,x,y,image)
   aquariumLayout = new AquariumLayout(1280, 720, 640, 360, aquariumLayoutImage,aquariumHelpImage);
   //Aquarium parameters (w,h,x,y,image,hoverimage)
-  aquarium = new Aquarium(
-    180,
-    130,
-    773,
-    460,
-    aquariumImage,
-    aquariumHoverImage
-  );
+  aquarium = new Aquarium(180, 130, 773, 460, aquariumImage, aquariumHoverImage);
+  //Koi fish parameters (w,h,x,y,image,image2)
+  koiFish = new KoiFish(200, 100, 640, 360, koiFishLeftImage, koiFishRightImage);
 }
 
 function draw() {
@@ -646,6 +649,9 @@ function atomMenu() {
   function aquariumToggle() {
     aquariumLayout.display();
     aquariumLayout.mouseOver();
+
+    koiFish.display();
+    koiFish.move();
 
   for (let i = 0; i < tetraFin.length; i++) {
     tetraFin[i].display();
