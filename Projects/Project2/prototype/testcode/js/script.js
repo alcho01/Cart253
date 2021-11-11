@@ -8,13 +8,14 @@ For this example, when the lamp is clicked an overlay will display a lighter sha
 When it is clicked again it will switch to a darker shade
 
 For the prototype I didn't create classes(Exception raindrop), or really tidy up the code. I will do both of these things in the final assignment.
+The raindrop class is to show the understanding of classes and how I will use them for the final.
 
 Other small things,
 - Included raindrops. I wanted to see how it would look like.
 - A simple cursor change when it hovers over an interactable entity.
 - Switch states with KeyPressed
 
-These are some of the  fundamental elements required for my final project.
+These are some of the fundamental elements required for my final project.
 
 Note, the lamp is the one on the floor not the orange thing.
 
