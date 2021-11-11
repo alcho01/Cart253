@@ -38,7 +38,7 @@ BASICS/MISC
 ===============================*/
 
 //Determine the canvas position
-let canvasDimensons = {
+let canvasPosition = {
   x: 1280,
   y: 720,
 };
@@ -54,6 +54,9 @@ let numRainDrops = 200;
 //sound volume
 let songVolume = 0.6;
 let sfxVolume = 0.5;
+
+//Array for Tetrafin(FishFood)
+let tetraFin = [];
 
 //Create variables for the colour of the lamp lighting
 let bedLampLightFill;
@@ -255,7 +258,7 @@ let aquariumImage = undefined;
 let aquariumHoverImage = undefined;
 
 //What state is it in
-let state = "MainRoom";
+let state = "Aquarium";
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -359,7 +362,7 @@ SETTING UP! CANVAS|CLASSES|ARRAYS|BEDLAMPLIGHTS
 ======================================*/
 function setup() {
   //Creating the canvas
-  createCanvas(canvasDimensons.x, canvasDimensons.y);
+  createCanvas(canvasPosition.x, canvasPosition.y);
 
   //Setting up sounds (Volume,Loops)
   //Set the volume down a bit
@@ -643,9 +646,15 @@ function atomMenu() {
   function aquariumToggle() {
     aquariumLayout.display();
     aquariumLayout.mouseOver();
-    aquariumLayout.displayAquaHelp();
 
+  for (let i = 0; i < tetraFin.length; i++) {
+    tetraFin[i].display();
+    tetraFin[i].move();
   }
+
+    aquariumLayout.displayAquaBottom();
+    aquariumLayout.displayAquaHelp();
+}
 
 /*=====P5 Functions====*\
 keyTyped,keyPressed,mouseClicked
@@ -718,6 +727,23 @@ function mouseClicked() {
     aquariumLayout.mouseClicked();
   }
 }
+
+//Functionality for mousePressed (x,y)
+function mousePressed() {
+
+  //Constrain parameters
+  let xc = constrain(mouseX,0,canvasPosition.x);
+  let yc = constrain(mouseY,0,canvasPosition.y);
+
+  //Generate a new food if pressed from the class
+  let newtetraFin = new TetraFin(random(58, 1232), 50);
+  //If the mouse is in the canvas and pressed display a new food, else do not.
+    if (mouseX == xc) {
+      if (mouseY == yc) {
+        tetraFin.push(newtetraFin);
+      }
+    }
+  }
 
 //Functionality for double clicked.
 function doubleClicked() {

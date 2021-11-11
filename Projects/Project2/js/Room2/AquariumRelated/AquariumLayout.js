@@ -12,9 +12,15 @@ class AquariumLayout extends Apartment {
     this.aquaHelpHeight = 250;
     //position
     this.aquaHelpX = 1103;
-    this.aquaHelpY = 560;
+    this.aquaHelpY = 535;
     //Switch between shown or not
     this.aquaHelpToggle = false;
+    //Bottom Border dimensions/position/colour
+    this.bottomWidth = 1280;
+    this.bottomHeight = 120;
+    this.bottomX = 0;
+    this.bottomY = 660;
+    this.bottomColour = 0;
     //Mouse Clicked Positions (X2 = further x point - Y2 = further y point)
     //Exit Button
     this.xButtonX = 0;
@@ -50,6 +56,15 @@ class AquariumLayout extends Apartment {
       );
       pop();
     }
+  }
+
+  //Display the bottom border
+  displayAquaBottom() {
+    push();
+    noStroke();
+    fill(this.bottomColour);
+    rect(this.bottomX,this.bottomY,this.bottomWidth,this.bottomHeight);
+    pop();
   }
 
   //Function for what happens when the mouse is over the question mark
