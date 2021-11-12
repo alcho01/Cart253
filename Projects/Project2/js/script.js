@@ -23,6 +23,7 @@ Lofi font : https://www.dafont.com/digit-lofi.font
 Type soundFX https://freesound.org/people/Breviceps/sounds/447909/
 Lamp soundFX https://freesound.org/people/PhillipArthur/sounds/541761/
 Rain soundFX https://freesound.org/people/InspectorJ/sounds/346642/
+aquarium soundFX https://freesound.org/people/7778/sounds/197804/
 ============CodeIdeas===========
 These are examples that helped me come up with my own ideas and that I took inspiration from.
 
@@ -85,6 +86,9 @@ let task3Complete = false;
 //Are these tasks availabe to do?
 let task2Availabe = false;
 let task3Availabe = false;
+
+//Is the door locked
+let doorLocked = true;
 
 //Setting the username/password
 let usernameCode = "sleep";
@@ -191,6 +195,8 @@ let rainSFX = undefined;
 let typeSFX = undefined;
 //Sound of bedlamp chain
 let bedlampSFX = undefined;
+//Sound of Aquarium
+let aquariumSFX = undefined;
 //Song list
 let song1 = undefined;
 let song2 = undefined;
@@ -303,6 +309,7 @@ Sounds
   bedlampSFX = loadSound("assets/sounds/bedlampsfx.wav");
   rainSFX = loadSound("assets/sounds/Rain.wav");
   typeSFX = loadSound("assets/sounds/type.wav");
+  aquariumSFX = loadSound("assets/sounds/fishtank.wav");
 
   /*=============================
 Images
@@ -553,11 +560,13 @@ function draw() {
   }
   //If the aquarium is pressed go to the aquarium screen
   else if (state == 'Aquarium') {
+
     aquariumToggle();
   }
   //If the user completes the aquarium task prompt this
   else if (state == 'AquariumEnding') {
     aquariumEndScreen();
+    aquariumSFX.stop();
   }
 }
 

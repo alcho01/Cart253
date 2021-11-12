@@ -46,7 +46,7 @@ class TetraFin {
       //position the food at the top
       this.y = this.top;
     }
-    else if (koiFish.foodEaten == 15) {
+    else if (koiFish.foodEaten >= 15) {
       state = 'AquariumEnding'
       task2Complete = true;
       task3Availabe = true;

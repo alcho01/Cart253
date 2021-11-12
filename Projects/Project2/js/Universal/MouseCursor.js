@@ -1,7 +1,14 @@
 //Class for the mouse cursor
 class MouseCursor {
   constructor() {
-  //
+
+  //WoodFrame
+  //Dimension
+  this.woodFrameWidth = 50;
+  //Position
+  this.woodFrameX = 700;
+  this.woodFrameY = 78;
+
   }
 
   //Display the mouse cursor
@@ -32,15 +39,20 @@ class MouseCursor {
 
   //Display these mouse cursor events on room 2
   displayOnTwo() {
-    //daquarium is the distance of the aquarium
+    //daquarium is the distance of the aquarium and the mouse
     let dAquarium = dist(mouseX, mouseY, aquarium.x, aquarium.y);
-    //dBook is the distance of the orange book
+    //dBook is the distance of the orange book and the mouse
     let dBook = dist(mouseX, mouseY, book.x, book.y);
+    //dWoodFrame is the distance of the woodframe and the mouse
+    let dWoodFrame = dist(mouseX, mouseY, this.woodFrameX , this.woodFrameY);
 
     if (dAquarium < aquarium.width / 2.5) {
       cursor("http://www.rw-designer.com/cursor-view/146672.png");
     }
     else if (dBook < book.width /2 ) {
+      cursor('http://www.rw-designer.com/cursor-view/166785.png');
+    }
+    else if (dWoodFrame < this.woodFrameWidth /2 ) {
       cursor('http://www.rw-designer.com/cursor-view/166785.png');
     }
      else {

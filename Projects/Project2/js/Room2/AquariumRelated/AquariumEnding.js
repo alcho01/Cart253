@@ -33,6 +33,9 @@ class AquariumEnding extends Apartment{
     if (mouseX > this.exitX && mouseX < this.exitX2) {
       if (mouseY > this.exitY && mouseY < this.exitY2) {
         state = "Room2";
+        //Stop the aquarium sound
+        aquariumSFX.stop();
+        rainSFX.play();
       }
     }
     //If the Key is clicked make the rectangle blank

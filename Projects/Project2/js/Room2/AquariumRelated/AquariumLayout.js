@@ -87,7 +87,10 @@ class AquariumLayout extends Apartment {
     if (mouseX > this.xButtonX && mouseX < this.xButtonX2) {
       if (mouseY > this.xButtonY && mouseY < this.xButtonY2) {
         state = "Room2";
+        //Resume Rain sound
         rainSFX.play();
+        //Stop Aquarium Sound
+        aquariumSFX.stop();
       }
     }
   }
