@@ -30,6 +30,7 @@ Digital Clock Idea : https://editor.p5js.org/D_Snyder/sketches/Xtx2Zu9D5
 Rain Idea: Took inspiration from the Juggle Garden exercise.
 Username and password idea inspired by Pippin's code : https://editor.p5js.org/pippinbarr/sketches/k4ETSg3oc
 Line 47 On the Koi Fish is inspired by this: https://editor.p5js.org/creativecoding/sketches/bYIGQdDks(Line 58)
+FrameCount Help : https://editor.p5js.org/aferriss/sketches/H18ePMyqG
 */
 
 "use strict";
@@ -164,12 +165,15 @@ let room2Layout = undefined;
 let book = undefined;
 //coffee to be calle for a class
 let coffee = undefined;
+
 //Aquarium Layout to be called for a class (this is when the aquarium sprite is pressed)
 let aquariumLayout = undefined;
 //Aquarium to be called for a class
 let aquarium = undefined;
 //Koi to be called for a class
 let koiFish = undefined;
+//Aquarium end screen to be called for a class
+let aquariumEnding = undefined;
 
 /*=============================
 Fonts
@@ -262,9 +266,12 @@ let aquariumHoverImage = undefined;
 //Images of koi fish
 let koiFishLeftImage = undefined;
 let koiFishRightImage = undefined;
+//Images of the aquarium endding
+let aquariumEndImage = undefined;
+let aquariumEndClickImage = undefined;
 
 //What state is it in
-let state = "Aquarium";
+let state = "MainRoom";
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -354,6 +361,8 @@ Images
   aquariumHoverImage = loadImage("assets/images/Objects/aquariumhover.png");
   koiFishLeftImage = loadImage("assets/images/Objects/fishleft.png");
   koiFishRightImage = loadImage("assets/images/Objects/fishright.png");
+  aquariumEndImage = loadImage("assets/images/Objects/aquariumending.png");
+  aquariumEndClickImage = loadImage("assets/images/Objects/aquariumendingclicked.png");
 
   //Loading the coffee image
   coffeeImage = loadImage("assets/images/Objects/coffee.gif");
@@ -506,7 +515,9 @@ function setup() {
   //Aquarium parameters (w,h,x,y,image,hoverimage)
   aquarium = new Aquarium(180, 130, 773, 460, aquariumImage, aquariumHoverImage);
   //Koi fish parameters (w,h,x,y,image,image2)
-  koiFish = new KoiFish(200, 100, 640, 360, koiFishLeftImage, koiFishRightImage);
+  koiFish = new KoiFish(150, 100, 640, 360, koiFishLeftImage, koiFishRightImage);
+  //Aquarium ending parameters (w,h,x,y,image,image clicked)
+  aquariumEnding = new AquariumEnding(1280, 720, 640, 360, aquariumEndImage, aquariumEndClickImage);
 }
 
 function draw() {
@@ -543,6 +554,10 @@ function draw() {
   //If the aquarium is pressed go to the aquarium screen
   else if (state == 'Aquarium') {
     aquariumToggle();
+  }
+  //If the user completes the aquarium task prompt this
+  else if (state == 'AquariumEnding') {
+    aquariumEndScreen();
   }
 }
 
@@ -650,17 +665,30 @@ function atomMenu() {
     aquariumLayout.display();
     aquariumLayout.mouseOver();
 
+//Display the koi fish/movement
     koiFish.display();
     koiFish.move();
 
+//Array for the fish food
   for (let i = 0; i < tetraFin.length; i++) {
     tetraFin[i].display();
     tetraFin[i].move();
+    tetraFin[i].hit(koiFish);
   }
 
+    koiFish.displayCount();
+    koiFish.loseCount();
+
+
+//The heads up display
     aquariumLayout.displayAquaBottom();
     aquariumLayout.displayAquaHelp();
 }
+
+//Everything relevant to the aquarium end screen
+  function aquariumEndScreen() {
+    aquariumEnding.display();
+  }
 
 /*=====P5 Functions====*\
 keyTyped,keyPressed,mouseClicked
@@ -732,6 +760,10 @@ function mouseClicked() {
     cursor();
     aquariumLayout.mouseClicked();
   }
+  //AquariumEnding mouse functionality
+  if (state == "AquariumEnding") {
+    aquariumEnding.mouseClicked();
+  }
 }
 
 //Functionality for mousePressed (x,y)
@@ -744,12 +776,14 @@ function mousePressed() {
   //Generate a new food if pressed from the class
   let newtetraFin = new TetraFin(random(58, 1232), 50);
   //If the mouse is in the canvas and pressed display a new food, else do not.
+  if (state == "Aquarium") {
     if (mouseX == xc) {
       if (mouseY == yc) {
         tetraFin.push(newtetraFin);
       }
     }
   }
+}
 
 //Functionality for double clicked.
 function doubleClicked() {

@@ -4,6 +4,8 @@ class KoiFish {
     //Dimensions
     this.width = w;
     this.height = h;
+    //Growth
+    this.growth = 5;
     //Position
     this.x = x;
     this.y = y;
@@ -18,6 +20,20 @@ class KoiFish {
     this.koiFishRightImage = koiFishRightImage;
     //Display the current image
     this.currentImage = koiFishRightImage;
+    //text settings for the counter
+    this.countX = 628;
+    this.countY = 43;
+    this.colour = 255;
+    this.size = 20;
+    //FoodEaten/FoodAte/
+    this.foodEaten = 0;
+    this.addFood = 1;
+    //Set the number that it starts on when it can begin losing food so it does not go in the minus
+    this.setFood = 1;
+    //Set the lose foo parameter
+    this.loseFood = -1;
+    //Interval
+    this.interval = 2;
   }
 
   //Display the fish
@@ -27,6 +43,25 @@ class KoiFish {
     image(this.currentImage,this.x,this.y,this.width,this.height);
     pop();
   }
+
+  //Display the counter
+  displayCount() {
+    push();
+    noStroke();
+    fill(this.colour);
+    textSize(this.size);
+    text(this.foodEaten, this.countX, this.countY);
+    pop();
+  }
+
+  //The counter will decrease based on the frames elapsed //Help from : https://editor.p5js.org/aferriss/sketches/H18ePMyqG
+  loseCount() {
+    if (frameCount % (this.interval * 60) == 0) {
+      if (this.foodEaten >= this.setFood) {
+      this.foodEaten = this.foodEaten + this.loseFood;
+    }
+  }
+}
 
   //How the fish moves
   move() {
@@ -49,7 +84,7 @@ class KoiFish {
       this.currentImage = koiFishRightImage;
     }
     //Moving along the Y axis (THIS PART OF THE CODE IS INSPIRED BY THIS: https://editor.p5js.org/creativecoding/sketches/bYIGQdDks)
-    //Makes movement more organic 
+    //Makes movement more organic
     this.y = this.y + sin(radians(frameCount * 4)) * 2;
   }
 }
