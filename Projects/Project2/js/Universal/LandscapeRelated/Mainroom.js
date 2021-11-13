@@ -21,6 +21,11 @@ class Mainroom extends Apartment {
     this.leftArrowX2 = 114;
     this.leftArrowY = 611;
     this.leftArrowY2 = 715;
+    //Right Arrow
+    this.rightArrowX = 1174;
+    this.rightArrowX2 = 1274;
+    this.rightArrowY = 611;
+    this.rightArrowY2 = 715;
     //Paper pile
     this.PileX = 849;
     this.PileX2 = 892;
@@ -63,6 +68,13 @@ class Mainroom extends Apartment {
       if (mouseY > this.leftArrowY && mouseY < this.leftArrowY2) {
         //Change states when the left arrow is clicked
         state = "Room2";
+      }
+    }
+    //If the right arrow is pressed switch to Room3
+    if (mouseX > this.rightArrowX && mouseX < this.rightArrowX2) {
+      if (mouseY > this.rightArrowY && mouseY < this.rightArrowY2) {
+        //Change states when the left arrow is clicked
+        state = "Room3";
       }
     }
     //If the pile of paper is clicked switch to a close up of the notes

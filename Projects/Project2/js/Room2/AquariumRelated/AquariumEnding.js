@@ -42,6 +42,7 @@ class AquariumEnding extends Apartment{
     //If the Key is clicked make the rectangle blank
     if (mouseX > this.keyX && mouseX < this.keyX2) {
       if (mouseY > this.keyY && mouseY < this.keyY2) {
+        doorUnlocked = true;
         this.currentImage = aquariumEndClickImage;
       }
     }

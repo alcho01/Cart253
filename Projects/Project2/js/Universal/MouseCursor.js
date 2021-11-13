@@ -81,4 +81,8 @@ class MouseCursor {
       cursor();
     }
   }
+  //Display these mouse cursor events on room 3
+  displayOnThree() {
+    //Nothing at the moment
+  }
 }

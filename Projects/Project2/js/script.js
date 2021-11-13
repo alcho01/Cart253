@@ -189,6 +189,12 @@ let koiFish = undefined;
 //Aquarium end screen to be called for a class
 let aquariumEnding = undefined;
 
+//=========ROOM 3==========//
+//The same cityscape but positioned differently
+let cityscape3 = undefined;
+//Room3layout to be called for a class
+let room3Layout = undefined;
+
 /*=============================
 Fonts
 ===============================*/
@@ -300,6 +306,13 @@ let koiFishRightImage = undefined;
 let aquariumEndImage = undefined;
 let aquariumEndClickImage = undefined;
 
+//=========ROOM 2==========//
+//Image of cityscape3
+let cityscape3Image = undefined;
+//Image of room3layout
+let room3LayoutImage = undefined;
+
+
 //What state is it in
 let state = "MainRoom";
 
@@ -345,10 +358,12 @@ Images
   //Loading images of cityscapes
   cityscapeImage = loadImage("assets/images/Background/bgmain.png");
   cityscape2Image = loadImage("assets/images/Background/bg2.png");
+  cityscape3Image = loadImage("assets/images/Background/bg3.png");
 
   //Loading images of rooms
   mainroomImage = loadImage("assets/images/Rooms/MainRoom.png");
   room2LayoutImage = loadImage("assets/images/Rooms/Room2.png");
+  room3LayoutImage = loadImage("assets/images/Rooms/Room3.png");
 
   //Loading images of main room interactive objects
   //Loading the bed images
@@ -495,7 +510,6 @@ function setup() {
 
   //Cityscapes class parameters (w,h,x,y,image)
   cityscape = new Cityscape(1280, 720, 640, 360, cityscapeImage);
-
   //Rooms class parameters (w,h,x,y,image)
   mainroom = new Mainroom(1280, 720, 640, 360, mainroomImage);
 
@@ -551,6 +565,7 @@ function setup() {
   cityscape2 = new Cityscape2(1280, 720, 640, 360, cityscape2Image);
   //room2layout parameters (w,h,x,y,image)
   room2Layout = new Room2Layout(1280, 720, 640, 360, room2LayoutImage);
+
   //book parameters (w,h,x,y,image)
   book = new Book(1280, 720, 640, 360,bookOpenImage);
   //coffee image parameters (w,h,x,y,image)
@@ -567,6 +582,16 @@ function setup() {
   koiFish = new KoiFish(150, 100, 640, 360, koiFishLeftImage, koiFishRightImage);
   //Aquarium ending parameters (w,h,x,y,image,image clicked)
   aquariumEnding = new AquariumEnding(1280, 720, 640, 360, aquariumEndImage, aquariumEndClickImage);
+
+  /*=============================
+            ROOM 3
+===============================*/
+
+  //cityscape3 parameters (w,h,x,y,image)
+  cityscape3 = new Cityscape3(1280, 720, 640, 360, cityscape3Image);
+  //room3layout parameters (w,h,x,y,image)
+  room3Layout = new Room3Layout(1280, 720, 640, 360, room3LayoutImage);
+
 }
 
 function draw() {
@@ -624,6 +649,9 @@ function draw() {
   //Take the head off of the bear
   else if (state == "BearHead") {
     bear.display();
+  }
+  else if (state == "Room3") {
+    room3();
   }
 }
 
@@ -703,6 +731,37 @@ function room2() {
   //Display the mouse cursor
   mousecursor.displayOnTwo();
 }
+
+//Everything relevant to room 3
+function room3() {
+  //Display the landscape for this room
+  cityscape3.display();
+
+  //Display the raindrops //Need a for loop for arrays. Call the class functions in the for loop to display the raindrops
+  for (let i = 0; i < rainDrop.length; i++) {
+    rainDrop[i].display();
+    rainDrop[i].move();
+  }
+
+  //Display the clouds
+  for (let i = 0; i < cloud.length; i++) {
+    cloud[i].display();
+    cloud[i].update();
+  }
+
+  //Display the room layout
+  room3Layout.display();
+
+  //Display the prerequisite warning
+  prerequisite.displayOnThree();
+
+  //Display the Arrow to switch between screens
+  arrowleft.display();
+
+  //Display the mouse cursor
+  mousecursor.displayOnThree();
+}
+
 
 //Everything relevant to the laptop login info screen
 function laptoplogin() {
@@ -834,6 +893,10 @@ function mouseClicked() {
   if (state == "BearHead") {
     cursor();
     bear.mouseClicked();
+  }
+  //Room 3 mouse functionality
+  if (state == "Room3") {
+    room3Layout.mouseClicked();
   }
 }
 
