@@ -21,6 +21,11 @@ class Mainroom extends Apartment {
     this.leftArrowX2 = 114;
     this.leftArrowY = 611;
     this.leftArrowY2 = 715;
+    //Paper pile
+    this.PileX = 849;
+    this.PileX2 = 892;
+    this.PileY = 541;
+    this.PileY2 = 600;
   }
 
   //Display the main room - the room the game starts on.
@@ -58,6 +63,13 @@ class Mainroom extends Apartment {
       if (mouseY > this.leftArrowY && mouseY < this.leftArrowY2) {
         //Change states when the left arrow is clicked
         state = "Room2";
+      }
+    }
+    //If the pile of paper is clicked switch to a close up of the notes
+    if (mouseX > this.PileX && mouseX < this.PileX2) {
+      if (mouseY > this.PileY && mouseY < this.PileY2) {
+        //Change states when the pile of paper is clicked
+        state = "PaperShow";
       }
     }
   }

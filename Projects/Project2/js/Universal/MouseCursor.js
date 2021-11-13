@@ -9,6 +9,12 @@ class MouseCursor {
     this.orangeBookX = 848;
     this.orangeBookY = 120;
 
+  //stack of papers beside bed
+  //Dimension
+    this.paperStackWidth = 60;
+  //Position
+    this.paperStackX = 870;
+    this.paperStackY = 573;
   }
 
   //Display the mouse cursor
@@ -19,6 +25,8 @@ class MouseCursor {
     let dLamp = dist(mouseX, mouseY, bedlamp.x, bedlamp.y);
 
     let dLaptop = dist(mouseX, mouseY, laptop.x, laptop.y);
+
+    let dPaperStack = dist(mouseX, mouseY, this.paperStackX,this.paperStackY);
 
     //Cursor Settings
     //Dbed is distance of the bed lamp
@@ -32,7 +40,12 @@ class MouseCursor {
     //dlaptop is distance of the laptop
     else if (dLaptop < laptop.width / 2) {
       cursor("http://www.rw-designer.com/cursor-view/146672.png");
-    } else {
+    }
+    //dpaperstack is distance of the paper stack
+    else if (dPaperStack < this.paperStackWidth / 2) {
+      cursor('http://www.rw-designer.com/cursor-view/166785.png');
+    }
+      else {
       cursor();
     }
   }

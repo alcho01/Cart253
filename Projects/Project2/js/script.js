@@ -87,8 +87,8 @@ let task3Complete = false;
 let task2Availabe = false;
 let task3Availabe = false;
 
-//Is the door locked
-let doorLocked = true;
+//Is the door unlocked
+let doorUnlocked = false;
 
 //Setting the username/password
 let usernameCode = "sleep";
@@ -130,6 +130,8 @@ let bedlamp = undefined;
 let bedlamplight = undefined;
 //Hidden Message to be called for a class
 let hiddenmessage = undefined;
+//Stack of paper called for a class
+let paper = undefined;
 //laptop to be called for a class
 let laptop = undefined;
 //laptop background to be called for a class
@@ -235,6 +237,8 @@ let bedlampImage = undefined;
 let bedlamphoverImage = undefined;
 //Image of the hidden message
 let hiddenmessageImage = undefined;
+//Image of the papers
+let paperImage = undefined;
 //Images of the laptop
 let laptopImage = undefined;
 let laptophoverImage = undefined;
@@ -340,6 +344,8 @@ Images
 
   //Loading Hidden Message
   hiddenmessageImage = loadImage("assets/images/Objects/hiddenmessage.png");
+  //Loading the paper message
+  paperImage = loadImage("assets/images/Objects/papers.png");
 
   //Loading the laptop images
   laptopImage = loadImage("assets/images/Objects/laptop.png");
@@ -483,6 +489,8 @@ function setup() {
   bedlamplight = new BedLampLight(1280, 720, 0, 0);
   //Hidden message parameters (w,h,x,y,image)
   hiddenmessage = new HiddenMessage(100, 100, 600, 50, hiddenmessageImage);
+  //Papers parameters (w,h,x,y,image)
+  paper = new Paper(1280, 720, 640, 360, paperImage);
 
   //Laptop parameters(w,h,x,y,image,imageforhover)
   laptop = new Laptop(80, 90, 180, 465, laptopImage, laptophoverImage);
@@ -587,7 +595,11 @@ function draw() {
   }
   //Open up the message
   else if (state == 'PlantMessage') {
-    showPaper();
+    showPhonePaper();
+  }
+  //Open up the papers
+  else if (state == "PaperShow") {
+    paper.display();
   }
 }
 
@@ -628,6 +640,7 @@ function mainRoom() {
   bedlamplight.checkbedlamplight();
   //Display the hidden message
   hiddenmessage.display();
+
   //Display the Arrows to switch between screens
   arrowleft.display();
   arrowright.display();
@@ -720,11 +733,13 @@ function atomMenu() {
     aquariumEnding.display();
   }
 
+//Open the book
   function bookToggle() {
     book.display();
   }
 
-  function showPaper() {
+//Show the phone code
+  function showPhonePaper() {
     phoneCodePaper.display();
   }
 
@@ -807,9 +822,14 @@ function mouseClicked() {
     cursor();
     book.mouseClicked();
   }
-  //To close the paper
-  if (state == 'PlantMessage') {
+  //To close the phonecodepaper
+  if (state == "PlantMessage") {
     phoneCodePaper.mouseClicked();
+  }
+  //To close the paper messages
+  if (state == "PaperShow") {
+    cursor();
+    paper.mouseClicked();
   }
 }
 
