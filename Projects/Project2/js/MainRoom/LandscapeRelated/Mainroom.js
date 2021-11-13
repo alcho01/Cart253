@@ -70,6 +70,8 @@ class Mainroom extends Apartment {
       if (mouseY > this.PileY && mouseY < this.PileY2) {
         //Change states when the pile of paper is clicked
         state = "PaperShow";
+        //Play the paperSFX
+        paperSFX.play();
       }
     }
   }

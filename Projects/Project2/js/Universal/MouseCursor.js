@@ -2,6 +2,13 @@
 class MouseCursor {
   constructor() {
 
+  //stack of papers beside bed
+  //Dimension
+    this.paperStackWidth = 60;
+  //Position
+    this.paperStackX = 870;
+    this.paperStackY = 573;
+
   //Orange Book
   //Dimension
     this.orangeBookWidth = 50;
@@ -9,12 +16,12 @@ class MouseCursor {
     this.orangeBookX = 848;
     this.orangeBookY = 120;
 
-  //stack of papers beside bed
+  //Teddy Bear
   //Dimension
-    this.paperStackWidth = 60;
+    this.bearWidth = 120;
   //Position
-    this.paperStackX = 870;
-    this.paperStackY = 573;
+    this.bearX = 1112;
+    this.bearY = 440;
   }
 
   //Display the mouse cursor
@@ -57,12 +64,17 @@ class MouseCursor {
     //dBook is the distance of the orange book and the mouse
     let dBook = dist(mouseX, mouseY, this.orangeBookX, this.orangeBookY);
     //dWoodFrame is the distance of the woodframe and the mouse
-    let dWoodFrame = dist(mouseX, mouseY, this.woodFrameX , this.woodFrameY);
+    let dWoodFrame = dist(mouseX, mouseY, this.woodFrameX, this.woodFrameY);
+    //dBear is the distance of the bear and the mouse
+    let dBear = dist(mouseX, mouseY, this.bearX, this.bearY);
 
     if (dAquarium < aquarium.width / 2.5) {
       cursor("http://www.rw-designer.com/cursor-view/146672.png");
     }
     else if (dBook < this.orangeBookWidth /2 ) {
+      cursor('http://www.rw-designer.com/cursor-view/166785.png');
+    }
+    else if (dBear < this.bearWidth /2 ) {
       cursor('http://www.rw-designer.com/cursor-view/166785.png');
     }
      else {

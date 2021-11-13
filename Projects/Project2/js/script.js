@@ -24,6 +24,9 @@ Type soundFX https://freesound.org/people/Breviceps/sounds/447909/
 Lamp soundFX https://freesound.org/people/PhillipArthur/sounds/541761/
 Rain soundFX https://freesound.org/people/InspectorJ/sounds/346642/
 aquarium soundFX https://freesound.org/people/7778/sounds/197804/
+Paper soundFX https://freesound.org/people/razrox/sounds/197179/
+Bear Thump soundFX https://freesound.org/people/DigestContent/sounds/458877/
+Book Flip soundFX https://freesound.org/people/InspectorJ/sounds/416179/
 ============CodeIdeas===========
 These are examples that helped me come up with my own ideas and that I took inspiration from.
 
@@ -173,6 +176,8 @@ let book = undefined;
 let coffee = undefined;
 //Phone code to be called for a class
 let phoneCodePaper = undefined;
+//Teddybear to be called for a class
+let bear = undefined;
 
 
 //Aquarium Layout to be called for a class (this is when the aquarium sprite is pressed)
@@ -202,6 +207,12 @@ let typeSFX = undefined;
 let bedlampSFX = undefined;
 //Sound of Aquarium
 let aquariumSFX = undefined;
+//Sound of paper
+let paperSFX = undefined;
+//Sound of bear head hitting the floor
+let thumpSFX = undefined;
+//Sound of book flip
+let bookSFX = undefined;
 //Song list
 let song1 = undefined;
 let song2 = undefined;
@@ -273,6 +284,8 @@ let bookOpenImage = undefined;
 let coffeeImage = undefined;
 //Image of phone code paper
 let phoneCodePaperImage = undefined;
+//Image inside of the teddy bear head
+let bearImage = undefined;
 //Image of aquarium layout
 let aquariumLayoutImage = undefined;
 //Aquarium help message image
@@ -321,6 +334,9 @@ Sounds
   rainSFX = loadSound("assets/sounds/Rain.wav");
   typeSFX = loadSound("assets/sounds/type.wav");
   aquariumSFX = loadSound("assets/sounds/fishtank.wav");
+  paperSFX = loadSound("assets/sounds/Papers.wav");
+  thumpSFX = loadSound("assets/sounds/thump.wav");
+  bookSFX = loadSound("assets/sounds/bookFlip.wav");
 
   /*=============================
 Images
@@ -344,6 +360,8 @@ Images
 
   //Loading Hidden Message
   hiddenmessageImage = loadImage("assets/images/Objects/hiddenmessage.png");
+  //Loading the inside of the bear image
+  bearImage = loadImage("assets/images/Objects/teddyhead.png");
   //Loading the paper message
   paperImage = loadImage("assets/images/Objects/papers.png");
 
@@ -539,6 +557,8 @@ function setup() {
   coffee = new Coffee(60, 60, 573, 570, coffeeImage);
   //Phone code paper parameters (w,h,x,y,image)
   phoneCodePaper = new PhoneCodePaper(1280, 720, 640, 360, phoneCodePaperImage);
+  //bear parameters (w,h,x,y,image)
+  bear = new Bear(1280, 720, 640, 360, bearImage);
   //Aquarium Layout parameters (w,h,x,y,image)
   aquariumLayout = new AquariumLayout(1280, 720, 640, 360, aquariumLayoutImage,aquariumHelpImage);
   //Aquarium parameters (w,h,x,y,image,hoverimage)
@@ -566,11 +586,11 @@ function draw() {
   }
   //go to the laptop menu screen
   else if (state == "LaptopMenuScreen") {
-    laptopMenu();
+    laptopmenu.display();
   }
   //from the laptop menu screen go to the app lofify
   else if (state == "LofifyScreen") {
-    lofifyMenu();
+    lofify.display();
   }
   //If atom app is pressed go to the atom screen
   else if (state == "AtomScreen") {
@@ -586,20 +606,24 @@ function draw() {
   }
   //If the user completes the aquarium task prompt this
   else if (state == 'AquariumEnding') {
-    aquariumEndScreen();
+    aquariumEnding.display();
     aquariumSFX.stop();
   }
   //Open up the book
   else if (state == 'OpenBook') {
-    bookToggle();
+    book.display();
   }
   //Open up the message
   else if (state == 'PlantMessage') {
-    showPhonePaper();
+    phoneCodePaper.display();
   }
   //Open up the papers
   else if (state == "PaperShow") {
     paper.display();
+  }
+  //Take the head off of the bear
+  else if (state == "BearHead") {
+    bear.display();
   }
 }
 
@@ -687,16 +711,6 @@ function laptoplogin() {
   username.display();
 }
 
-//Everything relevant to the laptop menu screen
-function laptopMenu() {
-  laptopmenu.display();
-}
-
-//Everything relevant to the lofify menu screen
-function lofifyMenu() {
-  lofify.display();
-}
-
 //Everything relevant to the atom menu screen
 function atomMenu() {
   atom.display();
@@ -719,29 +733,14 @@ function atomMenu() {
     tetraFin[i].hit(koiFish);
   }
 
+//Display the count
     koiFish.displayCount();
     koiFish.loseCount();
-
 
 //The heads up display
     aquariumLayout.displayAquaBottom();
     aquariumLayout.displayAquaHelp();
 }
-
-//Everything relevant to the aquarium end screen
-  function aquariumEndScreen() {
-    aquariumEnding.display();
-  }
-
-//Open the book
-  function bookToggle() {
-    book.display();
-  }
-
-//Show the phone code
-  function showPhonePaper() {
-    phoneCodePaper.display();
-  }
 
 /*=====P5 Functions====*\
 keyTyped,keyPressed,mouseClicked
@@ -830,6 +829,11 @@ function mouseClicked() {
   if (state == "PaperShow") {
     cursor();
     paper.mouseClicked();
+  }
+  //To get out of the bear body
+  if (state == "BearHead") {
+    cursor();
+    bear.mouseClicked();
   }
 }
 

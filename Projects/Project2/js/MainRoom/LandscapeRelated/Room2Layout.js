@@ -26,6 +26,11 @@ class Room2Layout extends Apartment {
     this.PotX2 = 954;
     this.PotY = 210;
     this.PotY2 = 236;
+    //Bear head
+    this.bearX = 1047;
+    this.bearX2 = 1172;
+    this.bearY = 380;
+    this.bearY2 = 487;
   }
 
   //Display the room 2 layout
@@ -62,12 +67,22 @@ class Room2Layout extends Apartment {
      if (mouseX > this.bookClosedX && mouseX < this.bookClosedX2) {
       if (mouseY > this.bookClosedY && mouseY < this.bookClosedY2) {
         state = 'OpenBook';
+        //Play the book SFX
+        bookSFX.play();
       }
     }
     //Click the purple pot to display the hidden message
     if (mouseX > this.PotX && mouseX < this.PotX2) {
       if (mouseY > this.PotY && mouseY < this.PotY2) {
         state = 'PlantMessage';
+      }
+    }
+    //If the head of the bear is clicked take it off
+    if (mouseX > this.bearX && mouseX < this.bearX2) {
+      if(mouseY > this.bearY && mouseY < this.bearY2) {
+        state = "BearHead";
+        //Play the thump SFX
+        thumpSFX.play();
       }
     }
   }
