@@ -35,6 +35,7 @@ class AquariumEnding extends Apartment{
         state = "Room2";
         //Stop the aquarium sound
         aquariumSFX.stop();
+        //Resume the Rain
         rainSFX.play();
       }
     }

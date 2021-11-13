@@ -170,6 +170,7 @@ let book = undefined;
 //coffee to be calle for a class
 let coffee = undefined;
 
+
 //Aquarium Layout to be called for a class (this is when the aquarium sprite is pressed)
 let aquariumLayout = undefined;
 //Aquarium to be called for a class
@@ -260,6 +261,8 @@ let sudokuImage = undefined;
 let cityscape2Image = undefined;
 //Image of room2layout
 let room2LayoutImage = undefined;
+//Image of book
+let bookOpenImage = undefined;
 //Image of coffee
 let coffeeImage = undefined;
 //Image of aquarium layout
@@ -277,7 +280,7 @@ let aquariumEndImage = undefined;
 let aquariumEndClickImage = undefined;
 
 //What state is it in
-let state = "MainRoom";
+let state = "Room2";
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -371,6 +374,8 @@ Images
   aquariumEndImage = loadImage("assets/images/Objects/aquariumending.png");
   aquariumEndClickImage = loadImage("assets/images/Objects/aquariumendingclicked.png");
 
+  //Loading the open book image
+  bookOpenImage = loadImage("assets/images/Objects/colorbook.png");
   //Loading the coffee image
   coffeeImage = loadImage("assets/images/Objects/coffee.gif");
 
@@ -513,8 +518,8 @@ function setup() {
   cityscape2 = new Cityscape2(1280, 720, 640, 360, cityscape2Image);
   //room2layout parameters (w,h,x,y,image)
   room2Layout = new Room2Layout(1280, 720, 640, 360, room2LayoutImage);
-  //book parameters (w,x,y)
-  book = new Book(50, 848, 120);
+  //book parameters (w,h,x,y,image)
+  book = new Book(1280, 720, 640, 360,bookOpenImage);
   //coffee image parameters (w,h,x,y,image)
   coffee = new Coffee(60, 60, 573, 570, coffeeImage);
   //Aquarium Layout parameters (w,h,x,y,image)
@@ -560,13 +565,15 @@ function draw() {
   }
   //If the aquarium is pressed go to the aquarium screen
   else if (state == 'Aquarium') {
-
     aquariumToggle();
   }
   //If the user completes the aquarium task prompt this
   else if (state == 'AquariumEnding') {
     aquariumEndScreen();
     aquariumSFX.stop();
+  }
+  else if (state == 'OpenBook') {
+    bookToggle();
   }
 }
 
@@ -699,6 +706,10 @@ function atomMenu() {
     aquariumEnding.display();
   }
 
+  function bookToggle() {
+    book.display();
+  }
+
 /*=====P5 Functions====*\
 keyTyped,keyPressed,mouseClicked
 \*=====================*/
@@ -772,6 +783,10 @@ function mouseClicked() {
   //AquariumEnding mouse functionality
   if (state == "AquariumEnding") {
     aquariumEnding.mouseClicked();
+  }
+  if (state == "OpenBook") {
+    cursor();
+    book.mouseClicked();
   }
 }
 
