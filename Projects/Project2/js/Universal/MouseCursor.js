@@ -9,13 +9,6 @@ class MouseCursor {
     this.orangeBookX = 848;
     this.orangeBookY = 120;
 
-  //WoodFrame
-  //Dimension
-  this.woodFrameWidth = 50;
-  //Position
-  this.woodFrameX = 700;
-  this.woodFrameY = 78;
-
   }
 
   //Display the mouse cursor
@@ -57,9 +50,6 @@ class MouseCursor {
       cursor("http://www.rw-designer.com/cursor-view/146672.png");
     }
     else if (dBook < this.orangeBookWidth /2 ) {
-      cursor('http://www.rw-designer.com/cursor-view/166785.png');
-    }
-    else if (dWoodFrame < this.woodFrameWidth /2 ) {
       cursor('http://www.rw-designer.com/cursor-view/166785.png');
     }
      else {

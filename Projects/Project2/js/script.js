@@ -169,6 +169,8 @@ let room2Layout = undefined;
 let book = undefined;
 //coffee to be calle for a class
 let coffee = undefined;
+//Phone code to be called for a class
+let phoneCodePaper = undefined;
 
 
 //Aquarium Layout to be called for a class (this is when the aquarium sprite is pressed)
@@ -265,6 +267,8 @@ let room2LayoutImage = undefined;
 let bookOpenImage = undefined;
 //Image of coffee
 let coffeeImage = undefined;
+//Image of phone code paper
+let phoneCodePaperImage = undefined;
 //Image of aquarium layout
 let aquariumLayoutImage = undefined;
 //Aquarium help message image
@@ -280,7 +284,7 @@ let aquariumEndImage = undefined;
 let aquariumEndClickImage = undefined;
 
 //What state is it in
-let state = "Room2";
+let state = "MainRoom";
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -348,6 +352,9 @@ Images
   laptoploginfoImage = loadImage("assets/images/Objects/laptoplogin.png");
   //loading the passwordlog info
   passwordlogImage = loadImage("assets/images/Objects/passwordstate.png");
+
+  //Loading the phone code paper
+  phoneCodePaperImage = loadImage("assets/images/Objects/phonecode.png");
 
   //Loading the lofify screen
   lofifyImage = loadImage("assets/images/Objects/lofify.png");
@@ -522,6 +529,8 @@ function setup() {
   book = new Book(1280, 720, 640, 360,bookOpenImage);
   //coffee image parameters (w,h,x,y,image)
   coffee = new Coffee(60, 60, 573, 570, coffeeImage);
+  //Phone code paper parameters (w,h,x,y,image)
+  phoneCodePaper = new PhoneCodePaper(1280, 720, 640, 360, phoneCodePaperImage);
   //Aquarium Layout parameters (w,h,x,y,image)
   aquariumLayout = new AquariumLayout(1280, 720, 640, 360, aquariumLayoutImage,aquariumHelpImage);
   //Aquarium parameters (w,h,x,y,image,hoverimage)
@@ -572,8 +581,13 @@ function draw() {
     aquariumEndScreen();
     aquariumSFX.stop();
   }
+  //Open up the book
   else if (state == 'OpenBook') {
     bookToggle();
+  }
+  //Open up the message
+  else if (state == 'PlantMessage') {
+    showPaper();
   }
 }
 
@@ -710,6 +724,10 @@ function atomMenu() {
     book.display();
   }
 
+  function showPaper() {
+    phoneCodePaper.display();
+  }
+
 /*=====P5 Functions====*\
 keyTyped,keyPressed,mouseClicked
 \*=====================*/
@@ -784,19 +802,22 @@ function mouseClicked() {
   if (state == "AquariumEnding") {
     aquariumEnding.mouseClicked();
   }
+  //To close the book
   if (state == "OpenBook") {
     cursor();
     book.mouseClicked();
+  }
+  //To close the paper
+  if (state == 'PlantMessage') {
+    phoneCodePaper.mouseClicked();
   }
 }
 
 //Functionality for mousePressed (x,y)
 function mousePressed() {
-
   //Constrain parameters
   let xc = constrain(mouseX,0,canvasPosition.x);
   let yc = constrain(mouseY,0,canvasPosition.y);
-
   //Generate a new food if pressed from the class
   let newtetraFin = new TetraFin(random(58, 1232), 50);
   //If the mouse is in the canvas and pressed display a new food, else do not.

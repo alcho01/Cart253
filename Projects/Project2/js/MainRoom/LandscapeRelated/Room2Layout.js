@@ -16,6 +16,16 @@ class Room2Layout extends Apartment {
     this.aquariumX2 = 866;
     this.aquariumY = 400;
     this.aquariumY2 = 525;
+    //Orange book
+    this.bookClosedX = 836;
+    this.bookClosedX2 = 861;
+    this.bookClosedY = 73;
+    this.bookClosedY2 = 131;
+    //Purple flower pot
+    this.PotX = 922;
+    this.PotX2 = 954;
+    this.PotY = 210;
+    this.PotY2 = 236;
   }
 
   //Display the room 2 layout
@@ -35,11 +45,29 @@ class Room2Layout extends Apartment {
       }
     }
     //If the aquarium is clicked go to the aquarium layout
+    if (task2Availabe == true) {
     if (mouseX > this.aquariumX && mouseX < this.aquariumX2) {
       if (mouseY > this.aquariumY && mouseY < this.aquariumY2) {
         state = "Aquarium";
+        //Play the Aquarium sound and loop
+        aquariumSFX.play();
+        //Loop the aquariumSFX
+        aquariumSFX.loop();
         //Stop the rain
         rainSFX.stop();
+        }
+      }
+    }
+    //If the orange book is clicked open it up
+     if (mouseX > this.bookClosedX && mouseX < this.bookClosedX2) {
+      if (mouseY > this.bookClosedY && mouseY < this.bookClosedY2) {
+        state = 'OpenBook';
+      }
+    }
+    //Click the purple pot to display the hidden message
+    if (mouseX > this.PotX && mouseX < this.PotX2) {
+      if (mouseY > this.PotY && mouseY < this.PotY2) {
+        state = 'PlantMessage';
       }
     }
   }
