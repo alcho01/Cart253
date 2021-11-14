@@ -113,87 +113,86 @@ Classes to be called
 
 //========UNIVERSAL============//
 //mouse cursor to be called for a class
-let mousecursor = undefined;
+let mousecursor;
 //Arrows to be called for a class
-let arrowright = undefined;
-let arrowleft = undefined;
+let arrowright;
+let arrowleft;
 //Prerequisite warning to be called for a class
-let prerequisite = undefined;
+let prerequisite;
 
 //=========MAIN ROOM==========//
 //Cityscape to be called for a class
-let cityscape = undefined;
+let cityscape;
 //Mainroom to be called for a class
-let mainroom = undefined;
+let mainroom;
 //Bed to be called for a class
-let bed = undefined;
+let bed;
 //bedlamp to be called for a class
-let bedlamp = undefined;
+let bedlamp;
 //bedlamp lighting to be called for a class
-let bedlamplight = undefined;
+let bedlamplight;
 //Hidden Message to be called for a class
-let hiddenmessage = undefined;
+let hiddenmessage;
 //Stack of paper called for a class
-let paper = undefined;
+let paper;
 //laptop to be called for a class
-let laptop = undefined;
+let laptop;
 //laptop background to be called for a class
-let laptopbg = undefined;
+let laptopbg;
 //laptopmenu to be called for a class
-let laptopmenu = undefined;
+let laptopmenu;
 //laptop login info to be called for a class (This is the screen when no input is entered)
-let laptoploginfo = undefined;
+let laptoploginfo;
 //Passwordloginfo to be called for a class (This class is called when the username is properly encrypted )
-let passwordlog = undefined;
+let passwordlog;
 //username to be called for a class
-let username = undefined;
+let username;
 //password to be called for a class
-let password = undefined;
+let password;
 //Alarmclock to be called for a class
-let alarmclock = undefined;
+let alarmclock;
 //Alarmtime to be called for a class
-let alarmtime = undefined;
+let alarmtime;
 //Alert/Pop up that you can't do that
-let alertsleep = undefined;
+let alertsleep;
 
 //=========Laptop Apps==========//
 //Lofify screen to be called for a class
-let lofify = undefined;
+let lofify;
 
 //Atom entities to be called for a class
-let atom = undefined;
-let atomText = undefined;
-let sudoku = undefined;
+let atom;
+let atomText;
+let sudoku;
 
 //=========ROOM 2==========//
 //The same cityscape but positioned differently
-let cityscape2 = undefined;
+let cityscape2;
 //Room2layout to be called for a class
-let room2Layout = undefined;
+let room2Layout;
 //book to be called for a class
-let book = undefined;
+let book;
 //coffee to be calle for a class
-let coffee = undefined;
+let coffee;
 //Phone code to be called for a class
-let phoneCodePaper = undefined;
+let phoneCodePaper;
 //Teddybear to be called for a class
-let bear = undefined;
-
+let bear;
 
 //Aquarium Layout to be called for a class (this is when the aquarium sprite is pressed)
-let aquariumLayout = undefined;
+let aquariumLayout;
 //Aquarium to be called for a class
-let aquarium = undefined;
+let aquarium;
 //Koi to be called for a class
-let koiFish = undefined;
+let koiFish;
 //Aquarium end screen to be called for a class
-let aquariumEnding = undefined;
+let aquariumEnding;
 
 //=========ROOM 3==========//
 //The same cityscape but positioned differently
-let cityscape3 = undefined;
+let cityscape3;
 //Room3layout to be called for a class
-let room3Layout = undefined;
+let room3Layout;
 
 /*=============================
 Fonts
@@ -206,112 +205,132 @@ let lofiFont;
 Sounds
 ===============================*/
 //Sound of rain
-let rainSFX = undefined;
+let rainSFX;
 //Sound of typing
-let typeSFX = undefined;
+let typeSFX;
 //Sound of bedlamp chain
-let bedlampSFX = undefined;
+let bedlampSFX;
 //Sound of Aquarium
-let aquariumSFX = undefined;
+let aquariumSFX;
 //Sound of paper
-let paperSFX = undefined;
+let paperSFX;
 //Sound of bear head hitting the floor
-let thumpSFX = undefined;
+let thumpSFX;
 //Sound of book flip
-let bookSFX = undefined;
+let bookSFX;
 //Song list
-let song1 = undefined;
-let song2 = undefined;
-let song3 = undefined;
-let song4 = undefined;
-let song5 = undefined;
-let song6 = undefined;
+let song1;
+let song2;
+let song3;
+let song4;
+let song5;
+let song6;
 /*=============================
 Images
 ===============================*/
 
 //=========UNIVERSAL==========//
 //Image of arrows
-let arrowrightImage = undefined;
-let arrowRhoverImage = undefined;
-let arrowleftImage = undefined;
-let arrowLhoverImage = undefined;
+let arrowrightImage;
+let arrowRhoverImage;
+let arrowleftImage;
+let arrowLhoverImage;
 //Image of prerequisite warning
-let prerequisiteImage = undefined;
-
+let prerequisiteImage;
 
 //=========MAIN ROOM==========//
 //Images of cityscapes
-let cityscapeImage = undefined;
+let cityscapeImage;
 //Image of rooms
-let mainroomImage = undefined;
+let mainroomImage;
 //Image of main room interactive objects
 //Images of the bed
-let bedImage = undefined;
-let bedhoverImage = undefined;
+let bedImage;
+let bedhoverImage;
 //Images of the bedlamp
-let bedlampImage = undefined;
-let bedlamphoverImage = undefined;
+let bedlampImage;
+let bedlamphoverImage;
 //Image of the hidden message
-let hiddenmessageImage = undefined;
+let hiddenmessageImage;
 //Image of the papers
-let paperImage = undefined;
+let paperImage;
 //Images of the laptop
-let laptopImage = undefined;
-let laptophoverImage = undefined;
+let laptopImage;
+let laptophoverImage;
 //Image of the laptop background
-let laptopbgImage = undefined;
+let laptopbgImage;
 //Image of laptop menu
-let laptopmenuImage = undefined;
+let laptopmenuImage;
 //Image of laptop login info
-let laptoploginfoImage = undefined;
+let laptoploginfoImage;
 //Image of passwordlog
-let passwordlogImage = undefined;
+let passwordlogImage;
 //Image of the alarm clock
-let alarmclockImage = undefined;
+let alarmclockImage;
 //Image of no sleep alert
-let alertsleepImage = undefined;
+let alertsleepImage;
 
 //=========Laptop Apps==========//
 //Image of lofify in app
-let lofifyImage = undefined;
+let lofifyImage;
 //Image of atom app when opened
-let atomImage = undefined;
-let sudokuImage = undefined;
+let atomImage;
+let sudokuImage;
 
 //=========ROOM 2==========//
 //Image of cityscape2
-let cityscape2Image = undefined;
+let cityscape2Image;
 //Image of room2layout
-let room2LayoutImage = undefined;
+let room2LayoutImage;
 //Image of book
-let bookOpenImage = undefined;
+let bookOpenImage;
 //Image of coffee
-let coffeeImage = undefined;
+let coffeeImage;
 //Image of phone code paper
-let phoneCodePaperImage = undefined;
+let phoneCodePaperImage;
 //Image inside of the teddy bear head
-let bearImage = undefined;
+let bearImage;
 //Image of aquarium layout
-let aquariumLayoutImage = undefined;
+let aquariumLayoutImage;
 //Aquarium help message image
-let aquariumHelpImage = undefined;
+let aquariumHelpImage;
 //Images of aquarium
-let aquariumImage = undefined;
-let aquariumHoverImage = undefined;
+let aquariumImage;
+let aquariumHoverImage;
 //Images of koi fish
-let koiFishLeftImage = undefined;
-let koiFishRightImage = undefined;
+let koiFishLeftImage;
+let koiFishRightImage;
 //Images of the aquarium endding
-let aquariumEndImage = undefined;
-let aquariumEndClickImage = undefined;
+let aquariumEndImage;
+let aquariumEndClickImage;
 
-//=========ROOM 2==========//
+//=========ROOM 3==========//
 //Image of cityscape3
-let cityscape3Image = undefined;
+let cityscape3Image;
 //Image of room3layout
-let room3LayoutImage = undefined;
+let room3LayoutImage;
 
+//=======State Stuff======//
+
+//States
+let mainRoomState;
+let room2State;
+let room3State;
+let laptopLogInState;
+let atomMenuState;
+let aquariumToggleState;
+
+//Display the state
+let stateShow;
+
+//Enable the mouse functionality(CLICKED) for given state
+let stateMouseInteraction;
+
+//Enable the mouse functionality(PRESSED) for given state
+let stateMousePressedInteraction;
+
+//Enable the key typed functionality for given state
+let stateKeyTypedInteraction;
 
 //What state is it in
 let state = "MainRoom";
@@ -452,16 +471,29 @@ function setup() {
   song5.setVolume(songVolume);
   song6.setVolume(songVolume);
   //Determing a set fill for the bed lamp light before toggling it
-  bedLampLightFill = color(
-    bedLampOff.r,
-    bedLampOff.g,
-    bedLampOff.b,
-    bedLampOff.a
-  );
+  bedLampLightFill = color(bedLampOff.r, bedLampOff.g, bedLampOff.b, bedLampOff.a);
 
   /*=============================
           UNIVERSAL
 ===============================*/
+
+  //MainRoom state
+  mainRoomState = new MainRoomState();
+  room2State = new Room2State();
+  room3State = new Room3State();
+  laptopLogInState = new LaptopLogInState();
+  atomMenuState = new AtomMenuState();
+  aquariumToggleState = new AquariumToggleState();
+
+  //What state is displayed
+  stateShow = new StateShow();
+  //What state is displayed for mouse interactivity(CLICKED)
+  stateMouseInteraction = new StateMouseInteraction();
+  //What state is displayed for when the mouse is being pressed
+  stateMousePressedInteraction = new StateMousePressedInteraction();
+  //What state is displayed for when a key is being typed
+  stateKeyTypedInteraction = new StateKeyTypedInteraction();
+
 
   //Mouse cursor
   mousecursor = new MouseCursor();
@@ -473,36 +505,17 @@ function setup() {
   //Create a for loop if i is less than 200 add a new rain drop
   //Parameters (w,h,x,y)
   for (let i = 0; i < numRainDrops; i++) {
-    rainDrop[i] = new RainDrop(
-      random(1, 4),
-      random(5, 8),
-      random(0, width),
-      random(50, 800)
-    );
-  }
+    rainDrop[i] = new RainDrop(random(1, 4), random(5, 8), random(0, width), random(50, 800));
+}
 
   //Citylight to be called for a class (w,h,x,y)
   for (let i = 0; i < numClouds; i++) {
     cloud[i] = new Cloud(180, 50, random(windowWidth), random(0, 514));
-  }
+}
 
   //Arrows class parameters (w,h,x,y,image,imageforhover)
-  arrowleft = new LeftArrow(
-    100,
-    100,
-    60,
-    660,
-    arrowleftImage,
-    arrowLhoverImage
-  );
-  arrowright = new RightArrow(
-    100,
-    100,
-    1220,
-    660,
-    arrowrightImage,
-    arrowRhoverImage
-  );
+  arrowleft = new LeftArrow(100, 100, 60, 660, arrowleftImage, arrowLhoverImage);
+  arrowright = new RightArrow(100, 100, 1220, 660, arrowrightImage, arrowRhoverImage);
 
   /*=============================
           MAIN ROOM
@@ -567,7 +580,7 @@ function setup() {
   room2Layout = new Room2Layout(1280, 720, 640, 360, room2LayoutImage);
 
   //book parameters (w,h,x,y,image)
-  book = new Book(1280, 720, 640, 360,bookOpenImage);
+  book = new Book(1280, 720, 640, 360, bookOpenImage);
   //coffee image parameters (w,h,x,y,image)
   coffee = new Coffee(60, 60, 573, 570, coffeeImage);
   //Phone code paper parameters (w,h,x,y,image)
@@ -575,7 +588,7 @@ function setup() {
   //bear parameters (w,h,x,y,image)
   bear = new Bear(1280, 720, 640, 360, bearImage);
   //Aquarium Layout parameters (w,h,x,y,image)
-  aquariumLayout = new AquariumLayout(1280, 720, 640, 360, aquariumLayoutImage,aquariumHelpImage);
+  aquariumLayout = new AquariumLayout(1280, 720, 640, 360, aquariumLayoutImage, aquariumHelpImage);
   //Aquarium parameters (w,h,x,y,image,hoverimage)
   aquarium = new Aquarium(180, 130, 773, 460, aquariumImage, aquariumHoverImage);
   //Koi fish parameters (w,h,x,y,image,image2)
@@ -591,214 +604,13 @@ function setup() {
   cityscape3 = new Cityscape3(1280, 720, 640, 360, cityscape3Image);
   //room3layout parameters (w,h,x,y,image)
   room3Layout = new Room3Layout(1280, 720, 640, 360, room3LayoutImage);
-
 }
 
 function draw() {
   //Organize what states the simulation consists of...
   //The room the user begins on
-  if (state == "MainRoom") {
-    mainRoom();
-  }
-  //If the laptop is pressed go to the log on screen
-  else if (state == "LaptopLogIn") {
-    laptoplogin();
-  }
-  //If the username is correct overlay this screen to type the password
-  else if (state == "PasswordState") {
-    passwordlog.display();
-    password.display();
-  }
-  //go to the laptop menu screen
-  else if (state == "LaptopMenuScreen") {
-    laptopmenu.display();
-  }
-  //from the laptop menu screen go to the app lofify
-  else if (state == "LofifyScreen") {
-    lofify.display();
-  }
-  //If atom app is pressed go to the atom screen
-  else if (state == "AtomScreen") {
-    atomMenu();
-  }
-  //If the left arrow is pressed go to room 2
-  else if (state == "Room2") {
-    room2();
-  }
-  //If the aquarium is pressed go to the aquarium screen
-  else if (state == "Aquarium") {
-    aquariumToggle();
-  }
-  //If the user completes the aquarium task prompt this
-  else if (state == "AquariumEnding") {
-    aquariumEnding.display();
-    aquariumSFX.stop();
-  }
-  //Open up the book
-  else if (state == "OpenBook") {
-    book.display();
-  }
-  //Open up the message
-  else if (state == "PlantMessage") {
-    phoneCodePaper.display();
-  }
-  //Open up the papers
-  else if (state == "PaperShow") {
-    paper.display();
-  }
-  //Take the head off of the bear
-  else if (state == "BearHead") {
-    bear.display();
-  }
-  else if (state == "Room3") {
-    room3();
-  }
-}
-
-//Everything relevant to the main room - All needs to be in the same function because it is going to be converted to a state
-function mainRoom() {
-  //Display the cityscape
-  cityscape.display();
-
-  //Display the raindrops //Need a for loop for arrays. Call the class functions in the for loop to display the raindrops
-  for (let i = 0; i < rainDrop.length; i++) {
-    rainDrop[i].display();
-    rainDrop[i].move();
-  }
-
-  //Display the clouds
-  for (let i = 0; i < cloud.length; i++) {
-    cloud[i].display();
-    cloud[i].update();
-  }
-
-  //Display the room
-  mainroom.display();
-  //Display the alert that the user can't fall asleep
-  alertsleep.display();
-  //Display the bed
-  bed.display();
-  //Display the bed lamp
-  bedlamp.display();
-  //Display the laptop
-  laptop.display();
-  //Display the laptop background
-  laptopbg.display();
-  //Display the alarm clock and the alarm time
-  alarmclock.display();
-  alarmtime.display();
-  //Display the bed lamp lighting // Check if it is on or off
-  bedlamplight.display();
-  bedlamplight.checkbedlamplight();
-  //Display the hidden message
-  hiddenmessage.display();
-
-  //Display the Arrows to switch between screens
-  arrowleft.display();
-  arrowright.display();
-  //Display the mouse cursor
-  mousecursor.display();
-}
-
-//Everything relevant to room 2
-function room2() {
-  //Display the landscape for this room
-  cityscape2.display();
-
-  //Display the raindrops //Need a for loop for arrays. Call the class functions in the for loop to display the raindrops
-  for (let i = 0; i < rainDrop.length; i++) {
-    rainDrop[i].display();
-    rainDrop[i].move();
-  }
-
-  //Display the clouds
-  for (let i = 0; i < cloud.length; i++) {
-    cloud[i].display();
-    cloud[i].update();
-  }
-
-  //Display the room layout
-  room2Layout.display();
-  //Display the prerequisite warning
-  prerequisite.display();
-  //Display the aquarium
-  aquarium.display();
-  //Display the coffee
-  coffee.display();
-
-  //Display the Arrows to switch between screens
-  arrowright.display();
-  //Display the mouse cursor
-  mousecursor.displayOnTwo();
-}
-
-//Everything relevant to room 3
-function room3() {
-  //Display the landscape for this room
-  cityscape3.display();
-
-  //Display the raindrops //Need a for loop for arrays. Call the class functions in the for loop to display the raindrops
-  for (let i = 0; i < rainDrop.length; i++) {
-    rainDrop[i].display();
-    rainDrop[i].move();
-  }
-
-  //Display the clouds
-  for (let i = 0; i < cloud.length; i++) {
-    cloud[i].display();
-    cloud[i].update();
-  }
-
-  //Display the room layout
-  room3Layout.display();
-
-  //Display the prerequisite warning
-  prerequisite.displayOnThree();
-
-  //Display the Arrow to switch between screens
-  arrowleft.display();
-
-  //Display the mouse cursor
-  mousecursor.displayOnThree();
-}
-
-
-//Everything relevant to the laptop login info screen
-function laptoplogin() {
-  //Display the laptop login info
-  laptoploginfo.display();
-  username.display();
-}
-
-//Everything relevant to the atom menu screen
-function atomMenu() {
-  atom.display();
-  atomText.display();
-}
-
-//Everything relevant to the aquarium when clicked
-  function aquariumToggle() {
-    aquariumLayout.display();
-    aquariumLayout.mouseOver();
-
-//Display the koi fish/movement
-    koiFish.display();
-    koiFish.move();
-
-//Array for the fish food
-  for (let i = 0; i < tetraFin.length; i++) {
-    tetraFin[i].display();
-    tetraFin[i].move();
-    tetraFin[i].hit(koiFish);
-  }
-
-//Display the count
-    koiFish.displayCount();
-    koiFish.loseCount();
-
-//The heads up display
-    aquariumLayout.displayAquaBottom();
-    aquariumLayout.displayAquaHelp();
+  //Class that handles the states
+  stateShow.display();
 }
 
 /*=====P5 Functions====*\
@@ -807,20 +619,8 @@ keyTyped,keyPressed,mouseClicked
 
 //When a key is typed it will display on the LaptopLogIn screen. This needs to be done in the script.js file for it to work.
 function keyTyped() {
-  if (state == "LaptopLogIn") {
-    //Play typing sound
-    typeSFX.play();
-    userCurrentInput += key;
-  } else if (state == "PasswordState") {
-    //If it is under the password state allow this
-    //Play typing sound
-    typeSFX.play();
-    passCurrentInput += key;
-  } else if (state == "AtomScreen") {
-    //Play typing sound
-    typeSFX.play();
-    atomCurrentInput += key;
-  }
+  //Class that handles the key typed interaction
+  stateKeyTypedInteraction.active();
 }
 
 //When the backspace key is pressed it will delete the characters. *Trying to fix it so it deletes one character at a time keep getting NaN
@@ -835,86 +635,13 @@ function keyPressed() {
 //Mouse Interaction
 function mouseClicked() {
   userStartAudio();
-  //If the state is 'MainRoom' do the following orders
-  if (state == "MainRoom") {
-    mainroom.mouseClicked();
-  }
-  //username state
-  if (state == "LaptopLogIn") {
-    //Return the cursor to the default
-    cursor();
-    laptoploginfo.mouseClicked();
-  }
-  //password state
-  if (state == "PasswordState") {
-    passwordlog.mouseClicked();
-  }
-  //If the Log out button is pressed on the laptop menu screen do the following sequence...
-  if (state == "LaptopMenuScreen") {
-    laptopmenu.mouseClicked();
-  }
-  //Functionality with mouse clicked on the lofify screen
-  if (state == "LofifyScreen") {
-    lofify.mouseClicked();
-  }
-  //Functionality with mouse clicked on the atom screen
-  if (state == "AtomScreen") {
-    atom.mouseClicked();
-  }
-  //Room 2 mouse functionality
-  if (state == "Room2") {
-    room2Layout.mouseClicked();
-  }
-  //Aquarium mouse functionality
-  if (state == "Aquarium") {
-    //Return the cursor to the default
-    cursor();
-    aquariumLayout.mouseClicked();
-  }
-  //AquariumEnding mouse functionality
-  if (state == "AquariumEnding") {
-    aquariumEnding.mouseClicked();
-  }
-  //To close the book
-  if (state == "OpenBook") {
-    cursor();
-    book.mouseClicked();
-  }
-  //To close the phonecodepaper
-  if (state == "PlantMessage") {
-    phoneCodePaper.mouseClicked();
-  }
-  //To close the paper messages
-  if (state == "PaperShow") {
-    cursor();
-    paper.mouseClicked();
-  }
-  //To get out of the bear body
-  if (state == "BearHead") {
-    cursor();
-    bear.mouseClicked();
-  }
-  //Room 3 mouse functionality
-  if (state == "Room3") {
-    room3Layout.mouseClicked();
-  }
+  //Class that handles the mouse clicked interaction
+  stateMouseInteraction.active();
 }
 
 //Functionality for mousePressed (x,y)
 function mousePressed() {
-  //Constrain parameters
-  let xc = constrain(mouseX,0,canvasPosition.x);
-  let yc = constrain(mouseY,0,canvasPosition.y);
-  //Generate a new food if pressed from the class
-  let newtetraFin = new TetraFin(random(58, 1232), 50);
-  //If the mouse is in the canvas and pressed display a new food, else do not.
-  if (state == "Aquarium") {
-    if (mouseX == xc) {
-      if (mouseY == yc) {
-        tetraFin.push(newtetraFin);
-      }
-    }
-  }
+  stateMousePressedInteraction.active();
 }
 
 //Functionality for double clicked.
