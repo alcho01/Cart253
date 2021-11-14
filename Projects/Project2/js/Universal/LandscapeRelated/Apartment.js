@@ -9,6 +9,14 @@ class Apartment {
     this.y = y;
   }
 
+  update() {
+
+  }
+
+  mouseClicked() {
+
+  }
+
   display() {
     //In the subclasses (Mainroom,Cityscape)
   }

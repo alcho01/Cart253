@@ -626,20 +626,20 @@ function draw() {
     room2();
   }
   //If the aquarium is pressed go to the aquarium screen
-  else if (state == 'Aquarium') {
+  else if (state == "Aquarium") {
     aquariumToggle();
   }
   //If the user completes the aquarium task prompt this
-  else if (state == 'AquariumEnding') {
+  else if (state == "AquariumEnding") {
     aquariumEnding.display();
     aquariumSFX.stop();
   }
   //Open up the book
-  else if (state == 'OpenBook') {
+  else if (state == "OpenBook") {
     book.display();
   }
   //Open up the message
-  else if (state == 'PlantMessage') {
+  else if (state == "PlantMessage") {
     phoneCodePaper.display();
   }
   //Open up the papers
