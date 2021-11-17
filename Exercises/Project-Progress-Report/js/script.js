@@ -361,15 +361,15 @@ Sounds
 ===============================*/
 
   //Playlist songs found under lofify application
-  song1 = loadSound("assets/sounds/CherryTree.mp3");
-  song2 = loadSound("assets/sounds/OnMyMind.mp3");
-  song3 = loadSound("assets/sounds/Reflections.mp3");
-  song4 = loadSound("assets/sounds/Overcast.mp3");
-  song5 = loadSound("assets/sounds/Mist.mp3");
-  song6 = loadSound("assets/sounds/MidnightJourney.mp3");
+//  song1 = loadSound("assets/sounds/CherryTree.mp3");
+//  song2 = loadSound("assets/sounds/OnMyMind.mp3");
+//  song3 = loadSound("assets/sounds/Reflections.mp3");
+//  song4 = loadSound("assets/sounds/Overcast.mp3");
+//  song5 = loadSound("assets/sounds/Mist.mp3");
+//  song6 = loadSound("assets/sounds/MidnightJourney.mp3");
 
   //Object sounds
-  bedlampSFX = loadSound("assets/sounds/bedlampsfx.wav");
+  bedlampSFX = loadSound("assets/sounds/bedlampSFX.wav");
   rainSFX = loadSound("assets/sounds/Rain.wav");
   typeSFX = loadSound("assets/sounds/type.wav");
   aquariumSFX = loadSound("assets/sounds/fishtank.wav");
@@ -425,7 +425,7 @@ Images
   phoneHoverImage = loadImage("assets/images/Objects/phoneHover.png");
 
   //Loading the lofify screen
-  lofifyImage = loadImage("assets/images/Objects/lofify.png");
+  lofifyImage = loadImage("assets/images/Objects/Lofify.png");
   //Loading the atom screen
   atomImage = loadImage("assets/images/Objects/atom.png");
   //Loading the sudoku image
@@ -452,7 +452,7 @@ Images
   //Loading the open book image
   bookOpenImage = loadImage("assets/images/Objects/colorbook.png");
   //Loading the coffee image
-  coffeeImage = loadImage("assets/images/Objects/coffee.gif");
+  //coffeeImage = loadImage("assets/images/Objects/coffee.gif");
 
   //Loading images of arrows
   arrowrightImage = loadImage("assets/images/Arrows/arrowright.png");
@@ -474,12 +474,12 @@ function setup() {
   //Loop the rain SFX
   rainSFX.loop();
   //Sets the song volume lower
-  song1.setVolume(songVolume);
-  song2.setVolume(songVolume);
-  song3.setVolume(songVolume);
-  song4.setVolume(songVolume);
-  song5.setVolume(songVolume);
-  song6.setVolume(songVolume);
+  //song1.setVolume(songVolume);
+//  song2.setVolume(songVolume);
+//  song3.setVolume(songVolume);
+//  song4.setVolume(songVolume);
+//  song5.setVolume(songVolume);
+//  song6.setVolume(songVolume);
   //Determing a set fill for the bed lamp light before toggling it
   bedLampLightFill = color(bedLampOff.r, bedLampOff.g, bedLampOff.b, bedLampOff.a);
 
@@ -592,7 +592,7 @@ function setup() {
   //book parameters (w,h,x,y,image)
   book = new Book(1280, 720, 640, 360, bookOpenImage);
   //coffee image parameters (w,h,x,y,image)
-  coffee = new Coffee(60, 60, 573, 570, coffeeImage);
+  //coffee = new Coffee(60, 60, 573, 570, coffeeImage);
   //Phone code paper parameters (w,h,x,y,image)
   phoneCodePaper = new PhoneCodePaper(1280, 720, 640, 360, phoneCodePaperImage);
   //bear parameters (w,h,x,y,image)
