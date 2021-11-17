@@ -361,7 +361,7 @@ Sounds
 ===============================*/
 
   //Playlist songs found under lofify application
-  song1 = loadSound("assets/sounds/CherryTree.mp3");
+  //song1 = loadSound("assets/sounds/CherryTree.mp3");
   song2 = loadSound("assets/sounds/OnMyMind.mp3");
   song3 = loadSound("assets/sounds/Reflections.mp3");
   song4 = loadSound("assets/sounds/Overcast.mp3");
@@ -474,7 +474,7 @@ function setup() {
   //Loop the rain SFX
   rainSFX.loop();
   //Sets the song volume lower
-  song1.setVolume(songVolume);
+//  song1.setVolume(songVolume);
   song2.setVolume(songVolume);
   song3.setVolume(songVolume);
   song4.setVolume(songVolume);
