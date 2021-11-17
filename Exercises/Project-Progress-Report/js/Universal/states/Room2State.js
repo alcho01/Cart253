@@ -28,7 +28,7 @@ class Room2State {
     //Display the aquarium
     aquarium.display();
     //Display the coffee
-    //coffee.display();
+    coffee.display();
 
     //Display the Arrows to switch between screens
     arrowright.display();

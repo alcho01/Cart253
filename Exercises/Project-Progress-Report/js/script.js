@@ -452,7 +452,7 @@ Images
   //Loading the open book image
   bookOpenImage = loadImage("assets/images/Objects/colorbook.png");
   //Loading the coffee image
-  //coffeeImage = loadImage("assets/images/Objects/coffee.gif");
+  coffeeImage = loadImage("assets/images/Objects/coffee.gif");
 
   //Loading images of arrows
   arrowrightImage = loadImage("assets/images/Arrows/arrowright.png");
@@ -592,7 +592,7 @@ function setup() {
   //book parameters (w,h,x,y,image)
   book = new Book(1280, 720, 640, 360, bookOpenImage);
   //coffee image parameters (w,h,x,y,image)
-  //coffee = new Coffee(60, 60, 573, 570, coffeeImage);
+  coffee = new Coffee(60, 60, 573, 570, coffeeImage);
   //Phone code paper parameters (w,h,x,y,image)
   phoneCodePaper = new PhoneCodePaper(1280, 720, 640, 360, phoneCodePaperImage);
   //bear parameters (w,h,x,y,image)
