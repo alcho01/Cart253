@@ -361,12 +361,12 @@ Sounds
 ===============================*/
 
   //Playlist songs found under lofify application
-//  song1 = loadSound("assets/sounds/CherryTree.mp3");
-//  song2 = loadSound("assets/sounds/OnMyMind.mp3");
-//  song3 = loadSound("assets/sounds/Reflections.mp3");
-//  song4 = loadSound("assets/sounds/Overcast.mp3");
-//  song5 = loadSound("assets/sounds/Mist.mp3");
-//  song6 = loadSound("assets/sounds/MidnightJourney.mp3");
+  song1 = loadSound("assets/sounds/CherryTree.mp3");
+  song2 = loadSound("assets/sounds/OnMyMind.mp3");
+  song3 = loadSound("assets/sounds/Reflections.mp3");
+  song4 = loadSound("assets/sounds/Overcast.mp3");
+  song5 = loadSound("assets/sounds/Mist.mp3");
+  song6 = loadSound("assets/sounds/MidnightJourney.mp3");
 
   //Object sounds
   bedlampSFX = loadSound("assets/sounds/bedlampSFX.wav");
@@ -474,12 +474,12 @@ function setup() {
   //Loop the rain SFX
   rainSFX.loop();
   //Sets the song volume lower
-  //song1.setVolume(songVolume);
-//  song2.setVolume(songVolume);
-//  song3.setVolume(songVolume);
-//  song4.setVolume(songVolume);
-//  song5.setVolume(songVolume);
-//  song6.setVolume(songVolume);
+  song1.setVolume(songVolume);
+  song2.setVolume(songVolume);
+  song3.setVolume(songVolume);
+  song4.setVolume(songVolume);
+  song5.setVolume(songVolume);
+  song6.setVolume(songVolume);
   //Determing a set fill for the bed lamp light before toggling it
   bedLampLightFill = color(bedLampOff.r, bedLampOff.g, bedLampOff.b, bedLampOff.a);
 
