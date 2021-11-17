@@ -61,8 +61,10 @@ class StateShow {
     //Take the head off of the bear
     else if (state == "BearHead") {
       bear.display();
+    //Room 3
     } else if (state == "Room3") {
       room3State.display();
+      phone.display();
     }
   }
 }

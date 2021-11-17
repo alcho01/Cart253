@@ -50,5 +50,14 @@ class Prerequisite {
         pop();
       }
     }
+    let d = dist(mouseX, mouseY, phone.x, phone.y);
+    if (d < phone.width / 2) {
+      if (task3Availabe == false) {
+      push();
+      imageMode(CENTER);
+      image(this.prerequisiteImage, this.x, this.y, this.width, this.height);
+      pop();
+      }
+    }
   }
 }

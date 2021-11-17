@@ -83,6 +83,14 @@ class MouseCursor {
   }
   //Display these mouse cursor events on room 3
   displayOnThree() {
-    //Nothing at the moment
+    //dPhone is the distance between the mouse and the phone
+    let dPhone = dist(mouseX, mouseY, phone.x, phone.y);
+
+    if (dPhone < phone.width / 2) {
+      cursor("http://www.rw-designer.com/cursor-view/146672.png");
+    }
+      else {
+       cursor(); 
+    }
   }
 }

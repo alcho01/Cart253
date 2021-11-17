@@ -58,7 +58,7 @@ let rainDrop = [];
 //Amount of raindrops
 let numRainDrops = 200;
 //sound volume
-let songVolume = 0.6;
+let songVolume = 0.1;
 let sfxVolume = 0.5;
 
 //Array for Tetrafin(FishFood)
@@ -194,6 +194,10 @@ let cityscape3;
 //Room3layout to be called for a class
 let room3Layout;
 
+//Phone
+//Phone to be called for a class
+let phone;
+
 /*=============================
 Fonts
 ===============================*/
@@ -309,6 +313,9 @@ let aquariumEndClickImage;
 let cityscape3Image;
 //Image of room3layout
 let room3LayoutImage;
+//Images of the phone
+let phoneImage;
+let phoneHoverImage;
 
 //=======State Stuff======//
 
@@ -413,6 +420,9 @@ Images
 
   //Loading the phone code paper
   phoneCodePaperImage = loadImage("assets/images/Objects/phonecode.png");
+  //Loading the phone images
+  phoneImage = loadImage("assets/images/Objects/phone.png");
+  phoneHoverImage = loadImage("assets/images/Objects/phoneHover.png");
 
   //Loading the lofify screen
   lofifyImage = loadImage("assets/images/Objects/lofify.png");
@@ -604,6 +614,8 @@ function setup() {
   cityscape3 = new Cityscape3(1280, 720, 640, 360, cityscape3Image);
   //room3layout parameters (w,h,x,y,image)
   room3Layout = new Room3Layout(1280, 720, 640, 360, room3LayoutImage);
+  //phone parameters (w,h,x,y,image,imageHover)
+  phone = new Phone(60, 40, 859, 530, phoneImage, phoneHoverImage);
 }
 
 function draw() {
@@ -641,6 +653,7 @@ function mouseClicked() {
 
 //Functionality for mousePressed (x,y)
 function mousePressed() {
+  //Class that handles the mouse pressed interaction
   stateMousePressedInteraction.active();
 }
 
