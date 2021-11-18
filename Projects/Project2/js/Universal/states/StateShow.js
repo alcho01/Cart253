@@ -71,8 +71,17 @@ class StateShow {
       phoneLoginMenu.display();
       phoneLoginMenu.displayNums();
     }
+    //Go to the phone home screen
     else if (state == "PhoneHomeScreen") {
       phoneHome.display();
+    }
+    //Go to the phone photo screen
+    else if (state == "PhonePhotoScreen") {
+      phonePhoto.display();
+    }
+    //Go to the phone Note screen
+    else if (state == "PhoneNoteScreen") {
+      phoneNote.display();
     }
   }
 }

@@ -74,5 +74,17 @@ class StateMouseInteraction {
       cursor();
       phoneLoginMenu.mouseClicked();
     }
+    //Phone Home screen mouse functionality
+    if (state == "PhoneHomeScreen") {
+      phoneHome.mouseClicked();
+    }
+    //Phone Photo screen mouse functionality
+    if (state == "PhonePhotoScreen") {
+      phonePhoto.mouseClicked();
+    }
+    //Phone Note screen mouse functionality
+    if (state == "PhoneNoteScreen") {
+      phoneNote.mouseClicked();
+    }
   }
 }

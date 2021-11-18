@@ -105,7 +105,7 @@
     mouseClicked() {
       //Stop the rain when the phone is clicked
       rainSFX.stop();
-      //If the powerButton is clicked switch to MainRoom
+      //If the powerButton is clicked switch to Room 3
       if (mouseX > this.powerButtonX && mouseX < this.powerButtonX2) {
         if (mouseY > this.powerButtonY && mouseY < this.powerButtonY2) {
           //Change states when the powerButton is clicked

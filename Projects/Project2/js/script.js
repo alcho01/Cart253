@@ -205,6 +205,11 @@ let phone;
 let phoneLoginMenu;
 //Phone Home
 let phoneHome;
+//Phone Photos
+let phonePhoto;
+//Phone Notes
+let phoneNote;
+
 
 /*=============================
 Fonts
@@ -328,6 +333,10 @@ let phoneHoverImage;
 let phoneLoginImage;
 //Image of phone homescreen
 let phoneHomeImage;
+//Image of phone Photos
+let phonePhotoImage;
+//Image of phone Notes
+let phoneNoteImage;
 
 //=======State Stuff======//
 
@@ -437,6 +446,8 @@ Images
   phoneHoverImage = loadImage("assets/images/Objects/phoneHover.png");
   phoneLoginImage = loadImage("assets/images/Objects/phonelogin.png");
   phoneHomeImage = loadImage("assets/images/Objects/phonehome.png");
+  phonePhotoImage = loadImage("assets/images/Objects/phonephotos.png");
+  phoneNoteImage = loadImage("assets/images/Objects/phonenotes.png");
 
   //Loading the lofify screen
   lofifyImage = loadImage("assets/images/Objects/Lofify.png");
@@ -632,8 +643,12 @@ function setup() {
   phone = new Phone(60, 40, 859, 530, phoneImage, phoneHoverImage);
   //Phone login menu parameters (w,h,x,y,image)
   phoneLoginMenu = new PhoneLoginMenu(1280, 720, 640, 360, phoneLoginImage);
-  //Phone home screen paramaeters (w,h,x,y,image)
+  //Phone home screen parameters (w,h,x,y,image)
   phoneHome = new PhoneHome(1280, 720, 640, 360, phoneHomeImage);
+  //Phone Photos screen parameters (w,h,x,y,image)
+  phonePhoto = new PhonePhoto(1280, 720, 640, 360, phonePhotoImage);
+  //Phone Notes Screen Parameters (w,h,x,y,image)
+  phoneNote = new PhoneNote(1280, 720, 640, 360, phoneNoteImage);
 }
 
 function draw() {

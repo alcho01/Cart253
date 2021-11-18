@@ -22,6 +22,13 @@ class MouseCursor {
   //Position
     this.bearX = 1112;
     this.bearY = 440;
+
+  //Door
+  //Dimension
+    this.doorWidth = 350;
+  //Position
+    this.doorX = 445;
+    this.doorY = 258;
   }
 
   //Display the mouse cursor
@@ -85,12 +92,17 @@ class MouseCursor {
   displayOnThree() {
     //dPhone is the distance between the mouse and the phone
     let dPhone = dist(mouseX, mouseY, phone.x, phone.y);
+    //dDoor is the distance between the mouse and the door
+    let dDoor = dist(mouseX, mouseY, this.doorX, this.doorY);
 
     if (dPhone < phone.width / 2) {
       cursor("http://www.rw-designer.com/cursor-view/146672.png");
     }
+    else if (dDoor < this.doorWidth /2 ) {
+      cursor('http://www.rw-designer.com/cursor-view/146672.png');
+    }
       else {
-       cursor(); 
+       cursor();
     }
   }
 }
