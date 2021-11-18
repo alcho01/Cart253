@@ -93,7 +93,7 @@ let task3Availabe = false;
 //Is the door unlocked
 let doorUnlocked = false;
 
-//Setting the username/password
+//Setting the username/password for computer
 let usernameCode = "sleep";
 let passwordCode = "7259";
 
@@ -106,6 +106,10 @@ let passCurrentInput = "";
 let atomCode = "image(object.image,object.x,object.y,object.w,object.h);";
 //What has been typed for the code
 let atomCurrentInput = "";
+
+//Setting up the password for the phone and what has been typed
+let phoneCode = "371629";
+let phoneCurrentInput = "";
 
 /*=============================
 Classes to be called
@@ -197,6 +201,10 @@ let room3Layout;
 //Phone
 //Phone to be called for a class
 let phone;
+//Phone Login Menu
+let phoneLoginMenu;
+//Phone Home
+let phoneHome;
 
 /*=============================
 Fonts
@@ -316,6 +324,10 @@ let room3LayoutImage;
 //Images of the phone
 let phoneImage;
 let phoneHoverImage;
+//Image of phone loginScreen
+let phoneLoginImage;
+//Image of phone homescreen
+let phoneHomeImage;
 
 //=======State Stuff======//
 
@@ -423,6 +435,8 @@ Images
   //Loading the phone images
   phoneImage = loadImage("assets/images/Objects/phone.png");
   phoneHoverImage = loadImage("assets/images/Objects/phoneHover.png");
+  phoneLoginImage = loadImage("assets/images/Objects/phonelogin.png");
+  phoneHomeImage = loadImage("assets/images/Objects/phonehome.png");
 
   //Loading the lofify screen
   lofifyImage = loadImage("assets/images/Objects/Lofify.png");
@@ -616,6 +630,10 @@ function setup() {
   room3Layout = new Room3Layout(1280, 720, 640, 360, room3LayoutImage);
   //phone parameters (w,h,x,y,image,imageHover)
   phone = new Phone(60, 40, 859, 530, phoneImage, phoneHoverImage);
+  //Phone login menu parameters (w,h,x,y,image)
+  phoneLoginMenu = new PhoneLoginMenu(1280, 720, 640, 360, phoneLoginImage);
+  //Phone home screen paramaeters (w,h,x,y,image)
+  phoneHome = new PhoneHome(1280, 720, 640, 360, phoneHomeImage);
 }
 
 function draw() {
@@ -635,7 +653,7 @@ function keyTyped() {
   stateKeyTypedInteraction.active();
 }
 
-//When the backspace key is pressed it will delete the characters. *Trying to fix it so it deletes one character at a time keep getting NaN
+//When the backspace key is pressed it will delete the characters.
 function keyPressed() {
   if (keyCode == 8) {
     userCurrentInput = "";

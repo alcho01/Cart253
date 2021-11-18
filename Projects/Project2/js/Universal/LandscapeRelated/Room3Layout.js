@@ -11,6 +11,11 @@ class Room3Layout extends Apartment{
     this.leftArrowX2 = 114;
     this.leftArrowY = 611;
     this.leftArrowY2 = 715;
+    //Phone
+    this.phoneX = 830;
+    this.phoneX2 = 889;
+    this.phoneY = 515;
+    this.phoneY2 = 547;
   }
 
   //Display the room 3 layout
@@ -23,11 +28,20 @@ class Room3Layout extends Apartment{
 
   //Mouse Functionality
   mouseClicked() {
-    //If the left arrow is pressed switch to MainRoom
+    //If the left arrow is clicked switch to MainRoom
     if (mouseX > this.leftArrowX && mouseX < this.leftArrowX2) {
       if (mouseY > this.leftArrowY && mouseY < this.leftArrowY2) {
         //Change states when the left arrow is clicked
         state = "MainRoom";
+      }
+    }
+    //If the phone is clicked switch to PhoneLogin state
+    if (task3Availabe == false) {
+    if (mouseX > this.phoneX && mouseX < this.phoneX2) {
+      if(mouseY > this.phoneY && mouseY < this.phoneY2) {
+        //Change state when the phone is clicked
+        state = "PhoneLoginMenu";
+        }
       }
     }
   }

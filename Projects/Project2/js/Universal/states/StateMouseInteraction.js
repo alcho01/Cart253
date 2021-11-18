@@ -69,5 +69,10 @@ class StateMouseInteraction {
     if (state == "Room3") {
       room3Layout.mouseClicked();
     }
+    //Phone Login Screen mouse functionality
+    if (state == "PhoneLoginMenu") {
+      cursor();
+      phoneLoginMenu.mouseClicked();
+    }
   }
 }

@@ -24,11 +24,12 @@ class RainDrop {
   move() {
     //Set A speed, include it into the Y equation
     this.speed = random(5, 8); //Play around with these values until I like how it looks
-    this.y = this.y + this.speed;
+    this.vy = random(1,1.5); //Play around with these values until I like how it looks
+    this.y = this.y + this.speed * this.vy;
     //If the drop surpasses the screen, reset it at the top
     if (this.y > height) {
       this.y = random(this.height);
-      this.gravity = 0;
+      this.vy = 0;
     }
   }
 }

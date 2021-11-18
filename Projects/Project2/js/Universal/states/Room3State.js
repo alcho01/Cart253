@@ -24,6 +24,9 @@ class Room3State {
     //Display the room layout
     room3Layout.display();
 
+    //display the phone 
+    phone.display();
+
     //Display the prerequisite warning
     prerequisite.displayOnThree();
 

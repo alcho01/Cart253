@@ -62,9 +62,17 @@ class StateShow {
     else if (state == "BearHead") {
       bear.display();
     //Room 3
-    } else if (state == "Room3") {
+    }
+    else if (state == "Room3") {
       room3State.display();
-      phone.display();
+    }
+    //Open up to phone log in
+    else if (state == "PhoneLoginMenu") {
+      phoneLoginMenu.display();
+      phoneLoginMenu.displayNums();
+    }
+    else if (state == "PhoneHomeScreen") {
+      phoneHome.display();
     }
   }
 }

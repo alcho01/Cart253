@@ -7,13 +7,15 @@ class Phone {
     //Position
     this.x = x;
     this.y = y;
+
     //Images
     this.phoneImage = phoneImage;
     this.phoneHoverImage = phoneHoverImage;
   }
 
+  //Display the phone on room 3
   display() {
-    push()
+    push();
     imageMode(CENTER);
     image(this.phoneImage, this.x, this.y, this.width, this.height);
     pop();

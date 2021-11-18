@@ -24,15 +24,16 @@ class AtomText {
       task2Availabe = true;
       fill(this.r, this.g, this.b);
       sudoku.display();
-    } else {
+    }
+    else {
       //fill it normally
       fill(this.white);
     }
-    textAlign(CENTER);
-    textSize(this.size);
-    text(atomCurrentInput, this.x, this.y);
-    pop();
-  }
+      textAlign(CENTER);
+      textSize(this.size);
+      text(atomCurrentInput, this.x, this.y);
+      pop();
+    }
 
   //If the input is correct return it true if not false
   inputIsCorrect() {
