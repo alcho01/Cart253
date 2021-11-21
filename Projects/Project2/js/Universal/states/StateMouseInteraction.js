@@ -122,5 +122,10 @@ class StateMouseInteraction {
     if (state == "QuizComplete") {
       crossyEnd.mouseClicked();
     }
+    //bag note screen mouse functionality
+    if (state == "BagNote") {
+      cursor();
+      bagNote.mouseClicked();
+    }
   }
 }

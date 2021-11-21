@@ -14,7 +14,8 @@ class StateShow {
     }
     //If the laptop is pressed go to the log on screen
     else if (state == "LaptopLogIn") {
-      laptopLogInState.display();
+      laptoploginfo.display();
+      username.display();
     }
     //If the username is correct overlay this screen to type the password
     else if (state == "PasswordState") {
@@ -31,7 +32,8 @@ class StateShow {
     }
     //If atom app is pressed go to the atom screen
     else if (state == "AtomScreen") {
-      atomMenuState.display();
+      atom.display();
+      atomText.display();
     }
     //If the left arrow is pressed go to room 2
     else if (state == "Room2") {
@@ -133,6 +135,10 @@ class StateShow {
     //Go to Quiz Completed screen
     else if (state == "QuizComplete") {
       crossyEnd.display();
+    }
+    //Go to the bag note
+    else if (state == "BagNote") {
+      bagNote.display();
     }
   }
 }

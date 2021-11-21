@@ -93,7 +93,7 @@ class CrossyQuiz extends Apartment{
   displayAnswer1() {
     //if the answer is correct go to question 2
     if (crossyQuiz.a1IsCorrect()) {
-      answerCurrentInput = "";
+      answerCurrentInput = ""; //Delete the Current input for the next question
       state = "CrossyQuizQuestion2";
     }
     else {
@@ -157,14 +157,16 @@ class CrossyQuiz extends Apartment{
   displayAnswer5() {
     //if the answer is correct go to the end
     if (crossyQuiz.a5IsCorrect()) {
-      task3Complete = true;
-      task4Available = true;
+      hangingFish = true; //Now this becomes clickable
+      task3Complete = true; //Tells that task 3 is complete
+      task4Available = true; //Task 4 becomes available
       answerCurrentInput = "";
       state = "QuizComplete";
     }
     else {
-      fill(this.white);
+      fill(this.white); //If input is wrong do nothing
     }
+    //display the text
     push();
     textAlign(CENTER);
     textSize(this.size);
@@ -225,7 +227,7 @@ class CrossyQuiz extends Apartment{
     }
   }
 
-  //If the input is correct return it true if not false
+  //If the input is correct return it true if not false a1 = Answer 1 and so on
   a1IsCorrect() {
     if (answerCurrentInput === a1) {
       return true;

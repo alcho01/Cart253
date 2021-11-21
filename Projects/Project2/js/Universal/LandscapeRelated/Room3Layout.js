@@ -16,6 +16,11 @@ class Room3Layout extends Apartment{
     this.phoneX2 = 889;
     this.phoneY = 515;
     this.phoneY2 = 547;
+    //Bag
+    this.bagX = 646;
+    this.bagX2 = 753;
+    this.bagY = 414;
+    this.bagY2 = 577;
   }
 
   //Display the room 3 layout
@@ -36,12 +41,21 @@ class Room3Layout extends Apartment{
       }
     }
     //If the phone is clicked switch to PhoneLogin state
-    if (task3Availabe == false) { //Turn to true after testing
+    if (task3Availabe == true) { //Turn to true after testing
     if (mouseX > this.phoneX && mouseX < this.phoneX2) {
       if(mouseY > this.phoneY && mouseY < this.phoneY2) {
         //Change state when the phone is clicked
         state = "PhoneLoginMenu";
         }
+      }
+    }
+    //If the bag is clicked switch to the BagNote state
+    if (mouseX > this.bagX && mouseX < this.bagX2) {
+      if (mouseY > this.bagY && mouseY < this.bagY2) {
+        //Play the bag zipper SFX
+        bagZipSFX.play();
+        //Change state when the phone is clicked
+        state = "BagNote";
       }
     }
   }

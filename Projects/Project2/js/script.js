@@ -27,6 +27,7 @@ aquarium soundFX https://freesound.org/people/7778/sounds/197804/
 Paper soundFX https://freesound.org/people/razrox/sounds/197179/
 Bear Thump soundFX https://freesound.org/people/DigestContent/sounds/458877/
 Book Flip soundFX https://freesound.org/people/InspectorJ/sounds/416179/
+Bag Zip soundFX https://freesound.org/people/nc3studios08/sounds/581281/
 ============CodeIdeas===========
 These are examples that helped me come up with my own ideas and that I took inspiration from.
 
@@ -94,6 +95,9 @@ let task4Available = false;
 
 //Is the door unlocked
 let doorUnlocked = false;
+
+//Prevent the hanging fish from being clicked before task 3 is complete
+let hangingFish = false;
 
 //Delete Key
 let keyDel = -1;
@@ -210,6 +214,8 @@ let aquariumEnding;
 let cityscape3;
 //Room3layout to be called for a class
 let room3Layout;
+//Bag note to be called for a class
+let bagNote;
 
 //Phone
 //Phone to be called for a class
@@ -254,6 +260,8 @@ let paperSFX;
 let thumpSFX;
 //Sound of book flip
 let bookSFX;
+//Bag zip sound
+let bagZipSFX;
 //Song list
 let song1;
 let song2;
@@ -345,6 +353,8 @@ let aquariumEndClickImage;
 let cityscape3Image;
 //Image of room3layout
 let room3LayoutImage;
+//Image of the bag note
+let bagNoteImage;
 //Images of the phone
 let phoneImage;
 let phoneHoverImage;
@@ -373,8 +383,6 @@ let crossyEndImage;
 let mainRoomState;
 let room2State;
 let room3State;
-let laptopLogInState;
-let atomMenuState;
 let aquariumToggleState;
 
 //Display the state
@@ -426,6 +434,7 @@ Sounds
   paperSFX = loadSound("assets/sounds/Papers.wav");
   thumpSFX = loadSound("assets/sounds/thump.wav");
   bookSFX = loadSound("assets/sounds/bookFlip.wav");
+  bagZipSFX = loadSound("assets/sounds/bagZipper.wav");
 
   /*=============================
 Images
@@ -455,6 +464,8 @@ Images
   bearImage = loadImage("assets/images/Objects/teddyhead.png");
   //Loading the paper message
   paperImage = loadImage("assets/images/Objects/papers.png");
+  //Loading the bag note image
+  bagNoteImage = loadImage("assets/images/Objects/bagnote.png");
 
   //Loading the laptop images
   laptopImage = loadImage("assets/images/Objects/laptop.png");
@@ -531,6 +542,7 @@ function setup() {
   //Setting up sounds (Volume,Loops)
   //Set the volume down a bit
   rainSFX.setVolume(sfxVolume);
+  bagZipSFX.setVolume(sfxVolume);
   //Loop the rain SFX
   rainSFX.loop();
   //Sets the song volume lower
@@ -551,8 +563,6 @@ function setup() {
   mainRoomState = new MainRoomState();
   room2State = new Room2State();
   room3State = new Room3State();
-  laptopLogInState = new LaptopLogInState();
-  atomMenuState = new AtomMenuState();
   aquariumToggleState = new AquariumToggleState();
 
   //What state is displayed
@@ -674,6 +684,9 @@ function setup() {
   cityscape3 = new Cityscape3(1280, 720, 640, 360, cityscape3Image);
   //room3layout parameters (w,h,x,y,image)
   room3Layout = new Room3Layout(1280, 720, 640, 360, room3LayoutImage);
+
+  //Bagnote parameters (w,h,x,y,image)
+  bagNote = new BagNote(1280, 720, 640, 360, bagNoteImage);
 
   //phone parameters (w,h,x,y,image,imageHover)
   phone = new Phone(60, 40, 859, 530, phoneImage, phoneHoverImage);
