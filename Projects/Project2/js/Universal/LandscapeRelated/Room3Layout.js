@@ -36,7 +36,7 @@ class Room3Layout extends Apartment{
       }
     }
     //If the phone is clicked switch to PhoneLogin state
-    if (task3Availabe == false) {
+    if (task3Availabe == false) { //Turn to true after testing
     if (mouseX > this.phoneX && mouseX < this.phoneX2) {
       if(mouseY > this.phoneY && mouseY < this.phoneY2) {
         //Change state when the phone is clicked

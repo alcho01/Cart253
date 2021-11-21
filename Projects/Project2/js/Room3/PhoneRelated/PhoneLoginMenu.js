@@ -178,7 +178,8 @@
       //If the cancel button is pressed
       if (mouseX > this.cancelButtonX && mouseX < this.cancelButtonX2) {
         if (mouseY > this.cancelButtonY && mouseY < this.cancelButtonY2) {
-          phoneCurrentInput = '';
+          //Extract one character at a time
+          phoneCurrentInput = phoneCurrentInput.substring(0, phoneCurrentInput.length + keyDel);
         }
       }
     }

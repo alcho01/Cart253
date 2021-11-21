@@ -93,6 +93,9 @@ let task3Availabe = false;
 //Is the door unlocked
 let doorUnlocked = false;
 
+//Delete Key
+let keyDel = -1;
+
 //Setting the username/password for computer
 let usernameCode = "sleep";
 let passwordCode = "7259";
@@ -209,6 +212,17 @@ let phoneHome;
 let phonePhoto;
 //Phone Notes
 let phoneNote;
+//Crossy Game Stuff
+let crossyMenu;
+let crossyHelp;
+//let fooledScreen;
+//let questionScreen;
+//let q1;
+//let q2;
+//let q3;
+//let q4;
+//let q5;
+//let crossyEnd;
 
 
 /*=============================
@@ -668,12 +682,12 @@ function keyTyped() {
   stateKeyTypedInteraction.active();
 }
 
-//When the backspace key is pressed it will delete the characters.
+//Extract one character at a time with backspace
 function keyPressed() {
   if (keyCode == 8) {
-    userCurrentInput = "";
-    passCurrentInput = "";
-    atomCurrentInput = "";
+    userCurrentInput = userCurrentInput.substring(0, userCurrentInput.length + keyDel);
+    passCurrentInput = passCurrentInput.substring(0, passCurrentInput.length + keyDel);
+    atomCurrentInput = atomCurrentInput.substring(0, atomCurrentInput.length + keyDel);
   }
 }
 
