@@ -86,5 +86,41 @@ class StateMouseInteraction {
     if (state == "PhoneNoteScreen") {
       phoneNote.mouseClicked();
     }
+    //Crossy Menu screen mouse functionality
+    if (state == "CrossyMenu") {
+      crossyMenu.mouseClicked();
+    }
+    //Crossy Help screen mouse functionality
+    if (state == "CrossyHelp") {
+      crossyHelp.mouseClicked();
+    }
+    //Crossy fooled screen mouse functionality
+    if (state == "CrossyFooled") {
+      crossyFooled.mouseClicked();
+    }
+    //Crossy quiz screen mouse functionality
+    if (state == "CrossyQuizQuestion1") {
+      crossyQuiz.mouseClicked();
+    }
+    //Crossy quiz screen mouse functionality
+    if (state == "CrossyQuizQuestion2") {
+      crossyQuiz.mouseClicked();
+    }
+    //Crossy quiz screen mouse functionality
+    if (state == "CrossyQuizQuestion3") {
+      crossyQuiz.mouseClicked();
+    }
+    //Crossy quiz screen mouse functionality
+    if (state == "CrossyQuizQuestion4") {
+      crossyQuiz.mouseClicked();
+    }
+    //Crossy quiz screen mouse functionality
+    if (state == "CrossyQuizQuestion5") {
+      crossyQuiz.mouseClicked();
+    }
+    //Crossy end screen mouse functionality
+    if (state == "QuizComplete") {
+      crossyEnd.mouseClicked();
+    }
   }
 }

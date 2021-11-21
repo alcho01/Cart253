@@ -83,5 +83,56 @@ class StateShow {
     else if (state == "PhoneNoteScreen") {
       phoneNote.display();
     }
+    //Go to the crossy menu Screen
+    else if (state == "CrossyMenu") {
+      crossyMenu.display();
+    }
+    //Go to the crossy help screen
+    else if (state == "CrossyHelp") {
+      crossyHelp.display();
+    }
+    //Go to the crossy fooled Screen
+    else if (state == "CrossyFooled") {
+      crossyFooled.display();
+    }
+    //Go to the crossy quiz question 1
+    else if (state == "CrossyQuizQuestion1") {
+      crossyQuiz.display();
+      crossyQuiz.displayQ1();
+      crossyQuiz.displayAnswer1();
+      crossyQuiz.displayNumber1();
+    }
+    //Go to the crossy quiz question 2
+    else if (state == "CrossyQuizQuestion2") {
+      crossyQuiz.display();
+      crossyQuiz.displayQ2();
+      crossyQuiz.displayAnswer2();
+      crossyQuiz.displayNumber2();
+    }
+    //Go to the crossy quiz question 3
+    else if (state == "CrossyQuizQuestion3") {
+      crossyQuiz.display();
+      crossyQuiz.displayQ3();
+      crossyQuiz.displayAnswer3();
+      crossyQuiz.displayNumber3();
+    }
+    //Go to the crossy quiz question 4
+    else if (state == "CrossyQuizQuestion4") {
+      crossyQuiz.display();
+      crossyQuiz.displayQ4();
+      crossyQuiz.displayAnswer4();
+      crossyQuiz.displayNumber4();
+    }
+    //Go to the crossy quiz question 5
+    else if (state == "CrossyQuizQuestion5") {
+      crossyQuiz.display();
+      crossyQuiz.displayQ5();
+      crossyQuiz.displayAnswer5();
+      crossyQuiz.displayNumber5();
+    }
+    //Go to Quiz Completed screen
+    else if (state == "QuizComplete") {
+      crossyEnd.display();
+    }
   }
 }

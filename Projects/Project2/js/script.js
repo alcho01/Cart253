@@ -85,10 +85,12 @@ let bedLampOn = {
 let task1Complete = false;
 let task2Complete = false;
 let task3Complete = false;
+let task4Complete = false;
 
 //Are these tasks availabe to do?
 let task2Availabe = false;
 let task3Availabe = false;
+let task4Available = false;
 
 //Is the door unlocked
 let doorUnlocked = false;
@@ -113,6 +115,14 @@ let atomCurrentInput = "";
 //Setting up the password for the phone and what has been typed
 let phoneCode = "371629";
 let phoneCurrentInput = "";
+
+//Answers and Current Input for Crossy Game // a1 means answer1 and so on
+let a1 = "Z";
+let a2 = "Red";
+let a3 = "Zesty";
+let a4 = "25";
+let a5 = "Crossy";
+let answerCurrentInput = "";
 
 /*=============================
 Classes to be called
@@ -215,14 +225,9 @@ let phoneNote;
 //Crossy Game Stuff
 let crossyMenu;
 let crossyHelp;
-//let fooledScreen;
-//let questionScreen;
-//let q1;
-//let q2;
-//let q3;
-//let q4;
-//let q5;
-//let crossyEnd;
+let crossyFooled;
+let crossyQuiz;
+let crossyEnd;
 
 
 /*=============================
@@ -351,6 +356,16 @@ let phoneHomeImage;
 let phonePhotoImage;
 //Image of phone Notes
 let phoneNoteImage;
+//Image of Crossy Menu
+let crossyMenuImage;
+//Image of Crossy Help
+let crossyHelpImage;
+//Image of Crossy Fooled
+let crossyFooledImage;
+//Image of Crossy Quiz Background
+let crossyQuizImage;
+//Image of Crossy End
+let crossyEndImage;
 
 //=======State Stuff======//
 
@@ -462,6 +477,12 @@ Images
   phoneHomeImage = loadImage("assets/images/Objects/phonehome.png");
   phonePhotoImage = loadImage("assets/images/Objects/phonephotos.png");
   phoneNoteImage = loadImage("assets/images/Objects/phonenotes.png");
+  //CrossyGame
+  crossyMenuImage = loadImage("assets/images/Objects/crossymenu.png");
+  crossyHelpImage = loadImage("assets/images/Objects/crossyhelp.png");
+  crossyFooledImage = loadImage("assets/images/Objects/crossytwist.png");
+  crossyQuizImage = loadImage("assets/images/Objects/quizbg.png");
+  crossyEndImage = loadImage("assets/images/Objects/quizComplete.png");
 
   //Loading the lofify screen
   lofifyImage = loadImage("assets/images/Objects/Lofify.png");
@@ -555,12 +576,12 @@ function setup() {
   //Parameters (w,h,x,y)
   for (let i = 0; i < numRainDrops; i++) {
     rainDrop[i] = new RainDrop(random(1, 4), random(5, 8), random(0, width), random(50, 800));
-}
+  }
 
   //Citylight to be called for a class (w,h,x,y)
   for (let i = 0; i < numClouds; i++) {
     cloud[i] = new Cloud(180, 50, random(windowWidth), random(0, 514));
-}
+  }
 
   //Arrows class parameters (w,h,x,y,image,imageforhover)
   arrowleft = new LeftArrow(100, 100, 60, 660, arrowleftImage, arrowLhoverImage);
@@ -653,6 +674,7 @@ function setup() {
   cityscape3 = new Cityscape3(1280, 720, 640, 360, cityscape3Image);
   //room3layout parameters (w,h,x,y,image)
   room3Layout = new Room3Layout(1280, 720, 640, 360, room3LayoutImage);
+
   //phone parameters (w,h,x,y,image,imageHover)
   phone = new Phone(60, 40, 859, 530, phoneImage, phoneHoverImage);
   //Phone login menu parameters (w,h,x,y,image)
@@ -663,6 +685,17 @@ function setup() {
   phonePhoto = new PhonePhoto(1280, 720, 640, 360, phonePhotoImage);
   //Phone Notes Screen Parameters (w,h,x,y,image)
   phoneNote = new PhoneNote(1280, 720, 640, 360, phoneNoteImage);
+
+  //CrossyMenu parameters (w,h,x,y,image)
+  crossyMenu = new CrossyMenu(1280, 720, 640, 360, crossyMenuImage);
+  //CrossyHelp parameters (w,h,x,y,image)
+  crossyHelp = new CrossyHelp(1280, 720, 640, 360, crossyHelpImage);
+  //Crossy fooled parameteres (w,h,x,y,image)
+  crossyFooled = new CrossyFooled(1280, 720, 640, 360, crossyFooledImage);
+  //Crossy quiz parameters (w,h,x,y,image)
+  crossyQuiz = new CrossyQuiz(1280, 720, 640, 360, crossyQuizImage);
+  //Crossy end parameters (w,h,x,y,image)
+  crossyEnd = new CrossyEnd(1280, 720, 640, 360, crossyEndImage);
 }
 
 function draw() {
@@ -688,6 +721,7 @@ function keyPressed() {
     userCurrentInput = userCurrentInput.substring(0, userCurrentInput.length + keyDel);
     passCurrentInput = passCurrentInput.substring(0, passCurrentInput.length + keyDel);
     atomCurrentInput = atomCurrentInput.substring(0, atomCurrentInput.length + keyDel);
+    answerCurrentInput = answerCurrentInput.substring(0, answerCurrentInput.length + keyDel);
   }
 }
 

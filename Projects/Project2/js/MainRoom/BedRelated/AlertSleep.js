@@ -17,7 +17,7 @@ class AlertSleep {
     let d = dist(mouseX, mouseY, bed.x, bed.y);
     if (d < bed.height / 4) {
       //If the tasks are still incomplete display the alert
-      if (task3Complete == false) {
+      if (task4Complete == false) {
         push();
         imageMode(CENTER);
         image(this.alertsleepImage, this.x, this.y, this.width, this.height);

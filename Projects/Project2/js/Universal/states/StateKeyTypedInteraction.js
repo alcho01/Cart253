@@ -19,6 +19,16 @@ class StateKeyTypedInteraction {
       //Play typing sound
       typeSFX.play();
       atomCurrentInput += key;
+    } else if (state == "CrossyQuizQuestion1") {
+      answerCurrentInput += key;
+    } else if (state == "CrossyQuizQuestion2") {
+      answerCurrentInput += key;
+    } else if (state == "CrossyQuizQuestion3") {
+      answerCurrentInput += key;
+    } else if (state == "CrossyQuizQuestion4") {
+      answerCurrentInput += key;
+    } else if (state == "CrossyQuizQuestion5") {
+      answerCurrentInput += key;
     }
   }
 }

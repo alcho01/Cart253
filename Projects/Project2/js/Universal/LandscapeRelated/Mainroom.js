@@ -86,5 +86,6 @@ class Mainroom extends Apartment {
         paperSFX.play();
       }
     }
+    //Include bed clickable at end 
   }
 }

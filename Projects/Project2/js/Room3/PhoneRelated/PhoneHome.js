@@ -24,6 +24,12 @@ class PhoneHome extends Apartment{
     this.noteAppX2 = 656;
     this.noteAppY = 82;
     this.noteAppY2 = 160;
+
+    //Crossy Application
+    this.crossyX = 688;
+    this.crossyX2 = 767;
+    this.crossyY = 82;
+    this.crossyY2 = 160;
   }
 
   //Display the phone home screen
@@ -56,6 +62,13 @@ class PhoneHome extends Apartment{
       if (mouseY > this.noteAppY && mouseY < this.noteAppY2) {
       //Change states when the powerButton is clicked
         state = "PhoneNoteScreen";
+      }
+    }
+    //If the crossy application is clicked switch to that state
+    if (mouseX > this.crossyX && mouseX < this.crossyX2) {
+      if (mouseY > this.crossyY && mouseY < this.crossyY2) {
+      //Change states when the powerButton is clicked
+      state = "CrossyMenu";
       }
     }
   }
