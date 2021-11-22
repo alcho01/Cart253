@@ -7,9 +7,20 @@ class StateShow {
   //Display whatever state it is
   display() {
     //Organize what states the simulation consists of...
+    //The title screen
+    if (state =="TitleScreen") {
+      titleState.display();
+      titleState.displayLogo();
+      titleState.displayRain();
+      titleState.displayButtons();
+    }
+    //The instructions
+    if (state == "Help") {
+      instructions.display();
+    }
     //The room the user begins on
-
     if (state == "MainRoom") {
+      titleSong.stop();
       mainRoomState.display();
     }
     //If the laptop is pressed go to the log on screen

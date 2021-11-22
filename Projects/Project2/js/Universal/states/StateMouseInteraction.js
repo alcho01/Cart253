@@ -6,6 +6,14 @@ class StateMouseInteraction {
 
   //Activate the mouse clicked interaction based on what state it is in
   active() {
+    //Title screen mouse functionality
+    if (state == "TitleScreen") {
+      titleState.mouseClicked();
+    }
+    //Instructions screen mouse functionality
+    if (state == "Help") {
+      instructions.mouseClicked();
+    }
     //If the state is 'MainRoom' do the following orders
     if (state == "MainRoom") {
       mainroom.mouseClicked();

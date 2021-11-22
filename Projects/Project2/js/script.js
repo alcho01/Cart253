@@ -57,7 +57,8 @@ let numClouds = 5;
 //Array for raindrops
 let rainDrop = [];
 //Amount of raindrops
-let numRainDrops = 200;
+let numRainDrops = 120;
+
 //sound volume
 let songVolume = 0.1;
 let sfxVolume = 0.5;
@@ -131,6 +132,9 @@ let answerCurrentInput = "";
 /*=============================
 Classes to be called
 ===============================*/
+
+//To be called for a class
+let instructions;
 
 //========UNIVERSAL============//
 //mouse cursor to be called for a class
@@ -263,6 +267,7 @@ let bookSFX;
 //Bag zip sound
 let bagZipSFX;
 //Song list
+let titleSong;
 let song1;
 let song2;
 let song3;
@@ -281,6 +286,14 @@ let arrowleftImage;
 let arrowLhoverImage;
 //Image of prerequisite warning
 let prerequisiteImage;
+
+//=========TITLE SCREEN==========//
+//Image of logo
+let logoImage;
+//Title screen buttons
+let titleButtonsImage;
+//instruction screen
+let instructionsImage;
 
 //=========MAIN ROOM==========//
 //Images of cityscapes
@@ -380,6 +393,7 @@ let crossyEndImage;
 //=======State Stuff======//
 
 //States
+let titleState;
 let mainRoomState;
 let room2State;
 let room3State;
@@ -398,7 +412,7 @@ let stateMousePressedInteraction;
 let stateKeyTypedInteraction;
 
 //What state is it in
-let state = "MainRoom";
+let state = "TitleScreen";
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -426,6 +440,9 @@ Sounds
   song5 = loadSound("assets/sounds/Mist.mp3");
   song6 = loadSound("assets/sounds/MidnightJourney.mp3");
 
+  //Song that plays during title screen
+  titleSong = loadSound("assets/sounds/MidnightJourney.mp3");
+
   //Object sounds
   bedlampSFX = loadSound("assets/sounds/bedlampSFX.wav");
   rainSFX = loadSound("assets/sounds/Rain.wav");
@@ -439,6 +456,14 @@ Sounds
   /*=============================
 Images
 ===============================*/
+
+  // Title Screen Images \\
+  //Loading the logo image
+  logoImage = loadImage("assets/images/Objects/titlelogo.png");
+  //Loading the title button images
+  titleButtonsImage = loadImage("assets/images/Objects/titlebuttons.png");
+  //Loading the instructions
+  instructionsImage = loadImage("assets/images/Objects/instructions.png");
 
   //Loading images of cityscapes
   cityscapeImage = loadImage("assets/images/Background/bgmain.png");
@@ -543,8 +568,6 @@ function setup() {
   //Set the volume down a bit
   rainSFX.setVolume(sfxVolume);
   bagZipSFX.setVolume(sfxVolume);
-  //Loop the rain SFX
-  rainSFX.loop();
   //Sets the song volume lower
   song1.setVolume(songVolume);
   song2.setVolume(songVolume);
@@ -552,6 +575,14 @@ function setup() {
   song4.setVolume(songVolume);
   song5.setVolume(songVolume);
   song6.setVolume(songVolume);
+
+  //Loop the rain SFX and play at title
+  rainSFX.loop();
+  //Play At Title and loop on title
+  titleSong.setVolume(songVolume);
+  titleSong.play();
+  titleSong.loop();
+
   //Determing a set fill for the bed lamp light before toggling it
   bedLampLightFill = color(bedLampOff.r, bedLampOff.g, bedLampOff.b, bedLampOff.a);
 
@@ -559,7 +590,11 @@ function setup() {
           UNIVERSAL
 ===============================*/
 
-  //MainRoom state
+  //instructions
+  instructions = new Instructions(1280, 720, 640, 360, instructionsImage);
+
+  //STATES
+  titleState = new TitleState(1280, 720, logoImage, titleButtonsImage);
   mainRoomState = new MainRoomState();
   room2State = new Room2State();
   room3State = new Room3State();
@@ -582,7 +617,7 @@ function setup() {
   prerequisite = new Prerequisite(300, 60, 160, 40, prerequisiteImage);
 
   //RainDrop to be called from class
-  //Create a for loop if i is less than 200 add a new rain drop
+  //Create a for loop if i is less than 150 add a new rain drop
   //Parameters (w,h,x,y)
   for (let i = 0; i < numRainDrops; i++) {
     rainDrop[i] = new RainDrop(random(1, 4), random(5, 8), random(0, width), random(50, 800));
@@ -610,8 +645,8 @@ function setup() {
   bed = new Bed(600, 400, 585, 554.8, bedImage, bedhoverImage);
   //Bed lamp parameters (w,h,x,y,image,imageforhover)
   bedlamp = new BedLamp(70, 100, 520, 370, bedlampImage, bedlamphoverImage);
-  //Bed lamp light parameters (w,h,x,y)
-  bedlamplight = new BedLampLight(1280, 720, 0, 0);
+  //Bed lamp light parameters (w,h)
+  bedlamplight = new BedLampLight(1280, 720);
   //Hidden message parameters (w,h,x,y,image)
   hiddenmessage = new HiddenMessage(100, 100, 600, 50, hiddenmessageImage);
   //Papers parameters (w,h,x,y,image)
