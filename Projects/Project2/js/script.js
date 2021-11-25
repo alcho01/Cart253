@@ -133,9 +133,6 @@ let answerCurrentInput = "";
 Classes to be called
 ===============================*/
 
-//To be called for a class
-let instructions;
-
 //========UNIVERSAL============//
 //mouse cursor to be called for a class
 let mousecursor;
@@ -239,6 +236,31 @@ let crossyFooled;
 let crossyQuiz;
 let crossyEnd;
 
+//=======State Stuff======//
+
+//States
+let preTitle;
+let titleState;
+let instructions;
+let mainRoomState;
+let room2State;
+let room3State;
+let aquariumToggleState;
+
+//Display the state
+let stateShow;
+
+//Enable the mouse functionality(CLICKED) for given state
+let stateMouseInteraction;
+
+//Enable the mouse functionality(PRESSED) for given state
+let stateMousePressedInteraction;
+
+//Enable the key typed functionality for given state
+let stateKeyTypedInteraction;
+
+//What state is it in
+let state = "PreTitle";
 
 /*=============================
 Fonts
@@ -390,30 +412,6 @@ let crossyQuizImage;
 //Image of Crossy End
 let crossyEndImage;
 
-//=======State Stuff======//
-
-//States
-let titleState;
-let mainRoomState;
-let room2State;
-let room3State;
-let aquariumToggleState;
-
-//Display the state
-let stateShow;
-
-//Enable the mouse functionality(CLICKED) for given state
-let stateMouseInteraction;
-
-//Enable the mouse functionality(PRESSED) for given state
-let stateMousePressedInteraction;
-
-//Enable the key typed functionality for given state
-let stateKeyTypedInteraction;
-
-//What state is it in
-let state = "TitleScreen";
-
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
 ===============================*/
@@ -561,6 +559,7 @@ Images
 SETTING UP! CANVAS|CLASSES|ARRAYS|BEDLAMPLIGHTS
 ======================================*/
 function setup() {
+  userStartAudio();
   //Creating the canvas
   createCanvas(canvasPosition.x, canvasPosition.y);
 
@@ -577,11 +576,11 @@ function setup() {
   song6.setVolume(songVolume);
 
   //Loop the rain SFX and play at title
-  rainSFX.loop();
+  //rainSFX.loop();
   //Play At Title and loop on title
   titleSong.setVolume(songVolume);
-  titleSong.play();
-  titleSong.loop();
+  //titleSong.play();
+  //titleSong.loop();
 
   //Determing a set fill for the bed lamp light before toggling it
   bedLampLightFill = color(bedLampOff.r, bedLampOff.g, bedLampOff.b, bedLampOff.a);
@@ -590,11 +589,13 @@ function setup() {
           UNIVERSAL
 ===============================*/
 
-  //instructions
-  instructions = new Instructions(1280, 720, 640, 360, instructionsImage);
-
   //STATES
+  //parameters (w,h,x,y)
+  preTitle = new PreTitle(1280, 720, 640, 360);
+  //parameters (w,h,image1,image2)
   titleState = new TitleState(1280, 720, logoImage, titleButtonsImage);
+  //parameters (w,h,x,y,image)
+  instructions = new Instructions(1280, 720, 640, 360, instructionsImage);
   mainRoomState = new MainRoomState();
   room2State = new Room2State();
   room3State = new Room3State();
@@ -753,6 +754,11 @@ function draw() {
   stateShow.display();
 }
 
+//If the game is over everything resets put this on the title screen after
+function reset(){
+
+}
+
 /*=====P5 Functions====*\
 keyTyped,keyPressed,mouseClicked
 \*=====================*/
@@ -765,6 +771,9 @@ function keyTyped() {
 
 //Extract one character at a time with backspace
 function keyPressed() {
+  //Call the pretitle keypressed function
+  preTitle.keyPressed();
+  //Delete a letter at a time for each
   if (keyCode == 8) {
     userCurrentInput = userCurrentInput.substring(0, userCurrentInput.length + keyDel);
     passCurrentInput = passCurrentInput.substring(0, passCurrentInput.length + keyDel);
@@ -775,12 +784,11 @@ function keyPressed() {
 
 //Mouse Interaction
 function mouseClicked() {
-  userStartAudio();
   //Class that handles the mouse clicked interaction
   stateMouseInteraction.active();
 }
 
-//Functionality for mousePressed (x,y)
+//Functionality for mousePressed
 function mousePressed() {
   //Class that handles the mouse pressed interaction
   stateMousePressedInteraction.active();
