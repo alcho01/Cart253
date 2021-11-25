@@ -135,5 +135,10 @@ class StateMouseInteraction {
       cursor();
       bagNote.mouseClicked();
     }
+    //Room4PreEntrance screen mouse functionality
+    if (state == "Room4Entrance") {
+      cursor();
+      room4PreEntrance.mouseClicked();
+    }
   }
 }

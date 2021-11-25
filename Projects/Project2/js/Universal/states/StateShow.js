@@ -156,5 +156,9 @@ class StateShow {
     else if (state == "BagNote") {
       bagNote.display();
     }
+    //Go to room4 pre entance
+    else if (state == "Room4Entrance") {
+      room4PreEntranceState.display();
+    }
   }
 }

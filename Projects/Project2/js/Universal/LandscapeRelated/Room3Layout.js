@@ -21,6 +21,11 @@ class Room3Layout extends Apartment{
     this.bagX2 = 753;
     this.bagY = 414;
     this.bagY2 = 577;
+    //Door
+    this.doorX = 314;
+    this.doorX2 = 564;
+    this.doorY = 0;
+    this.doorY2 = 530;
   }
 
   //Display the room 3 layout
@@ -56,6 +61,17 @@ class Room3Layout extends Apartment{
         bagZipSFX.play();
         //Change state when the phone is clicked
         state = "BagNote";
+      }
+    }
+    //If the key from task 2 is collected give permission to open the door
+    if (doorUnlocked == true) {
+    if (mouseX > this.doorX && mouseX < this.doorX2) {
+      if (mouseY > this.doorY && mouseY < this.doorY2) {
+        //Play door opening sound
+        doorSFX.play();
+        //Change state to the room 4 pre entrance
+        state = "Room4Entrance";
+        }
       }
     }
   }

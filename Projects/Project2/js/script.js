@@ -95,7 +95,10 @@ let task3Availabe = false;
 let task4Available = false;
 
 //Is the door unlocked
-let doorUnlocked = false;
+let doorUnlocked = true;
+
+//Key for room 4 entrance door
+let hiddenKeyObtained = false;
 
 //Prevent the hanging fish from being clicked before task 3 is complete
 let hangingFish = false;
@@ -236,6 +239,10 @@ let crossyFooled;
 let crossyQuiz;
 let crossyEnd;
 
+//=========ROOM 4 pre==========//
+//5 door room
+let room4PreEntrance;
+
 //=======State Stuff======//
 
 //States
@@ -245,6 +252,7 @@ let instructions;
 let mainRoomState;
 let room2State;
 let room3State;
+let room4PreEntranceState;
 let aquariumToggleState;
 
 //Display the state
@@ -260,7 +268,7 @@ let stateMousePressedInteraction;
 let stateKeyTypedInteraction;
 
 //What state is it in
-let state = "PreTitle";
+let state = "Room3";
 
 /*=============================
 Fonts
@@ -288,6 +296,8 @@ let thumpSFX;
 let bookSFX;
 //Bag zip sound
 let bagZipSFX;
+//Door sound
+let doorSFX;
 //Song list
 let titleSong;
 let song1;
@@ -412,6 +422,10 @@ let crossyQuizImage;
 //Image of Crossy End
 let crossyEndImage;
 
+//=========ROOM 4 Pre==========//
+//Image of room 4 pre entrance layout
+let room4PreEntranceImage;
+
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
 ===============================*/
@@ -450,6 +464,7 @@ Sounds
   thumpSFX = loadSound("assets/sounds/thump.wav");
   bookSFX = loadSound("assets/sounds/bookFlip.wav");
   bagZipSFX = loadSound("assets/sounds/bagZipper.wav");
+  doorSFX = loadSound("assets/sounds/door.wav");
 
   /*=============================
 Images
@@ -472,6 +487,7 @@ Images
   mainroomImage = loadImage("assets/images/Rooms/MainRoom.png");
   room2LayoutImage = loadImage("assets/images/Rooms/Room2.png");
   room3LayoutImage = loadImage("assets/images/Rooms/Room3.png");
+  room4PreEntranceImage = loadImage("assets/images/Rooms/5doors.png");
 
   //Loading images of main room interactive objects
   //Loading the bed images
@@ -599,6 +615,7 @@ function setup() {
   mainRoomState = new MainRoomState();
   room2State = new Room2State();
   room3State = new Room3State();
+  room4PreEntranceState = new Room4PreEntranceState();
   aquariumToggleState = new AquariumToggleState();
 
   //What state is displayed
@@ -745,7 +762,16 @@ function setup() {
   crossyQuiz = new CrossyQuiz(1280, 720, 640, 360, crossyQuizImage);
   //Crossy end parameters (w,h,x,y,image)
   crossyEnd = new CrossyEnd(1280, 720, 640, 360, crossyEndImage);
+
+  /*=============================
+            ROOM 4 Pre
+===============================*/
+  //Room 4 pre entrance parameters(w,h,x,y,image)
+  room4PreEntrance = new Room4PreEntrance(1280, 720, 640, 360, room4PreEntranceImage);
+
 }
+
+
 
 function draw() {
   //Organize what states the simulation consists of...

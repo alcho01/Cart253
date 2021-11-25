@@ -18,6 +18,11 @@ class Prerequisite {
     this.doorX = 445;
     this.doorY = 258;
     this.doorSize = 350;
+
+    //room 4 door 4
+    this.room4DoorX = 917;
+    this.room4DoorY = 305;
+    this.room4DoorSize = 350;
   }
 
   //Initial prerequisite display
@@ -50,13 +55,30 @@ class Prerequisite {
         pop();
       }
     }
-    let d = dist(mouseX, mouseY, phone.x, phone.y);
-    if (d < phone.width / 2) {
+    //dPhone is the distance between the mouse and the phone
+    let dPhone = dist(mouseX, mouseY, phone.x, phone.y);
+    if (dPhone < phone.width / 2) {
       if (task3Availabe == false) {
-      push();
-      imageMode(CENTER);
-      image(this.prerequisiteImage, this.x, this.y, this.width, this.height);
-      pop();
+        push();
+        imageMode(CENTER);
+        image(this.prerequisiteImage, this.x, this.y, this.width, this.height);
+        pop();
+      }
+    }
+  }
+
+  //Display the prerequisite message on the room 4 entrance
+  displayOnFourEntrance() {
+    //dRoom4Door is the distance between the mouse and the door on room 4
+    let dRoom4Door = dist(mouseX, mouseY, this.room4DoorX, this.room4DoorY);
+    if (dRoom4Door < this.room4DoorSize / 2) {
+      if (task3Complete == false) {
+        if (hiddenKeyObtained == false) {
+          push();
+          imageMode(CENTER);
+          image(this.prerequisiteImage, this.x, this.y, this.width, this.height);
+          pop();
+        }
       }
     }
   }

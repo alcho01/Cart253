@@ -36,6 +36,13 @@ class MouseCursor {
   //Position
     this.bagX = 700;
     this.bagY = 500;
+
+    //Door on room 4
+    //Dimension
+    this.room4DoorWith = 350;
+    //Position
+    this.room4DoorX = 917;
+    this.room4DoorY = 305;
   }
 
   //Display the mouse cursor
@@ -113,7 +120,20 @@ class MouseCursor {
     else if (dBag < this.bagWidth /2 ) {
       cursor('http://www.rw-designer.com/cursor-view/166785.png');
     }
-     else {
+    else {
+      cursor();
+    }
+  }
+
+  //Display these mouse cursor events on room 4 entrance
+  displayOnFourEntrance() {
+    //dRoom4Door is the distance between the mouse and the door on room 4
+    let dRoom4Door = dist(mouseX, mouseY, this.room4DoorX, this.room4DoorY);
+
+    if (dRoom4Door < this.room4DoorWith / 2) {
+      cursor("http://www.rw-designer.com/cursor-view/146672.png");
+    }
+    else {
       cursor();
     }
   }
