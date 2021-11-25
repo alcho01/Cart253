@@ -160,5 +160,9 @@ class StateShow {
     else if (state == "Room4Entrance") {
       room4PreEntranceState.display();
     }
+    //Go to the hidden key screen
+    else if (state == "HiddenKey") {
+      hiddenKey.display();
+    }
   }
 }

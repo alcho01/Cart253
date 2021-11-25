@@ -140,5 +140,9 @@ class StateMouseInteraction {
       cursor();
       room4PreEntrance.mouseClicked();
     }
+    //Hidden key mouse functionality
+    if (state == "HiddenKey") {
+      hiddenKey.mouseClicked();
+    }
   }
 }

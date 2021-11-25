@@ -28,6 +28,7 @@ Paper soundFX https://freesound.org/people/razrox/sounds/197179/
 Bear Thump soundFX https://freesound.org/people/DigestContent/sounds/458877/
 Book Flip soundFX https://freesound.org/people/InspectorJ/sounds/416179/
 Bag Zip soundFX https://freesound.org/people/nc3studios08/sounds/581281/
+Door soundFX https://freesound.org/people/InspectorJ/sounds/431117/
 ============CodeIdeas===========
 These are examples that helped me come up with my own ideas and that I took inspiration from.
 
@@ -95,7 +96,7 @@ let task3Availabe = false;
 let task4Available = false;
 
 //Is the door unlocked
-let doorUnlocked = true;
+let doorUnlocked = true; //turn to false after testing done
 
 //Key for room 4 entrance door
 let hiddenKeyObtained = false;
@@ -242,6 +243,8 @@ let crossyEnd;
 //=========ROOM 4 pre==========//
 //5 door room
 let room4PreEntrance;
+//Hidden key
+let hiddenKey;
 
 //=======State Stuff======//
 
@@ -425,6 +428,9 @@ let crossyEndImage;
 //=========ROOM 4 Pre==========//
 //Image of room 4 pre entrance layout
 let room4PreEntranceImage;
+//Hidden key image
+let hiddenKeyImage;
+let hiddenKeyTakenImage;
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -505,6 +511,10 @@ Images
   paperImage = loadImage("assets/images/Objects/papers.png");
   //Loading the bag note image
   bagNoteImage = loadImage("assets/images/Objects/bagnote.png");
+
+  //Loading the hidden key
+  hiddenKeyImage = loadImage("assets/images/Objects/hiddenkey.png");
+  hiddenKeyTakenImage = loadImage("assets/images/Objects/hiddenkeytaken.png");
 
   //Loading the laptop images
   laptopImage = loadImage("assets/images/Objects/laptop.png");
@@ -768,6 +778,8 @@ function setup() {
 ===============================*/
   //Room 4 pre entrance parameters(w,h,x,y,image)
   room4PreEntrance = new Room4PreEntrance(1280, 720, 640, 360, room4PreEntranceImage);
+  //Hidden key parameters
+  hiddenKey = new HiddenKey(1280, 720, 640, 360, hiddenKeyImage);
 
 }
 
