@@ -7,8 +7,13 @@ class StateShow {
   //Display whatever state it is
   display() {
     //Organize what states the simulation consists of...
+    //Pre title state
+    if (state == "PreTitle") {
+      preTitle.display();
+      preTitle.displayText();
+    }
     //The title screen
-    if (state =="TitleScreen") {
+    if (state == "TitleScreen") {
       titleState.display();
       titleState.displayLogo();
       titleState.displayRain();
