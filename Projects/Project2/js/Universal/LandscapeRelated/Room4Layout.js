@@ -36,7 +36,6 @@ class Room4Layout extends Apartment {
       }
     }
     //If the piano is clicked switch to the piano keyboard
-    if (task3Complete == true) { //turn to true after
       if (noteSheetObtained == true) { //turn to true after
         if (mouseX > this.pianoX && mouseX < this.pianoX2) {
           if (mouseY > this.pianoY && mouseY < this.pianoY2) {
@@ -56,4 +55,3 @@ class Room4Layout extends Apartment {
       }
     }
   }
-}

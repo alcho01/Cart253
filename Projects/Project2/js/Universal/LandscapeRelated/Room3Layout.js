@@ -85,6 +85,8 @@ class Room3Layout extends Apartment{
       if (mouseY > this.fishY && mouseY < this.fishY2) {
         //Change state to the piano sheet
           state = "PianoSheet";
+          //Note sheet obtained
+          noteSheetObtained = true;
         }
       }
     }

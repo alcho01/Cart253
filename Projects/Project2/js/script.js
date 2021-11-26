@@ -294,8 +294,11 @@ let stateMousePressedInteraction;
 //Enable the key typed functionality for given state
 let stateKeyTypedInteraction;
 
+//Enable the key pressed functionality
+let stateKeyPressedInteraction;
+
 //What state is it in
-let state = "Room4";
+let state = "PreTitle";
 
 /*=============================
 Fonts
@@ -681,6 +684,8 @@ function setup() {
   stateMousePressedInteraction = new StateMousePressedInteraction();
   //What state is displayed for when a key is being typed
   stateKeyTypedInteraction = new StateKeyTypedInteraction();
+  //what state is displayed for when a key is pressed
+  stateKeyPressedInteraction = new StateKeyPressedInteraction();
 
   //Mouse cursor
   mousecursor = new MouseCursor();
@@ -852,6 +857,10 @@ function draw() {
 
 //If the game is over everything resets put this on the title screen after
 function reset(){
+//reset elements in the script
+//reset the username/password
+//turn the light back off
+//everything to false unless meant to be true
 
 }
 
@@ -867,22 +876,8 @@ function keyTyped() {
 
 //Extract one character at a time with backspace
 function keyPressed() {
-  //Call the pretitle keypressed function
-  preTitle.keyPressed();
-  //Delete a letter at a time for each
-  if (keyCode == 8) {
-    userCurrentInput = userCurrentInput.substring(0, userCurrentInput.length + keyDel);
-    passCurrentInput = passCurrentInput.substring(0, passCurrentInput.length + keyDel);
-    atomCurrentInput = atomCurrentInput.substring(0, atomCurrentInput.length + keyDel);
-    answerCurrentInput = answerCurrentInput.substring(0, answerCurrentInput.length + keyDel);
-  }
-
-  if (state == "PianoKeyboard") {
-    pianoKeyboard.keyPressed();
-    if (keyCode == 8) {
-      pianoCurrentInput = pianoCurrentInput.substring(0, pianoCurrentInput.length + keyDel);
-    }
-  }
+  //Class that handles key pressed events
+  stateKeyPressedInteraction.active();
 }
 
 //Mouse Interaction

@@ -79,7 +79,6 @@ class Prerequisite {
     //dRoom4Door is the distance between the mouse and the door on room 4
     let dRoom4Door = dist(mouseX, mouseY, this.room4DoorX, this.room4DoorY);
     if (dRoom4Door < this.room4DoorSize / 2) {
-      if (task3Complete == false) {
         if (hiddenKeyObtained == false) {
           push();
           imageMode(CENTER);
@@ -88,7 +87,6 @@ class Prerequisite {
         }
       }
     }
-  }
 
   //Display the prerequisite message on room 4
   displayOnFour() {
