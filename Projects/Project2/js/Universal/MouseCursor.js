@@ -37,12 +37,19 @@ class MouseCursor {
     this.bagX = 700;
     this.bagY = 500;
 
-    //Door on room 4
-    //Dimension
-    this.room4DoorWith = 350;
-    //Position
+  //Door on room 4
+  //Dimension
+    this.room4DoorWidth = 350;
+  //Position
     this.room4DoorX = 917;
     this.room4DoorY = 305;
+
+  //Piano
+  //Dimension
+  this.pianoWidth = 400;
+  //Position
+  this.pianoX = 1083;
+  this.pianoY = 488;
   }
 
   //Display the mouse cursor
@@ -130,7 +137,20 @@ class MouseCursor {
     //dRoom4Door is the distance between the mouse and the door on room 4
     let dRoom4Door = dist(mouseX, mouseY, this.room4DoorX, this.room4DoorY);
 
-    if (dRoom4Door < this.room4DoorWith / 2) {
+    if (dRoom4Door < this.room4DoorWidth / 2) {
+      cursor("http://www.rw-designer.com/cursor-view/146672.png");
+    }
+    else {
+      cursor();
+    }
+  }
+
+  //Display these mouse cursor events on room 4
+  displayOnFour() {
+    //dPiano is the distance between the mouse and the piano
+    let dPiano = dist(mouseX, mouseY, this.pianoX, this.pianoY);
+
+    if (dPiano < this.pianoWidth / 2) {
       cursor("http://www.rw-designer.com/cursor-view/146672.png");
     }
     else {

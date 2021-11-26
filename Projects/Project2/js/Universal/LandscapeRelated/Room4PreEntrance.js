@@ -16,6 +16,11 @@ class Room4PreEntrance extends Apartment{
     this.doorMatX2 = 486;
     this.doorMatY = 519;
     this.doorMatY2 = 604;
+    //Door
+    this.doorX = 804;
+    this.doorX2 = 1020;
+    this.doorY = 85;
+    this.doorY2 = 506;
   }
 
   //Display the room 4 pre entrance
@@ -38,8 +43,17 @@ class Room4PreEntrance extends Apartment{
     //If the door mat is clicked collect the key to enter room 4
     if (mouseX > this.doorMatX && mouseX < this.doorMatX2) {
       if (mouseY > this.doorMatY && mouseY < this.doorMatY2) {
-        //Change states when the door mat is pressed
+        //Change states when the door mat is clicked
         state = "HiddenKey";
+      }
+    }
+    //If the door is clicked enter room 4
+    if (mouseX > this.doorX && mouseX < this.doorX2) {
+      if (mouseY > this.doorY && mouseY < this.doorY2) {
+        //Play door opening sound
+        doorSFX.play();
+        //Change states when the door is clicked
+        state = "Room4";
       }
     }
   }

@@ -96,13 +96,15 @@ let task3Availabe = false;
 let task4Available = false;
 
 //Is the door unlocked
-let doorUnlocked = true; //turn to false after testing done
+let doorUnlocked = false; //turn to false after testing done
 
 //Key for room 4 entrance door
 let hiddenKeyObtained = false;
 
 //Prevent the hanging fish from being clicked before task 3 is complete
 let hangingFish = false;
+//When the hanging fish is clicked it obtains this
+let noteSheetObtained = false;
 
 //Delete Key
 let keyDel = -1;
@@ -245,6 +247,11 @@ let crossyEnd;
 let room4PreEntrance;
 //Hidden key
 let hiddenKey;
+//=========ROOM 4==========//
+//room4Layout
+let room4Layout;
+// Piano
+let piano;
 
 //=======State Stuff======//
 
@@ -256,6 +263,7 @@ let mainRoomState;
 let room2State;
 let room3State;
 let room4PreEntranceState;
+let room4State;
 let aquariumToggleState;
 
 //Display the state
@@ -271,7 +279,7 @@ let stateMousePressedInteraction;
 let stateKeyTypedInteraction;
 
 //What state is it in
-let state = "Room3";
+let state = "Room4";
 
 /*=============================
 Fonts
@@ -431,6 +439,12 @@ let room4PreEntranceImage;
 //Hidden key image
 let hiddenKeyImage;
 let hiddenKeyTakenImage;
+//=========ROOM 4==========//
+//Room 4 layout image
+let room4LayoutImage;
+//Images of piano entity
+let pianoImage;
+let pianoHoverImage;
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -494,6 +508,7 @@ Images
   room2LayoutImage = loadImage("assets/images/Rooms/Room2.png");
   room3LayoutImage = loadImage("assets/images/Rooms/Room3.png");
   room4PreEntranceImage = loadImage("assets/images/Rooms/5doors.png");
+  room4LayoutImage = loadImage("assets/images/Rooms/Room4.png");
 
   //Loading images of main room interactive objects
   //Loading the bed images
@@ -515,6 +530,10 @@ Images
   //Loading the hidden key
   hiddenKeyImage = loadImage("assets/images/Objects/hiddenkey.png");
   hiddenKeyTakenImage = loadImage("assets/images/Objects/hiddenkeytaken.png");
+
+  //Loading piano related images
+  pianoImage = loadImage("assets/images/Objects/piano.png");
+  pianoHoverImage = loadImage("assets/images/Objects/pianohover.png");
 
   //Loading the laptop images
   laptopImage = loadImage("assets/images/Objects/laptop.png");
@@ -626,6 +645,7 @@ function setup() {
   room2State = new Room2State();
   room3State = new Room3State();
   room4PreEntranceState = new Room4PreEntranceState();
+  room4State = new Room4State();
   aquariumToggleState = new AquariumToggleState();
 
   //What state is displayed
@@ -636,7 +656,6 @@ function setup() {
   stateMousePressedInteraction = new StateMousePressedInteraction();
   //What state is displayed for when a key is being typed
   stateKeyTypedInteraction = new StateKeyTypedInteraction();
-
 
   //Mouse cursor
   mousecursor = new MouseCursor();
@@ -776,10 +795,20 @@ function setup() {
   /*=============================
             ROOM 4 Pre
 ===============================*/
+
   //Room 4 pre entrance parameters(w,h,x,y,image)
   room4PreEntrance = new Room4PreEntrance(1280, 720, 640, 360, room4PreEntranceImage);
   //Hidden key parameters
   hiddenKey = new HiddenKey(1280, 720, 640, 360, hiddenKeyImage);
+
+  /*=============================
+            ROOM 4
+===============================*/
+
+  //Room 4 layout parameters(w,h,x,y,image)
+  room4Layout = new Room4Layout(1280, 720, 640, 360, room4LayoutImage);
+  //piano parameters(w,h,x,y,image, imageHover)
+  piano = new Piano(430, 350, 1053, 495, pianoImage, pianoHoverImage);
 
 }
 

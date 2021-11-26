@@ -144,5 +144,9 @@ class StateMouseInteraction {
     if (state == "HiddenKey") {
       hiddenKey.mouseClicked();
     }
+    if (state == "Room4") {
+      cursor();
+      room4Layout.mouseClicked();
+    }
   }
 }

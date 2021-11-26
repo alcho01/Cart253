@@ -164,5 +164,9 @@ class StateShow {
     else if (state == "HiddenKey") {
       hiddenKey.display();
     }
+    //Go to room4
+    else if (state == "Room4") {
+      room4State.display();
+    }
   }
 }

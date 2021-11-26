@@ -13,16 +13,23 @@ class Prerequisite {
 
     //prerequisite settings for room 3
 
-    //Mouse Positions
     //door
     this.doorX = 445;
     this.doorY = 258;
     this.doorSize = 350;
 
+    //prerequisite settings for room 4
+
     //room 4 door 4
     this.room4DoorX = 917;
     this.room4DoorY = 305;
     this.room4DoorSize = 350;
+
+    //Piano
+    this.pianoX = 1083;
+    this.pianoY = 488;
+    this.pianoSize = 400;
+
   }
 
   //Initial prerequisite display
@@ -74,6 +81,22 @@ class Prerequisite {
     if (dRoom4Door < this.room4DoorSize / 2) {
       if (task3Complete == false) {
         if (hiddenKeyObtained == false) {
+          push();
+          imageMode(CENTER);
+          image(this.prerequisiteImage, this.x, this.y, this.width, this.height);
+          pop();
+        }
+      }
+    }
+  }
+
+  //Display the prerequisite message on room 4
+  displayOnFour() {
+    //dPiano  is the distance between the mouse and the piano
+    let dPiano = dist(mouseX, mouseY, this.pianoX, this.pianoY);
+    if (dPiano < this.pianoSize / 2) {
+      if (task3Complete == false) {
+        if (noteSheetObtained == false) {
           push();
           imageMode(CENTER);
           image(this.prerequisiteImage, this.x, this.y, this.width, this.height);
