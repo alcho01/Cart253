@@ -36,10 +36,19 @@ class Room4Layout extends Apartment {
       }
     }
     //If the piano is clicked switch to the piano keyboard
-    if (task3Complete == false) { //turn to true after
-      if (noteSheetObtained == false) { //turn to true after 
+    if (task3Complete == true) { //turn to true after
+      if (noteSheetObtained == true) { //turn to true after
         if (mouseX > this.pianoX && mouseX < this.pianoX2) {
           if (mouseY > this.pianoY && mouseY < this.pianoY2) {
+            //stop the rain
+            rainSFX.stop();
+            //stop the songs
+            song1.stop();
+            song2.stop();
+            song3.stop();
+            song4.stop();
+            song5.stop();
+            song6.stop();
             //Change states when the piano is clicked
             state = "PianoKeyboard";
           }

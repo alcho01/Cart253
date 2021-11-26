@@ -37,6 +37,7 @@ Rain Idea: Took inspiration from the Juggle Garden exercise.
 Username and password idea inspired by Pippin's code : https://editor.p5js.org/pippinbarr/sketches/k4ETSg3oc
 Line 47 On the Koi Fish is inspired by this: https://editor.p5js.org/creativecoding/sketches/bYIGQdDks(Line 58)
 FrameCount Help : https://editor.p5js.org/aferriss/sketches/H18ePMyqG
+piano inspiration from: https://editor.p5js.org/mrbombmusic/sketches/B1gG3goAQ, and all p5 reference aids. I already have experience with musical terms, because i have played piano for 4 years, and also create music with fruity loops. I wanted a visual representation of something I can achieve
 */
 
 "use strict";
@@ -84,6 +85,8 @@ let bedLampOn = {
   a: 50,
 };
 
+//True/False entities
+
 //Set the tasks to uncomplete
 let task1Complete = false;
 let task2Complete = false;
@@ -108,6 +111,11 @@ let noteSheetObtained = false;
 
 //Delete Key
 let keyDel = -1;
+
+//Piano sounds from oscillator (synth), envelope (Amplitude)
+let osc = [];
+let envo = [];
+let numKeys = 7;
 
 //Setting the username/password for computer
 let usernameCode = "sleep";
@@ -134,6 +142,10 @@ let a3 = "Zesty";
 let a4 = "25";
 let a5 = "Crossy";
 let answerCurrentInput = "";
+
+//Current input and sequence for the piano keys
+let pianoSequence = "dfgasfddfgasda"; // C4
+let pianoCurrentInput = "";
 
 /*=============================
 Classes to be called
@@ -291,6 +303,7 @@ Fonts
 
 let alarmtimeFont;
 let lofiFont;
+let silomFont;
 
 /*=============================
 Sounds
@@ -467,6 +480,8 @@ Fonts
   alarmtimeFont = loadFont("assets/fonts/alarmclock.ttf");
   //Loading a font for lofify currently playing
   lofiFont = loadFont("assets/fonts/lofi.ttf");
+  //Loading a font for the piano sequence
+  silomFont = loadFont("assets/fonts/Silom.ttf");
 
   /*=============================
 Sounds
@@ -631,7 +646,7 @@ function setup() {
   song6.setVolume(songVolume);
 
   //Loop the rain SFX and play at title
-  //rainSFX.loop();
+  rainSFX.loop();
   //Play At Title and loop on title
   titleSong.setVolume(songVolume);
   //titleSong.play();
@@ -823,6 +838,7 @@ function setup() {
   piano = new Piano(430, 350, 1053, 495, pianoImage, pianoHoverImage);
   //Piano keyboard parameters(w,h,x,y,image)
   pianoKeyboard = new PianoKeyboard(1280, 720, 640, 360, pianoKeyboardImage);
+
 }
 
 
@@ -859,6 +875,13 @@ function keyPressed() {
     passCurrentInput = passCurrentInput.substring(0, passCurrentInput.length + keyDel);
     atomCurrentInput = atomCurrentInput.substring(0, atomCurrentInput.length + keyDel);
     answerCurrentInput = answerCurrentInput.substring(0, answerCurrentInput.length + keyDel);
+  }
+
+  if (state == "PianoKeyboard") {
+    pianoKeyboard.keyPressed();
+    if (keyCode == 8) {
+      pianoCurrentInput = pianoCurrentInput.substring(0, pianoCurrentInput.length + keyDel);
+    }
   }
 }
 

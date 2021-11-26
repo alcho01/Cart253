@@ -175,6 +175,7 @@ class StateShow {
     //Go to the piano keyboard
     else if (state == "PianoKeyboard") {
       pianoKeyboard.display();
+      pianoKeyboard.displaySequence();
     }
   }
 }
