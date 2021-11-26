@@ -11,6 +11,11 @@ class Room4Layout extends Apartment {
     this.leftArrowX2 = 114;
     this.leftArrowY = 611;
     this.leftArrowY2 = 715;
+    //piano
+    this.pianoX = 842;
+    this.pianoX2 = 1268;
+    this.pianoY = 320;
+    this.pianoY2 = 655;
   }
 
   //Display the layout
@@ -28,6 +33,17 @@ class Room4Layout extends Apartment {
       if (mouseY > this.leftArrowY && mouseY < this.leftArrowY2) {
         //Change states when the left arrow is clicked
         state = "Room4Entrance";
+      }
+    }
+    //If the piano is clicked switch to the piano keyboard
+    if (task3Complete == false) { //turn to true after
+      if (noteSheetObtained == false) { //turn to true after 
+        if (mouseX > this.pianoX && mouseX < this.pianoX2) {
+          if (mouseY > this.pianoY && mouseY < this.pianoY2) {
+            //Change states when the piano is clicked
+            state = "PianoKeyboard";
+          }
+        }
       }
     }
   }

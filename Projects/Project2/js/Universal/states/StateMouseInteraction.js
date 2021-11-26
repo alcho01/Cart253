@@ -135,6 +135,10 @@ class StateMouseInteraction {
       cursor();
       bagNote.mouseClicked();
     }
+    //Piano Sheet screen mouse functionality
+    if (state == "PianoSheet") {
+      pianoSheet.mouseClicked();
+    }
     //Room4PreEntrance screen mouse functionality
     if (state == "Room4Entrance") {
       cursor();
@@ -144,9 +148,14 @@ class StateMouseInteraction {
     if (state == "HiddenKey") {
       hiddenKey.mouseClicked();
     }
+    //Room 4 mouse functionality
     if (state == "Room4") {
       cursor();
       room4Layout.mouseClicked();
+    }
+    if (state == "PianoKeyboard") {
+      cursor();
+      pianoKeyboard.mouseClicked();
     }
   }
 }

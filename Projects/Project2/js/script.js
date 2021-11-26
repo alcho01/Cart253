@@ -223,6 +223,8 @@ let cityscape3;
 let room3Layout;
 //Bag note to be called for a class
 let bagNote;
+//Piano sheet hidden behind the hanging fish.
+let pianoSheet;
 
 //Phone
 //Phone to be called for a class
@@ -250,8 +252,10 @@ let hiddenKey;
 //=========ROOM 4==========//
 //room4Layout
 let room4Layout;
-// Piano
+//Piano
 let piano;
+//PianoKeys
+let pianoKeyboard
 
 //=======State Stuff======//
 
@@ -411,6 +415,8 @@ let cityscape3Image;
 let room3LayoutImage;
 //Image of the bag note
 let bagNoteImage;
+//Image of the piano sheet
+let pianoSheetImage;
 //Images of the phone
 let phoneImage;
 let phoneHoverImage;
@@ -445,6 +451,8 @@ let room4LayoutImage;
 //Images of piano entity
 let pianoImage;
 let pianoHoverImage;
+//Image of piano keyboard
+let pianoKeyboardImage;
 
 /*=============================
 IMAGES/SOUNDS/FONTS TO PRELOAD
@@ -532,8 +540,10 @@ Images
   hiddenKeyTakenImage = loadImage("assets/images/Objects/hiddenkeytaken.png");
 
   //Loading piano related images
+  pianoSheetImage = loadImage("assets/images/Objects/pianosheet.png");
   pianoImage = loadImage("assets/images/Objects/piano.png");
   pianoHoverImage = loadImage("assets/images/Objects/pianohover.png");
+  pianoKeyboardImage = loadImage("assets/images/Objects/pianokeys.png");
 
   //Loading the laptop images
   laptopImage = loadImage("assets/images/Objects/laptop.png");
@@ -769,6 +779,8 @@ function setup() {
 
   //Bagnote parameters (w,h,x,y,image)
   bagNote = new BagNote(1280, 720, 640, 360, bagNoteImage);
+  //Piano sheet parameters (w,h,x,y,image)
+  pianoSheet = new PianoSheet(1280, 720, 640, 360, pianoSheetImage);
 
   //phone parameters (w,h,x,y,image,imageHover)
   phone = new Phone(60, 40, 859, 530, phoneImage, phoneHoverImage);
@@ -809,7 +821,8 @@ function setup() {
   room4Layout = new Room4Layout(1280, 720, 640, 360, room4LayoutImage);
   //piano parameters(w,h,x,y,image, imageHover)
   piano = new Piano(430, 350, 1053, 495, pianoImage, pianoHoverImage);
-
+  //Piano keyboard parameters(w,h,x,y,image)
+  pianoKeyboard = new PianoKeyboard(1280, 720, 640, 360, pianoKeyboardImage);
 }
 
 

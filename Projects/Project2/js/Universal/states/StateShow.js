@@ -156,6 +156,10 @@ class StateShow {
     else if (state == "BagNote") {
       bagNote.display();
     }
+    //Go to the piano sheet
+    else if (state == "PianoSheet") {
+      pianoSheet.display();
+    }
     //Go to room4 pre entance
     else if (state == "Room4Entrance") {
       room4PreEntranceState.display();
@@ -167,6 +171,10 @@ class StateShow {
     //Go to room4
     else if (state == "Room4") {
       room4State.display();
+    }
+    //Go to the piano keyboard
+    else if (state == "PianoKeyboard") {
+      pianoKeyboard.display();
     }
   }
 }

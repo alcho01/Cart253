@@ -36,24 +36,26 @@ class Room4PreEntrance extends Apartment{
     //If the left arrow is clicked switch to Room3
     if (mouseX > this.leftArrowX && mouseX < this.leftArrowX2) {
       if (mouseY > this.leftArrowY && mouseY < this.leftArrowY2) {
-        //Change states when the left arrow is clicked
-        state = "Room3";
+          //Change states when the left arrow is clicked
+          state = "Room3";
+        }
       }
-    }
     //If the door mat is clicked collect the key to enter room 4
     if (mouseX > this.doorMatX && mouseX < this.doorMatX2) {
       if (mouseY > this.doorMatY && mouseY < this.doorMatY2) {
-        //Change states when the door mat is clicked
-        state = "HiddenKey";
+          //Change states when the door mat is clicked
+          state = "HiddenKey";
+        }
       }
-    }
     //If the door is clicked enter room 4
+    if (hiddenKeyObtained == true) {
     if (mouseX > this.doorX && mouseX < this.doorX2) {
       if (mouseY > this.doorY && mouseY < this.doorY2) {
-        //Play door opening sound
-        doorSFX.play();
-        //Change states when the door is clicked
-        state = "Room4";
+          //Play door opening sound
+          doorSFX.play();
+          //Change states when the door is clicked
+          state = "Room4";
+        }
       }
     }
   }

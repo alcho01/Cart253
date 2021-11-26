@@ -26,6 +26,11 @@ class Room3Layout extends Apartment{
     this.doorX2 = 564;
     this.doorY = 0;
     this.doorY2 = 530;
+    //hanging fish
+    this.fishX = 681;
+    this.fishX2 = 857;
+    this.fishY = 36;
+    this.fishY2 = 132;
   }
 
   //Display the room 3 layout
@@ -42,15 +47,15 @@ class Room3Layout extends Apartment{
     if (mouseX > this.leftArrowX && mouseX < this.leftArrowX2) {
       if (mouseY > this.leftArrowY && mouseY < this.leftArrowY2) {
         //Change states when the left arrow is clicked
-        state = "MainRoom";
+          state = "MainRoom";
+        }
       }
-    }
     //If the phone is clicked switch to PhoneLogin state
     if (task3Availabe == true) { //Turn to true after testing
     if (mouseX > this.phoneX && mouseX < this.phoneX2) {
       if(mouseY > this.phoneY && mouseY < this.phoneY2) {
         //Change state when the phone is clicked
-        state = "PhoneLoginMenu";
+          state = "PhoneLoginMenu";
         }
       }
     }
@@ -60,9 +65,9 @@ class Room3Layout extends Apartment{
         //Play the bag zipper SFX
         bagZipSFX.play();
         //Change state when the phone is clicked
-        state = "BagNote";
+          state = "BagNote";
+        }
       }
-    }
     //If the key from task 2 is collected give permission to open the door
     if (doorUnlocked == true) {
     if (mouseX > this.doorX && mouseX < this.doorX2) {
@@ -70,7 +75,16 @@ class Room3Layout extends Apartment{
         //Play door opening sound
         doorSFX.play();
         //Change state to the room 4 pre entrance
-        state = "Room4Entrance";
+          state = "Room4Entrance";
+        }
+      }
+    }
+    //If task 3 is complete allow the hanging fish to be clicked
+    if (hangingFish == true) {
+    if (mouseX > this.fishX && mouseX < this.fishX2) {
+      if (mouseY > this.fishY && mouseY < this.fishY2) {
+        //Change state to the piano sheet
+          state = "PianoSheet";
         }
       }
     }
