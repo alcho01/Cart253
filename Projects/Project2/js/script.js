@@ -2,42 +2,10 @@
 Title of Project 3:00AM CYCLE
 Alex Cho
 
-/========LEGEND========\
-w = width               y = Y-Position
-h = height              image = specified image
-x = X-position          imageforhover = secondary image used for hover
-font = specified font   r = red value
-g = green value         b = blue value
-a = alpha value
-=======================/
+The concept of the game is to break the cycle repeatdly resetting at 3:00am. To do so it requires the completion of 4 tasks that can be found throughout the rooms.
+There is a variety of puzzle games that require memorization, logic and attention. Hints are scattered around the room to unlock certain steps or create an easier time for the user.
+For a more in depth breakdown of the game please consult the README.
 
-References for Images/Fonts/Sounds/Coding Ideas
-
-=============Images=============
-Cursor Look http://www.rw-designer.com/cursor-view/166785.png
-Cursor Interact http://www.rw-designer.com/cursor-view/146672.png
-=============Fonts==============
-Digital Clock Font : https://www.dafont.com/alarm-clock.font
-Lofi font : https://www.dafont.com/digit-lofi.font
-=============Sounds=============
-Type soundFX https://freesound.org/people/Breviceps/sounds/447909/
-Lamp soundFX https://freesound.org/people/PhillipArthur/sounds/541761/
-Rain soundFX https://freesound.org/people/InspectorJ/sounds/346642/
-aquarium soundFX https://freesound.org/people/7778/sounds/197804/
-Paper soundFX https://freesound.org/people/razrox/sounds/197179/
-Bear Thump soundFX https://freesound.org/people/DigestContent/sounds/458877/
-Book Flip soundFX https://freesound.org/people/InspectorJ/sounds/416179/
-Bag Zip soundFX https://freesound.org/people/nc3studios08/sounds/581281/
-Door soundFX https://freesound.org/people/InspectorJ/sounds/431117/
-============CodeIdeas===========
-These are examples that helped me come up with my own ideas and that I took inspiration from.
-
-Digital Clock Idea : https://editor.p5js.org/D_Snyder/sketches/Xtx2Zu9D5
-Rain Idea: Took inspiration from the Juggle Garden exercise.
-Username and password idea inspired by Pippin's code : https://editor.p5js.org/pippinbarr/sketches/k4ETSg3oc
-Line 47 On the Koi Fish is inspired by this: https://editor.p5js.org/creativecoding/sketches/bYIGQdDks(Line 58)
-FrameCount Help : https://editor.p5js.org/aferriss/sketches/H18ePMyqG
-piano inspiration from: https://editor.p5js.org/mrbombmusic/sketches/B1gG3goAQ, and all p5 reference aids. I already have experience with musical terms, because i have played piano for 4 years, and also create music with fruity loops. I wanted a visual representation of something I can achieve
 */
 
 "use strict";

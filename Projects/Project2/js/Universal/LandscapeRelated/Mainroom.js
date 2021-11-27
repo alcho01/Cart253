@@ -7,10 +7,10 @@ class Mainroom extends Apartment {
     this.mainroomImage = mainroomImage;
     //Mouse Clicked Positions (X2 = further x point - Y2 = further y point)
     //Bed lamp
-    this.bedlampX = 500;
-    this.bedlampX2 = 545;
-    this.bedlampY = 320;
-    this.bedlampY2 = 405;
+    this.bedlampX = 495;
+    this.bedlampX2 = 560;
+    this.bedlampY = 325;
+    this.bedlampY2 = 385;
     //Laptop
     this.laptopX = 140;
     this.laptopX2 = 215;
