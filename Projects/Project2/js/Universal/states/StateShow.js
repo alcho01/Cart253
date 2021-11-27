@@ -177,5 +177,23 @@ class StateShow {
       pianoKeyboard.display();
       pianoKeyboard.displaySequence();
     }
+    //Go to end cutscene 01
+    else if (state == "EndScene1") {
+      endCutScene.displayEndBackground();
+      endCutScene.displayEndTime();
+      endCutScene.displayEndDialogueBox();
+      endCutScene.displayEndDialogue();
+    }
+    //Go to end cutscene 02
+    else if (state == "EndScene2") {
+      endCutScene.displayEndBackground();
+      endCutScene.displayEndTime2();
+      endCutScene.displayEndDialogueBox();
+      endCutScene.displayEndDialogue2();
+    }
+    //Go to final end state
+    else if (state == "EndScene3") {
+      endCutScene.displayFinalEnding();
+    }
   }
 }

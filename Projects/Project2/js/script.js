@@ -282,6 +282,8 @@ let room4PreEntranceState;
 let room4State;
 let aquariumToggleState;
 
+let endCutScene;
+
 //Display the state
 let stateShow;
 
@@ -676,6 +678,8 @@ function setup() {
   room4State = new Room4State();
   aquariumToggleState = new AquariumToggleState();
 
+  endCutScene = new EndCutScene ();
+
   //What state is displayed
   stateShow = new StateShow();
   //What state is displayed for mouse interactivity(CLICKED)
@@ -846,8 +850,6 @@ function setup() {
 
 }
 
-
-
 function draw() {
   //Organize what states the simulation consists of...
   //The room the user begins on
@@ -857,11 +859,35 @@ function draw() {
 
 //If the game is over everything resets put this on the title screen after
 function reset(){
-//reset elements in the script
-//reset the username/password
-//turn the light back off
-//everything to false unless meant to be true
-
+  //Reset the state
+  state = "MainRoom";
+  //Set everything back to false
+   task1Complete = false;
+   task2Complete = false;
+   task3Complete = false;
+   task4Complete = false;
+   task2Availabe = false;
+   task3Availabe = false;
+   task4Available = false;
+   doorUnlocked = false;
+   hiddenKeyObtained = false;
+   hangingFish = false;
+   noteSheetObtained = false;
+  //Reset hints and other elements of tasks
+   bedlamplight.on = false;
+   koiFish.foodEaten = 0;
+   koiFish.width = 150;
+   koiFish.height = 100;
+  //Reset Current images
+   aquariumEnding.currentImage = aquariumEndImage;
+   hiddenKey.currentImage = hiddenKeyImage;
+  //Remove any current inputs
+   userCurrentInput = "";
+   passCurrentInput = "";
+   atomCurrentInput = "";
+   phoneCurrentInput = "";
+   answerCurrentInput = "";
+   pianoCurrentInput = "";
 }
 
 /*=====P5 Functions====*\

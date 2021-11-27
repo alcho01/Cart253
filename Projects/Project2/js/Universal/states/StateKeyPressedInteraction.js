@@ -8,6 +8,10 @@ class StateKeyPressedInteraction {
   active() {
     //Call the pretitle keypressed function
     preTitle.keyPressed();
+
+    //Call the ending keypressed functions
+    endCutScene.keyPressed();
+
     //Delete a letter at a time for each
     if (keyCode == 8) {
       userCurrentInput = userCurrentInput.substring(0, userCurrentInput.length + keyDel);

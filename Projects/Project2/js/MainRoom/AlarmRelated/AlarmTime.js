@@ -34,7 +34,8 @@ class AlarmTime {
     //Add a 0 before the minute or second, if it is less than 10. This gives off a more realistic alarm clock look.
     if (min < this.timeInteger) {
       min = "0" + min;
-    } else if (sec < this.timeInteger) {
+    }
+    if (sec < this.timeInteger) {
       sec = "0" + sec;
     }
     //Create the text with the hour,min,sec variables. After apply the : between each and AM for a digital look.

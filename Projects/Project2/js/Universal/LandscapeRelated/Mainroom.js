@@ -31,6 +31,11 @@ class Mainroom extends Apartment {
     this.PileX2 = 892;
     this.PileY = 541;
     this.PileY2 = 600;
+    //Bed
+    this.bedX = 395;
+    this.bedX2 = 770;
+    this.bedY = 437;
+    this.bedY2 = 580;
   }
 
   //Display the main room - the room the game starts on.
@@ -86,6 +91,14 @@ class Mainroom extends Apartment {
         paperSFX.play();
       }
     }
-    //Include bed clickable at end 
+    //If the bed is clicked roll to ending
+    if (task4Complete == true) { //if the tasks are all complete continue on
+      if (mouseX > this.bedX && mouseX < this.bedX2) {
+        if (mouseY > this.bedY && mouseY < this.bedY2) {
+          //Change states to the ending
+          state = "EndScene1";
+        }
+      }
+    }
   }
 }

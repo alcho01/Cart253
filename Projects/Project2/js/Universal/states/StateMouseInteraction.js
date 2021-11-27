@@ -157,5 +157,8 @@ class StateMouseInteraction {
       cursor();
       pianoKeyboard.mouseClicked();
     }
+    if (state == "EndScene1") {
+      cursor();
+    }
   }
 }

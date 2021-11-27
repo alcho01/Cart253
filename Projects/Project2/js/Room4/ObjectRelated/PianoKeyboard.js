@@ -45,7 +45,7 @@ class PianoKeyboard extends Apartment {
     this.attackLevel = 1;
     this.releaseLevel = 0;
 
-    //For loop for each key
+    //For loop for each key to play the given sound
     for (let i = 0; i < numKeys; i++) {
       envo.push(new p5.Env()); //add envelope to array
       envo[i].setADSR(this.attackTime, this.decayTime, this.susRatio, this.releaseTime); //loudness of sound
