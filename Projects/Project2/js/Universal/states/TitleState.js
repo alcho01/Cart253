@@ -106,7 +106,7 @@ class TitleState extends Apartment {
       if (mouseY > this.startButtonY && mouseY < this.startButtonY2) {
         //Reset the game when this button is clicked
         reset();
-        state = "MainRoom";
+        state = "OpeningScene";
       }
     }
     //if the help button is clicked review the instructions

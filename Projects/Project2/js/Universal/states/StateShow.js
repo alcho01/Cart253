@@ -23,6 +23,11 @@ class StateShow {
     if (state == "Help") {
       instructions.display();
     }
+    //The opening scene
+    if (state == "OpeningScene") {
+      openingScene.display();
+      openingScene.displayDialogue();
+    }
     //The room the user begins on
     if (state == "MainRoom") {
       titleSong.stop();

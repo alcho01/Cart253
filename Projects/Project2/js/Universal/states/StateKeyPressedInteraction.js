@@ -6,6 +6,9 @@ class StateKeyPressedInteraction {
 
   //activate the key pressed functionality
   active() {
+    //Call the opening scene key pressed
+    openingScene.keyPressed();
+    
     //Call the pretitle keypressed function
     preTitle.keyPressed();
 

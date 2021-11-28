@@ -58,12 +58,6 @@ class EndCutScene {
     this.dialogueBorderY = 655;
     //Radius
     this.dialogueBorderRadius = 20;
-    //Mouse Clicked Positions (X2 = further x point - Y2 = further y point)
-    this.dialogueContainerX = 12;
-    this.dialogueContainerX2 = 552;
-    this.dialogueContainerY = 621;
-    this.dialogueContainerY2 = 691;
-
   }
 
   //Related to end cutscene 01/02

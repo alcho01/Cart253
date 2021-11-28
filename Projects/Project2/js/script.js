@@ -2,7 +2,9 @@
 Title of Project 3:00AM CYCLE
 Alex Cho
 
-The concept of the game is to break the cycle repeatdly resetting at 3:00am. To do so it requires the completion of 4 tasks that can be found throughout the rooms.
+PLEASE RUN IN FIREFOX FOR CUSTOM CURSORS
+
+The concept of the game is to break the cycle repeatedly resetting at 3:00am. To do so it requires the completion of 4 tasks that can be found throughout the rooms.
 There is a variety of puzzle games that require memorization, logic and attention. Hints are scattered around the room to unlock certain steps or create an easier time for the user.
 For a more in depth breakdown of the game please consult the README.
 
@@ -95,7 +97,7 @@ let userCurrentInput = "";
 let passCurrentInput = "";
 
 //What needs to be typed in the atom app
-let atomCode = "image(object.image,object.x,object.y,object.w,object.h);";
+let atomCode = "image(object.image, object.x, object.y, object.w, object.h);";
 //What has been typed for the code
 let atomCurrentInput = "";
 
@@ -114,6 +116,19 @@ let answerCurrentInput = "";
 //Current input and sequence for the piano keys
 let pianoSequence = "dfgasfddfgasda"; // C4
 let pianoCurrentInput = "";
+
+//Opening
+
+//Dialogue Setup for the opening scene strings
+let openDialogueStrings = [
+  'Another day stuck in this rut!',
+  'Really getting sick of this!',
+  'I just want to go to bed!',
+  'I guess I could check my laptop.',
+];
+
+//What string is it on for the opening
+let currentOpenDialogueString = 0;
 
 /*=============================
 Classes to be called
@@ -250,6 +265,7 @@ let room4PreEntranceState;
 let room4State;
 let aquariumToggleState;
 
+let openingScene;
 let endCutScene;
 
 //Display the state
@@ -319,6 +335,12 @@ let arrowleftImage;
 let arrowLhoverImage;
 //Image of prerequisite warning
 let prerequisiteImage;
+
+//Images of opening scene
+let openingSceneImage1;
+let openingSceneImage2;
+let openingSceneImage3;
+let openingSceneImage4;
 
 //=========TITLE SCREEN==========//
 //Image of logo
@@ -494,6 +516,12 @@ Images
   //Loading the instructions
   instructionsImage = loadImage("assets/images/Objects/instructions.png");
 
+  //Loading the opening scene images
+  openingSceneImage1 = loadImage("assets/images/Objects/opening1.png");
+  openingSceneImage2 = loadImage("assets/images/Objects/opening2.png");
+  openingSceneImage3 = loadImage("assets/images/Objects/opening3.png");
+  openingSceneImage4 = loadImage("assets/images/Objects/opening4.png");
+
   //Loading images of cityscapes
   cityscapeImage = loadImage("assets/images/Background/bgmain.png");
   cityscape2Image = loadImage("assets/images/Background/bg2.png");
@@ -646,7 +674,8 @@ function setup() {
   room4State = new Room4State();
   aquariumToggleState = new AquariumToggleState();
 
-  endCutScene = new EndCutScene ();
+  endCutScene = new EndCutScene();
+  openingScene = new OpeningScene(1280, 720, 640, 360, openingSceneImage1, openingSceneImage2, openingSceneImage3, openingSceneImage4);
 
   //What state is displayed
   stateShow = new StateShow();
@@ -721,7 +750,7 @@ function setup() {
   //atom screen (w,h,x,y,image)
   atom = new Atom(1280, 720, 640, 360, atomImage);
   //atom text (x,y)
-  atomText = new AtomText(250, 533);
+  atomText = new AtomText(257, 533);
   //Sudoku (w,h,x,y,image)
   sudoku = new Sudoku(350, 350, 950, 350, sudokuImage);
 
@@ -828,7 +857,7 @@ function draw() {
 //If the game is over everything resets put this on the title screen after
 function reset(){
   //Reset the state
-  state = "MainRoom";
+  state = "OpeningScene";
   //Set everything back to false
    task1Complete = false;
    task2Complete = false;
