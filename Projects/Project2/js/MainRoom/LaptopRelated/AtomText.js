@@ -16,9 +16,10 @@ class AtomText {
     this.size = 15;
   }
 
+  //Display the current input
   display() {
     push();
-    //If correct fill it this colour
+    //If correct fill it green and display the sudo-cube // Make task 1 complete // Make task 2 available
     if (atomText.inputIsCorrect()) {
       task1Complete = true;
       task2Availabe = true;

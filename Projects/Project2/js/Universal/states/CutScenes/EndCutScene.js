@@ -1,6 +1,7 @@
 //Class that hold the end cut scene elements
 class EndCutScene {
   constructor() {
+
     //End Background
     //Fill
     this.endFill = 117;
@@ -161,10 +162,14 @@ class EndCutScene {
     keyPressed() {
       //Go to the second scene if a key is pressed
       if (state == "EndScene1") {
+        //Play the dialogue sound fx
+        dialogueSFX.play();
           state = "EndScene2";
         }
         //Go to the third scene if a key is pressed
         else if (state == "EndScene2") {
+          //Play the dialogue sound fx
+          dialogueSFX.play();
           state = "EndScene3";
         }
         //Return to the title if a key is pressed

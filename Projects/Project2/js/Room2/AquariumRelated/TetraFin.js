@@ -38,6 +38,8 @@ class TetraFin {
     //Calculate distance between fish and the food
       let d = dist(koiFish.x,koiFish.y,this.x,this.y);
       if (d < this.width / 2 + koiFish.width / 2) {
+        //Play the fish eating sfx
+        fishEatSFX.play();
       //Make the fish grow if it crosses with the food
       koiFish.width = koiFish.width + koiFish.growth;
       koiFish.height = koiFish.height + koiFish.growth;
@@ -46,6 +48,7 @@ class TetraFin {
       //position the food at the top
       this.y = this.top;
     }
+    //If the food eaten is greater than or equal to 15 the task is complete and task 3 becomes available
     else if (koiFish.foodEaten >= 15) {
       state = 'AquariumEnding'
       task2Complete = true;

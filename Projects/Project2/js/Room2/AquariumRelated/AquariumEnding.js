@@ -42,7 +42,11 @@ class AquariumEnding extends Apartment{
     //If the Key is clicked make the rectangle blank
     if (mouseX > this.keyX && mouseX < this.keyX2) {
       if (mouseY > this.keyY && mouseY < this.keyY2) {
+        //Play the key jangled sfx
+        keySFX.play();
+        //Make this unlocked
         doorUnlocked = true;
+        //Change the current image to be empty
         this.currentImage = aquariumEndClickImage;
       }
     }

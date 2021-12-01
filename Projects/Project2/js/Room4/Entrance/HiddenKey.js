@@ -27,6 +27,8 @@ class HiddenKey extends Apartment{
     //If the key is clicked switch back to the room 4 entrance and notify that it has been collected
     if (mouseX > this.keyX && mouseX < this.keyX2) {
       if (mouseY > this.keyY && mouseY < this.keyY2) {
+        //Play the key jangled sfx
+        keySFX.play();
           //User grabbed the key
           hiddenKeyObtained = true;
           //Switch to an empty box in case they click the mat again so they know they already took the key

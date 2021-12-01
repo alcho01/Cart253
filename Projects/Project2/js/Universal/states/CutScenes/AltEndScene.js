@@ -1,13 +1,13 @@
-//Class for the opening scene
-class OpeningScene extends Apartment{
-  constructor(w, h, x, y, openingSceneImage1, openingSceneImage2, openingSceneImage3, openingSceneImage4) {
-    //Call parameters from super class
+//The class for the alternative end scene *Bad End* or giving up
+class AltEndScene extends Apartment{
+  constructor(w, h, x, y, altEndSceneImage1, altEndSceneImage2, altEndSceneImage3, altEndSceneImage4){
+  //Call parameters from superclass
     super(w, h, x, y);
     //Images
-    this.openingSceneImage1 = openingSceneImage1;
-    this.openingSceneImage2 = openingSceneImage2;
-    this.openingSceneImage3 = openingSceneImage3;
-    this.openingSceneImage4 = openingSceneImage4;
+    this.altEndSceneImage1 = altEndSceneImage1;
+    this.altEndSceneImage2 = altEndSceneImage2;
+    this.altEndSceneImage3 = altEndSceneImage3;
+    this.altEndSceneImage4 = altEndSceneImage4;
 
     //colour (WHITE)
     this.white = 255;
@@ -33,29 +33,29 @@ class OpeningScene extends Apartment{
     //radius
     this.dialogueBoxRadius = 20;
     //string to display
-    this.string = 'Another day stuck in this rut!';
+    this.string = 'This is too much!';
   }
 
-  //Display the opening scene
+  //Display the Alternative ending scene
   display() {
     push();
     imageMode(CENTER);
 
     if (frameCount % 60 < 10/2) {
-      image(this.openingSceneImage1, this.x, this.y, this.width, this.height);
+      image(this.altEndSceneImage1, this.x, this.y, this.width, this.height);
     }
     else if (frameCount % 40 < 10/2) {
-      image(this.openingSceneImage2, this.x, this.y, this.width, this.height);
+      image(this.altEndSceneImage2, this.x, this.y, this.width, this.height);
     }
     else if (frameCount % 30 < 10/2) {
-      image(this.openingSceneImage3, this.x, this.y, this.width, this.height);
+      image(this.altEndSceneImage3, this.x, this.y, this.width, this.height);
     }
     else if (frameCount % 15 < 10/2) {
-      image(this.openingSceneImage4, this.x, this.y, this.width, this.height);
+      image(this.altEndSceneImage4, this.x, this.y, this.width, this.height);
+
     pop();
     }
   }
-
 
   displayDialogue() {
     //Display the container
@@ -76,17 +76,16 @@ class OpeningScene extends Apartment{
     pop();
   }
 
-
   keyPressed() {
     //Play the sound fx for switching between dialogues
     dialogueSFX.play();
     //Link the string to the current dialogue
-    this.string = openDialogueStrings[currentOpenDialogueString];
+    this.string = alternativeEndDialogueStrings[currentAlternativeEndDialogueString];
     //Change strings when key is pressed
-    currentOpenDialogueString += 1;
+    currentAlternativeEndDialogueString += 1;
     //If there is no more strings change the state
-    if (currentOpenDialogueString > openDialogueStrings.length) {
-      state = "MainRoom";
+    if (currentAlternativeEndDialogueString > alternativeEndDialogueStrings.length) {
+      state = "AltEndFinal";
     }
   }
 }

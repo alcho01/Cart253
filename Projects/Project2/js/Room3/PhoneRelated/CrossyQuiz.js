@@ -1,4 +1,5 @@
 //Class for the Crossy Quiz which is shown after the fooled Screen
+//Realized a little to late that the questions could have been displayed with strings. Sorry.
 class CrossyQuiz extends Apartment{
   constructor(w, h, x, y, crossyQuizImage) {
     //call the parameters from the super class

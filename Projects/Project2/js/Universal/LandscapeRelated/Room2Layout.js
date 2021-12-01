@@ -31,6 +31,12 @@ class Room2Layout extends Apartment {
     this.bearX2 = 1172;
     this.bearY = 380;
     this.bearY2 = 487;
+    //Poster
+    this.posterX = 81;
+    this.posterX2 = 240;
+    this.posterY = 15;
+    this.posterY2 = 203;
+
   }
 
   //Display the room 2 layout
@@ -83,6 +89,12 @@ class Room2Layout extends Apartment {
         state = "BearHead";
         //Play the thump SFX
         thumpSFX.play();
+      }
+    }
+    //If the game over poster is clicked, trigger the alternative ending
+    if (mouseX > this.posterX && mouseX < this.posterX2) {
+      if(mouseY > this.posterY && mouseY < this.posterY2) {
+        state = "AltEnd1";
       }
     }
   }

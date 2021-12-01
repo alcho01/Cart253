@@ -5,9 +5,7 @@ class AlarmTime {
     this.x = x;
     this.y = y;
     //colour (WHITE)
-    this.r = 255;
-    this.g = 255;
-    this.b = 255;
+    this.white = 255;
     //font
     this.alarmtimeFont = alarmtimeFont;
     //Text size
@@ -21,14 +19,14 @@ class AlarmTime {
   I did this because I want the setting of the game to be played at that time. */
   display() {
     push();
-    fill(this.r, this.g, this.b);
+    fill(this.white);
     textFont(this.alarmtimeFont);
     textAlign(CENTER);
     textSize(this.size);
     //Create a variable for hours,minutes,and seconds
     //Pre-determine what time of day it is. It will always start at 3:X:X AM
     let hour = "3";
-    //Minutes and seconds based on real life
+    //Minutes and seconds based on real time
     let min = minute();
     let sec = second();
     //Add a 0 before the minute or second, if it is less than 10. This gives off a more realistic alarm clock look.

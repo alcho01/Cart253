@@ -53,7 +53,6 @@ class PianoKeyboard extends Apartment {
       osc.push(new p5.Oscillator()); //add oscillator to array
       osc[i].amp(envo[i]); //modulate the amplitude
     }
-
   }
 
   //Display the piano keyboard

@@ -200,5 +200,14 @@ class StateShow {
     else if (state == "EndScene3") {
       endCutScene.displayFinalEnding();
     }
+    //Go to alternative Ending 1
+    else if (state == "AltEnd1") {
+      altEndScene.display();
+      altEndScene.displayDialogue();
+    }
+    //Go to the final screen for the alt ending
+    else if (state == "AltEndFinal") {
+      altAfterEnd.display();
+    }
   }
 }

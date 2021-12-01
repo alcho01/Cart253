@@ -7,7 +7,6 @@ PLEASE RUN IN FIREFOX FOR CUSTOM CURSORS
 The concept of the game is to break the cycle repeatedly resetting at 3:00am. To do so it requires the completion of 4 tasks that can be found throughout the rooms.
 There is a variety of puzzle games that require memorization, logic and attention. Hints are scattered around the room to unlock certain steps or create an easier time for the user.
 For a more in depth breakdown of the game please consult the README.
-
 */
 
 "use strict";
@@ -24,6 +23,7 @@ let canvasPosition = {
 
 //Array for clouds
 let cloud = [];
+//Amount of clouds
 let numClouds = 5;
 
 //Array for raindrops
@@ -31,7 +31,7 @@ let rainDrop = [];
 //Amount of raindrops
 let numRainDrops = 120;
 
-//sound volume
+//sound volume for music and fx
 let songVolume = 0.1;
 let sfxVolume = 0.5;
 
@@ -121,14 +121,25 @@ let pianoCurrentInput = "";
 
 //Dialogue Setup for the opening scene strings
 let openDialogueStrings = [
-  'Another day stuck in this rut!',
-  'Really getting sick of this!',
-  'I just want to go to bed!',
-  'I guess I could check my laptop.',
+  "Another day stuck in this rut!",
+  "Really getting sick of this!",
+  "I just want to go to bed!",
+  "I guess I should check my laptop.",
 ];
 
 //What string is it on for the opening
 let currentOpenDialogueString = 0;
+
+//Dialogue strings for the alternative ending
+let alternativeEndDialogueStrings = [
+  "This is too much!",
+  "I am spending the rest of my days smoking.",
+  "I cannot endure another moment.",
+  "The 3:00 AM cycle ruined me!",
+];
+
+//What string is it on for the alternative ending
+let currentAlternativeEndDialogueString = 0;
 
 /*=============================
 Classes to be called
@@ -250,7 +261,7 @@ let room4Layout;
 //Piano
 let piano;
 //PianoKeys
-let pianoKeyboard
+let pianoKeyboard;
 
 //=======State Stuff======//
 
@@ -265,8 +276,11 @@ let room4PreEntranceState;
 let room4State;
 let aquariumToggleState;
 
+//Cutscenes
 let openingScene;
 let endCutScene;
+let altEndScene;
+let altAfterEnd;
 
 //Display the state
 let stateShow;
@@ -283,7 +297,7 @@ let stateKeyTypedInteraction;
 //Enable the key pressed functionality
 let stateKeyPressedInteraction;
 
-//What state is it in
+//What state does the game start on
 let state = "PreTitle";
 
 /*=============================
@@ -315,6 +329,12 @@ let bookSFX;
 let bagZipSFX;
 //Door sound
 let doorSFX;
+//Key Jangle sound
+let keySFX;
+//dialogue switching sound
+let dialogueSFX;
+//Fish eating sound
+let fishEatSFX;
 //Song list
 let titleSong;
 let song1;
@@ -336,11 +356,24 @@ let arrowLhoverImage;
 //Image of prerequisite warning
 let prerequisiteImage;
 
+//=========CUTSCENES==========//
 //Images of opening scene
 let openingSceneImage1;
 let openingSceneImage2;
 let openingSceneImage3;
 let openingSceneImage4;
+
+//Images of alternate ending scene
+let altEndSceneImage1;
+let altEndSceneImage2;
+let altEndSceneImage3;
+let altEndSceneImage4;
+
+//Images that occur after the alternate ending scene
+let afterAltEndImage1;
+let afterAltEndImage2;
+let afterAltEndImage3;
+let afterAltEndImage4;
 
 //=========TITLE SCREEN==========//
 //Image of logo
@@ -503,6 +536,9 @@ Sounds
   bookSFX = loadSound("assets/sounds/bookFlip.wav");
   bagZipSFX = loadSound("assets/sounds/bagZipper.wav");
   doorSFX = loadSound("assets/sounds/door.wav");
+  keySFX = loadSound("assets/sounds/keys.wav");
+  dialogueSFX = loadSound("assets/sounds/dialogue.mp3");
+  fishEatSFX = loadSound("assets/sounds/fisheating.wav");
 
   /*=============================
 Images
@@ -516,12 +552,24 @@ Images
   //Loading the instructions
   instructionsImage = loadImage("assets/images/Objects/instructions.png");
 
+  //CUTSCENE IMAGES\\
   //Loading the opening scene images
   openingSceneImage1 = loadImage("assets/images/Objects/opening1.png");
   openingSceneImage2 = loadImage("assets/images/Objects/opening2.png");
   openingSceneImage3 = loadImage("assets/images/Objects/opening3.png");
   openingSceneImage4 = loadImage("assets/images/Objects/opening4.png");
+  //Loading the alternate ending images
+  altEndSceneImage1 = loadImage("assets/images/Objects/altend1.png");
+  altEndSceneImage2 = loadImage("assets/images/Objects/altend2.png");
+  altEndSceneImage3 = loadImage("assets/images/Objects/altend3.png");
+  altEndSceneImage4 = loadImage("assets/images/Objects/altend4.png");
+  //Loading the images that occur after the alternative ending scene
+  afterAltEndImage1 = loadImage("assets/images/Objects/afterend1.png");
+  afterAltEndImage2 = loadImage("assets/images/Objects/afterend2.png");
+  afterAltEndImage3 = loadImage("assets/images/Objects/afterend3.png");
+  afterAltEndImage4 = loadImage("assets/images/Objects/afterend4.png");
 
+  //IN GAME IMAGES\\
   //Loading images of cityscapes
   cityscapeImage = loadImage("assets/images/Background/bgmain.png");
   cityscape2Image = loadImage("assets/images/Background/bg2.png");
@@ -534,7 +582,6 @@ Images
   room4PreEntranceImage = loadImage("assets/images/Rooms/5doors.png");
   room4LayoutImage = loadImage("assets/images/Rooms/Room4.png");
 
-  //Loading images of main room interactive objects
   //Loading the bed images
   bedImage = loadImage("assets/images/Objects/bed.png");
   bedhoverImage = loadImage("assets/images/Objects/bedhover.png");
@@ -627,10 +674,11 @@ Images
 }
 
 /*=====================================
-SETTING UP! CANVAS|CLASSES|ARRAYS|BEDLAMPLIGHTS
+SETTING UP! CANVAS|CLASSES|ARRAYS|VOLUME SETTINGS
 ======================================*/
 function setup() {
   userStartAudio();
+
   //Creating the canvas
   createCanvas(canvasPosition.x, canvasPosition.y);
 
@@ -638,6 +686,8 @@ function setup() {
   //Set the volume down a bit
   rainSFX.setVolume(sfxVolume);
   bagZipSFX.setVolume(sfxVolume);
+  dialogueSFX.setVolume(sfxVolume);
+  fishEatSFX.setVolume(sfxVolume);
   //Sets the song volume lower
   song1.setVolume(songVolume);
   song2.setVolume(songVolume);
@@ -654,7 +704,12 @@ function setup() {
   //titleSong.loop();
 
   //Determing a set fill for the bed lamp light before toggling it
-  bedLampLightFill = color(bedLampOff.r, bedLampOff.g, bedLampOff.b, bedLampOff.a);
+  bedLampLightFill = color(
+    bedLampOff.r,
+    bedLampOff.g,
+    bedLampOff.b,
+    bedLampOff.a
+  );
 
   /*=============================
           UNIVERSAL
@@ -674,7 +729,11 @@ function setup() {
   room4State = new Room4State();
   aquariumToggleState = new AquariumToggleState();
 
+  //CUTSCENES
   endCutScene = new EndCutScene();
+  //Parameters (w, h, x, y, image1, image2, image3, image4)
+  altAfterEnd = new AltAfterEnd(1280, 720, 640, 360, afterAltEndImage1, afterAltEndImage2, afterAltEndImage3, afterAltEndImage4);
+  altEndScene = new AltEndScene(1280, 720, 640, 360, altEndSceneImage1, altEndSceneImage2, altEndSceneImage3, altEndSceneImage4);
   openingScene = new OpeningScene(1280, 720, 640, 360, openingSceneImage1, openingSceneImage2, openingSceneImage3, openingSceneImage4);
 
   //What state is displayed
@@ -701,7 +760,7 @@ function setup() {
     rainDrop[i] = new RainDrop(random(1, 4), random(5, 8), random(0, width), random(50, 800));
   }
 
-  //Citylight to be called for a class (w,h,x,y)
+  //clouds to be called for a class (w,h,x,y)
   for (let i = 0; i < numClouds; i++) {
     cloud[i] = new Cloud(180, 50, random(windowWidth), random(0, 514));
   }
@@ -844,7 +903,6 @@ function setup() {
   piano = new Piano(430, 350, 1053, 495, pianoImage, pianoHoverImage);
   //Piano keyboard parameters(w,h,x,y,image)
   pianoKeyboard = new PianoKeyboard(1280, 720, 640, 360, pianoKeyboardImage);
-
 }
 
 function draw() {
@@ -855,36 +913,42 @@ function draw() {
 }
 
 //If the game is over everything resets put this on the title screen after
-function reset(){
+function reset() {
   //Reset the state
   state = "OpeningScene";
   //Set everything back to false
-   task1Complete = false;
-   task2Complete = false;
-   task3Complete = false;
-   task4Complete = false;
-   task2Availabe = false;
-   task3Availabe = false;
-   task4Available = false;
-   doorUnlocked = false;
-   hiddenKeyObtained = false;
-   hangingFish = false;
-   noteSheetObtained = false;
+  task1Complete = false;
+  task2Complete = false;
+  task3Complete = false;
+  task4Complete = false;
+  task2Availabe = false;
+  task3Availabe = false;
+  task4Available = false;
+  doorUnlocked = false;
+  hiddenKeyObtained = false;
+  hangingFish = false;
+  noteSheetObtained = false;
   //Reset hints and other elements of tasks
-   bedlamplight.on = false;
-   koiFish.foodEaten = 0;
-   koiFish.width = 150;
-   koiFish.height = 100;
+  bedlamplight.on = false;
+  koiFish.foodEaten = 0;
+  koiFish.width = 150;
+  koiFish.height = 100;
   //Reset Current images
-   aquariumEnding.currentImage = aquariumEndImage;
-   hiddenKey.currentImage = hiddenKeyImage;
+  aquariumEnding.currentImage = aquariumEndImage;
+  hiddenKey.currentImage = hiddenKeyImage;
+  //Set this to display the first string.
+  openingScene.string = "Another day stuck in this rut!";
+  altEndScene.string = "This is too much!";
+  //Reset the strings order
+  currentOpenDialogueString = 1;
+  currentAlternativeEndDialogueString = 1;
   //Remove any current inputs
-   userCurrentInput = "";
-   passCurrentInput = "";
-   atomCurrentInput = "";
-   phoneCurrentInput = "";
-   answerCurrentInput = "";
-   pianoCurrentInput = "";
+  userCurrentInput = "";
+  passCurrentInput = "";
+  atomCurrentInput = "";
+  phoneCurrentInput = "";
+  answerCurrentInput = "";
+  pianoCurrentInput = "";
 }
 
 /*=====P5 Functions====*\
