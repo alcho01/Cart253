@@ -10,7 +10,6 @@ class StateShow {
     //Pre title state
     if (state == "PreTitle") {
       preTitle.display();
-      preTitle.displayText();
     }
     //The title screen
     if (state == "TitleScreen") {

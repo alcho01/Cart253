@@ -329,6 +329,8 @@ let bookSFX;
 let bagZipSFX;
 //Door sound
 let doorSFX;
+//Door locked sound
+let doorLockedSFX;
 //Key Jangle sound
 let keySFX;
 //dialogue switching sound
@@ -357,6 +359,10 @@ let arrowLhoverImage;
 let prerequisiteImage;
 
 //=========CUTSCENES==========//
+//Pretitle images scene
+let pretitleImage1;
+let pretitleImage2;
+
 //Images of opening scene
 let openingSceneImage1;
 let openingSceneImage2;
@@ -536,6 +542,7 @@ Sounds
   bookSFX = loadSound("assets/sounds/bookFlip.wav");
   bagZipSFX = loadSound("assets/sounds/bagZipper.wav");
   doorSFX = loadSound("assets/sounds/door.wav");
+  doorLockedSFX = loadSound("assets/sounds/doorlocked.wav");
   keySFX = loadSound("assets/sounds/keys.wav");
   dialogueSFX = loadSound("assets/sounds/dialogue.mp3");
   fishEatSFX = loadSound("assets/sounds/fisheating.wav");
@@ -553,6 +560,9 @@ Images
   instructionsImage = loadImage("assets/images/Objects/instructions.png");
 
   //CUTSCENE IMAGES\\
+  //Loading the pretitle Images
+  pretitleImage1 = loadImage("assets/images/Objects/pretitle1.png");
+  pretitleImage2 = loadImage("assets/images/Objects/pretitle2.png");
   //Loading the opening scene images
   openingSceneImage1 = loadImage("assets/images/Objects/opening1.png");
   openingSceneImage2 = loadImage("assets/images/Objects/opening2.png");
@@ -716,8 +726,8 @@ function setup() {
 ===============================*/
 
   //STATES
-  //parameters (w,h,x,y)
-  preTitle = new PreTitle(1280, 720, 640, 360);
+  //parameters (w,h,x,y,image1, image 2)
+  preTitle = new PreTitle(1280, 720, 0, 0, pretitleImage1, pretitleImage2);
   //parameters (w,h,image1,image2)
   titleState = new TitleState(1280, 720, logoImage, titleButtonsImage);
   //parameters (w,h,x,y,image)

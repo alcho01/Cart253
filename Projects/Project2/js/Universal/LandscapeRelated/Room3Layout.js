@@ -79,6 +79,14 @@ class Room3Layout extends Apartment{
         }
       }
     }
+    else if (doorUnlocked == false) {
+      if (mouseX > this.doorX && mouseX < this.doorX2) {
+        if (mouseY > this.doorY && mouseY < this.doorY2) {
+          //Play door locked sound
+          doorLockedSFX.play();
+        }
+      }
+    }
     //If task 3 is complete allow the hanging fish to be clicked
     if (hangingFish == true) {
     if (mouseX > this.fishX && mouseX < this.fishX2) {

@@ -1,43 +1,26 @@
 //Class for the pretitle that displays before the title to activate the sound
 class PreTitle extends Apartment {
-  constructor(w, h, x, y) {
-    //Rectangle to cover screen parameters
+  constructor(w, h, x, y, pretitleImage1, pretitleImage2) {
     //Call parameters from the super class
-    super(w,h,x,y);
-    //Fill
-    this.r = 13;
-    this.g = 10;
-    this.b = 61;
-    //Text saying "Press any key "
-    //position
-    this.textX = 640;
-    this.textY = 360;
-    //Text size
-    this.textSize = 40;
-    //Fill
-    this.white = 255;
+    super(w, h, x, y);
+    //Images
+    this.pretitleImage1 = pretitleImage1;
+    this.pretitleImage2 = pretitleImage2;
   }
 
-  //Display the dark blue background
+  //Display the lofi Pretitle
   display() {
     push();
-    fill(this.r, this.g, this.b);
-    rectMode(CENTER);
-    rect(this.x, this.y, this.width, this.height);
+    if (frameCount % 40 < 10/2) {
+      image(this.pretitleImage1, this.x, this.y, this.width, this.height);
+    }
+    else if (frameCount % 60 < 10/2) {
+      image(this.pretitleImage2, this.x, this.y, this.width, this.height);
+    }
     pop();
   }
 
-  //Display the text "Press any key "
-  displayText() {
-    push();
-    fill(this.white);
-    textAlign(CENTER);
-    textSize(this.textSize);
-    text('Press Any Key!', this.textX, this.textY);
-    pop();
-  }
-
-  //Switch states if the key is pressed 
+  //Switch states if the key is pressed
   keyPressed() {
     if (state == "PreTitle") {
       //Loop the rain SFX and play at title

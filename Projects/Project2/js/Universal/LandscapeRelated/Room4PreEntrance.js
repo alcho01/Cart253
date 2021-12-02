@@ -63,6 +63,14 @@ class Room4PreEntrance extends Apartment{
         }
       }
     }
+    else if (hiddenKeyObtained == false) {
+      if (mouseX > this.doorX && mouseX < this.doorX2) {
+        if (mouseY > this.doorY && mouseY < this.doorY2) {
+          //Play door locked sound
+          doorLockedSFX.play();
+        }
+      }
+    }
     //If the first door is clicked activate an alternative ending
     if (mouseX > this.farLeftDoorX && mouseX < this.farLeftDoorX2) {
       if (mouseY > this.farLeftDoorY && mouseY < this.farLeftDoorY2) {
