@@ -21,7 +21,7 @@ class OpeningScene extends Apartment{
     this.dialogueX = 279;
     this.dialogueY = 663;
     //Dialogue sizes
-    this.dialogueSize = 40;
+    this.dialogueSize = 35;
     this.dialogueSizeSmall = 30;
     //Dialogue Box
     //Dimensions
@@ -34,6 +34,11 @@ class OpeningScene extends Apartment{
     this.dialogueBoxRadius = 20;
     //string to display
     this.string = 'Another day stuck in this rut!';
+
+    //Text for switching scenes
+    //Position
+    this.textSwitchX = 1020;
+    this.textSwitchY = 46;
   }
 
   //Display the opening scene
@@ -73,6 +78,15 @@ class OpeningScene extends Apartment{
     textAlign(CENTER);
     textSize(this.dialogueSizeSmall);
     text(this.string, this.dialogueX, this.dialogueY);
+    pop();
+
+    //Display piece of text saying how to switch between cutscenes.
+    push();
+    fill(this.r, this.g, this.b);
+    textFont(this.lofiFont);
+    textAlign(CENTER);
+    textSize(this.dialogueSize);
+    text('Press any key, to switch scenes', this.textSwitchX, this.textSwitchY);
     pop();
   }
 
