@@ -153,7 +153,7 @@ class StateMouseInteraction {
       cursor();
       room4Layout.mouseClicked();
     }
-    if (state == "PianoKeyboard") {
+    else if (state == "PianoKeyboard") {
       cursor();
       pianoKeyboard.mouseClicked();
     }

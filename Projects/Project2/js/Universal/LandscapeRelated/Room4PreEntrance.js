@@ -21,11 +21,6 @@ class Room4PreEntrance extends Apartment{
     this.doorX2 = 1020;
     this.doorY = 85;
     this.doorY2 = 506;
-    //Far left door
-    this.farLeftDoorX = 16;
-    this.farLeftDoorX2 = 233;
-    this.farLeftDoorY = 85;
-    this.farLeftDoorY2 = 506;
   }
 
   //Display the room 4 pre entrance
@@ -63,21 +58,13 @@ class Room4PreEntrance extends Apartment{
         }
       }
     }
+    //If the door is clicked  and locked play the door locked SFX
     else if (hiddenKeyObtained == false) {
       if (mouseX > this.doorX && mouseX < this.doorX2) {
         if (mouseY > this.doorY && mouseY < this.doorY2) {
           //Play door locked sound
           doorLockedSFX.play();
         }
-      }
-    }
-    //If the first door is clicked activate an alternative ending
-    if (mouseX > this.farLeftDoorX && mouseX < this.farLeftDoorX2) {
-      if (mouseY > this.farLeftDoorY && mouseY < this.farLeftDoorY2) {
-        //Play door opening sound
-        doorSFX.play();
-        //Change states when the door is clicked //Alternative first ending
-        //state = "";
       }
     }
   }

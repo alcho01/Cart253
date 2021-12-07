@@ -298,7 +298,7 @@ let stateKeyTypedInteraction;
 let stateKeyPressedInteraction;
 
 //What state does the game start on
-let state = "PreTitle";
+let state = "PreTitle"; //Set to PreTitle when done everything
 
 /*=============================
 Fonts
