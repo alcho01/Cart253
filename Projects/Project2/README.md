@@ -1,13 +1,3 @@
-INDEX
-
-Artist Statement
-Description of the Game
-Other Thoughts
-References
-Cheat Guide
-Hidden Ending
-
-
 Artist Statement
 
 The vision going into this was to create a point-and-click game in a Lo-Fi Room. I set out what I planned to do. Ultimately, I am proud of the final product. The main interaction was meant to be mouse-clicking hence the genre of game it is. A lot of the code has an emphasis on determining what state it currently is then applying the other elements like the p5 elements, arrays, conditionals, displaying images, etc. Technically, I am pleased with the outcome because the program works and does what I envisioned it to do. The hardest part was doing the code for each task because they are the bigger ideas of the game and require a lot more thought. I am happy with how they turned out. Building the rooms and creating the mouse interactivity was tedious, draining, and repetitive. However, it worked out in the end, so I have nothing to complain about. Artistically, a lot of the assets I got from other resources because I would not have enough time to do both, and the code is more important than the aesthetics. However, it still was a process to design the layout of each room, then implement what goes where, and cross my fingers that it works with the code. The goal was to create a Lo-Fi room, and I think the aesthetics demonstrate that. I was very select on the type of entities I wanted to display for each room. I was inspired by the tv series "Black Mirror," and more specifically the episode "White Bear" where the protagonist has to live the same day over and over again.
